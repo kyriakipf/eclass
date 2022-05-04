@@ -1,0 +1,126 @@
+@import "variables";
+
+.mainInfo {
+    & h2 {
+        color: black;
+        font-size: 22px;
+    }
+
+    & form {
+        margin-top: 30px;
+        margin-bottom: 100px;
+
+        & .addForm {
+            justify-content: space-evenly;
+
+            & .input-container, .select-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                & label {
+                    font-size: 16px;
+                    color: $darkGray;
+                    margin: 0 0 8px 4px;
+                    font-weight: 600;
+                }
+
+                & .file {
+                    padding: 30px;
+                    cursor: pointer !important;
+                }
+
+                & input, select {
+                    display: block;
+                    width: 100%;
+                    padding: 8px 12px 8px 35px;
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: $darkGray;
+                    background-color: $white;
+                    border: 1px solid $lightGray;
+                    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+                    border-radius: 4px;
+                    margin-bottom: 25px;
+
+                    &:focus {
+                        border-color: $pink;
+                        box-shadow: 0 0 0 1px $pink;
+                        outline: none;
+                        transition: box-shadow 0.15s ease, border-color 0.15s ease;
+                    }
+                }
+            }
+
+            & .btn-container {
+                display: flex;
+                justify-content: center;
+
+                & button {
+                    font-weight: 500;
+                    color: $white;
+                    font-size: 15px;
+                    margin-top: 24px;
+                    padding: 6px 35px;
+                    border-radius: 5px;
+                    transition: all 0.15s ease-in;
+                    border: 1px solid $lightBlue;
+                    background-color: $lightBlue;
+
+                    &:hover {
+                        transition: all 0.15s ease-in;
+                        border: 1px solid $blue;
+                        background-color: $blue;
+                    }
+                }
+            }
+        }
+    }
+
+    & table {
+        width: 100%;
+
+        & thead {
+            border-bottom: 1px solid $lightGray;
+
+            & tr {
+                & th {
+                    color: $gray;
+                    font-size: 16px;
+                    padding: 12px 24px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        & tbody {
+            & tr {
+                & td {
+                    padding: 12px 14px;
+
+                    & p, a {
+                        font-size: 14px;
+                        color: $darkGray;
+                        font-weight: 500;
+                        padding: 4px 8px;
+                        margin: 0;
+                        transition: color 0.15s linear;
+                    }
+
+                    & a {
+                        &:hover {
+                            color: $blue;
+                            transition: color 0.15s linear;
+                        }
+                    }
+                }
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $lightGray;
+                }
+            }
+        }
+    }
+}
+
+

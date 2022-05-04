@@ -1,0 +1,68 @@
+body {
+  background-color: #f8f9fa;
+}
+body a {
+  text-decoration: none;
+  color: black;
+}
+body section#main .dashboard {
+  display: flex;
+}
+body section#main .dashboard .sidebar {
+  box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+}
+body section#main .dashboard .sidebar .sidebar-header {
+  padding: 24px 32px;
+}
+body section#main .dashboard .sidebar .sidebar-header a {
+  font-size: 18px;
+  font-weight: 400;
+  color: #344767;
+  margin-left: 4px;
+}
+body section#main .dashboard .sidebar .sidebar-header a:hover {
+  color: #344767;
+}
+body section#main .dashboard .sidebar hr {
+  background-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4), transparent);
+  background-color: transparent;
+  border: 0;
+  opacity: 0.25;
+  margin-bottom: 20px;
+}
+body section#main .dashboard .sidebar .nav-bar {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+body section#main .dashboard .sidebar .nav-bar p {
+  color: #344767;
+  font-size: 16px;
+  margin: 10px 0 8px 8px;
+  padding-left: 24px;
+  font-weight: 500;
+}
+body section#main .dashboard .sidebar .nav-bar .nav-item {
+  margin-top: 10px;
+}
+body section#main .dashboard .sidebar .nav-bar .nav-item a {
+  margin: 0 16px;
+  font-size: 16px;
+  color: #67748E;
+  font-weight: 400;
+}
+body section#main .dashboard .sidebar .nav-bar .nav-item a:hover {
+  color: #67748E;
+}
+body section#main .dashboard .sidebar .nav-bar .nav-item a i {
+  color: black;
+  margin-right: 8px;
+  background-image: linear-gradient(310deg, #e9ecef, #e9ecef);
+  box-shadow: 0 0.3125rem 0.625rem 0 rgba(0, 0, 0, 0.12);
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+body section#main .dashboard .content .content-container {
+  padding: 24px;
+}

@@ -1,0 +1,95 @@
+.mainInfo h2 {
+  color: black;
+  font-size: 22px;
+}
+.mainInfo form {
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+.mainInfo form .addForm {
+  justify-content: space-evenly;
+}
+.mainInfo form .addForm .input-container, .mainInfo form .addForm .select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mainInfo form .addForm .input-container label, .mainInfo form .addForm .select-container label {
+  font-size: 16px;
+  color: #344767;
+  margin: 0 0 8px 4px;
+  font-weight: 600;
+}
+.mainInfo form .addForm .input-container .file, .mainInfo form .addForm .select-container .file {
+  padding: 30px;
+  cursor: pointer !important;
+}
+.mainInfo form .addForm .input-container input, .mainInfo form .addForm .input-container select, .mainInfo form .addForm .select-container input, .mainInfo form .addForm .select-container select {
+  display: block;
+  width: 100%;
+  padding: 8px 12px 8px 35px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #344767;
+  background-color: #fff;
+  border: 1px solid #e9ecef;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  border-radius: 4px;
+  margin-bottom: 25px;
+}
+.mainInfo form .addForm .input-container input:focus, .mainInfo form .addForm .input-container select:focus, .mainInfo form .addForm .select-container input:focus, .mainInfo form .addForm .select-container select:focus {
+  border-color: #e293d3;
+  box-shadow: 0 0 0 1px #e293d3;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.mainInfo form .addForm .btn-container {
+  display: flex;
+  justify-content: center;
+}
+.mainInfo form .addForm .btn-container button {
+  font-weight: 500;
+  color: #fff;
+  font-size: 15px;
+  margin-top: 24px;
+  padding: 6px 35px;
+  border-radius: 5px;
+  transition: all 0.15s ease-in;
+  border: 1px solid #21d4fd;
+  background-color: #21d4fd;
+}
+.mainInfo form .addForm .btn-container button:hover {
+  transition: all 0.15s ease-in;
+  border: 1px solid #2152ff;
+  background-color: #2152ff;
+}
+.mainInfo table {
+  width: 100%;
+}
+.mainInfo table thead {
+  border-bottom: 1px solid #e9ecef;
+}
+.mainInfo table thead tr th {
+  color: #67748E;
+  font-size: 16px;
+  padding: 12px 24px;
+  font-weight: 400;
+}
+.mainInfo table tbody tr td {
+  padding: 12px 14px;
+}
+.mainInfo table tbody tr td p, .mainInfo table tbody tr td a {
+  font-size: 14px;
+  color: #344767;
+  font-weight: 500;
+  padding: 4px 8px;
+  margin: 0;
+  transition: color 0.15s linear;
+}
+.mainInfo table tbody tr td a:hover {
+  color: #2152ff;
+  transition: color 0.15s linear;
+}
+.mainInfo table tbody tr:not(:last-child) {
+  border-bottom: 1px solid #e9ecef;
+}

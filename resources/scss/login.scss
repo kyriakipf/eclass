@@ -1,0 +1,96 @@
+@import "variables";
+
+section {
+    &#login {
+        & .container {
+            & .row {
+                margin-top: 150px;
+                justify-content: center;
+
+                & .content {
+                    text-align: center;
+
+                    & h1 {
+                        color: $lightBlue;
+                        font-size: 30px;
+                        margin-bottom: 8px;
+                        font-weight: 600;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-image: linear-gradient(310deg, $blue, $lightBlue);
+                    }
+
+                    & p {
+                        font-size: 16px;
+                        color: $gray;
+                        font-weight: 600;
+                    }
+
+                    & .card-body {
+                        & .input {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+
+                            & label {
+                                font-size: 16px;
+                                color: $darkGray;
+                                margin: 0 0 8px 4px;
+                                font-weight: 600;
+                            }
+
+                            & input {
+                                display: block;
+                                width: 100%;
+                                padding: 8px 12px 8px 35px;
+                                font-size: 16px;
+                                font-weight: 400;
+                                color: $darkGray;
+                                background-color: $white;
+                                border: 1px solid $lightGray;
+                                transition: box-shadow 0.15s ease, border-color 0.15s ease;
+                                border-radius: 10px;
+                                margin-bottom: 25px;
+                                &:focus{
+                                    border-color: $pink;
+                                    box-shadow: 0 0 0 2px $pink;
+                                    outline: none;
+                                    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+                                }
+                            }
+                        }
+                        & .buttons {
+                            display: flex;
+                            flex-direction: column;
+                            & a {
+                                font-size: 16px;
+                                color: $darkGray;
+                                margin-bottom: 10px;
+                                font-weight: 600;
+                                text-decoration: none;
+                            }
+
+                            & .loginBtn {
+                                font-weight: 500;
+                                color: $white;
+                                font-size: 16px;
+                                margin-top: 24px;
+                                padding: 9px 24px;
+                                border-radius: 10px;
+                                transition: all 0.15s ease-in;
+                                border: 1px solid $lightBlue;
+                                background-color: $lightBlue;
+                                background-image: linear-gradient(310deg, $blue, $lightBlue);
+
+                                &:hover{
+                                    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 9%), 0 2px 3px -1px rgb(0 0 0 / 7%);
+                                    transform: scale(1.02);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

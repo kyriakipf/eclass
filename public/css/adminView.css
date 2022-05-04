@@ -1,0 +1,47 @@
+.mainInfo {
+  box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+.mainInfo .table-header {
+  padding: 24px 24px 0 24px;
+}
+.mainInfo .table-header p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #344767;
+  margin-bottom: 8px;
+}
+.mainInfo .table-body table {
+  width: 100%;
+}
+.mainInfo .table-body table thead {
+  border-bottom: 1px solid #e9ecef;
+}
+.mainInfo .table-body table thead tr th {
+  color: #67748E;
+  font-size: 16px;
+  padding: 12px 24px;
+  font-weight: 400;
+}
+.mainInfo .table-body table tbody tr td {
+  padding: 12px 14px;
+}
+.mainInfo .table-body table tbody tr td p, .mainInfo .table-body table tbody tr td a {
+  font-size: 14px;
+  color: #344767;
+  font-weight: 500;
+  padding: 4px 8px;
+  margin: 0;
+  transition: color 0.15s linear;
+}
+.mainInfo .table-body table tbody tr td a:hover {
+  color: #2152ff;
+  transition: color 0.15s linear;
+}
+.mainInfo .table-body table tbody tr:not(:last-child) {
+  border-bottom: 1px solid #e9ecef;
+}
