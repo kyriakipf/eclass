@@ -8,8 +8,10 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <h2>Λίστα Καθηγητών</h2>
-        <a href="{{route('teacher.search')}}">Αναζήτηση</a>
+        <div class="topRow">
+            <p class="header">Λίστα Καθηγητών</p>
+            <a class="search" href="{{route('teacher.search')}}">Αναζήτηση</a>
+        </div>
         <div class="row">
             @livewire('teacher-list', [ 'teachers' => $teachers])
         </div>

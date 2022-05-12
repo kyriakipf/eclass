@@ -24,29 +24,8 @@ class TeachersImport implements ToCollection, WithHeadingRow, WithValidation , S
      */
 
 
-//    public function import(Request $request)
-//    {
-//        try{
-//            $import = Excel::import(new TeachersImport, $request->file('teachers'));
-//
-//        }catch (\Maatwebsite\Excel\Validators\ValidationException $e){
-//
-//            return redirect()->route('teacher.invite')->with('error','Υπήρξε κάποιο σφάλμα.');
-//        }
-//
-//        foreach ($import->failures() as $failure) {
-//            $failure->row(); // row that went wrong
-//            $failure->attribute(); // either heading key (if using heading row concern) or column index
-//            $failure->errors(); // Actual error messages from Laravel validator
-//            $failure->values(); // The values of the row that has failed.
-//        }
-//
-//        return redirect()->route('teacher.invite')->with('success','Το αρχείο ανέβηκε επιτυχώς.');
-//    }
-
     public function collection(Collection $rows)
     {
-        Validator::make($rows->toArray(), $this->rules())->validate();
         foreach ($rows as $row) {
             do {
                 //generate a random string using Laravel's str_random helper

@@ -1,0 +1,7 @@
+.addForm {
+  display: flex;
+  justify-content: center;
+}
+.addForm .search {
+  margin-top: 30px;
+}

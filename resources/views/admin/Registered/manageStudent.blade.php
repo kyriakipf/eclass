@@ -8,12 +8,13 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <h2>Λίστα Μαθητών</h2>
-        <a href="{{route('student.search')}}">Αναζήτηση</a>
+        <div class="topRow">
+            <p class="header">Λίστα Μαθητών</p>
+            <a class="search" href="{{route('student.search')}}">Αναζήτηση</a>
+        </div>
         <div class="row">
             @livewire('student-list', [ 'users' => $users])
         </div>
-
     </div>
 @endsection
 @section('javascripts')

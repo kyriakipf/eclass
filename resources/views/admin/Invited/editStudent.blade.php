@@ -7,44 +7,44 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        {{--                        Kane sundesh gia na ferneis to onoma tou rolou--}}
-        <h2>Επεξεργασία Μαθητή</h2>
+        <p class="header">Επεξεργασία Μαθητή</p>
+        <hr>
         <form action="{{route('student.invite.update' , $student)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row addForm">
                 <div class="col-5">
                     <div class="input-container focused">
-                        <label for="name" class="label-text">Όνομα</label>
-                        <input type="text" name="name" id="name"
+                        <label for="name" class="input-label">Όνομα</label>
+                        <input type="text" name="name" id="name" class="text-input"
                                value="{{$student->name}}" required>
                     </div>
                 </div>
                 <div class="col-5">
                     <div class="input-container focused">
-                        <label for="surname" class="label-text">Επίθετο</label>
-                        <input type="text" name="surname" id="surname"
+                        <label for="surname" class="input-label">Επίθετο</label>
+                        <input type="text" name="surname" id="surname" class="text-input"
                                value="{{$student->surname}}" required>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="input-container focused">
-                        <label for="email" class="label-text">E-mail</label>
-                        <input type="text" name="email" id="email"
+                        <label for="email" class="input-label">E-mail</label>
+                        <input type="text" name="email" id="email" class="text-input"
                                value="{{$student->email}}" required>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="input-container focused">
-                        <label for="email" class="label-text">Αριθμός Μητρώου</label>
-                        <input type="text" name="am" id="am"
+                        <label for="email" class="input-label">Αριθμός Μητρώου</label>
+                        <input type="text" name="am" id="am" class="text-input"
                                value="{{$student->am}}" required>
                     </div>
                 </div>
 
                 <div class="col-4">
                     <div class="select-container focused">
-                        <label class="label-text" for="unit_id">Τμήμα:</label>
-                        <select class="my-select" name="domain" id="domain" required>
+                        <label class="input-label" for="unit_id">Τμήμα:</label>
+                        <select class="select-input" name="domain" id="domain" required>
                             @foreach($domains as $domain)
                                 <option @if($domain->id == $student->domain->id) selected
                                         @endif value="{{$domain->id}}">{{$domain->name}}</option>
@@ -52,8 +52,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-12 btn-container">
-                    <button type="submit" class="save-btn">
+                <div class="col-2 btn-container">
+                    <button type="submit" class="button bold">
                         <span>ΑΠΟΘΗΚΕΥΣΗ</span>
                     </button>
                 </div>

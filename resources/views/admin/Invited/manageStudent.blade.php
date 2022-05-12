@@ -7,61 +7,46 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <h2>Προσθήκη Μαθητή</h2>
+        <p class="header">Προσθήκη Μαθητή</p>
         <div class="row">
-            <div class="col-md-6">
-                <form action="{{route('student.import')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row addForm">
-                        <div class="col-md-12">
-                            <div class="input-container focused">
-                                <label for="file" class="label-text">Επιλέξτε Αρχείο</label>
-                                <input type="file" name="students" id="file" class="file"/>
-                            </div>
-                        </div>
-                        <div class="col-md-3 btn-container">
-                            <button type="submit" class="save-btn">ΠΡΟΣΘΗΚΗ</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
             <div class="col-md-6">
                 <form action="{{route('student.invite.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="row addForm">
+                    <p class="title">Προσθήκη Μαθητή με Προσωπικά Στοιχεία</p>
+                    <div class="row addForm bordered">
                         <div class="col-md-6">
                             <div class="input-container focused">
-                                <label for="name" class="label-text">Όνομα</label>
+                                <label for="name" class="input-label">Όνομα</label>
                                 <input type="text" name="name" id="name"
-                                       placeholder="Γράψτε εδώ..." required>
+                                       placeholder="Γράψτε εδώ..." required class="text-input">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-container focused">
-                                <label for="surname" class="label-text">Επίθετο</label>
-                                <input type="text" name="surname" id="surname"
+                                <label for="surname" class="input-label">Επίθετο</label>
+                                <input type="text" name="surname" id="surname" class="text-input"
                                        placeholder="Γράψτε εδώ..." required>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-container focused">
-                                <label for="email" class="label-text">E-mail</label>
-                                <input type="text" name="email" id="email"
+                                <label for="email" class="input-label">E-mail</label>
+                                <input type="text" name="email" id="email" class="text-input"
                                        placeholder="Γράψτε εδώ..." required>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-container focused">
-                                <label for="email" class="label-text">Αριθμός Μητρώου</label>
-                                <input type="text" name="am" id="am"
+                                <label for="am" class="input-label">Αριθμός Μητρώου</label>
+                                <input type="text" name="am" id="am" class="text-input"
                                        placeholder="Γράψτε εδώ..." required>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="select-container focused">
-                                <label class="label-text" for="unit_id">Τμήμα:</label>
-                                <select class="my-select" name="domain" id="domain" required>
+                                <label class="input-label" for="domain">Τμήμα:</label>
+                                <select class="select-input" name="domain" id="domain" required>
                                     <option value="" selected disabled>Επιλέξτε Τμήμα</option>
                                     @foreach($domains as $domain)
                                         <option value="{{$domain->id}}">{{$domain->name}}</option>
@@ -69,10 +54,27 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12 btn-container">
-                            <button type="submit" class="save-btn">
+                        <div class="col-md-3 btn-container">
+                            <button type="submit" class="button light">
                                 <span>ΠΡΟΣΘΗΚΗ</span>
                             </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form action="{{route('student.import')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <p class="title">Προσθήκη Μαθητών μέσω Excel</p>
+                    <div class="row addForm bordered">
+                        <div class="col-md-12">
+                            <div class="input-container focused">
+                                <label for="file" class="input-label">Επιλέξτε Αρχείο</label>
+                                <input type="file" name="students" id="file" class="file-input" required/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 btn-container">
+                            <button type="submit" class="button light">ΠΡΟΣΘΗΚΗ</button>
                         </div>
                     </div>
                 </form>
@@ -81,11 +83,11 @@
                 <table>
                     <thead>
                     <tr class="tableRow colTitles">
-                        <th class="name">Όνομα</th>
-                        <th class="surname">Επίθετο</th>
-                        <th class="email">Email</th>
-                        <th class="domain">Τμήμα</th>
-                        <th class="domain">Αριθμός Μητρώου</th>
+                        <th class="name title">Όνομα</th>
+                        <th class="surname title">Επίθετο</th>
+                        <th class="email title">Email</th>
+                        <th class="domain title">Τμήμα</th>
+                        <th class="am title">Αριθμός Μητρώου</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -94,19 +96,19 @@
                     @foreach($entities as $entity)
                         <tr class="tableRow">
                             <td class="col-md-3">
-                                <p class="name">{{$entity->name}}</p>
+                                <p class="name paragraph">{{$entity->name}}</p>
                             </td>
                             <td class="col-md-3">
-                                <p>{{$entity->surname}}</p>
+                                <p class="paragraph">{{$entity->surname}}</p>
                             </td>
                             <td class="col-md-3">
-                                <p>{{$entity->email}}</p>
+                                <p class="paragraph">{{$entity->email}}</p>
                             </td>
                             <td class="col-md-3">
-                                <p>{{$entity->domain->name}}</p>
+                                <p class="paragraph">{{$entity->domain->name}}</p>
                             </td>
                             <td class="col-md-2">
-                                <p>{{$entity->am}}</p>
+                                <p class="paragraph">{{$entity->am}}</p>
                             </td>
                             <td>
                                 <a href="{{route('student.process' , $entity)}}"><i class="fa-regular fa-envelope"></i></a>
@@ -121,7 +123,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <a href="{{route('student.mass.process')}}"><i class="fa-regular fa-envelope">Mass Invite</i></a>
+                <a href="{{route('student.mass.process')}}"><i class="fa-regular fa-envelope "></i>Mass Invite</a>
             </div>
         </div>
 

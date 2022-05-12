@@ -4,40 +4,42 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <p>Change password.</p>
+        <p class="header">Αλλαγή Κωδικού</p>
+        <hr>
         <form action="{{route('change.password.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row addForm">
                 <div class="col-md-6">
                     <div class="input-container focused">
-                        <label for="name" class="label-text">Email</label>
+                        <label for="name" class="input-label">Email</label>
                         <input type="text" name="name" id="name"
-                               placeholder="Γράψτε εδώ..." readonly value="{{auth()->user()->email}}">
+                               placeholder="Γράψτε εδώ..." readonly value="{{auth()->user()->email}}"
+                               class="text-input">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-container focused">
-                        <label for="oldPassword" class="label-text">Παλιός Κωδικός</label>
-                        <input type="password" name="oldPassword" id="oldPassword"
+                        <label for="oldPassword" class="input-label">Παλιός Κωδικός</label>
+                        <input type="password" name="oldPassword" id="oldPassword" class="text-input"
                                placeholder="Γράψτε εδώ..." required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-container focused">
-                        <label for="newPassword" class="label-text">Καινούργιος Κωδικός</label>
-                        <input type="password" name="newPassword" id="newPassword"
+                        <label for="newPassword" class="input-label">Καινούργιος Κωδικός</label>
+                        <input type="password" name="newPassword" id="newPassword" class="text-input"
                                placeholder="Γράψτε εδώ..." required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-container focused">
-                        <label for="confirmPassword" class="label-text">Επαλήθευση Κωδικού</label>
-                        <input type="password" name="confirmPassword" id="confirmPassword"
+                        <label for="confirmPassword" class="input-label">Επαλήθευση Κωδικού</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" class="text-input"
                                placeholder="Γράψτε εδώ..." required>
                     </div>
                 </div>
-                <div class="col-md-12 btn-container">
-                    <button type="submit" class="save-btn">
+                <div class="col-md-2 btn-container">
+                    <button type="submit" class="button bold">
                         <span>ΑΠΟΘΗΚΕΥΣΗ</span>
                     </button>
                 </div>

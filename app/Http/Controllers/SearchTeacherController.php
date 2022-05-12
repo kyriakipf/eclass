@@ -41,11 +41,11 @@ class SearchTeacherController extends Controller
             if (count($users) > 0) {
                 return view('admin.search.teachers', ['domains' => $domains,  'users' => $users]);
             }else {
-                return view('admin.search.teachersIndex', ['domains' => $domains, 'users' => []]);
+                return view('admin.search.teachers', ['domains' => $domains, 'users' => []]);
             }
 
         } else {
-            return view('admin.search.teachersIndex', ['domains' => $domains, 'users' => []]);
+            return view('admin.search.teachers', ['domains' => $domains, 'users' => []]);
         }
 
     }

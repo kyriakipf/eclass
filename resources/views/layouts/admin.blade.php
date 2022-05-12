@@ -6,7 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{asset('favicon.ico')}}">
-    <link rel="stylesheet" href="https://use.typekit.net/epx6djf.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset("css/fontawesome.css")}}">
@@ -31,39 +33,38 @@
     <div class="dashboard">
         <div class="sidebar col-md-3">
             <div class="sidebar-header">
-                <a href="{{route('dashboard')}}"><i class="fa-solid fa-graduation-cap"></i> eClass</a>
+                <a href="{{route('dashboard')}}" class="title"><i class="fa-solid fa-graduation-cap"></i> eClass</a>
             </div>
             <hr>
-{{--            @include('navigation')--}}
             <div class="list-container">
             <ul class="nav-bar">
-                <p>Επεξεργασία Χρηστών</p>
+                <p class="title">Επεξεργασία Χρηστών</p>
                 <li class="nav-item">
-                    <a href="{{route('teacher.invite')}}"><i class="fa-light fa-edit"></i> Πρόσκληση Καθηγητών</a>
+                    <a href="{{route('teacher.invite')}}" class="paragraph"><i class="fa-light fa-edit"></i> Πρόσκληση Καθηγητών</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('teachers')}}"><i class="fa-light fa-edit"></i> Επεξεργασία Εγγεγραμμένων Καθηγητών</a>
-                </li>
-                <hr>
-                <li class="nav-item">
-                    <a href="{{route('student.invite')}}"><i class="fa-light fa-edit"></i> Πρόσκληση Φοιτητών</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('students')}}"><i class="fa-light fa-edit"></i> Επεξεργασία Εγγεγραμμένων Φοιτητών</a>
+                    <a href="{{route('teachers')}}" class="paragraph"><i class="fa-light fa-edit"></i> Επεξεργασία Εγγεγραμμένων Καθηγητών</a>
                 </li>
                 <hr>
-                <p>Μηνύματα</p>
                 <li class="nav-item">
-                    <a href="{{route('email')}}"><i class="fa-light fa-envelope"></i> Δημιουργία</a>
+                    <a href="{{route('student.invite')}}" class="paragraph"><i class="fa-light fa-edit"></i> Πρόσκληση Φοιτητών</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('students')}}" class="paragraph"><i class="fa-light fa-edit"></i> Επεξεργασία Εγγεγραμμένων Φοιτητών</a>
+                </li>
+                <hr>
+                <p class="title">Μηνύματα</p>
+                <li class="nav-item">
+                    <a href="{{route('email')}}" class="paragraph"><i class="fa-light fa-envelope"></i> Δημιουργία</a>
                 </li>
             </ul>
             <hr>
             <ul class="nav-bar user-options">
                 <li class="nav-item">
-                    <a href="{{route('change.password.view')}}"><i class="fa-solid fa-key"></i> Change Password</a>
+                    <a href="{{route('change.password.view')}}" class="paragraph"><i class="fa-solid fa-key"></i> Αλλαγή Κωδικού</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('signout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i> LogOut</a>
+                    <a href="{{route('signout')}}" class="paragraph"><i class="fa-solid fa-arrow-right-from-bracket"></i> Αποσύνδεση</a>
                 </li>
             </ul>
             </div>
@@ -81,11 +82,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
     $(document).ready(function() {
-        toastr.options.timeOut = 10000;
+        toastr.options = {
+            "closeButton": true,
+            "timeOut": "5000",
+            "progressBar": true,
+            "extendedTimeOut": "5000"
+        }
         @if (Session::has('error'))
         toastr.error('{{ Session::get('error') }}');
         @elseif(Session::has('success'))
         toastr.success('{{ Session::get('success') }}');
+        @elseif(Session::has('warning'))
+        toastr.warning('{{ Session::get('warning') }}');
         @endif
     });
 </script>

@@ -30,7 +30,7 @@
                                     <a class="forgotBtn"
                                        href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
                                 @endif
-                                <button class="loginBtn">Σύνδεση</button>
+                                <button class="button bold">Σύνδεση</button>
                             </div>
                         </form>
                     </div>

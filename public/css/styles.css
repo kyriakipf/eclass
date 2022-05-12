@@ -1,5 +1,107 @@
+form .input-label {
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  color: #2A3256;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+form .text-input {
+  background-color: #FFFFFF;
+  border: 1px solid #DFDFDF;
+  height: 44px;
+  width: 100%;
+  margin: 0 16px 44px 0;
+}
+form .area-input {
+  min-height: 100px;
+}
+form .select-input {
+  background-color: #FFFFFF;
+  border: 1px solid #DFDFDF;
+  height: 44px;
+  width: 100%;
+  margin: 0 16px 44px 0;
+  cursor: pointer;
+}
+form .file-input {
+  background-color: #FFFFFF;
+  border: 1px solid #DFDFDF;
+  width: 100%;
+  padding: 65px 0 60px 100px;
+  margin: 0 16px 44px 0;
+  cursor: pointer;
+}
+form a {
+  font-size: 14px;
+  color: #9095A2;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: "Raleway", sans-serif;
+  transition: all 0.25s linear;
+}
+form a:hover {
+  color: #00B8A3;
+  text-decoration: underline;
+  transition: all 0.25s linear;
+}
+form .button {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 15px 0 45px 0;
+}
+form .button.bold {
+  background-color: #2A3256;
+  border: 1px solid #2A3256;
+  color: #FFFFFF;
+  transition: all 0.25s linear;
+}
+form .button.bold:hover {
+  background-color: #3761EE;
+  border-color: #3761EE;
+  transition: all 0.25s linear;
+}
+form .button.light {
+  background-color: #FFFFFF;
+  border: 1px solid #2A3256;
+  color: #2A3256;
+  transition: all 0.25s linear;
+}
+form .button.light:hover {
+  background-color: #2A3256;
+  color: #FFFFFF;
+  transition: all 0.25s linear;
+}
+
 body {
-  background-color: #f8f9fa;
+  font-family: "Raleway", sans-serif;
+}
+body .header {
+  font-size: 40px;
+  font-weight: 400;
+  color: #9095A2;
+}
+body .title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2A3256;
+}
+body .paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2A3256;
+}
+body .comment {
+  font-size: 16px;
+  font-weight: 400;
+  color: #9095A2;
+}
+
+body {
+  background-color: #FFFFFF;
 }
 body a {
   text-decoration: none;
@@ -10,18 +112,16 @@ body section#main .dashboard {
 }
 body section#main .dashboard .sidebar {
   box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 body section#main .dashboard .sidebar .sidebar-header {
   padding: 24px 32px;
 }
 body section#main .dashboard .sidebar .sidebar-header a {
-  font-size: 18px;
-  font-weight: 400;
-  color: #344767;
   margin-left: 4px;
-}
-body section#main .dashboard .sidebar .sidebar-header a:hover {
-  color: #344767;
 }
 body section#main .dashboard .sidebar hr {
   background-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4), transparent);
@@ -37,32 +137,52 @@ body section#main .dashboard .sidebar .nav-bar {
   list-style: none;
 }
 body section#main .dashboard .sidebar .nav-bar p {
-  color: #344767;
-  font-size: 16px;
   margin: 10px 0 8px 8px;
   padding-left: 24px;
-  font-weight: 500;
 }
 body section#main .dashboard .sidebar .nav-bar .nav-item {
   margin-top: 10px;
 }
 body section#main .dashboard .sidebar .nav-bar .nav-item a {
   margin: 0 16px;
-  font-size: 16px;
-  color: #67748E;
-  font-weight: 400;
-}
-body section#main .dashboard .sidebar .nav-bar .nav-item a:hover {
-  color: #67748E;
 }
 body section#main .dashboard .sidebar .nav-bar .nav-item a i {
   color: black;
   margin-right: 8px;
-  background-image: linear-gradient(310deg, #e9ecef, #e9ecef);
-  box-shadow: 0 0.3125rem 0.625rem 0 rgba(0, 0, 0, 0.12);
-  border: 1px solid transparent;
-  border-radius: 6px;
 }
 body section#main .dashboard .content .content-container {
   padding: 24px;
+}
+body table {
+  width: 100%;
+  margin-top: 10px;
+}
+body table thead {
+  border-bottom: 1px solid #DFDFDF;
+}
+body table tbody tr td {
+  padding: 12px 14px;
+}
+body table tbody tr td a {
+  font-size: 20px;
+  color: #9095A2;
+  font-weight: 500;
+  padding: 4px 8px;
+  margin: 0;
+  transition: color 0.15s linear;
+}
+body table tbody tr td .edit:hover {
+  color: #00B8A3;
+  transition: color 0.15s linear;
+}
+body table tbody tr td .invite:hover {
+  color: #F47C35;
+  transition: color 0.15s linear;
+}
+body table tbody tr td .delete:hover {
+  color: #E34D59;
+  transition: color 0.15s linear;
+}
+body table tbody tr:not(:last-child) {
+  border-bottom: 1px solid #DFDFDF;
 }

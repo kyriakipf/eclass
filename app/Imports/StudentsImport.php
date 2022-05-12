@@ -8,7 +8,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -24,7 +26,6 @@ class StudentsImport implements ToCollection, WithValidation, WithHeadingRow, Sk
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-//            Validator::make($row->toArray(), $this->rules())->validate();
             do {
                 $token = Str::random();
             }while (InviteStudent::where('token', $token)->first()); //check if the token already exists and if it does, try again

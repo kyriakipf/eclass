@@ -8,20 +8,18 @@
 @section('content')
     <div class="row">
         <div class="mainInfo col-md-12">
-
-            {{--                        Kane sundesh gia na ferneis to onoma tou rolou--}}
             <div class="table-header">
-                <p>View {{$entities[0]->user->role_id}}</p>
+                <p class="header">Προβολή</p>
+                <hr>
             </div>
             <div class="table-body">
                 <table>
                     <thead>
                     <tr class="tableRow colTitles">
-                        <th class="name">Όνομα</th>
-                        <th class="surname">Επίθετο</th>
-                        <th class="email">Email</th>
-                        <th class="domain">Τμήμα</th>
-                        <th>Κατάσταση</th>
+                        <th class="name title">Όνομα</th>
+                        <th class="surname title">Επίθετο</th>
+                        <th class="email title">Email</th>
+                        <th class="domain title">Τμήμα</th>
                         <th> </th>
                         <th> </th>
                     </tr>
@@ -30,19 +28,16 @@
                     @foreach($entities as $entity)
                         <tr class="tableRow">
                             <td class="col-md-3">
-                                <p class="name">{{$entity->user->name}}</p>
+                                <p class="name paragraph">{{$entity->user->name}}</p>
                             </td>
                             <td class="col-md-3">
-                                <p>{{$entity->user->surname}}</p>
+                                <p class="paragraph">{{$entity->user->surname}}</p>
                             </td>
                             <td class="col-md-3">
-                                <p>{{$entity->user->email}}</p>
+                                <p class="paragraph">{{$entity->user->email}}</p>
                             </td>
                             <td class="col-md-3">
-                                <p>{{$entity->domain->name}}</p>
-                            </td>
-                            <td>
-                                <p>Status</p>
+                                <p class="paragraph">{{$entity->domain->name}}</p>
                             </td>
                             <td>
                                 <a  @if($entity->user->role_id == 2) href="{{route('teacher.show' , $entity)}}" @elseif($entity->user->role_id == 3) href="{{route('student.show' , $entity)}}" @endif>Επεξεργασία</a>

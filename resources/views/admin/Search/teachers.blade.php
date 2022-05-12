@@ -11,35 +11,63 @@
 
 @section('content')
     <section id="content">
-        <div class="search-header">
-            <div class="search-header-container">
-                <h3>Αναζήτηση Καθηγητή</h3>
-                <form action="{{route('teacher.search.form')}}" method="POST">
-                    @csrf
-                    <input class="search my-input" name="search" type="text" minlength="4">
-                    <div class="helper">Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες</div>
-                    <button type="submit">ΑΝΑΖΗΤΗΣΗ</button>
-                </form>
+        <p class="header">Αναζήτηση Καθηγητή</p>
+        <hr>
+        <form action="{{route('teacher.search.form')}}" method="POST">
+            @csrf
+            <div class="row addForm">
+                <input class="search text-input col-md-12" name="search" type="text" minlength="4"
+                       placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες...">
+                <div class="col-md-3">
+                    <button type="submit" class="button light">ΑΝΑΖΗΤΗΣΗ</button>
+                </div>
             </div>
-        </div>
+        </form>
 
-        <div class="search-results-container">
-            <div class="results-list">
-                @if(count($users) > 0)
-                    @foreach($users as $user)
-                        <div class="list-item">
-                            <a href="{{route('teacher.show', ['teacher' => $user])}}">
-                                <div class="details">
-                                    <div>'Ονομα: {{$user->surname}} {{$user->name}}</div>
-                                    <div>Εμαιλ: {{$user->email}}</div>
-                                    <div>Τμήμα: {{$user->domain->name}}</div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-        </div>
+
+        @if(count($users) > 0)
+            <table>
+                <thead>
+                <tr class="tableRow colTitles">
+                    <th class="sort title">Όνομα</th>
+                    <th class="sort title">Επίθετο</th>
+                    <th class="sort title">Email</th>
+                    <th class="title">Τμήμα</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach($users as $user)
+                    <tr class="tableRow">
+                        <td class="col-md-3">
+                            <p class="paragraph">{{$user->name}}</p>
+                        </td>
+                        <td class="col-md-3">
+                            <p class="paragraph">{{$user->surname}}</p>
+                        </td>
+                        <td class="col-md-3">
+                            <p class="paragraph">{{$user->email}}</p>
+                        </td>
+                        <td class="col-md-3">
+                            <p class="paragraph">{{$user->domain->name}}</p>
+                        </td>
+                        <td>
+                            <a href="{{route('student.show' , $user)}}" class="edit"><i
+                                    class="fa-regular fa-pencil"></i></a>
+                        </td>
+                        <td>
+                            <a href="{{route('student.delete' , $user)}}" class="delete"><i
+                                    class="fa-regular fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @else
+            <p class="comment">Δεν υπάρχουν σχετικά αποτελέσματα...</p>
+        @endif
     </section>
 @endsection
 

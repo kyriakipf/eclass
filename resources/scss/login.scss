@@ -11,18 +11,18 @@ section {
                     text-align: center;
 
                     & h1 {
-                        color: $lightBlue;
+                        color: $primary;
                         font-size: 30px;
                         margin-bottom: 8px;
                         font-weight: 600;
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
-                        background-image: linear-gradient(310deg, $blue, $lightBlue);
+                        background-image: linear-gradient(310deg, $accent2 , $accent3);
                     }
 
                     & p {
                         font-size: 16px;
-                        color: $gray;
+                        color: $subText;
                         font-weight: 600;
                     }
 
@@ -34,7 +34,7 @@ section {
 
                             & label {
                                 font-size: 16px;
-                                color: $darkGray;
+                                color: $subText;
                                 margin: 0 0 8px 4px;
                                 font-weight: 600;
                             }
@@ -45,15 +45,15 @@ section {
                                 padding: 8px 12px 8px 35px;
                                 font-size: 16px;
                                 font-weight: 400;
-                                color: $darkGray;
+                                color: $subText;
                                 background-color: $white;
-                                border: 1px solid $lightGray;
+                                border: 1px solid $lightSubText;
                                 transition: box-shadow 0.15s ease, border-color 0.15s ease;
                                 border-radius: 10px;
                                 margin-bottom: 25px;
                                 &:focus{
-                                    border-color: $pink;
-                                    box-shadow: 0 0 0 2px $pink;
+                                    border-color: $accent4;
+                                    box-shadow: 0 0 0 2px $accent4;
                                     outline: none;
                                     transition: box-shadow 0.15s ease, border-color 0.15s ease;
                                 }
@@ -64,29 +64,35 @@ section {
                             flex-direction: column;
                             & a {
                                 font-size: 16px;
-                                color: $darkGray;
+                                color: $subText;
                                 margin-bottom: 10px;
                                 font-weight: 600;
                                 text-decoration: none;
-                            }
-
-                            & .loginBtn {
-                                font-weight: 500;
-                                color: $white;
-                                font-size: 16px;
-                                margin-top: 24px;
-                                padding: 9px 24px;
-                                border-radius: 10px;
-                                transition: all 0.15s ease-in;
-                                border: 1px solid $lightBlue;
-                                background-color: $lightBlue;
-                                background-image: linear-gradient(310deg, $blue, $lightBlue);
+                                transition: all 0.25s linear;
 
                                 &:hover{
-                                    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 9%), 0 2px 3px -1px rgb(0 0 0 / 7%);
-                                    transform: scale(1.02);
+                                    color: $greenText;
+                                    text-decoration: underline;
+                                    transition: all 0.25s linear;
                                 }
                             }
+
+                            //& .loginBtn {
+                            //    font-weight: 500;
+                            //    color: $white;
+                            //    font-size: 16px;
+                            //    margin-top: 24px;
+                            //    padding: 9px 24px;
+                            //    border-radius: 10px;
+                            //    transition: all 0.15s ease-in;
+                            //    border: 1px solid $accent2;
+                            //    background-color: $accent2;
+                            //    background-image: linear-gradient(310deg, $accent2 , $accent3);
+                            //
+                            //    &:hover{
+                            //        box-shadow: 0 3px 5px -1px rgb(0 0 0 / 9%), 0 2px 3px -1px rgb(0 0 0 / 7%);
+                            //    }
+                            //}
                         }
                     }
                 }

@@ -9,6 +9,8 @@
     "/css/adminView.css": "/css/adminView.css",
     "/css/adminAdd.css": "/css/adminAdd.css",
     "/css/styles.css": "/css/styles.css",
+    "/css/createEmail.css": "/css/createEmail.css",
+    "/css/search.css": "/css/search.css",
     "/css/login.css": "/css/login.css",
     "/css/thin.css": "/css/thin.css",
     "/js/bootstrap.js": "/js/bootstrap.js"

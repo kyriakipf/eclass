@@ -1,0 +1,92 @@
+@import "variables";
+
+form {
+    & .input-label {
+        font-family: $primaryFont;
+        font-size: 12px;
+        color: $primary;
+        text-transform: uppercase;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    & .text-input {
+        background-color: $white;
+        border: 1px solid $lightSubText;
+        height: 44px;
+        width: 100%;
+        margin: 0 16px 44px 0;
+    }
+
+    & .area-input{
+        min-height: 100px;
+    }
+
+    & .select-input{
+        background-color: $white;
+        border: 1px solid $lightSubText;
+        height: 44px;
+        width: 100%;
+        margin: 0 16px 44px 0;
+        cursor: pointer;
+    }
+
+    & .file-input{
+        background-color: $white;
+        border: 1px solid $lightSubText;
+        width: 100%;
+        padding: 65px 0 60px 100px;
+        margin: 0 16px 44px 0;
+        cursor: pointer;
+    }
+
+    & a {
+        font-size: 14px;
+        color: $subText;
+        text-decoration: none;
+        font-weight: 600;
+        font-family: $primaryFont;
+        transition: all 0.25s linear;
+        &:hover{
+            color: $greenText;
+            text-decoration: underline;
+            transition: all 0.25s linear;
+        }
+    }
+
+    & .button {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        margin: 15px 0 45px 0;
+
+        &.bold {
+            background-color: $primary;
+            border: 1px solid $primary;
+            color: $white;
+            transition: all 0.25s linear;
+
+            &:hover {
+                background-color: $accent2;
+                border-color: $accent2;
+                transition: all 0.25s linear;
+            }
+        }
+
+        &.light {
+            background-color: $white;
+            border: 1px solid $primary;
+            color: $primary;
+            transition: all 0.25s linear;
+
+            &:hover {
+                background-color: $primary;
+                color: $white;
+                transition: all 0.25s linear;
+            }
+        }
+
+    }
+}

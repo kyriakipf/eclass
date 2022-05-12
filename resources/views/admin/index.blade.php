@@ -5,6 +5,5 @@
 @section('content')
     <div class="mainInfo">
         <p>Welcome.</p>
-        <p>{{auth()->user()->name}}</p>
     </div>
 @endsection

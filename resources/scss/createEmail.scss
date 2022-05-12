@@ -1,0 +1,31 @@
+@import "variables";
+
+.disabled {
+    display: none;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 55px;
+
+    & .selection {
+        margin-bottom: 44px;
+    }
+
+    & .select2-container {
+        width: 100% !important;
+
+        & .select2-selection {
+            border-radius: 0px !important;
+            border: 1px solid $lightSubText !important;
+            height: 44px !important;
+            padding-top: 5px !important;
+
+        }
+    }
+
+}
+
+

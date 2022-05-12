@@ -2,10 +2,10 @@
     <table class="table-body">
         <thead>
         <tr class="tableRow colTitles">
-            <th class="name" wire:click="sortBy('name')">Όνομα</th>
-            <th class="surname" wire:click="sortBy('surname')">Επίθετο</th>
-            <th class="email" wire:click="sortBy('email')">Email</th>
-            <th class="domain">Τμήμα</th>
+            <th class="sort title" wire:click="sortBy('name')">Όνομα <i class="fa-light fa-sort"></i></th>
+            <th class="sort title" wire:click="sortBy('surname')">Επίθετο <i class="fa-light fa-sort"></i></th>
+            <th class="sort title" wire:click="sortBy('email')">Email <i class="fa-light fa-sort"></i></th>
+            <th class="title">Τμήμα</th>
             <th></th>
             <th></th>
         </tr>
@@ -14,16 +14,16 @@
         @foreach($users as $user)
             <tr class="tableRow">
                 <td class="col-md-3">
-                    <p class="name">{{$user->name}}</p>
+                    <p class="paragraph">{{$user->name}}</p>
                 </td>
                 <td class="col-md-3">
-                    <p>{{$user->surname}}</p>
+                    <p class="paragraph">{{$user->surname}}</p>
                 </td>
                 <td class="col-md-3">
-                    <p>{{$user->email}}</p>
+                    <p class="paragraph">{{$user->email}}</p>
                 </td>
                 <td class="col-md-3">
-                    <p>{{$user->domain->name}}</p>
+                    <p class="paragraph">{{$user->domain->name}}</p>
                 </td>
                 <td>
                     <a href="{{route('teacher.show' , $user)}}"><i class="fa-regular fa-pencil"></i></a>

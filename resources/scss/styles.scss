@@ -1,7 +1,7 @@
-@import "variables";
+@import "variables", "forms", "text";
 
 body {
-    background-color: $background;
+    background-color: $white;
 
     & a {
         text-decoration: none;
@@ -11,24 +11,17 @@ body {
     & section#main {
         & .dashboard {
             display: flex;
+
             & .sidebar {
                 box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+                position: sticky;
+                top: 0;
+                height: 100vh;
                 & .sidebar-header {
                     padding: 24px 32px;
 
                     & a {
-                        font-size: 18px;
-                        font-weight: 400;
-                        color: $darkGray;
                         margin-left: 4px;
-
-                        &:hover {
-                            color: $darkGray;
-                        }
-
-                        & i {
-
-                        }
                     }
                 }
 
@@ -45,12 +38,10 @@ body {
                     display: flex;
                     flex-direction: column;
                     list-style: none;
+
                     & p {
-                        color: $darkGray;
-                        font-size: 16px;
                         margin: 10px 0 8px 8px;
                         padding-left: 24px;
-                        font-weight: 500;
                     }
 
                     & .nav-item {
@@ -58,31 +49,74 @@ body {
 
                         & a {
                             margin: 0 16px;
-                            font-size: 16px;
-                            color: $gray;
-                            font-weight: 400;
-
-                            &:hover {
-                                color: $gray;
-                            }
 
                             & i {
                                 color: black;
                                 margin-right: 8px;
-                                background-image: linear-gradient(310deg, #e9ecef, #e9ecef);
-                                box-shadow: 0 .3125rem .625rem 0 rgba(0, 0, 0, .12);
-                                border: 1px solid transparent;
-                                border-radius: 6px;
                             }
                         }
                     }
                 }
             }
-            & .content{
-                & .content-container{
+
+            & .content {
+                & .content-container {
                     padding: 24px;
                 }
             }
         }
     }
+
+    & table {
+        width: 100%;
+        margin-top: 10px;
+
+        & thead {
+            border-bottom: 1px solid $lightSubText;
+        }
+
+        & tbody {
+            & tr {
+                & td {
+                    padding: 12px 14px;
+
+                    & a {
+                        font-size: 20px;
+                        color: $subText;
+                        font-weight: 500;
+                        padding: 4px 8px;
+                        margin: 0;
+                        transition: color 0.15s linear;
+
+                    }
+
+                    & .edit {
+                        &:hover {
+                            color: $greenText;
+                            transition: color 0.15s linear;
+                        }
+                    }
+
+                    & .invite {
+                        &:hover {
+                            color: $accent4;
+                            transition: color 0.15s linear;
+                        }
+                    }
+
+                    & .delete {
+                        &:hover {
+                            color: $redText;
+                            transition: color 0.15s linear;
+                        }
+                    }
+                }
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $lightSubText;
+                }
+            }
+        }
+    }
+
 }

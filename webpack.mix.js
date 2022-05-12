@@ -20,6 +20,8 @@ mix.sass('resources/scss/fontawesome/brands.scss', 'public/css').options({ proce
     .sass('resources/scss/fontawesome/solid.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/fontawesome/thin.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/login.scss', 'public/css').options({ processCssUrls: false })
+    .sass('resources/scss/search.scss', 'public/css').options({ processCssUrls: false })
+    .sass('resources/scss/createEmail.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/styles.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/adminAdd.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/adminView.scss', 'public/css').options({ processCssUrls: false })

@@ -44,11 +44,11 @@ class SearchStudentController extends Controller
             if (count($users) > 0) {
                 return view('admin.search.students', [ 'users' => $users]);
             } else {
-                return view('admin.search.studentsIndex', ['users' => []]);
+                return view('admin.search.students', ['users' => []]);
             }
 
         } else {
-            return view('admin.search.studentsIndex', [ 'users' => []]);
+            return view('admin.search.students', [ 'users' => []]);
         }
 
     }

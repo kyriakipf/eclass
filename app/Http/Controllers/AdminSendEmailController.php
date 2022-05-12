@@ -12,25 +12,33 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminSendEmailController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $teachers = User::getRelatedTeachers();
         $students = User::getRelatedStudents();
-        return view('admin.sendEmail', ['teachers' => $teachers , 'students' => $students]);
+        return view('admin.sendEmail', ['teachers' => $teachers, 'students' => $students]);
     }
 
     public function process(Request $request)
     {
-        if($request->userType == 'teacher'){
-            foreach ($request->teacherSelect as $teacher){
-                dd($teacher['email']);
-                Mail::to($teacher->email)->send(new customEmail($request));
+//        dd($request);
+        if ($request->userType == 'teacher') {
+
+            foreach ($request->teacherSelect as $teacher) {
+                Mail::to($teacher)->send(new customEmail($request));
             }
-        }elseif ($request->userType == 'student'){
-
-        }else{
-
+        } elseif ($request->userType == 'student') {
+            foreach ($request->studentSelect as $student) {
+                Mail::to($student)->send(new customEmail($request));
+            }
+        } else {
+            foreach ($request->userSelect as $user) {
+                Mail::to($user)->send(new customEmail($request));
+            }
         }
-        dd($request);
+
+        return redirect()->back();
     }
 
 }
+

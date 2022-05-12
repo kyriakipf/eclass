@@ -10,24 +10,29 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Validators\ValidationException;
 use Maatwebsite\Excel\Validators\Failure;
 
-class ImportExcelTeacherController extends Controller {
+class ImportExcelTeacherController extends Controller
+{
     public function import(Request $request)
     {
-        try{
-          $import = Excel::import(new TeachersImport, $request->file('teachers'));
 
-        }catch (\Maatwebsite\Excel\Validators\ValidationException $e){
+        $import = new TeachersImport();
+        $import->import($request->file('teachers'));
 
-            return redirect()->route('teacher.invite')->with('error','Υπήρξε κάποιο σφάλμα.');
+        $errorRow = [];
+
+        foreach ($import->failures() as $failure) {
+            $errorRow[] = $failure->row();
         }
 
-//        foreach ($import->failures() as $failure) {
-//            $failure->row(); // row that went wrong
-//            $failure->attribute(); // either heading key (if using heading row concern) or column index
-//            $failure->errors(); // Actual error messages from Laravel validator
-//            $failure->values(); // The values of the row that has failed.
-//        }
+        $errorString = implode(' ,', array_unique($errorRow));
 
-        return redirect()->route('teacher.invite')->with('success','Το αρχείο ανέβηκε επιτυχώς.');
+        if ($import->failures()->count() != 0) {
+            return redirect()->route('teacher.invite')->with('warning', 'Το αρχείο ανέβηκε επιτυχώς αλλά υπήρξε σφάλμα με τα στοιχεία των χρηστών στις γραμμές: '
+                                                                              . $errorString .
+                                                                             '. Ελέγξτε εάν είναι κενό κάποιο κελί ή εαν είναι ήδη εγγεγραμμένοι στο σύστημα.');
+
+        }
+        return redirect()->route('teacher.invite')->with('success', 'Το αρχείο ανέβηκε επιτυχώς.');
     }
+
 }

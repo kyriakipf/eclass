@@ -12,12 +12,24 @@ class ImportExcelStudentController extends Controller
 {
     public function import(Request $request)
     {
-        try{
-            Excel::import(new StudentsImport(), $request->file('students'));
 
-        }catch (ValidationException $e){
-            return redirect()->route('student.invite')->with('error','Υπήρξε κάποιο σφάλμα.');
+        $import = new StudentsImport();
+        $import->import($request->file('students'));
+
+        $errorRow = [];
+
+        foreach ($import->failures() as $failure) {
+            $errorRow[] = $failure->row();
         }
-        return redirect()->route('student.invite')->with('success','Το αρχείο ανέβηκε επιτυχώς.');
+
+        $errorString = implode(' ,', array_unique($errorRow));
+        if ($import->failures()->count() != 0) {
+            return redirect()->route('student.invite')->with('warning', 'Το αρχείο ανέβηκε επιτυχώς αλλά υπήρξε σφάλμα με τα στοιχεία των χρηστών στις γραμμές: '
+                                                                              . $errorString .
+                                                                             '. Ελέγξτε εάν είναι κενό κάποιο κελί ή εαν είναι ήδη εγγεγραμμένοι στο σύστημα.');
+
+        }
+        return redirect()->route('student.invite')->with('success', 'Το αρχείο ανέβηκε επιτυχώς.');
     }
+
 }
