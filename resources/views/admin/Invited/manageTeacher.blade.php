@@ -65,6 +65,9 @@
                                 <input type="file" name="teachers" id="file" class="file-input" required/>
                             </div>
                         </div>
+                        <div class="col-md-3 download--btn-container ">
+                            <a href="" class="download button light" download><i class="fa-light fa-download"></i>ΛΗΨΗ TEMPLATE</a>
+                        </div>
                         <div class="col-md-3 btn-container">
                             <button type="submit" class="button light">ΠΡΟΣΘΗΚΗ</button>
                         </div>
@@ -111,7 +114,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <a href="{{route('teacher.mass.process')}}"><i class="fa-regular fa-envelope"></i>Mass Invite</a>
+                <a href="{{route('teacher.mass.process')}}"><i class="fa-regular fa-envelope"></i>Μαζική Πρόσκληση</a>
             </div>
         </div>
     </div>

@@ -19,11 +19,11 @@ form {
         margin: 0 16px 44px 0;
     }
 
-    & .area-input{
+    & .area-input {
         min-height: 100px;
     }
 
-    & .select-input{
+    & .select-input {
         background-color: $white;
         border: 1px solid $lightSubText;
         height: 44px;
@@ -32,7 +32,7 @@ form {
         cursor: pointer;
     }
 
-    & .file-input{
+    & .file-input {
         background-color: $white;
         border: 1px solid $lightSubText;
         width: 100%;
@@ -48,7 +48,8 @@ form {
         font-weight: 600;
         font-family: $primaryFont;
         transition: all 0.25s linear;
-        &:hover{
+
+        &:hover {
             color: $greenText;
             text-decoration: underline;
             transition: all 0.25s linear;
@@ -88,5 +89,14 @@ form {
             }
         }
 
+    }
+
+    & .download {
+        padding: 15px 25px;
+        text-decoration: none !important;
+    }
+
+    & .download--btn-container{
+        margin-top: 25px;
     }
 }

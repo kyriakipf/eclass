@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-4">
                     <div class="input-container focused">
-                        <label for="email" class="input-label">Αριθμός Μητρώου</label>
+                        <label for="email" class="input-label">Μητρώο</label>
                         <input type="text" name="am" id="am" class="text-input"
                                value="{{$student->am}}" required>
                     </div>

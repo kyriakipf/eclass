@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="input-container focused">
-                        <label for="am" class="input-label">Αριθμός Μητρώου</label>
+                        <label for="am" class="input-label">Μητρώο</label>
                         <input type="text" name="am" id="am" class="text-input"
                                value="{{$student->student->am}}" required>
                     </div>

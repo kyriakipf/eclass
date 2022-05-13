@@ -5,7 +5,7 @@
             <th class="sort title" wire:click="sortBy('name')">Όνομα <i class="fa-light fa-sort"></i></th>
             <th class="sort title" wire:click="sortBy('surname')">Επίθετο <i class="fa-light fa-sort"></i></th>
             <th class="sort title" wire:click="sortBy('email')">Email <i class="fa-light fa-sort"></i></th>
-            <th class="sort title" wire:click="sortBy('am')">Αριθμός Μητρώου <i class="fa-light fa-sort"></i></th>
+            <th class="sort title" wire:click="sortBy('am')">Μητρώο <i class="fa-light fa-sort"></i></th>
             <th class="title">Τμήμα</th>
             <th></th>
             <th></th>

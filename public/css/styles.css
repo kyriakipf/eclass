@@ -75,6 +75,13 @@ form .button.light:hover {
   color: #FFFFFF;
   transition: all 0.25s linear;
 }
+form .download {
+  padding: 15px 25px;
+  text-decoration: none !important;
+}
+form .download--btn-container {
+  margin-top: 25px;
+}
 
 body {
   font-family: "Raleway", sans-serif;
@@ -185,4 +192,10 @@ body table tbody tr td .delete:hover {
 }
 body table tbody tr:not(:last-child) {
   border-bottom: 1px solid #DFDFDF;
+}
+body .card-container {
+  justify-content: space-around;
+}
+body .card-container .card-body {
+  border: 1px solid #DFDFDF;
 }

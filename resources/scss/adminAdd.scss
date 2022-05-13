@@ -13,16 +13,14 @@
 
         & .addForm {
             justify-content: space-evenly;
+
             & .input-container, .select-container {
                 display: flex;
                 flex-direction: column;
-
-
             }
-
         }
 
-        & .bordered{
+        & .bordered {
             border: 1px solid $lightSubText;
             padding: 30px;
         }

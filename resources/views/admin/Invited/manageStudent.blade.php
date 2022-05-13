@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="input-container focused">
-                                <label for="am" class="input-label">Αριθμός Μητρώου</label>
+                                <label for="am" class="input-label">Μητρώο</label>
                                 <input type="text" name="am" id="am" class="text-input"
                                        placeholder="Γράψτε εδώ..." required>
                             </div>
@@ -73,6 +73,9 @@
                                 <input type="file" name="students" id="file" class="file-input" required/>
                             </div>
                         </div>
+                        <div class="col-md-3 download--btn-container">
+                            <a href="" class="download button light" download><i class="fa-light fa-download"></i>ΛΗΨΗ TEMPLATE</a>
+                        </div>
                         <div class="col-md-3 btn-container">
                             <button type="submit" class="button light">ΠΡΟΣΘΗΚΗ</button>
                         </div>
@@ -87,7 +90,7 @@
                         <th class="surname title">Επίθετο</th>
                         <th class="email title">Email</th>
                         <th class="domain title">Τμήμα</th>
-                        <th class="am title">Αριθμός Μητρώου</th>
+                        <th class="am title">Μητρώο</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -123,7 +126,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <a href="{{route('student.mass.process')}}"><i class="fa-regular fa-envelope "></i>Mass Invite</a>
+                <a href="{{route('student.mass.process')}}"><i class="fa-regular fa-envelope "></i>Μαζική Πρόσκληση</a>
             </div>
         </div>
 

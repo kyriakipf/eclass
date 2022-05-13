@@ -119,4 +119,11 @@ body {
         }
     }
 
+    & .card-container{
+        justify-content: space-around;
+
+        & .card-body{
+            border: 1px solid $lightSubText;
+        }
+    }
 }
