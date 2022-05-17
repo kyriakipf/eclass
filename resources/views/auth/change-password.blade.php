@@ -8,7 +8,7 @@
         <hr>
         <form action="{{route('change.password.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="row addForm">
+            <div class="row addForm changePass">
                 <div class="col-md-6">
                     <div class="input-container focused">
                         <label for="name" class="input-label">Email</label>

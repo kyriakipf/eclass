@@ -9,8 +9,8 @@
 @section('content')
     <div class="mainInfo">
         <div class="topRow">
-            <p class="header">Λίστα Μαθητών</p>
-            <a class="search" href="{{route('student.search')}}">Αναζήτηση</a>
+            <p class="header">Λίστα Φοιτητών</p>
+            <a class="search" href="{{route('student.search')}}"><i class="fa-light fa-magnifying-glass"></i> Αναζήτηση</a>
         </div>
         <div class="row">
             @livewire('student-list', [ 'users' => $users])

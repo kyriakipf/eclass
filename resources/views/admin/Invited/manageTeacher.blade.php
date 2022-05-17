@@ -66,7 +66,8 @@
                             </div>
                         </div>
                         <div class="col-md-3 download--btn-container ">
-                            <a href="" class="download button light" download><i class="fa-light fa-download"></i>ΛΗΨΗ TEMPLATE</a>
+                            <a href="{{route('template.download', [ 'name'=>'teacherTemplate'])}}" class="download button light" download><i class="fa-light fa-download"></i>ΛΗΨΗ
+                                TEMPLATE</a>
                         </div>
                         <div class="col-md-3 btn-container">
                             <button type="submit" class="button light">ΠΡΟΣΘΗΚΗ</button>
@@ -75,46 +76,54 @@
                 </form>
             </div>
             <div class="col-md-12">
-                <table class="table-body">
-                    <thead>
-                    <tr class="tableRow colTitles">
-                        <th class="name title">Όνομα</th>
-                        <th class="surname title">Επίθετο</th>
-                        <th class="email title">Email</th>
-                        <th class="domain title">Τμήμα</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($entities as $entity)
-                        <tr class="tableRow">
-                            <td class="col-md-3">
-                                <p class="name paragraph">{{$entity->name}}</p>
-                            </td>
-                            <td class="col-md-3">
-                                <p class="paragraph">{{$entity->surname}}</p>
-                            </td>
-                            <td class="col-md-3">
-                                <p class="paragraph">{{$entity->email}}</p>
-                            </td>
-                            <td class="col-md-3">
-                                <p class="paragraph">{{$entity->domain->name}}</p>
-                            </td>
-                            <td>
-                                <a href="{{route('teacher.process' , $entity)}}" class="invite"><i class="fa-regular fa-envelope"></i></a>
-                            </td>
-                            <td>
-                                <a href="{{route('teacher.invite.show' , $entity)}}" class="edit"><i class="fa-regular fa-pencil"></i></a>
-                            </td>
-                            <td>
-                                <a href="{{route('teacher.invite.delete' , $entity)}}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
-                            </td>
+                @if(count($entities) != 0)
+                    <table class="table-body">
+                        <thead>
+                        <tr class="tableRow colTitles">
+                            <th class="name title">Όνομα</th>
+                            <th class="surname title">Επίθετο</th>
+                            <th class="email title">Email</th>
+                            <th class="domain title">Τμήμα</th>
+                            <th></th>
+                            <th></th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-                <a href="{{route('teacher.mass.process')}}"><i class="fa-regular fa-envelope"></i>Μαζική Πρόσκληση</a>
+                        </thead>
+                        <tbody>
+                        @foreach($entities as $entity)
+                            <tr class="tableRow">
+                                <td class="col-md-3">
+                                    <p class="name paragraph">{{$entity->name}}</p>
+                                </td>
+                                <td class="col-md-3">
+                                    <p class="paragraph">{{$entity->surname}}</p>
+                                </td>
+                                <td class="col-md-3">
+                                    <p class="paragraph">{{$entity->email}}</p>
+                                </td>
+                                <td class="col-md-3">
+                                    <p class="paragraph">{{$entity->domain->name}}</p>
+                                </td>
+                                <td>
+                                    <a href="{{route('teacher.process' , $entity)}}" class="invite"><i
+                                            class="fa-regular fa-envelope"></i></a>
+                                </td>
+                                <td>
+                                    <a href="{{route('teacher.invite.show' , $entity)}}" class="edit"><i
+                                            class="fa-regular fa-pencil"></i></a>
+                                </td>
+                                <td>
+                                    <a href="{{route('teacher.invite.delete' , $entity)}}" class="delete"><i
+                                            class="fa-regular fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <a href="{{route('teacher.mass.process')}}"><i class="fa-regular fa-envelope"></i>Μαζική
+                        Πρόσκληση</a>
+                @else
+                    <p class="paragraph">Δεν εχουν προσκληθεί χρήστες.</p>
+                @endif
             </div>
         </div>
     </div>

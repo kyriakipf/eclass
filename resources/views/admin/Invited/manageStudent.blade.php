@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <p class="header">Προσθήκη Μαθητή</p>
+        <p class="header">Προσθήκη Φοιτητή</p>
         <div class="row">
             <div class="col-md-6">
                 <form action="{{route('student.invite.store')}}" method="POST" enctype="multipart/form-data">
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 download--btn-container">
-                            <a href="" class="download button light" download><i class="fa-light fa-download"></i>ΛΗΨΗ TEMPLATE</a>
+                            <a href="{{route('template.download', [ 'name'=>'studentTemplate'])}}" class="download button light" download><i class="fa-light fa-download"></i>ΛΗΨΗ TEMPLATE</a>
                         </div>
                         <div class="col-md-3 btn-container">
                             <button type="submit" class="button light">ΠΡΟΣΘΗΚΗ</button>
@@ -83,6 +83,7 @@
                 </form>
             </div>
             <div class="col-md-12">
+                @if(count($entities) != 0)
                 <table>
                     <thead>
                     <tr class="tableRow colTitles">
@@ -127,6 +128,9 @@
                     </tbody>
                 </table>
                 <a href="{{route('student.mass.process')}}"><i class="fa-regular fa-envelope "></i>Μαζική Πρόσκληση</a>
+                @else
+                <p class="paragraph">Δεν εχουν προσκληθεί χρήστες.</p>
+                @endif
             </div>
         </div>
 

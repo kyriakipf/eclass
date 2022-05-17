@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <p class="header">Επεξεργασία Μαθητή</p>
+        <p class="header">Επεξεργασία Φοιτητή</p>
         <hr>
         <form action="{{route('student.invite.update' , $student)}}" method="POST" enctype="multipart/form-data">
             @csrf

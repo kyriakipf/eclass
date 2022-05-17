@@ -84,7 +84,7 @@ class InviteStudentController extends Controller
 
     public function delete(InviteStudent $student){
         $student->delete();
-        return redirect()->route('student.invite')->with('success','Ο χρήστης διαγράφηκε επιτυχώς.');
+        return redirect()->back()->with('success','Ο χρήστης διαγράφηκε επιτυχώς.');
 
     }
 }

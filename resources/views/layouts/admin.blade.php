@@ -33,21 +33,21 @@
     <div class="dashboard">
         <div class="sidebar col-md-3">
             <div class="sidebar-header">
-                <a href="{{route('dashboard')}}" class="title"><i class="fa-solid fa-graduation-cap"></i> eClass</a>
+                <a href="{{route('dashboard')}}" class="header blue"><i class="fa-solid fa-graduation-cap"></i> eClass</a>
             </div>
             <hr>
             <div class="list-container">
             <ul class="nav-bar">
                 <p class="title">Επεξεργασία Χρηστών</p>
                 <li class="nav-item">
-                    <a href="{{route('teacher.invite')}}" class="paragraph"><i class="fa-light fa-edit"></i> Πρόσκληση Καθηγητών</a>
+                    <a href="{{route('teacher.invite')}}" class="paragraph"><i class="fa-light fa-user-plus"></i> Πρόσκληση Καθηγητών</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('teachers')}}" class="paragraph"><i class="fa-light fa-edit"></i> Επεξεργασία Εγγεγραμμένων Καθηγητών</a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href="{{route('student.invite')}}" class="paragraph"><i class="fa-light fa-edit"></i> Πρόσκληση Φοιτητών</a>
+                    <a href="{{route('student.invite')}}" class="paragraph"><i class="fa-light fa-user-plus"></i> Πρόσκληση Φοιτητών</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('students')}}" class="paragraph"><i class="fa-light fa-edit"></i> Επεξεργασία Εγγεγραμμένων Φοιτητών</a>

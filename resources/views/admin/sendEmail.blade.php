@@ -65,7 +65,7 @@
                               id="emailContent" cols="30"
                               rows="10" required></textarea>
                 </div>
-                <div class="btn-container col-md-3">
+                <div class="btn-container col-md-2">
                     <button type="submit" class="button bold ">Αποστολή</button>
                 </div>
             </div>

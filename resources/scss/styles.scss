@@ -17,6 +17,7 @@ body {
                 position: sticky;
                 top: 0;
                 height: 100vh;
+
                 & .sidebar-header {
                     padding: 24px 32px;
 
@@ -119,11 +120,22 @@ body {
         }
     }
 
-    & .card-container{
+    & .card-container {
         justify-content: space-around;
+        gap: 35px;
 
-        & .card-body{
+        & .card-body {
             border: 1px solid $lightSubText;
+            box-shadow: 1px 1px 8px $lightSubText;
+
+            & .card-content {
+                min-height: 300px;
+                overflow-y: auto;
+            }
         }
+    }
+
+    & .changePass {
+        justify-content: center;
     }
 }

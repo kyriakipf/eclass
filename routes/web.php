@@ -86,6 +86,8 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
     Route::get('email', [AdminSendEmailController::class, 'index'])->name('email');
     Route::get('email/send', [AdminSendEmailController::class, 'process'])->name('email.process');
 
+    Route::get('template/{name}/download', [\App\Http\Controllers\DownloadTemplateController::class, 'downloadTemplate'])->name('template.download');
+
 });
 
 

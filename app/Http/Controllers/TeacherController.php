@@ -61,7 +61,6 @@ class TeacherController extends Controller
     public function delete(User $teacher){
         $teacher->teacher->delete();
         $teacher->delete();
-        return redirect()->route('teachers')->with('success','Ο χρήστης διαγράφηκε επιτυχώς.');
-
+        return redirect()->back()->with('success','Ο χρήστης διαγράφηκε επιτυχώς.');
     }
 }

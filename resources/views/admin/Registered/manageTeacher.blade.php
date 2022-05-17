@@ -10,7 +10,7 @@
     <div class="mainInfo">
         <div class="topRow">
             <p class="header">Λίστα Καθηγητών</p>
-            <a class="search" href="{{route('teacher.search')}}">Αναζήτηση</a>
+            <a class="search" href="{{route('teacher.search')}}"><i class="fa-light fa-magnifying-glass"></i> Αναζήτηση</a>
         </div>
         <div class="row">
             @livewire('teacher-list', [ 'teachers' => $teachers])

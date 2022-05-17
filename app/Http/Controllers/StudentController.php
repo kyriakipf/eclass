@@ -61,7 +61,7 @@ class StudentController extends Controller
     public function delete(User $student){
         $student->student->delete();
         $student->delete();
-        return redirect()->route('students')->with('success','Ο χρήστης διαγράφηκε επιτυχώς.');
+        return redirect()->back()->with('success','Ο χρήστης διαγράφηκε επιτυχώς.');
 
     }
 }
