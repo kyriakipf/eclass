@@ -83,7 +83,8 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
         Route::match(['get', 'post'],'/search/form', [SearchStudentController::class, 'search'])->name('student.search.form');
     });
 
-    Route::get('email', [AdminSendEmailController::class, 'index'])->name('email');
+    Route::get('email', [AdminSendEmailController::class, 'create'])->name('email');
+    Route::get('email/view', [AdminSendEmailController::class, 'index'])->name('email.view');
     Route::get('email/send', [AdminSendEmailController::class, 'process'])->name('email.process');
 
     Route::get('template/{name}/download', [\App\Http\Controllers\DownloadTemplateController::class, 'downloadTemplate'])->name('template.download');

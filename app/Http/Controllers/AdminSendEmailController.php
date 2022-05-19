@@ -13,6 +13,12 @@ class AdminSendEmailController extends Controller
 {
     public function index()
     {
+        $emails = Message::all();
+        return view('admin.viewEmails' , ['emails' => $emails]);
+    }
+
+    public function create()
+    {
         $teachers = User::getRelatedTeachers();
         $students = User::getRelatedStudents();
         return view('admin.sendEmail', ['teachers' => $teachers, 'students' => $students]);
@@ -23,7 +29,7 @@ class AdminSendEmailController extends Controller
 //        dd($request);
         $email = new Message([
             'from' => auth()->user()->email,
-            'subject'=> $request->emailSubject,
+            'subject' => $request->emailSubject,
             'message' => $request->emailContent,
             'send_date' => Carbon::now()
         ]);

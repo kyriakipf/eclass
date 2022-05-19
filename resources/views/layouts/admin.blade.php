@@ -31,7 +31,7 @@
 @yield('homeheader')
 <section id="main">
     <div class="dashboard">
-        <div class="sidebar col-md-3">
+        <div class="sidebar col-md-2">
             <div class="sidebar-header">
                 <a href="{{route('dashboard')}}" class="header blue"><i class="fa-solid fa-graduation-cap"></i> eClass</a>
             </div>
@@ -57,6 +57,9 @@
                 <li class="nav-item">
                     <a href="{{route('email')}}" class="paragraph"><i class="fa-light fa-envelope"></i> Δημιουργία</a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('email.view')}}" class="paragraph"><i class="fa-light fa-envelope"></i> Προβολή</a>
+                </li>
             </ul>
             <hr>
             <ul class="nav-bar user-options">
@@ -69,7 +72,7 @@
             </ul>
             </div>
         </div>
-        <div class="content col-md-9">
+        <div class="content col-md-10">
             <div class="content-container">
                 @yield('content')
             </div>

@@ -132,6 +132,11 @@ body section#main .dashboard .sidebar .sidebar-header {
 }
 body section#main .dashboard .sidebar .sidebar-header a {
   margin-left: 4px;
+  transition: opacity 0.5s linear;
+}
+body section#main .dashboard .sidebar .sidebar-header a:hover {
+  opacity: 0.5;
+  transition: opacity 0.5s linear;
 }
 body section#main .dashboard .sidebar hr {
   background-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4), transparent);
@@ -159,6 +164,11 @@ body section#main .dashboard .sidebar .nav-bar .nav-item a {
 body section#main .dashboard .sidebar .nav-bar .nav-item a i {
   color: black;
   margin-right: 8px;
+}
+body section#main .dashboard .content {
+  background-image: url("image/background.jpg");
+  background-position: center;
+  background-size: cover;
 }
 body section#main .dashboard .content .content-container {
   padding: 24px;
@@ -198,11 +208,15 @@ body table tbody tr:not(:last-child) {
 }
 body .card-container {
   justify-content: space-around;
-  gap: 35px;
+  padding: 65px;
+  -moz-column-gap: 80px;
+       column-gap: 80px;
+  row-gap: 60px;
 }
 body .card-container .card-body {
   border: 1px solid #DFDFDF;
   box-shadow: 1px 1px 8px #DFDFDF;
+  background-color: #FFFFFF;
 }
 body .card-container .card-body .card-content {
   min-height: 300px;
