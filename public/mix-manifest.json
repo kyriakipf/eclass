@@ -13,5 +13,8 @@
     "/css/search.css": "/css/search.css",
     "/css/login.css": "/css/login.css",
     "/css/thin.css": "/css/thin.css",
-    "/js/bootstrap.js": "/js/bootstrap.js"
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/assets/img/background.jpg": "/assets/img/background.jpg",
+    "/assets/img/building.svg": "/assets/img/building.svg",
+    "/assets/img/logo.svg": "/assets/img/logo.svg"
 }

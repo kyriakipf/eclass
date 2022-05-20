@@ -25,9 +25,10 @@ mix.sass('resources/scss/fontawesome/brands.scss', 'public/css').options({ proce
     .sass('resources/scss/styles.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/adminAdd.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/adminView.scss', 'public/css').options({ processCssUrls: false })
-    .sass('resources/scss/fontawesome/v4-shims.scss', 'public/css').options({ processCssUrls: false });
+    .sass('resources/scss/fontawesome/v4-shims.scss', 'public/css').options({ processCssUrls: false })
 
-mix.copy('resources/js/bootstrap.js', 'public/js');
+mix.copy('resources/js/bootstrap.js', 'public/js')
+    .copy('resources/scss/image', 'public/assets/img').options({ processCssUrls: false });
 
 // mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
 //     require('postcss-import'),

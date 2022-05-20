@@ -8,7 +8,8 @@
     <link rel="icon" href="{{asset('favicon.ico')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap"
+          rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset("css/fontawesome.css")}}">
@@ -19,7 +20,8 @@
     <link rel="stylesheet" href="{{asset("css/solid.css")}}">
     <link rel="stylesheet" href="{{asset("css/thin.css")}}">
     <link rel="stylesheet" href="{{asset("css/v4-shims.css")}}">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @yield('stylesheets')
     <link rel="stylesheet" href="{{asset("css/styles.css")}}">
     <title>@yield('title') - eClass Dashboard</title>
@@ -31,48 +33,36 @@
 @yield('homeheader')
 <section id="main">
     <div class="dashboard">
-        <div class="sidebar col-md-2">
-            <div class="sidebar-header">
-                <a href="{{route('dashboard')}}" class="header blue"><i class="fa-solid fa-graduation-cap"></i> eClass</a>
+        <div class="sidebar">
+            <div class="sidebar-header col-md-6">
+                <a href="{{route('dashboard')}}" class="logoLink">
+                    <div style="background-image: url({{ asset('assets/img/logo.png') }})" class="logo"></div>
+            </a>
             </div>
-            <hr>
-            <div class="list-container">
-            <ul class="nav-bar">
-                <p class="title">Επεξεργασία Χρηστών</p>
-                <li class="nav-item">
-                    <a href="{{route('teacher.invite')}}" class="paragraph"><i class="fa-light fa-user-plus"></i> Πρόσκληση Καθηγητών</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('teachers')}}" class="paragraph"><i class="fa-light fa-edit"></i> Επεξεργασία Εγγεγραμμένων Καθηγητών</a>
-                </li>
-                <hr>
-                <li class="nav-item">
-                    <a href="{{route('student.invite')}}" class="paragraph"><i class="fa-light fa-user-plus"></i> Πρόσκληση Φοιτητών</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('students')}}" class="paragraph"><i class="fa-light fa-edit"></i> Επεξεργασία Εγγεγραμμένων Φοιτητών</a>
-                </li>
-                <hr>
-                <p class="title">Μηνύματα</p>
-                <li class="nav-item">
-                    <a href="{{route('email')}}" class="paragraph"><i class="fa-light fa-envelope"></i> Δημιουργία</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('email.view')}}" class="paragraph"><i class="fa-light fa-envelope"></i> Προβολή</a>
-                </li>
-            </ul>
-            <hr>
-            <ul class="nav-bar user-options">
-                <li class="nav-item">
-                    <a href="{{route('change.password.view')}}" class="paragraph"><i class="fa-solid fa-key"></i> Αλλαγή Κωδικού</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('signout')}}" class="paragraph"><i class="fa-solid fa-arrow-right-from-bracket"></i> Αποσύνδεση</a>
-                </li>
-            </ul>
+            <div class="list-container col-md-6">
+                <ul class="nav-bar">
+                    <li class="nav-item">
+                        <a href="{{route('teacher.invite')}}" class="menu"><i class="fa-solid fa-user-tie"></i>Καθηγητές</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('student.invite')}}" class="menu"><i class="fa-solid fa-clipboard-user"></i>Φοιτητές</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('students')}}" class="menu"><i class="fa-solid fa-message-dots"></i>Μυνήματα</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('email')}}" class="menu"><i class="fa-solid fa-books"></i>Μαθήματα</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('change.password.view')}}" class="menu"><i class="fa-solid fa-user"></i>Χρήστης</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('signout')}}" class="menu"><i class="fa-solid fa-arrow-right-from-bracket"></i> Αποσύνδεση</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="content col-md-10">
+        <div class="content">
             <div class="content-container">
                 @yield('content')
             </div>
@@ -84,7 +74,7 @@
 <script src="{{asset("js/theme-scripts.js")}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         toastr.options = {
             "closeButton": true,
             "timeOut": "5000",
