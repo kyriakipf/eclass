@@ -1,0 +1,52 @@
+@import "variables ";
+& table {
+    width: 100%;
+    margin-top: 10px;
+
+    & thead {
+        border-bottom: 1px solid $lightSubText;
+    }
+
+    & tbody {
+        & tr {
+            & td {
+                padding: 12px 14px;
+
+                & a {
+                    font-size: 20px;
+                    color: $subText;
+                    font-weight: 500;
+                    padding: 4px 8px;
+                    margin: 0;
+                    transition: color 0.15s linear;
+
+                }
+
+                & .edit {
+                    &:hover {
+                        color: $greenText;
+                        transition: color 0.15s linear;
+                    }
+                }
+
+                & .invite {
+                    &:hover {
+                        color: $accent4;
+                        transition: color 0.15s linear;
+                    }
+                }
+
+                & .delete {
+                    &:hover {
+                        color: $redText;
+                        transition: color 0.15s linear;
+                    }
+                }
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $lightSubText;
+            }
+        }
+    }
+}

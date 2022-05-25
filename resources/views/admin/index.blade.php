@@ -4,79 +4,105 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="card-container row">
-            <div class="top-section row col-md-12">
-                <div style="background-image: url({{ asset('assets/img/building.svg') }})" class="banner col-md-6">
+        <div class="top-section row col-md-12">
+            <div class="stats-container col-md-6">
+                <div class="stats col-md-5">
+                    <div class="title">
+                        <p><i class="fa-solid fa-envelope"></i> Προσκεκλημένοι:</p>
+                    </div>
+                    <div class="data">
+                        <div class="counter">
+                            <p class="number">{{count($invitedTeachers)}}</p>
+                            <p>Καθηγητές</p>
+                        </div>
+                        <div class="counter">
+                            <p class="number">{{count($invitedStudents)}}</p>
+                            <p>Φοιτητές</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stats col-md-6">
-                    <div class="titles row">
-                        <p class="subtitle col-md-6">Προσκεκλημένοι</p>
-                        <p class="subtitle col-md-6">Εγγεγραμμένοι</p>
+                <div class="stats col-md-5">
+                    <div class="title">
+                        <p><i class="fa-solid fa-pencil"></i> Εγγεγραμμένοι:</p>
                     </div>
-                    <div class="numbers row">
-                        <div class="invited row col-md-6">
-                            <p class="paragraph col-md-6">{{count($invitedTeachers)}}</p>
-                            <p class="paragraph col-md-6">{{count($invitedStudents)}}</p>
+                    <div class="data">
+                        <div class="counter">
+                            <p class="number">{{count($teachers)}}</p>
+                            <p>Καθηγητές</p>
                         </div>
-                        <div class="registered row col-md-6">
-                            <p class="paragraph col-md-6">{{count($teachers)}}</p>
-                            <p class="paragraph col-md-6">{{count($students)}}</p>
-                        </div>
-                    </div>
-                    <div class="categories row">
-                        <div class="invited row col-md-6">
-                            <p class="subtitle col-md-6">Καθηγητές</p>
-                            <p class="subtitle col-md-6">Φοιτητές</p>
-                        </div>
-                        <div class="registered row col-md-6">
-                            <p class="subtitle col-md-6">Καθηγητές</p>
-                            <p class="subtitle col-md-6">Φοιτητές</p>
+                        <div class="counter">
+                            <p class="number">{{count($students)}}</p>
+                            <p>Φοιτητές</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bottom-section col-md-12 row">
-                <div class="courses col-md-6">
-                    <p class="title">Μαθήματα Εξαμήνου</p>
-                    <table>
-                        <thead>
-                        <tr class="tableRow colTitles">
-                            <th class="name title">ΤΙΤΛΟΣ</th>
-                            <th class="email title">ΚΑΘΗΓΗΤΗΣ</th>
-                            <th class="domain title">ΕΓΓΕΓΡΑΜΜΕΝΟΙ ΦΟΙΤΗΤΕΣ</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tableRow">
-                                <td class="col-md-3">
-                                    <p class="name paragraph">Λογικός Προγραμματισμός</p>
-                                </td>
-                                <td class="col-md-3">
-                                    <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
-                                </td>
-                                <td class="col-md-3">
-                                    <p class="paragraph">1023</p>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-3">
-                                <p class="name paragraph">Μαθηματική Ανάλυση & Στοιχεία Γραμμικής Άλγεβρας</p>
-                            </td>
-                            <td class="col-md-3">
-                                <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
-                            </td>
-                            <td class="col-md-3">
-                                <p class="paragraph">520</p>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="courses-chart col-md-6">
-                    <p class="title">Φοιτητές ανα Μάθημα</p>
-                </div>
+            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
             </div>
         </div>
+    </div>
+    <div class="bottom-section col-md-12 row">
+        <div class="courses col-md-5">
+            <p class="subtitle">Μαθήματα Εξαμήνου</p>
+            <table>
+                <thead>
+                <tr class="tableRow colTitles">
+                    <th>ΤΙΤΛΟΣ</th>
+                    <th>ΚΑΘΗΓΗΤΗΣ</th>
+                    <th>ΕΓΓΕΓΡΑΜΜΕΝΟΙ</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-row">
+                    <td class="col-md-3">
+                        <p class="paragraph">Λογικός Προγραμματισμός</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">1023</p>
+                    </td>
+                </tr>
+                <tr class="table-row">
+                    <td class="col-md-3">
+                        <p class="paragraph">Μαθηματική Ανάλυση & Στοιχεία Γραμμικής Άλγεβρας</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">520</p>
+                    </td>
+                </tr>
+                <tr class="table-row">
+                    <td class="col-md-3">
+                        <p class="paragraph">Μαθηματική Ανάλυση & Στοιχεία Γραμμικής Άλγεβρας</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">520</p>
+                    </td>
+                </tr>
+                <tr class="table-row">
+                    <td class="col-md-3">
+                        <p class="paragraph">Μαθηματική Ανάλυση & Στοιχεία Γραμμικής Άλγεβρας</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">520</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="courses-chart col-md-5">
+            <p class="subtitle">Φοιτητές ανα Μάθημα</p>
+        </div>
+    </div>
     </div>
 @endsection

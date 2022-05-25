@@ -34,9 +34,9 @@
 <section id="main">
     <div class="dashboard">
         <div class="sidebar">
-            <div class="sidebar-header col-md-6">
+            <div class="sidebar-header col-md-5">
                 <a href="{{route('dashboard')}}" class="logoLink">
-                    <div style="background-image: url({{ asset('assets/img/logo.png') }})" class="logo"></div>
+                    <div style="background-image: url({{ asset('assets/img/logo_white.png') }})" class="logo"></div>
             </a>
             </div>
             <div class="list-container col-md-6">
@@ -53,14 +53,17 @@
                     <li class="nav-item">
                         <a href="{{route('email')}}" class="menu"><i class="fa-solid fa-books"></i>Μαθήματα</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{route('change.password.view')}}" class="menu"><i class="fa-solid fa-user"></i>Χρήστης</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('signout')}}" class="menu"><i class="fa-solid fa-arrow-right-from-bracket"></i> Αποσύνδεση</a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="{{route('change.password.view')}}" class="menu"><i class="fa-solid fa-user"></i>Χρήστης</a>--}}
+{{--                    </li>--}}
+
                 </ul>
             </div>
+            <div class="userSettings">
+                <a href="{{route('signout')}}" class="menu"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    {{auth()->user()->name}} {{auth()->user()->surname}} <i class="fa-solid fa-angle-down"></i></a>
+            </div>
+
         </div>
         <div class="content">
             <div class="content-container">

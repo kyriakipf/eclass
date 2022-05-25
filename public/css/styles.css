@@ -94,7 +94,7 @@ body .header {
 body .title {
   font-size: 22px;
   font-weight: 700;
-  color: #70246A;
+  color: #FFFFFF;
 }
 body .subtitle {
   font-size: 18px;
@@ -120,13 +120,14 @@ body .blue {
   color: #2A3256 !important;
 }
 body .menu {
-  color: #70246A;
+  color: #FFFFFF;
   font-size: 16px;
   font-weight: 300;
 }
 
 body {
-  background-color: #F1F4FD;
+  background-color: #70246A;
+  border-top: 5px solid #F9627D;
 }
 body a {
   text-decoration: none;
@@ -140,7 +141,7 @@ body section#main .dashboard .sidebar {
   align-items: flex-end;
 }
 body section#main .dashboard .sidebar .sidebar-header a {
-  color: #70246A;
+  color: #FFFFFF;
 }
 body section#main .dashboard .sidebar .sidebar-header a .logo {
   height: 100px;
@@ -159,15 +160,21 @@ body section#main .dashboard .sidebar .nav-bar .nav-item a i {
   font-size: 20px;
   margin-right: 15px;
 }
+body section#main .dashboard .sidebar .userSettings {
+  margin-bottom: 16px;
+}
 body table {
   width: 100%;
   margin-top: 10px;
 }
-body table thead {
-  border-bottom: 1px solid #DFDFDF;
+body table thead th {
+  margin-bottom: 20px;
 }
 body table tbody tr td {
-  padding: 12px 14px;
+  padding: 10px;
+}
+body table tbody tr td p {
+  margin-bottom: 0;
 }
 body table tbody tr td a {
   font-size: 20px;
@@ -189,34 +196,71 @@ body table tbody tr td .delete:hover {
   color: #E34D59;
   transition: color 0.15s linear;
 }
-body table tbody tr:not(:last-child) {
-  border-bottom: 1px solid #DFDFDF;
+body table tbody tr:nth-child(odd) {
+  background-color: #E5E9F6;
 }
-body .card-container .top-section {
-  margin-top: 135px;
-  border-bottom: 2px solid #F9627D;
+body .top-section {
+  margin-top: 80px;
   justify-content: space-between;
 }
-body .card-container .top-section .banner {
-  width: 220px;
-  height: 170px;
+body .top-section .banner {
+  width: 440px;
+  height: 270px;
   background-position: center;
   background-size: cover;
   margin-left: 15px;
 }
-body .card-container .top-section .categories {
+body .top-section .stats-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  align-items: flex-end;
+  margin-bottom: 50px;
+}
+body .top-section .stats-container .stats .title p {
+  margin-bottom: 5px;
+}
+body .top-section .stats-container .stats .title i {
+  margin-right: 10px;
+}
+body .top-section .stats-container .stats .data {
+  display: flex;
+  border: 1px solid #442041;
+  justify-content: space-evenly;
+  padding: 5px;
+}
+body .top-section .stats-container .stats .data .counter {
+  color: #FFFFFF;
+  display: flex;
+  font-size: 18px;
+  align-items: flex-end;
+}
+body .top-section .stats-container .stats .data .counter .number {
+  font-size: 35px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+body .bottom-section {
+  background-color: #F1F4FD;
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+  border-top: 2px solid #F9627D;
+  padding: 50px 80px 90px 140px;
   justify-content: space-between;
 }
-body .card-container .top-section .numbers {
-  justify-content: space-between;
+body .bottom-section .courses .subtitle, body .bottom-section .courses-chart .subtitle {
+  font-size: 18px;
+  font-weight: 800;
+  border-bottom: 1px solid #442041;
+  width: 28%;
+  margin-bottom: 50px;
 }
-body .card-container .top-section .numbers p {
-  font-size: 80px;
-  font-weight: 700;
-  color: #F9627D;
-}
-body .card-container .bottom-section {
-  margin-top: 50px;
+body .bottom-section .courses .colTitles, body .bottom-section .courses-chart .colTitles {
+  font-size: 12px;
+  color: #442041;
+  font-weight: 500;
 }
 body .changePass {
   justify-content: center;
