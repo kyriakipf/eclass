@@ -94,16 +94,16 @@ body .header {
 body .title {
   font-size: 22px;
   font-weight: 700;
-  color: #5B3758;
+  color: #70246A;
 }
 body .subtitle {
   font-size: 18px;
   font-weight: 700;
-  color: #5B3758;
+  color: #70246A;
 }
 body .smallTitle {
   font-size: 12px;
-  color: #5B3758;
+  color: #70246A;
   font-weight: 700;
 }
 body .paragraph {
@@ -120,7 +120,7 @@ body .blue {
   color: #2A3256 !important;
 }
 body .menu {
-  color: #5B3758;
+  color: #70246A;
   font-size: 16px;
   font-weight: 300;
 }
@@ -140,7 +140,7 @@ body section#main .dashboard .sidebar {
   align-items: flex-end;
 }
 body section#main .dashboard .sidebar .sidebar-header a {
-  color: #5B3758;
+  color: #70246A;
 }
 body section#main .dashboard .sidebar .sidebar-header a .logo {
   height: 100px;

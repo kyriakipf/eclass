@@ -1,99 +1,129 @@
 @import "variables";
 
+body {
+    background-color: $purple;
+    border-top: 5px solid $pink;
+}
+
 section {
+
     &#login {
-        & .container {
-            & .row {
-                margin-top: 150px;
-                justify-content: center;
 
-                & .content {
-                    text-align: center;
+        & .boy {
+            width: 853px;
+            height: 590px;
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            bottom: 0;
+            right: 146px;
+        }
 
-                    & h1 {
-                        color: $primary;
-                        font-size: 30px;
-                        margin-bottom: 8px;
-                        font-weight: 600;
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-image: linear-gradient(310deg, $accent2 , $accent3);
-                    }
+        & .credits {
+            position: absolute;
+            bottom: 40px;
+            right: 1279px;
 
-                    & p {
-                        font-size: 16px;
-                        color: $subText;
-                        font-weight: 600;
-                    }
+            & p {
+                background-color: $white;
+                padding: 20px 40px;
+                border: 1px solid $darkGray;
+                border-radius: 17px;
+                color: $darkPurple;
 
-                    & .card-body {
-                        & .input {
-                            display: flex;
-                            flex-direction: column;
-                            align-items: flex-start;
+                &::after {
+                    content: " ";
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    background-color: $white;
+                    transform: rotate(45deg);
+                    position: absolute;
+                    bottom: 32px;
+                    left: 42px;
 
-                            & label {
-                                font-size: 16px;
-                                color: $subText;
-                                margin: 0 0 8px 4px;
-                                font-weight: 600;
-                            }
+                }
+            }
 
-                            & input {
-                                display: block;
-                                width: 100%;
-                                padding: 8px 12px 8px 35px;
-                                font-size: 16px;
-                                font-weight: 400;
-                                color: $subText;
-                                background-color: $white;
-                                border: 1px solid $lightSubText;
-                                transition: box-shadow 0.15s ease, border-color 0.15s ease;
-                                border-radius: 10px;
-                                margin-bottom: 25px;
-                                &:focus{
-                                    border-color: $accent4;
-                                    box-shadow: 0 0 0 2px $accent4;
-                                    outline: none;
-                                    transition: box-shadow 0.15s ease, border-color 0.15s ease;
-                                }
+            & i {
+                color: $white;
+                font-size: 20px;
+                margin-left: 40px;
+            }
+        }
+
+        & .row {
+            margin-top: 250px;
+            flex-direction: column;
+            align-content: center;
+
+            & .logo {
+                width: 290px;
+                height: 170px;
+            }
+
+            & .card-body {
+                & form {
+                    display: flex;
+                    flex-direction: column;
+
+                    & .input {
+
+
+                        & label {
+                            color: white;
+                            font-size: 15px;
+                            font-weight: 600;
+                            font-family: $primaryFont;
+                        }
+
+                        & input {
+                            width: 100%;
+                            height: 50px;
+                            margin-bottom: 15px;
+                            border: 1px solid transparent;
+                            border-radius: 4px;
+                            padding-left: 15px;
+
+                            &:focus-visible {
+                                outline: none;
                             }
                         }
-                        & .buttons {
-                            display: flex;
-                            flex-direction: column;
-                            & a {
-                                font-size: 16px;
-                                color: $subText;
-                                margin-bottom: 10px;
-                                font-weight: 600;
-                                text-decoration: none;
-                                transition: all 0.25s linear;
+                    }
 
-                                &:hover{
-                                    color: $greenText;
-                                    text-decoration: underline;
-                                    transition: all 0.25s linear;
-                                }
+                    & .buttons {
+                        margin-top: 20px;
+
+                        & a {
+                            color: white;
+                            font-size: 15px;
+                            font-weight: 600;
+                            font-family: $primaryFont;
+                            transition: color 0.5s linear;
+
+                            &:hover {
+                                color: $pink;
+                                transition: color 0.5s linear;
                             }
-
-                            //& .loginBtn {
-                            //    font-weight: 500;
-                            //    color: $white;
-                            //    font-size: 16px;
-                            //    margin-top: 24px;
-                            //    padding: 9px 24px;
-                            //    border-radius: 10px;
-                            //    transition: all 0.15s ease-in;
-                            //    border: 1px solid $accent2;
-                            //    background-color: $accent2;
-                            //    background-image: linear-gradient(310deg, $accent2 , $accent3);
-                            //
-                            //    &:hover{
-                            //        box-shadow: 0 3px 5px -1px rgb(0 0 0 / 9%), 0 2px 3px -1px rgb(0 0 0 / 7%);
-                            //    }
-                            //}
                         }
+
+                        & button {
+                            height: 50px;
+                            background-color: $white;
+                            color: $darkPurple;
+                            border: 1px solid transparent;
+                            border-radius: 4px;
+                            text-transform: uppercase;
+                            font-size: 15px;
+                            transition: all 0.5s linear;
+
+                            &:hover {
+                                color: $white;
+                                background-color: $pink;
+                                transition: all 0.5s linear;
+                            }
+                        }
+
                     }
                 }
             }

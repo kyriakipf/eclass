@@ -21,7 +21,7 @@ class DashboardController extends Controller
         }elseif ($user->role_id == 2){
             return view('teacher.index');
         }elseif($user->role_id == 3){
-            $student = Student::query()->where('profile_id', '=' , auth()->user()->id)->first();
+            $student = Student::query()->where('user_id', '=' , auth()->user()->id)->first();
             return view('student.index', ['student' => $student]);
         }else{
             return view('login');

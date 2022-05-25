@@ -1,68 +1,101 @@
-section#login .container .row {
-  margin-top: 150px;
-  justify-content: center;
+body {
+  background-color: #70246A;
+  border-top: 5px solid #F9627D;
 }
-section#login .container .row .content {
-  text-align: center;
+
+section#login .boy {
+  width: 853px;
+  height: 590px;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  bottom: 0;
+  right: 146px;
 }
-section#login .container .row .content h1 {
-  color: #2A3256;
-  font-size: 30px;
-  margin-bottom: 8px;
-  font-weight: 600;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(310deg, #3761EE, #00C3F9);
+section#login .credits {
+  position: absolute;
+  bottom: 40px;
+  right: 1279px;
 }
-section#login .container .row .content p {
-  font-size: 16px;
-  color: #9095A2;
-  font-weight: 600;
-}
-section#login .container .row .content .card-body .input {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-section#login .container .row .content .card-body .input label {
-  font-size: 16px;
-  color: #9095A2;
-  margin: 0 0 8px 4px;
-  font-weight: 600;
-}
-section#login .container .row .content .card-body .input input {
-  display: block;
-  width: 100%;
-  padding: 8px 12px 8px 35px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #9095A2;
+section#login .credits p {
   background-color: #FFFFFF;
-  border: 1px solid #DFDFDF;
-  transition: box-shadow 0.15s ease, border-color 0.15s ease;
-  border-radius: 10px;
-  margin-bottom: 25px;
+  padding: 20px 40px;
+  border: 1px solid #707070;
+  border-radius: 17px;
+  color: #5B3758;
 }
-section#login .container .row .content .card-body .input input:focus {
-  border-color: #F47C35;
-  box-shadow: 0 0 0 2px #F47C35;
-  outline: none;
-  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+section#login .credits p::after {
+  content: " ";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #FFFFFF;
+  transform: rotate(45deg);
+  position: absolute;
+  bottom: 32px;
+  left: 42px;
 }
-section#login .container .row .content .card-body .buttons {
+section#login .credits i {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin-left: 40px;
+}
+section#login .row {
+  margin-top: 250px;
+  flex-direction: column;
+  align-content: center;
+}
+section#login .row .logo {
+  width: 290px;
+  height: 170px;
+}
+section#login .row .card-body form {
   display: flex;
   flex-direction: column;
 }
-section#login .container .row .content .card-body .buttons a {
-  font-size: 16px;
-  color: #9095A2;
-  margin-bottom: 10px;
+section#login .row .card-body form .input label {
+  color: white;
+  font-size: 15px;
   font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s linear;
+  font-family: "Raleway", sans-serif;
 }
-section#login .container .row .content .card-body .buttons a:hover {
-  color: #00B8A3;
-  text-decoration: underline;
-  transition: all 0.25s linear;
+section#login .row .card-body form .input input {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding-left: 15px;
+}
+section#login .row .card-body form .input input:focus-visible {
+  outline: none;
+}
+section#login .row .card-body form .buttons {
+  margin-top: 20px;
+}
+section#login .row .card-body form .buttons a {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Raleway", sans-serif;
+  transition: color 0.5s linear;
+}
+section#login .row .card-body form .buttons a:hover {
+  color: #F9627D;
+  transition: color 0.5s linear;
+}
+section#login .row .card-body form .buttons button {
+  height: 50px;
+  background-color: #FFFFFF;
+  color: #5B3758;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s linear;
+}
+section#login .row .card-body form .buttons button:hover {
+  color: #FFFFFF;
+  background-color: #F9627D;
+  transition: all 0.5s linear;
 }
