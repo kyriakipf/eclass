@@ -4,7 +4,7 @@ form {
     & .input-label {
         font-family: $primaryFont;
         font-size: 12px;
-        color: $primary;
+        color: $purple;
         text-transform: uppercase;
         font-weight: 700;
         display: block;
@@ -17,6 +17,10 @@ form {
         height: 44px;
         width: 100%;
         margin: 0 16px 44px 0;
+
+        &:focus-visible {
+            outline: none;
+        }
     }
 
     & .area-input {
@@ -30,15 +34,20 @@ form {
         width: 100%;
         margin: 0 16px 44px 0;
         cursor: pointer;
+
+        &:focus-visible {
+            outline: none;
+        }
     }
 
     & .file-input {
         background-color: $white;
         border: 1px solid $lightSubText;
         width: 100%;
-        padding: 65px 0 60px 100px;
+        padding: 65px 0 60px 400px;
         margin: 0 16px 44px 0;
         cursor: pointer;
+        align-content: center;
     }
 
     & a {
@@ -50,7 +59,7 @@ form {
         transition: all 0.25s linear;
 
         &:hover {
-            color: $greenText;
+            color: $pink;
             text-decoration: underline;
             transition: all 0.25s linear;
         }
@@ -64,26 +73,26 @@ form {
         margin: 15px 0 45px 0;
 
         &.bold {
-            background-color: $primary;
-            border: 1px solid $primary;
+            background-color: $purple;
+            border: 1px solid $purple;
             color: $white;
             transition: all 0.25s linear;
 
             &:hover {
-                background-color: $accent2;
-                border-color: $accent2;
+                background-color: $white;
+                color: $purple;
                 transition: all 0.25s linear;
             }
         }
 
         &.light {
             background-color: $white;
-            border: 1px solid $primary;
-            color: $primary;
+            border: 1px solid $purple;
+            color: $purple;
             transition: all 0.25s linear;
 
             &:hover {
-                background-color: $primary;
+                background-color: $purple;
                 color: $white;
                 transition: all 0.25s linear;
             }
@@ -92,11 +101,11 @@ form {
     }
 
     & .download {
-        padding: 15px 25px;
+        padding: 15px 30px;
         text-decoration: none !important;
     }
 
-    & .download--btn-container{
+    & .download--btn-container {
         margin-top: 25px;
     }
 

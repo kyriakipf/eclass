@@ -18,7 +18,8 @@ class InviteTeacherController extends Controller
     {
         $domains = Domain::all();
         $teachers = InviteTeacher::where('role_id', '=' , 2)->get();
-        return view('admin.invited.manageTeacher', ['entities' => $teachers], ['domains' => $domains]);
+        $registeredTeachers = Teacher::all();
+        return view('admin.invited.manageTeacher', ['entities' => $teachers, 'registered' => $registeredTeachers,'domains' => $domains]);
     }
 
     public function store(Request $request)

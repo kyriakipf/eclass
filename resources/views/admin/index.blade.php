@@ -100,7 +100,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="courses-chart col-md-5">
+        <div class="courses-chart col-md-6">
             <p class="subtitle">Φοιτητές ανα Μάθημα</p>
         </div>
     </div>

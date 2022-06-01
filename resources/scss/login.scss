@@ -22,14 +22,15 @@ section {
         & .credits {
             position: absolute;
             bottom: 40px;
-            right: 1279px;
+            right: 1239px;
 
             & p {
                 background-color: $white;
                 padding: 20px 40px;
                 border: 1px solid $darkGray;
-                border-radius: 17px;
+                border-radius: 5px;
                 color: $darkPurple;
+                font-size: 13px;
 
                 &::after {
                     content: " ";

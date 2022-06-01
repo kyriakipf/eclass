@@ -9,14 +9,12 @@
                         @csrf
                         <!-- Email Address -->
                         <div class="input col-md-12">
-                            <label for="email">Email</label>
-                            <input id="email" class="textInput" type="email" name="email" required autofocus/>
+                            <input id="email" class="textInput" type="email" name="email" required autofocus placeholder="Email"/>
                         </div>
                         <!-- Password -->
                         <div class="input col-md-12">
-                            <label for="password">Κωδικός</label>
                             <input id="password" class="textInput" type="password" name="password" required
-                                   autocomplete="current-password"/>
+                                   autocomplete="current-password" placeholder="Κωδικός"/>
                         </div>
                         <div class="buttons col-md-6">
                             @if (Route::has('password.request'))
@@ -29,7 +27,7 @@
                 </div>
             </div>
             <div class="credits">
-                <p>Πτυχιακή: Ανάπτυξη Εφαρμογής eClass. <br>Developed by Kyriaki Prifti</p>
+                <p>Πτυχιακή: "Ανάπτυξη Εφαρμογής eClass" Developed by Kyriaki Prifti</p>
                 <i class="fa-solid fa-robot"></i>
             </div>
             <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="boy"></div>

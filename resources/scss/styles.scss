@@ -1,8 +1,9 @@
-@import "variables", "forms", "text";
+@import "variables", "forms", "text", "tables";
 
 body {
     background-color: $purple;
     border-top: 5px solid $pink;
+    overflow-x: hidden;
 
     & a {
         text-decoration: none;
@@ -11,11 +12,113 @@ body {
 
     & section#main {
         & .dashboard {
-            margin: 35px 120px;
 
             & .sidebar {
                 display: flex;
                 align-items: flex-end;
+                width: 100%;
+                position: fixed;
+                background-color: #70246a;
+                top: 0;
+                right: 0;
+                padding: 30px 90px 0 80px;
+
+                & .userSettings {
+                    & p {
+                        & i {
+                            margin-left: 10px;
+                        }
+                    }
+
+                    & .dropdown {
+                        min-width: 179px;
+
+                        & .dropdown-content {
+                            min-width: 179px;
+                        }
+                    }
+                }
+
+                & .dropdown {
+
+                    position: relative;
+                    display: inline-block;
+                    transition: all 0.5s linear;
+                    min-width: 160px;
+
+
+
+                    & p {
+                        margin: 10px;
+
+                        & i {
+                            margin-right: 5px;
+                        }
+                    }
+
+                    & .dropdown-content {
+                        visibility: hidden;
+                        opacity: 0;
+                        position: absolute;
+                        min-width: 160px;
+                        z-index: 1;
+                        display: flex;
+                        flex-direction: column;
+                        transition: all 0.5s linear;
+                        border-bottom: 1px solid $purple;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        &::before {
+                            content: ' ';
+                            display: inline-block;
+                            width: 20px;
+                            height: 20px;
+                            background-color: $lightGray;
+                            transform: rotate(45deg);
+                            position: absolute;
+                            top: 10px;
+                            left: 7px;
+                            z-index: -1;
+                            visibility: hidden;
+                            opacity: 0;
+                            transition: all 0.5s linear;
+                        }
+
+                        & a, p {
+                            color: $purple;
+                            transition: color 0.5s linear;
+                            background-color: $lightGray;
+                            margin-top: 15px;
+                            padding: 5px 10px 5px 10px;
+
+                            &:hover {
+                                color: $pink;
+                                transition: color 0.5s linear;
+                            }
+                        }
+
+                    }
+
+                    &:hover {
+
+
+                        & p {
+                            color: $pink;
+                            transition: all 0.5s linear;
+                        }
+
+                        & .dropdown-content {
+                            visibility: visible;
+                            opacity: 1;
+                            transition: all 0.5s linear;
+                            &::before {
+                                visibility: visible;
+                                opacity: 1;
+                                transition: all 0.5s linear;
+                            }
+                        }
+                    }
+                }
 
                 & .sidebar-header {
 
@@ -80,67 +183,10 @@ body {
         }
     }
 
-    & table {
-        width: 100%;
-        margin-top: 10px;
-
-        & thead {
-            & th {
-                margin-bottom: 20px;
-            }
-        }
-
-        & tbody {
-            & tr {
-                & td {
-                    padding: 10px;
-
-                    & p {
-                        margin-bottom: 0;
-                    }
-
-                    & a {
-                        font-size: 20px;
-                        color: $subText;
-                        font-weight: 500;
-                        padding: 4px 8px;
-                        margin: 0;
-                        transition: color 0.15s linear;
-
-                    }
-
-                    & .edit {
-                        &:hover {
-                            color: $greenText;
-                            transition: color 0.15s linear;
-                        }
-                    }
-
-                    & .invite {
-                        &:hover {
-                            color: $accent4;
-                            transition: color 0.15s linear;
-                        }
-                    }
-
-                    & .delete {
-                        &:hover {
-                            color: $redText;
-                            transition: color 0.15s linear;
-                        }
-                    }
-                }
-
-                &:nth-child(odd) {
-                    background-color: $gray;
-                }
-            }
-        }
-    }
 
     & .top-section {
-        margin-top: 80px;
         justify-content: space-between;
+        margin-top: 200px;
 
         & .banner {
             width: 440px;
@@ -151,11 +197,11 @@ body {
         }
 
         & .stats-container {
+            margin: 35px 120px 50px 120px;
             display: flex;
             justify-content: flex-start;
             gap: 40px;
             align-items: flex-end;
-            margin-bottom: 50px;
 
             & .stats {
                 & .title {
@@ -194,13 +240,15 @@ body {
 
     & .bottom-section {
         background-color: $lightGray;
-        width: 100vw;
-        position: relative;
-        margin-left: -50vw;
-        left: 50%;
         border-top: 2px solid $pink;
-        padding: 50px 80px 90px 140px;
+        padding: 50px 80px 0 140px;
         justify-content: space-between;
+        min-height: 750px;
+        margin-left: 0;
+
+        & .row {
+            justify-content: space-around;
+        }
 
         & .courses, .courses-chart {
             & .subtitle {

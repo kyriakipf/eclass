@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\InviteStudentCreated;
 use App\Models\Domain;
 use App\Models\InviteStudent;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -15,7 +16,8 @@ class InviteStudentController extends Controller
     {
         $domains = Domain::all();
         $students = InviteStudent::where('role_id', '=' , 3)->get();
-        return view('admin.invited.manageStudent', ['entities' => $students], ['domains' => $domains]);
+        $registered = Student::all();
+        return view('admin.invited.manageStudent', ['entities' => $students,'domains' => $domains , 'registered' => $registered]);
     }
 
     public function store(Request $request)

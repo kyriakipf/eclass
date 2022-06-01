@@ -8,49 +8,55 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="topRow">
-            <p class="header">Εμαιλς</p>
+        <div class="top-section row col-md-12">
+            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <table>
-                    @if(count($emails) != 0)
-                        <thead>
-                        <tr class="tableRow colTitles">
-                            <th class="sort title">Subject</th>
-                            <th class="sort title">Content</th>
-                            <th class="sort title">From</th>
-                            <th class="sort title">To</th>
-                            <th class="title">Send Date</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($emails as $email)
-                            <tr class="tableRow">
-                                <td class="col-md-3">
-                                    <p class="paragraph">{{$email->subject}}</p>
-                                </td>
-                                <td class="col-md-3">
-                                    <p class="paragraph">{{$email->message}}</p>
-                                </td>
-                                <td class="col-md-3">
-                                    <p class="paragraph">{{$email->from}}</p>
-                                </td>
-                                <td class="col-md-2">
-                                    <p class="paragraph">{{$email->to}}</p>
-                                </td>
-                                <td class="col-md-3">
-                                    <p class="paragraph">{{$email->send_date}}</p>
-                                </td>
+        <div class="bottom-section">
+            <div class="topRow">
+                <p class="title purple">Μηνύματα</p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table>
+                        @if(count($emails) != 0)
+                            <thead>
+                            <tr class="tableRow colTitles">
+                                <th>Subject</th>
+                                <th>Content</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Send Date</th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                        @endforeach
-                        @else
-                            <p class="paragraph">Δεν υπάρχουν εμαιλς.</p>
-                        @endif
-                        </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                            @foreach($emails as $email)
+                                <tr class="tableRow">
+                                    <td class="col-md-3">
+                                        <p class="paragraph">{{$email->subject}}</p>
+                                    </td>
+                                    <td class="col-md-3">
+                                        <p class="paragraph">{{$email->message}}</p>
+                                    </td>
+                                    <td class="col-md-3">
+                                        <p class="paragraph">{{$email->from}}</p>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <p class="paragraph">{{$email->to}}</p>
+                                    </td>
+                                    <td class="col-md-3">
+                                        <p class="paragraph">{{$email->send_date}}</p>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            @else
+                                <p class="paragraph">Δεν υπάρχουν μηνύματα.</p>
+                            @endif
+                            </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -11,16 +11,22 @@
 
 @section('content')
     <section id="content">
-                <p class="header">Αναζήτηση Καθηγητή</p>
-                <form action="{{route('teacher.search.form')}}" method="POST">
-                    @csrf
-                    <div class="row addForm">
-                        <input class="search text-input col-md-12" name="search" type="text" minlength="4"
-                               placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες...">
-                        <div class="col-md-3">
-                            <button type="submit" class="button light">ΑΝΑΖΗΤΗΣΗ</button>
-                        </div>
+        <div class="top-section row col-md-12">
+            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
+            </div>
+        </div>
+        <div class="bottom-section">
+            <p class="title purple">Αναζήτηση Καθηγητή</p>
+            <form action="{{route('teacher.search.form')}}" method="POST">
+                @csrf
+                <div class="row addForm">
+                    <input class="search text-input col-md-12" name="search" type="text" minlength="4"
+                           placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες...">
+                    <div class="col-md-3">
+                        <button type="submit" class="button light">ΑΝΑΖΗΤΗΣΗ</button>
                     </div>
-                </form>
+                </div>
+            </form>
+        </div>
     </section>
 @endsection

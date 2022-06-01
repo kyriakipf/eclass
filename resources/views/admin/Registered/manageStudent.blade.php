@@ -8,12 +8,19 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="topRow">
-            <p class="header">Λίστα Φοιτητών</p>
-            <a class="search" href="{{route('student.search')}}"><i class="fa-light fa-magnifying-glass"></i> Αναζήτηση</a>
+        <div class="top-section row col-md-12">
+            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
+            </div>
         </div>
-        <div class="row">
-            @livewire('student-list', [ 'users' => $users])
+        <div class="bottom-section">
+            <p class="title purple">Φοιτητές</p>
+            <div class="topRow">
+                <a class="search" href="{{route('student.search')}}"><i class="fa-light fa-magnifying-glass"></i>
+                    Αναζήτηση</a>
+            </div>
+            <div class="row">
+                @livewire('student-list', [ 'users' => $users])
+            </div>
         </div>
     </div>
 @endsection

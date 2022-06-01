@@ -1,7 +1,7 @@
 form .input-label {
   font-family: "Raleway", sans-serif;
   font-size: 12px;
-  color: #2A3256;
+  color: #70246A;
   text-transform: uppercase;
   font-weight: 700;
   display: block;
@@ -14,6 +14,9 @@ form .text-input {
   width: 100%;
   margin: 0 16px 44px 0;
 }
+form .text-input:focus-visible {
+  outline: none;
+}
 form .area-input {
   min-height: 100px;
 }
@@ -25,13 +28,17 @@ form .select-input {
   margin: 0 16px 44px 0;
   cursor: pointer;
 }
+form .select-input:focus-visible {
+  outline: none;
+}
 form .file-input {
   background-color: #FFFFFF;
   border: 1px solid #DFDFDF;
   width: 100%;
-  padding: 65px 0 60px 100px;
+  padding: 65px 0 60px 400px;
   margin: 0 16px 44px 0;
   cursor: pointer;
+  align-content: center;
 }
 form a {
   font-size: 14px;
@@ -42,7 +49,7 @@ form a {
   transition: all 0.25s linear;
 }
 form a:hover {
-  color: #00B8A3;
+  color: #F9627D;
   text-decoration: underline;
   transition: all 0.25s linear;
 }
@@ -54,29 +61,29 @@ form .button {
   margin: 15px 0 45px 0;
 }
 form .button.bold {
-  background-color: #2A3256;
-  border: 1px solid #2A3256;
+  background-color: #70246A;
+  border: 1px solid #70246A;
   color: #FFFFFF;
   transition: all 0.25s linear;
 }
 form .button.bold:hover {
-  background-color: #3761EE;
-  border-color: #3761EE;
+  background-color: #FFFFFF;
+  color: #70246A;
   transition: all 0.25s linear;
 }
 form .button.light {
   background-color: #FFFFFF;
-  border: 1px solid #2A3256;
-  color: #2A3256;
+  border: 1px solid #70246A;
+  color: #70246A;
   transition: all 0.25s linear;
 }
 form .button.light:hover {
-  background-color: #2A3256;
+  background-color: #70246A;
   color: #FFFFFF;
   transition: all 0.25s linear;
 }
 form .download {
-  padding: 15px 25px;
+  padding: 15px 30px;
   text-decoration: none !important;
 }
 form .download--btn-container {
@@ -109,15 +116,15 @@ body .smallTitle {
 body .paragraph {
   font-size: 16px;
   font-weight: 400;
-  color: #2A3256;
+  color: #70246A;
 }
 body .comment {
   font-size: 16px;
   font-weight: 400;
   color: #9095A2;
 }
-body .blue {
-  color: #2A3256 !important;
+body .purple {
+  color: #70246A !important;
 }
 body .menu {
   color: #FFFFFF;
@@ -125,20 +132,136 @@ body .menu {
   font-weight: 300;
 }
 
+table {
+  width: 100%;
+  margin: 10px 0 30px 0;
+}
+table thead th {
+  margin-bottom: 20px;
+  color: #70246A;
+}
+table tbody tr td {
+  padding: 10px;
+}
+table tbody tr td p {
+  margin-bottom: 0;
+}
+table tbody tr td a {
+  font-size: 20px;
+  color: #9095A2;
+  font-weight: 500;
+  padding: 4px 8px;
+  margin: 0;
+  transition: color 0.15s linear;
+}
+table tbody tr td .edit:hover {
+  color: #00B8A3;
+  transition: color 0.15s linear;
+}
+table tbody tr td .invite:hover {
+  color: #F47C35;
+  transition: color 0.15s linear;
+}
+table tbody tr td .delete:hover {
+  color: #E34D59;
+  transition: color 0.15s linear;
+}
+table tbody tr:nth-child(odd) {
+  background-color: #E5E9F6;
+}
+
 body {
   background-color: #70246A;
   border-top: 5px solid #F9627D;
+  overflow-x: hidden;
 }
 body a {
   text-decoration: none;
   color: black;
 }
-body section#main .dashboard {
-  margin: 35px 120px;
-}
 body section#main .dashboard .sidebar {
   display: flex;
   align-items: flex-end;
+  width: 100%;
+  position: fixed;
+  background-color: #70246a;
+  top: 0;
+  right: 0;
+  padding: 30px 90px 0 80px;
+}
+body section#main .dashboard .sidebar .userSettings p i {
+  margin-left: 10px;
+}
+body section#main .dashboard .sidebar .userSettings .dropdown {
+  min-width: 179px;
+}
+body section#main .dashboard .sidebar .userSettings .dropdown .dropdown-content {
+  min-width: 179px;
+}
+body section#main .dashboard .sidebar .dropdown {
+  position: relative;
+  display: inline-block;
+  transition: all 0.5s linear;
+  min-width: 160px;
+}
+body section#main .dashboard .sidebar .dropdown p {
+  margin: 10px;
+}
+body section#main .dashboard .sidebar .dropdown p i {
+  margin-right: 5px;
+}
+body section#main .dashboard .sidebar .dropdown .dropdown-content {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s linear;
+  border-bottom: 1px solid #70246A;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+body section#main .dashboard .sidebar .dropdown .dropdown-content::before {
+  content: " ";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #F1F4FD;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 10px;
+  left: 7px;
+  z-index: -1;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s linear;
+}
+body section#main .dashboard .sidebar .dropdown .dropdown-content a, body section#main .dashboard .sidebar .dropdown .dropdown-content p {
+  color: #70246A;
+  transition: color 0.5s linear;
+  background-color: #F1F4FD;
+  margin-top: 15px;
+  padding: 5px 10px 5px 10px;
+}
+body section#main .dashboard .sidebar .dropdown .dropdown-content a:hover, body section#main .dashboard .sidebar .dropdown .dropdown-content p:hover {
+  color: #F9627D;
+  transition: color 0.5s linear;
+}
+body section#main .dashboard .sidebar .dropdown:hover p {
+  color: #F9627D;
+  transition: all 0.5s linear;
+}
+body section#main .dashboard .sidebar .dropdown:hover .dropdown-content {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.5s linear;
+}
+body section#main .dashboard .sidebar .dropdown:hover .dropdown-content::before {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.5s linear;
 }
 body section#main .dashboard .sidebar .sidebar-header a {
   color: #FFFFFF;
@@ -163,45 +286,9 @@ body section#main .dashboard .sidebar .nav-bar .nav-item a i {
 body section#main .dashboard .sidebar .userSettings {
   margin-bottom: 16px;
 }
-body table {
-  width: 100%;
-  margin-top: 10px;
-}
-body table thead th {
-  margin-bottom: 20px;
-}
-body table tbody tr td {
-  padding: 10px;
-}
-body table tbody tr td p {
-  margin-bottom: 0;
-}
-body table tbody tr td a {
-  font-size: 20px;
-  color: #9095A2;
-  font-weight: 500;
-  padding: 4px 8px;
-  margin: 0;
-  transition: color 0.15s linear;
-}
-body table tbody tr td .edit:hover {
-  color: #00B8A3;
-  transition: color 0.15s linear;
-}
-body table tbody tr td .invite:hover {
-  color: #F47C35;
-  transition: color 0.15s linear;
-}
-body table tbody tr td .delete:hover {
-  color: #E34D59;
-  transition: color 0.15s linear;
-}
-body table tbody tr:nth-child(odd) {
-  background-color: #E5E9F6;
-}
 body .top-section {
-  margin-top: 80px;
   justify-content: space-between;
+  margin-top: 200px;
 }
 body .top-section .banner {
   width: 440px;
@@ -211,11 +298,11 @@ body .top-section .banner {
   margin-left: 15px;
 }
 body .top-section .stats-container {
+  margin: 35px 120px 50px 120px;
   display: flex;
   justify-content: flex-start;
   gap: 40px;
   align-items: flex-end;
-  margin-bottom: 50px;
 }
 body .top-section .stats-container .stats .title p {
   margin-bottom: 5px;
@@ -242,13 +329,14 @@ body .top-section .stats-container .stats .data .counter .number {
 }
 body .bottom-section {
   background-color: #F1F4FD;
-  width: 100vw;
-  position: relative;
-  margin-left: -50vw;
-  left: 50%;
   border-top: 2px solid #F9627D;
-  padding: 50px 80px 90px 140px;
+  padding: 50px 80px 0 140px;
   justify-content: space-between;
+  min-height: 750px;
+  margin-left: 0;
+}
+body .bottom-section .row {
+  justify-content: space-around;
 }
 body .bottom-section .courses .subtitle, body .bottom-section .courses-chart .subtitle {
   font-size: 18px;

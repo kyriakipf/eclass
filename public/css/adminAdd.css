@@ -1,7 +1,8 @@
 .mainInfo .topRow {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  margin-bottom: 15px;
 }
 .mainInfo form {
   margin-top: 30px;
@@ -20,15 +21,15 @@
 }
 .mainInfo a {
   font-size: 18px;
-  color: #2A3256;
+  color: #70246A;
   font-weight: 600;
-  padding: 4px 8px;
+  padding: 4px 0;
   margin: 0;
   transition: color 0.15s linear;
   text-decoration: none;
 }
 .mainInfo a:hover {
-  color: #F47C35;
+  color: #F9627D;
   transition: color 0.15s linear;
 }
 .mainInfo a i {
@@ -36,7 +37,7 @@
 }
 .mainInfo .search {
   font-size: 22px;
-  color: #9095A2;
+  color: #70246A;
   font-weight: 500;
   transition: all 0.15s linear;
   text-decoration: none;
@@ -44,7 +45,7 @@
 }
 .mainInfo .search:hover {
   text-decoration: underline;
-  color: #00B8A3;
+  color: #F9627D;
   transition: all 0.15s linear;
 }
 .mainInfo .sort {
@@ -52,6 +53,6 @@
   transition: color 0.15s linear;
 }
 .mainInfo .sort:hover {
-  color: #F47C35;
+  color: #F9627D;
   transition: color 0.15s linear;
 }

@@ -3,8 +3,9 @@
 .mainInfo {
     & .topRow {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
+        margin-bottom: 15px;
     }
 
     & form {
@@ -29,15 +30,15 @@
 
     & a {
         font-size: 18px;
-        color: $primary;
+        color: $purple;
         font-weight: 600;
-        padding: 4px 8px;
+        padding: 4px 0;
         margin: 0;
         transition: color 0.15s linear;
         text-decoration: none;
 
         &:hover {
-            color: $accent4;
+            color: $pink;
             transition: color 0.15s linear;
         }
 
@@ -48,7 +49,7 @@
 
     & .search {
         font-size: 22px;
-        color: $subText;
+        color: $purple;
         font-weight: 500;
         transition: all 0.15s linear;
         text-decoration: none;
@@ -56,7 +57,7 @@
 
         &:hover {
             text-decoration: underline;
-            color: $greenText;
+            color: $pink;
             transition: all 0.15s linear;
         }
     }
@@ -66,7 +67,7 @@
         transition: color 0.15s linear;
 
         &:hover {
-            color: $accent4;
+            color: $pink;
             transition: color 0.15s linear;
         }
     }

@@ -3,11 +3,11 @@
         @if(count($users) != 0)
             <thead>
             <tr class="tableRow colTitles">
-                <th class="sort title" wire:click="sortBy('name')">Όνομα</th>
-                <th class="sort title" wire:click="sortBy('surname')">Επίθετο</th>
-                <th class="sort title" wire:click="sortBy('email')">Email</th>
-                <th class="sort title" wire:click="sortBy('am')">Μητρώο</th>
-                <th class="title">Τμήμα</th>
+                <th class="sort" wire:click="sortBy('name')">Όνομα</th>
+                <th class="sort" wire:click="sortBy('surname')">Επίθετο</th>
+                <th class="sort" wire:click="sortBy('email')">Email</th>
+                <th class="sort" wire:click="sortBy('am')">Μητρώο</th>
+                <th>Τμήμα</th>
                 <th></th>
                 <th></th>
             </tr>

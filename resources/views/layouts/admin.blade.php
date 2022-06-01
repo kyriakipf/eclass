@@ -24,7 +24,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @yield('stylesheets')
     <link rel="stylesheet" href="{{asset("css/styles.css")}}">
-    <title>@yield('title') - eClass Dashboard</title>
+    <title>@yield('title') - eClass</title>
 
 </head>
 <body class="is-front {{Request::path()}}">
@@ -37,31 +37,55 @@
             <div class="sidebar-header col-md-5">
                 <a href="{{route('dashboard')}}" class="logoLink">
                     <div style="background-image: url({{ asset('assets/img/logo_white.png') }})" class="logo"></div>
-            </a>
+                </a>
             </div>
             <div class="list-container col-md-6">
                 <ul class="nav-bar">
                     <li class="nav-item">
-                        <a href="{{route('teacher.invite')}}" class="menu"><i class="fa-solid fa-user-tie"></i>Καθηγητές</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-user-tie"></i>Καθηγητές</p>
+                            <div class="dropdown-content">
+                                <a href="{{route('teacher.invite')}}" class="menu">Προσθήκη</a>
+                                <a href="{{route('teachers')}}" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('student.invite')}}" class="menu"><i class="fa-solid fa-clipboard-user"></i>Φοιτητές</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Φοιτητές</p>
+                            <div class="dropdown-content">
+                                <a href="{{route('student.invite')}}" class="menu">Προσθήκη</a>
+                                <a href="{{route('students')}}" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('students')}}" class="menu"><i class="fa-solid fa-message-dots"></i>Μυνήματα</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-message-dots"></i>Μυνήματα</p>
+                            <div class="dropdown-content">
+                                <a href="{{route('email')}}" class="menu">Προσθήκη</a>
+                                <a href="{{route('email.view')}}" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('email')}}" class="menu"><i class="fa-solid fa-books"></i>Μαθήματα</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-books"></i>Μαθήματα</p>
+                            <div class="dropdown-content">
+                                <a href="#" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="{{route('change.password.view')}}" class="menu"><i class="fa-solid fa-user"></i>Χρήστης</a>--}}
-{{--                    </li>--}}
-
                 </ul>
             </div>
             <div class="userSettings">
-                <a href="{{route('signout')}}" class="menu"><i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    {{auth()->user()->name}} {{auth()->user()->surname}} <i class="fa-solid fa-angle-down"></i></a>
+                <div class="dropdown">
+                    <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i class="fa-solid fa-angle-down"></i></p>
+                    <div class="dropdown-content">
+                        <a href="{{route('change.password.view')}}" class="menu">Αλλαγή Κωδικού</a>
+                        <a href="{{route('signout')}}" class="menu">Αποσύνδεση</a>
+                    </div>
+                </div>
             </div>
 
         </div>

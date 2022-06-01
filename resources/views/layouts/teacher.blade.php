@@ -8,7 +8,8 @@
     <link rel="icon" href="{{asset('favicon.ico')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700&display=swap"
+          rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset("css/fontawesome.css")}}">
@@ -19,10 +20,11 @@
     <link rel="stylesheet" href="{{asset("css/solid.css")}}">
     <link rel="stylesheet" href="{{asset("css/thin.css")}}">
     <link rel="stylesheet" href="{{asset("css/v4-shims.css")}}">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @yield('stylesheets')
     <link rel="stylesheet" href="{{asset("css/styles.css")}}">
-    <title>@yield('title') - eClass Dashboard</title>
+    <title>@yield('title') - eClass</title>
 
 </head>
 <body class="is-front {{Request::path()}}">
@@ -31,70 +33,81 @@
 @yield('homeheader')
 <section id="main">
     <div class="dashboard">
-        <div class="sidebar col-md-3">
-            <div class="sidebar-header">
-                <a href="{{route('dashboard')}}" class="header blue"><i class="fa-solid fa-graduation-cap"></i> eClass</a>
+        <div class="sidebar">
+            <div class="sidebar-header col-md-5">
+                <a href="{{route('dashboard')}}" class="logoLink">
+                    <div style="background-image: url({{ asset('assets/img/logo_white.png') }})" class="logo"></div>
+                </a>
             </div>
-            <hr>
-            <div class="list-container">
+            <div class="list-container col-md-6">
                 <ul class="nav-bar">
-                    <p class="title">Διαχείριση Μαθημάτων</p>
                     <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-circle-plus"></i> Δημιουργία Μαθήματος</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Μαθήματα</p>
+                            <div class="dropdown-content">
+                                <a href="#" class="menu">Δημιουργία</a>
+                                <a href="#" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-eye"></i> Προβολή Μαθημάτων</a>
-                    </li>
-                    <hr>
-                    <p class="title">Διαχείριση Ομαδών</p>
-                    <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-circle-plus"></i> Δημιουργία Ομάδας</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-eye"></i> Προβολή Ομαδών</a>
-                    </li>
-                    <hr>
-                    <p class="title">Διαχείριση Εργασιών</p>
-                    <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-circle-plus"></i> Δημιουργία Εργασίας</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Ομάδες</p>
+                            <div class="dropdown-content">
+                                <a href="#" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-eye"></i> Προβολή Εργασιών</a>
-                    </li>
-                    <hr>
-                    <p class="title">Διαχείριση Φοιτητών</p>
-                    <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-eye"></i> Προβολή Φοιτητών</a>
-                    </li>
-                    <hr>
-                    <p class="title">Ημερολόγιο</p>
-                    <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-eye"></i> Προβολή </a>
-                    </li>
-                    <hr>
-                    <p class="title">Μηνύματα</p>
-                    <li class="nav-item">
-                        <a href="{{route('email')}}" class="paragraph"><i class="fa-light fa-envelope"></i> Δημιουργία</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Εργασίες</p>
+                            <div class="dropdown-content">
+                                <a href="#" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-light fa-eye"></i> Προβολή</a>
-                    </li>
-                </ul>
-                <hr>
-                <ul class="nav-bar user-options">
-                    <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-solid fa-arrow-right-from-bracket"></i> Επεξεργασία Στοιχείων</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="paragraph"><i class="fa-solid fa-key"></i> Αλλαγή Κωδικού</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Φοιτητές</p>
+                            <div class="dropdown-content">
+                                <a href="#" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('signout')}}" class="paragraph"><i class="fa-solid fa-arrow-right-from-bracket"></i> Αποσύνδεση</a>
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Ημερολόγιο</p>
+                            <div class="dropdown-content">
+                                <a href="#" class="menu">Δημιουργία</a>
+                                <a href="#" class="menu">Προβολή</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Μηνύματα</p>
+                            <div class="dropdown-content">
+                                <a href="#" class="menu">Δημιουργία</a>
+                                <a href="#" class="menu">Προβολή</a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
+
+            </div>
+            <div class="userSettings">
+                <div class="dropdown">
+                    <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i
+                            class="fa-solid fa-angle-down"></i></p>
+                    <div class="dropdown-content">
+                        <a href="#" class="menu">Πληροφορίες</a>
+                        <a href="{{route('change.password.view')}}" class="menu">Αλλαγή Κωδικού</a>
+                        <a href="{{route('signout')}}" class="menu">Αποσύνδεση</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="content col-md-9">
+        <div class="content">
             <div class="content-container">
                 @yield('content')
             </div>
@@ -106,7 +119,7 @@
 <script src="{{asset("js/theme-scripts.js")}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         toastr.options = {
             "closeButton": true,
             "timeOut": "5000",
