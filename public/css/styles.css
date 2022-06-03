@@ -13,6 +13,7 @@ form .text-input {
   height: 44px;
   width: 100%;
   margin: 0 16px 44px 0;
+  padding: 5px;
 }
 form .text-input:focus-visible {
   outline: none;
@@ -205,7 +206,7 @@ body section#main .dashboard .sidebar .dropdown {
   min-width: 160px;
 }
 body section#main .dashboard .sidebar .dropdown p {
-  margin: 10px;
+  margin: 10px 10px 0 10px;
 }
 body section#main .dashboard .sidebar .dropdown p i {
   margin-right: 5px;
@@ -219,9 +220,6 @@ body section#main .dashboard .sidebar .dropdown .dropdown-content {
   display: flex;
   flex-direction: column;
   transition: all 0.5s linear;
-  border-bottom: 1px solid #70246A;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 body section#main .dashboard .sidebar .dropdown .dropdown-content::before {
   content: " ";
@@ -231,7 +229,7 @@ body section#main .dashboard .sidebar .dropdown .dropdown-content::before {
   background-color: #F1F4FD;
   transform: rotate(45deg);
   position: absolute;
-  top: 10px;
+  top: 3px;
   left: 7px;
   z-index: -1;
   visibility: hidden;
@@ -242,8 +240,9 @@ body section#main .dashboard .sidebar .dropdown .dropdown-content a, body sectio
   color: #70246A;
   transition: color 0.5s linear;
   background-color: #F1F4FD;
-  margin-top: 15px;
+  margin-top: 6px;
   padding: 5px 10px 5px 10px;
+  border-bottom: 1px solid #70246A;
 }
 body section#main .dashboard .sidebar .dropdown .dropdown-content a:hover, body section#main .dashboard .sidebar .dropdown .dropdown-content p:hover {
   color: #F9627D;

@@ -1,0 +1,6 @@
+.bottom-section form .form-container {
+  justify-content: flex-start;
+}
+.bottom-section form .form-container .semester select {
+  width: 30%;
+}

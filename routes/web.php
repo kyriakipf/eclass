@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminSendEmailController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\AdminSendEmailController;
+use App\Http\Controllers\Admin\ImportExcelStudentController;
+use App\Http\Controllers\Admin\ImportExcelTeacherController;
+use App\Http\Controllers\Admin\InviteStudentController;
+use App\Http\Controllers\Admin\InviteTeacherController;
+use App\Http\Controllers\Admin\SearchStudentController;
+use App\Http\Controllers\Admin\SearchTeacherController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ImportExcelStudentController;
-use App\Http\Controllers\ImportExcelTeacherController;
-use App\Http\Controllers\InviteStudentController;
-use App\Http\Controllers\InviteTeacherController;
-use App\Http\Controllers\SearchStudentController;
-use App\Http\Controllers\SearchTeacherController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\Teachers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,6 +89,16 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
 
     Route::get('template/{name}/download', [\App\Http\Controllers\DownloadTemplateController::class, 'downloadTemplate'])->name('template.download');
 
+});
+
+
+//Teacher
+Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
+    Route::group(['prefix' => 'subject'], function (){
+        Route::get('index', [SubjectController::class , 'index'])->name('subjects');
+        Route::get('create', [SubjectController::class, 'create'])->name('subject.create');
+        Route::post('store', [SubjectController::class, 'store'])->name('subject.store');
+    });
 });
 
 

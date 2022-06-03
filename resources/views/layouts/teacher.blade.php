@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="{{asset("css/v4-shims.css")}}">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    @yield('stylesheets')
     <link rel="stylesheet" href="{{asset("css/styles.css")}}">
+    @yield('stylesheets')
     <title>@yield('title') - eClass</title>
 
 </head>
@@ -45,8 +45,8 @@
                         <div class="dropdown">
                             <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Μαθήματα</p>
                             <div class="dropdown-content">
-                                <a href="#" class="menu">Δημιουργία</a>
-                                <a href="#" class="menu">Προβολή</a>
+                                <a href="{{route('subject.create')}}" class="menu">Δημιουργία</a>
+                                <a href="{{route('subjects')}}" class="menu">Προβολή</a>
                             </div>
                         </div>
                     </li>

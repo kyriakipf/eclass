@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Mail\InviteTeacherCreated;
 use App\Models\Domain;
 use App\Models\InviteTeacher;
 use App\Models\Teacher;
-use App\Models\User;
-use Cassandra\Exception\TruncateException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;

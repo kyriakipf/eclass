@@ -61,7 +61,7 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-message-dots"></i>Μυνήματα</p>
+                            <p class="menu"><i class="fa-solid fa-message-dots"></i>Μηνύματα</p>
                             <div class="dropdown-content">
                                 <a href="{{route('email')}}" class="menu">Προσθήκη</a>
                                 <a href="{{route('email.view')}}" class="menu">Προβολή</a>

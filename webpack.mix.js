@@ -24,6 +24,7 @@ mix.sass('resources/scss/fontawesome/brands.scss', 'public/css').options({ proce
     .sass('resources/scss/createEmail.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/styles.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/adminAdd.scss', 'public/css').options({ processCssUrls: false })
+    .sass('resources/scss/subjectAdd.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/adminView.scss', 'public/css').options({ processCssUrls: false })
     .sass('resources/scss/fontawesome/v4-shims.scss', 'public/css').options({ processCssUrls: false })
 
