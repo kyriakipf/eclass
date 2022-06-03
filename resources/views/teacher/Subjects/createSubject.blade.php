@@ -72,7 +72,7 @@
                 if (f(this).is(':checked')) {
                     f("#password").removeAttr('disabled');
                 } else {
-                    f("#password").prop('disabled', true);;
+                    f("#password").prop('disabled', true);
                 }
             });
         });
