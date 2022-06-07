@@ -19,8 +19,8 @@
                            placeholder="Γράψτε εδώ..." class="text-input">
                 </div>
                 <div class="teacher col-md-2">
-                    <label for="title" class="input-label">Καθηγητής</label>
-                    <select name="title" id="title" type="s"
+                    <label for="teacher" class="input-label">Καθηγητής</label>
+                    <select name="title" id="teacher" type="s"
                             class="text-input">
                         @foreach($teachers as $teacher)
                             <option @if(auth()->user()->id === $teacher->id) selected
@@ -29,8 +29,8 @@
                     </select>
                 </div>
                 <div class="semester col-md-7">
-                    <label for="title" class="input-label">Εξάμηνο</label>
-                    <select name="title" id="title" type="s"
+                    <label for="semester" class="input-label">Εξάμηνο</label>
+                    <select name="title" id="semester" type="s"
                             class="text-input">
                         <option value="1">1ο Εξάμηνο</option>
                         <option value="2">2ο Εξάμηνο</option>
@@ -58,7 +58,7 @@
                               rows="10" required></textarea>
                 </div>
                 <div class="btn-container col-md-2">
-                    <button type="submit" class="button bold ">Αποστολή</button>
+                        <button type="submit" class="button bold ">Δημιουργία</button>
                 </div>
             </div>
         </form>
