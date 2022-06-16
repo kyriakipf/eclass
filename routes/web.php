@@ -98,6 +98,8 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('index', [SubjectController::class , 'index'])->name('subjects');
         Route::get('create', [SubjectController::class, 'create'])->name('subject.create');
         Route::post('store', [SubjectController::class, 'store'])->name('subject.store');
+        Route::get('{subject}/show', [SubjectController::class, 'show'])->name('subject.show');
+        Route::post('{subject}/update', [SubjectController::class, 'update'])->name('subject.update');
     });
 });
 

@@ -14,6 +14,7 @@ class StudentList extends Component
 {
     use WithPagination;
 
+
     public $perPage = 5;
     public $sortField = 'surname';
     public $sortAsc = true;

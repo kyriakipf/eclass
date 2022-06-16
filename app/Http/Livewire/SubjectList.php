@@ -2,16 +2,19 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Subject;
 use App\Models\User;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class TeacherList extends Component
+class SubjectList extends Component
 {
     use WithPagination;
 
     public $perPage = 5;
-    public $sortField ='surname';
+    public $sortField = 'title';
     public $sortAsc = true;
     public $search = '';
 
@@ -19,13 +22,14 @@ class TeacherList extends Component
     {
         $this->resetPage();
         if ($this->sortField === $field) {
-            $this->sortAsc = ! $this->sortAsc;
+            $this->sortAsc = !$this->sortAsc;
         } else {
             $this->sortAsc = true;
         }
 
         $this->sortField = $field;
     }
+
     public function updatingSearch()
     {
         $this->resetPage();
@@ -33,12 +37,10 @@ class TeacherList extends Component
 
     public function render()
     {
-        $users = User::where('role_id', '=' , '2')
-            ->where('tmima', '=',auth()->user()->tmima)
+        $subjects = Subject::where('tmima', '=',auth()->user()->tmima)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
-        return view('livewire.teacher-list', [
-            'users' => $users
-        ]);
+
+        return view('livewire.subject-list',['subjects' => $subjects]);
     }
 }
