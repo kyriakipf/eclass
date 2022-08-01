@@ -54,7 +54,8 @@
                         <div class="dropdown">
                             <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Ομάδες</p>
                             <div class="dropdown-content">
-                                <a href="#" class="menu">Προβολή</a>
+                                <a href="{{route('group.create', '')}}" class="menu">Δημιουργία</a>
+                                <a href="{{route('groups')}}" class="menu">Προβολή</a>
                             </div>
                         </div>
                     </li>

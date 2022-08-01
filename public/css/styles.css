@@ -19,7 +19,7 @@ form .text-input:focus-visible {
   outline: none;
 }
 form .area-input {
-  min-height: 100px;
+  min-height: 260px;
 }
 form .select-input {
   background-color: #FFFFFF;
@@ -329,7 +329,7 @@ body .top-section .stats-container .stats .data .counter .number {
 body .bottom-section {
   background-color: #F1F4FD;
   border-top: 2px solid #F9627D;
-  padding: 50px 80px 0 140px;
+  padding: 160px 80px 0 140px;
   justify-content: space-between;
   min-height: 750px;
   margin-left: 0;

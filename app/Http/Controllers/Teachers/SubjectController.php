@@ -15,6 +15,7 @@ class SubjectController extends Controller
     public function __construct(SubjectRepository $subjectRepository){
         $this->subjectRepository=$subjectRepository;
     }
+
     public function index()
     {
         $subjects = Subject::all();
@@ -28,10 +29,12 @@ class SubjectController extends Controller
         return view('teacher.subjects.createSubject' ,['users' => $users]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $public = false;
         $password = null;
-        if(isset($request->public)){
+        if(isset($request->public))
+        {
             $public = true;
             $password = $request->password;
         }
@@ -50,14 +53,30 @@ class SubjectController extends Controller
         return redirect()->back();
     }
 
-    public function show(Subject $subject){
+    public function show(Subject $subject)
+    {
         $users= User::getRelatedTeachers();
         $teacherIds = SubjectTeacher::getTeacherIds($subject);
         return view('teacher.subjects.editSubject' ,['users' => $users, 'subject' => $subject, 'teacherIds' => $teacherIds]);
     }
 
-    public function update(Request $request, Subject $subject){
-        return view('teacher.subject.manageSubjects');
+    public function update(Request $request, Subject $subject)
+    {
+        $password = null;
+        $subject = Subject::find($subject->id);
+        if($request->public == "on")
+        {
+            $isPublic = true;
+            $password = $request->password;
+        }
+        $subject->update([
+            'title' => $request->title,
+            'summary' => $request->description,
+            'isPublic' => $isPublic,
+            'password' => $password,
+            'semester' => $request->semester
+        ]);
+        return redirect()->route('subjects');
     }
 
 }

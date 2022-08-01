@@ -38,5 +38,16 @@ class SubjectRepository
         }
     }
 
+    public function getAll()
+    {
+        return Subject::all();
+    }
+
+//    public function getRelated()
+//    {
+//        $subjects = Subject::query()->whereRelation('subject_teachers', 'teacher_id' , '=', auth()->user()->id);
+//        return $subjects;
+//    }
+
 
 }

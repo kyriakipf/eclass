@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Teachers\GroupController;
 use App\Http\Controllers\Teachers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -94,12 +95,21 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
 
 //Teacher
 Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
+
+    //Subject Management
     Route::group(['prefix' => 'subject'], function (){
         Route::get('index', [SubjectController::class , 'index'])->name('subjects');
         Route::get('create', [SubjectController::class, 'create'])->name('subject.create');
         Route::post('store', [SubjectController::class, 'store'])->name('subject.store');
         Route::get('{subject}/show', [SubjectController::class, 'show'])->name('subject.show');
         Route::post('{subject}/update', [SubjectController::class, 'update'])->name('subject.update');
+    });
+
+    //Group Management
+    Route::group(['prefix' => 'group'], function (){
+        Route::get('index', [GroupController::class, 'index'])->name('groups');
+        Route::get('create/{subject?}', [GroupController::class, 'create'])->name('group.create');
+        Route::post('store', [GroupController::class, 'store'])->name('group.store');
     });
 });
 

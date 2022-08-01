@@ -10,32 +10,32 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody>
-            @foreach($subjects as $subject)
-                <tr class="tableRow">
-                    <td class="col-md-3">
-                        <p class="paragraph">{{$subject->title}}</p>
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">{{$subject->summary}}</p>
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">{{$subject->semester}}</p>
-                    </td>
-                    <td>
-                        <a href="{{route('subject.show' , ['subject' => $subject])}}" class="edit"><i
-                                class="fa-regular fa-pencil"></i></a>
-                    </td>
-                    <td>
-                        <a href="#" class="delete"><i
-                                class="fa-regular fa-trash-can"></i></a>
-                    </td>
-                </tr>
-            @endforeach
-            @else
-                <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
-            @endif
-            </tbody>
+            <a>
+                @foreach($subjects as $subject)
+                    <tr class="tableRow">
+                        <td class="col-md-3">
+                                <p class="paragraph">{{$subject->title}}</p>
+                        </td>
+                        <td class="col-md-5">
+                            <p class="paragraph">{{substr($subject->summary, 0,130)}}...</p>
+                        </td>
+                        <td class="col-md-3">
+                            <p class="paragraph">{{$subject->semester}}</p>
+                        </td>
+                        <td>
+                            <a href="{{route('subject.show' , ['subject' => $subject])}}" class="edit"><i
+                                    class="fa-regular fa-pencil"></i></a>
+                        </td>
+                        <td>
+                            <a href="#" class="delete"><i
+                                    class="fa-regular fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
+                @else
+                    <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
+                    @endif
+                    </tbody>
     </table>
     {{ $subjects->links('livewire.pagination-links') }}
 </div>

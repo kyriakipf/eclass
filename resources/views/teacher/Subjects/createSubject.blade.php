@@ -7,8 +7,8 @@
 @endsection
 @section('content')
     <div class="top-section">
-        <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
-        </div>
+{{--        <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">--}}
+{{--        </div>--}}
     </div>
     <div class="bottom-section">
         <form action="{{route('subject.store')}}" method="post">

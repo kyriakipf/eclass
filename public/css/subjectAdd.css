@@ -1,3 +1,13 @@
+.bottom-section {
+  padding: 30px 80px 0 140px !important;
+}
+.bottom-section .buttons {
+  justify-content: flex-start !important;
+  margin-bottom: 30px;
+}
+.bottom-section .buttons .btn-container a:hover {
+  color: #442041;
+}
 .bottom-section form .form-container {
   justify-content: flex-start;
 }
