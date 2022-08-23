@@ -8,10 +8,6 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-{{--        <div class="top-section row col-md-12">--}}
-{{--            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">--}}
-{{--            </div>--}}
-{{--        </div>--}}
         <div class="bottom-section">
             <p class="title purple">Μαθήματα</p>
             <div class="topRow">

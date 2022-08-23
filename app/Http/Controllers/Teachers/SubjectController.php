@@ -48,12 +48,18 @@ class SubjectController extends Controller
         $teacherId = $request->teacherId;
         $description = $request->description;
         $tmimaId = auth()->user()->tmima;
-
         $this->subjectRepository->storeSubject($title,$semester,$teacherId,$description,$tmimaId,$public,$password);
         return redirect()->back();
     }
 
     public function show(Subject $subject)
+    {
+        $users= User::getRelatedTeachers();
+        $teacherIds = SubjectTeacher::getTeacherIds($subject);
+        return view('teacher.subjects.showSubject' ,['users' => $users, 'subject' => $subject, 'teacherIds' => $teacherIds]);
+    }
+
+    public function edit(Subject $subject)
     {
         $users= User::getRelatedTeachers();
         $teacherIds = SubjectTeacher::getTeacherIds($subject);

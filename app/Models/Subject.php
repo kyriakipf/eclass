@@ -17,7 +17,13 @@ class Subject extends Model
         'tmima'
     ];
 
-    public function teacher(){
-        return $this->belongsToMany(Teacher::class);
+    public function teacher()
+    {
+        return $this->belongsToMany(Teacher::class, 'subject_teachers', 'subject_id', 'teacher_id')->withTimestamps();
+    }
+
+    public function groups()
+    {
+        return $this->hasMany(Group::class, 'subject_id', 'id');
     }
 }

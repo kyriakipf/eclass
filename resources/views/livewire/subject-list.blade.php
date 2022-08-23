@@ -10,20 +10,19 @@
                 <th></th>
             </tr>
             </thead>
-            <a>
                 @foreach($subjects as $subject)
                     <tr class="tableRow">
                         <td class="col-md-3">
-                                <p class="paragraph">{{$subject->title}}</p>
+                            <a href="{{route('subject.show' , ['subject' => $subject])}}"><p class="paragraph">{{$subject->title}}</p></a>
                         </td>
                         <td class="col-md-5">
-                            <p class="paragraph">{{substr($subject->summary, 0,130)}}...</p>
+                            <a href="{{route('subject.show' , ['subject' => $subject])}}"><p class="paragraph">{{substr($subject->summary, 0,130)}}...</p></a>
                         </td>
                         <td class="col-md-3">
-                            <p class="paragraph">{{$subject->semester}}</p>
+                            <a href="{{route('subject.show' , ['subject' => $subject])}}"><p class="paragraph">{{$subject->semester}}</p></a>
                         </td>
                         <td>
-                            <a href="{{route('subject.show' , ['subject' => $subject])}}" class="edit"><i
+                            <a href="{{route('subject.edit' , ['subject' => $subject])}}" class="edit"><i
                                     class="fa-regular fa-pencil"></i></a>
                         </td>
                         <td>

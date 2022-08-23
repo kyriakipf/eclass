@@ -23,6 +23,7 @@ class CreateHomeworkTable extends Migration
             $table->integer('max_grade');
             $table->date('start_date');
             $table->string('homework_type');
+            $table->string('filepath');
             $table->timestamps();
         });
     }

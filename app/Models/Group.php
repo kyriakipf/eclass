@@ -15,4 +15,13 @@ class Group extends Model
         'capacity' ,
     ];
 
+    public function student()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }
