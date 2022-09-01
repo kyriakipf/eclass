@@ -33,7 +33,7 @@
             <div class="groups">
                 <h3>Ομάδες</h3>
                 <a href="#">Προσθήκη Ομάδας</a>
-                @if($subject->groups != null)
+                @if(count($subject->groups) != 0)
                     <div class="group-info">
                         <p>Όνομα</p>
                         <p>Αριθμός Μαθητών</p>
