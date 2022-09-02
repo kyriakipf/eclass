@@ -13,15 +13,24 @@ class Student extends Model
         'user_id',
         'am'
     ];
+
     use HasFactory;
+
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+
+    public function homework()
+    {
+       return $this->belongsToMany(Homework::class, 'homework_student', 'student_id', 'homework_id')->withPivot('filename', 'filepath')->withTimestamps();
     }
 }
