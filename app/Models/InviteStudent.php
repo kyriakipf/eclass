@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class InviteStudent extends Model
 {
     protected $fillable = [
-        'email', 'token', 'name', 'surname','am', 'role_id' , 'tmima', 'invited'
+        'email',
+        'token',
+        'name',
+        'surname',
+        'am',
+        'role_id',
+        'tmima',
+        'invited'
     ];
     use HasFactory;
 

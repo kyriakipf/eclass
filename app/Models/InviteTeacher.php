@@ -9,7 +9,13 @@ class InviteTeacher extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'email', 'token', 'name', 'surname', 'role_id' , 'tmima', 'invited'
+        'email',
+        'token',
+        'name',
+        'surname',
+        'role_id',
+        'tmima',
+        'invited'
     ];
 
     public function domain()

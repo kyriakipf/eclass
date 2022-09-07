@@ -11,7 +11,12 @@ class Student extends Model
     protected $guard = 'student';
     protected $fillable = [
         'user_id',
-        'am'
+        'am',
+        'phone',
+        'address',
+        'profile_image',
+        'profile_image_path',
+        'member_since'
     ];
 
     use HasFactory;
