@@ -19,6 +19,7 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::all();
+
         return view('teacher.subjects.manageSubjects', ['subjects' => $subjects]);
     }
 
@@ -26,6 +27,7 @@ class SubjectController extends Controller
     {
 
         $users= User::getRelatedTeachers();
+
         return view('teacher.subjects.createSubject' ,['users' => $users]);
     }
 
@@ -33,22 +35,26 @@ class SubjectController extends Controller
     {
         $public = false;
         $password = null;
+
         if(isset($request->public))
         {
             $public = true;
             $password = $request->password;
         }
+
         $request->validate([
             'title' => 'required',
             'teacherId' => 'required',
             'semester' => 'required'
         ]);
+
         $title= $request->title;
         $semester = $request->semester;
         $teacherId = $request->teacherId;
         $description = $request->description;
         $tmimaId = auth()->user()->tmima;
         $this->subjectRepository->storeSubject($title,$semester,$teacherId,$description,$tmimaId,$public,$password);
+
         return redirect()->back();
     }
 
@@ -56,6 +62,7 @@ class SubjectController extends Controller
     {
         $users= User::getRelatedTeachers();
         $teacherIds = SubjectTeacher::getTeacherIds($subject);
+
         return view('teacher.subjects.showSubject' ,['users' => $users, 'subject' => $subject, 'teacherIds' => $teacherIds]);
     }
 
@@ -63,6 +70,7 @@ class SubjectController extends Controller
     {
         $users= User::getRelatedTeachers();
         $teacherIds = SubjectTeacher::getTeacherIds($subject);
+
         return view('teacher.subjects.editSubject' ,['users' => $users, 'subject' => $subject, 'teacherIds' => $teacherIds]);
     }
 
@@ -70,11 +78,13 @@ class SubjectController extends Controller
     {
         $password = null;
         $subject = Subject::find($subject->id);
+
         if($request->public == "on")
         {
             $isPublic = true;
             $password = $request->password;
         }
+
         $subject->update([
             'title' => $request->title,
             'summary' => $request->description,
@@ -82,6 +92,7 @@ class SubjectController extends Controller
             'password' => $password,
             'semester' => $request->semester
         ]);
+
         return redirect()->route('subjects');
     }
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Teachers\GroupController;
+use App\Http\Controllers\Teachers\HomeworkController;
 use App\Http\Controllers\Teachers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -111,6 +112,11 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('index', [GroupController::class, 'index'])->name('groups');
         Route::get('create/{subject?}', [GroupController::class, 'create'])->name('group.create');
         Route::post('store', [GroupController::class, 'store'])->name('group.store');
+    });
+
+    //Homework Managment
+    Route::group(['prefix' => 'homework'], function(){
+       Route::get('index', [HomeworkController::class, 'index'])->name('homework');
     });
 });
 
