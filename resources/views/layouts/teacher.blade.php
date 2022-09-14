@@ -63,7 +63,7 @@
                         <div class="dropdown">
                             <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Εργασίες</p>
                             <div class="dropdown-content">
-                                <a href="#" class="menu">Προβολή</a>
+                                <a href="{{route('homework')}}" class="menu">Προβολή</a>
                             </div>
                         </div>
                     </li>

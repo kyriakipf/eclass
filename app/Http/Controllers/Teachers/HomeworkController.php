@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Teachers;
 use App\Http\Controllers\Controller;
 use App\Repositories\HomeworkRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeworkController extends Controller
 {
@@ -17,7 +18,10 @@ class HomeworkController extends Controller
 
     public function index()
     {
-        $homework = $this->homeworkRepository->getAllRelatedToTeacher();
+        $user = Auth::user();
+        $teacher = $user->teacher;
+
+        $homework = $this->homeworkRepository->getAllRelatedToTeacher($teacher->id);
 
         return view('teacher.homework.manageHomework', ['homework' => $homework]);
     }
