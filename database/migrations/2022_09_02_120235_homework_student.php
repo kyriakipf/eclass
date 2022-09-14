@@ -13,7 +13,7 @@ class HomeworkStudent extends Migration
      */
     public function up()
     {
-        Schema::create('homework_stuent', function (Blueprint $table) {
+        Schema::create('homework_student', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('homework_id');
             $table->foreign('homework_id')->references('id')->on('homework')->onDelete('cascade');
