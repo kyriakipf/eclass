@@ -117,6 +117,8 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
     //Homework Managment
     Route::group(['prefix' => 'homework'], function(){
        Route::get('index', [HomeworkController::class, 'index'])->name('homework');
+       Route::get('create', [HomeworkController::class, 'create'])->name('homework.create');
+       Route::post('store', [HomeworkController::class, 'stor'])->name('homework.store');
     });
 });
 

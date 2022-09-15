@@ -26,4 +26,5 @@ class Teacher extends Model
     public function subject(){
         return $this->belongsToMany(Subject::class, 'subject_teachers', 'teacher_id', 'subject_id')->withTimestamps();
     }
+
 }

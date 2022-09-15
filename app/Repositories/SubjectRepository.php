@@ -2,9 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Models\Homework;
 use App\Models\Subject;
 use App\Models\SubjectTeacher;
 use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class SubjectRepository
@@ -43,11 +45,12 @@ class SubjectRepository
         return Subject::all();
     }
 
-//    public function getRelated()
-//    {
-//        $subjects = Subject::query()->whereRelation('subject_teachers', 'teacher_id' , '=', auth()->user()->id);
-//        return $subjects;
-//    }
+    public function getRelated(Teacher $teacher)
+    {
+        $subjects = $teacher->subject;
+
+        return $subjects;
+    }
 
 
 }

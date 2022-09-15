@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     use HasFactory;
+
     protected $fillable =[
         'title',
         'summary',
@@ -25,5 +26,10 @@ class Subject extends Model
     public function groups()
     {
         return $this->hasMany(Group::class, 'subject_id', 'id');
+    }
+
+    public function homework()
+    {
+        return $this->hasMany(Homework::class, 'subject_id', 'id');
     }
 }

@@ -32,7 +32,7 @@
             </div>
             <div class="groups">
                 <h3>Ομάδες</h3>
-                <a href="#">Προσθήκη Ομάδας</a>
+                <a href="{{route('group.create')}}">Προσθήκη Ομάδας</a>
                 @if(count($subject->groups) != 0)
                     <div class="group-info">
                         <p>Όνομα</p>
@@ -49,7 +49,7 @@
             </div>
             <div class="homework">
                 <h3>Εργασίες</h3>
-                <a href="#">Προσθήκη Εργασίας</a>
+                <a href="{{route('homework.create')}}">Προσθήκη Εργασίας</a>
                 {{--                    TODO homework -> redesign database and create crud functionality                   --}}
             </div>
         </div>

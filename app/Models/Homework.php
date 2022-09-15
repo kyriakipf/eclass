@@ -24,4 +24,9 @@ class Homework extends Model
     {
         return $this->belongsToMany(Student::class, 'homework_student', 'homework_id', 'student_id')->withPivot('filename', 'filepath')->withTimestamps();
     }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }
