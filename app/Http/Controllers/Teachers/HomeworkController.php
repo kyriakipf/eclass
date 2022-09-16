@@ -37,8 +37,11 @@ class HomeworkController extends Controller
         return view('teacher.homework.createHomework', ['subjects' => $subjects]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        //todo
+        $homework = $this->homeworkRepository->store($request->all());
+
+//        dd($homework);
+//        return view('teacher.homework.showHomework');
     }
 }

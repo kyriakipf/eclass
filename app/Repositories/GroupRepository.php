@@ -28,7 +28,6 @@ class GroupRepository
             DB::commit();
 
         } catch (\Exception $e) {
-            dd($e);
             DB::rollBack();
         }
     }
