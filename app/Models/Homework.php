@@ -15,7 +15,8 @@ class Homework extends Model
         'max_grade',
         'start_date',
         'homework_type',
-        'filepath'
+        'filepath',
+        'uploaded_by'
     ];
 
     use HasFactory;
@@ -28,5 +29,10 @@ class Homework extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,  'uploaded_by', 'id', '=');
     }
 }

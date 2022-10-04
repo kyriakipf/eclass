@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Teachers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Homework;
 use App\Repositories\HomeworkRepository;
 use App\Repositories\SubjectRepository;
 use Illuminate\Http\Request;
@@ -41,7 +42,13 @@ class HomeworkController extends Controller
     {
         $homework = $this->homeworkRepository->store($request->all());
 
-//        dd($homework);
-//        return view('teacher.homework.showHomework');
+        return redirect()->route('homework.show', ['homework' => $homework]);
+    }
+
+    public function show($homeworkId)
+    {
+        $homework = Homework::find($homeworkId);
+
+        return view('teacher.homework.showHomework', ['homework' => $homework]);
     }
 }

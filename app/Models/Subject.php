@@ -32,4 +32,9 @@ class Subject extends Model
     {
         return $this->hasMany(Homework::class, 'subject_id', 'id');
     }
+
+    public function getRelatedHomework($userId)
+    {
+        return Homework::query()->where('uploaded_by', '=', $userId)->get();
+    }
 }

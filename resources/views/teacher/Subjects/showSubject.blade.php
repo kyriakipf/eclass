@@ -50,7 +50,9 @@
             <div class="homework">
                 <h3>Εργασίες</h3>
                 <a href="{{route('homework.create')}}">Προσθήκη Εργασίας</a>
-                {{--                    TODO homework -> redesign database and create crud functionality                   --}}
+                @foreach($homeworks as $homework)
+                    <a href="{{route('homework.show' , $homework)}}">{{$homework->title}}</a>
+                @endforeach
             </div>
         </div>
 @endsection

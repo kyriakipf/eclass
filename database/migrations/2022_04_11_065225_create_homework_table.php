@@ -18,7 +18,7 @@ class CreateHomeworkTable extends Migration
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->unsignedBigInteger('uploaded_by');
-            $table->foreign('uploaded_by')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreign('uploaded_by')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->string('summary');
             $table->date('due_date');

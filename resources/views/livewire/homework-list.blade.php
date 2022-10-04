@@ -14,23 +14,23 @@
             @foreach($homework as $single)
                 <tr class="tableRow">
                     <td class="col-md-3">
-                        <a href="#">
+                        <a href="{{route('homework.show', ['homework' => $single])}}">
                             <p class="paragraph">{{$single->title}}</p></a>
                     </td>
                     <td class="col-md-5">
-                        <a href="#"><p
+                        <a href="{{route('homework.show', ['homework' => $single])}}"><p
                                 class="paragraph">{{substr($single->summary, 0,130)}}...</p></a>
                     </td>
                     <td class="col-md-3">
-                        <a href="#"><p
-                                class="paragraph">{{$single->subject}}</p></a>
+                        <a href="{{route('homework.show', ['homework' => $single])}}"><p
+                                class="paragraph">{{$single->subject->title}}</p></a>
                     </td>
                     <td>
-                        <a href="#" class="edit"><i
+                        <a href="{{route('homework.show', ['homework' => $single])}}" class="edit"><i
                                 class="fa-regular fa-pencil"></i></a>
                     </td>
                     <td>
-                        <a href="#" class="delete"><i
+                        <a href="{{route('homework.show', ['homework' => $single])}}" class="delete"><i
                                 class="fa-regular fa-trash-can"></i></a>
                     </td>
                 </tr>

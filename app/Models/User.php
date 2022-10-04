@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->belongsTo(Domain::class, 'tmima', 'id', '=');
     }
 
+    public function homework()
+    {
+        return $this->hasOne(Homework::class);
+    }
+
     public function getRelatedTeachers(){
         $domain = auth()->user()->tmima;
         $teachers = User::query()->where('tmima', '=',$domain)->where('role_id','=',2)->get();

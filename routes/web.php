@@ -105,6 +105,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('{subject}/show', [SubjectController::class, 'show'])->name('subject.show');
         Route::get('{subject}/edit', [SubjectController::class, 'edit'])->name('subject.edit');
         Route::post('{subject}/update', [SubjectController::class, 'update'])->name('subject.update');
+        Route::get('{subject}/delete', [SubjectController::class, 'delete'])->name('subject.delete');
     });
 
     //Group Management
@@ -119,6 +120,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
        Route::get('index', [HomeworkController::class, 'index'])->name('homework');
        Route::get('create', [HomeworkController::class, 'create'])->name('homework.create');
        Route::post('store', [HomeworkController::class, 'store'])->name('homework.store');
+       Route::get('{homework}/show', [HomeworkController::class, 'show'])->name('homework.show');
     });
 });
 

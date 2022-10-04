@@ -62,8 +62,9 @@ class SubjectController extends Controller
     {
         $users= User::getRelatedTeachers();
         $teacherIds = SubjectTeacher::getTeacherIds($subject);
+        $homeworks = Subject::getRelatedHomework(auth()->user()->id);
 
-        return view('teacher.subjects.showSubject' ,['users' => $users, 'subject' => $subject, 'teacherIds' => $teacherIds]);
+        return view('teacher.subjects.showSubject' ,['users' => $users, 'subject' => $subject, 'teacherIds' => $teacherIds, 'homeworks' => $homeworks]);
     }
 
     public function edit(Subject $subject)
@@ -94,6 +95,13 @@ class SubjectController extends Controller
         ]);
 
         return redirect()->route('subjects');
+    }
+
+    public function delete(Subject $subject){
+        $subject->delete();
+
+        return redirect()->back()->with('success','Το μάθημα διαγράφηκε επιτυχώς.');
+
     }
 
 }

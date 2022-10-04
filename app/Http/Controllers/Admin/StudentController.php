@@ -58,6 +58,7 @@ class StudentController extends Controller
 
         return redirect()->route('students')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');
     }
+
     public function delete(User $student){
         $student->student->delete();
         $student->delete();
