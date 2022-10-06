@@ -42,7 +42,7 @@ class HomeworkController extends Controller
     {
         $homework = $this->homeworkRepository->store($request->all());
 
-        return redirect()->route('homework.show', ['homework' => $homework]);
+        return redirect()->route('homework');
     }
 
     public function show($homeworkId)
