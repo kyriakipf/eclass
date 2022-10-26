@@ -40,9 +40,7 @@
                     </div>
                     @foreach($subject->groups as $group)
                         <div class="group-info">
-                            <p>{{$group->title}}</p>
-                            {{--                    TODO -> get the number of registered students                   --}}
-                            <p>{{$group->capacity}}</p>
+                            <a href="{{route('group.show' , $group)}}">{{$group->title}}</a>
                         </div>
                     @endforeach
                 @endif

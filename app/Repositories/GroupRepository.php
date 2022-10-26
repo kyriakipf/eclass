@@ -18,7 +18,7 @@ class GroupRepository
         DB::beginTransaction();
 
         try {
-            Group::create([
+           $group =  Group::create([
                 'subject_id' => $input['subjectId'],
                 'title' => $input['title'],
                 'summary' => $input['summary'],
@@ -27,8 +27,26 @@ class GroupRepository
 
             DB::commit();
 
+            return $group;
         } catch (\Exception $e) {
             DB::rollBack();
         }
+    }
+
+    public function update(array $data, Group $group)
+    {
+        $group->update([
+            'subject_id' => $data['subjectId'],
+            'title' => $data['title'],
+            'summary' => $data['summary'],
+            'capacity' => $data['capacity']
+        ]);
+
+        return $group;
+    }
+
+    public function delete(Group $group)
+    {
+        $group->delete();
     }
 }

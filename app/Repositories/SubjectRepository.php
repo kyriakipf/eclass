@@ -15,7 +15,8 @@ class SubjectRepository
     public function storeSubject(string $title, string $semester, int $teacherId, string $description,int $tmimaId, bool $public, string $password = null){
         DB::beginTransaction();
 
-        try {
+        try
+        {
          $subject =  Subject::create([
                 'title'=> $title,
                 'summary'=> $description,
@@ -33,8 +34,9 @@ class SubjectRepository
 
             DB::commit();
             // all good
-        } catch (\Exception $e) {
-//            dd($e);
+        }
+        catch (\Exception $e)
+        {
             DB::rollback();
             // something went wrong
         }

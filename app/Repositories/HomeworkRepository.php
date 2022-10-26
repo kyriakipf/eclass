@@ -19,12 +19,14 @@ class HomeworkRepository
         $user = auth()->user()->id;
         $homework = null;
         $homework_type = 'Μαθήματος';
+
         if($data['homework_type'] == 1)
         {
             $homework_type = 'Εργαστηριακή';
         }
 
         DB::beginTransaction();
+
         try
         {
 
@@ -45,10 +47,37 @@ class HomeworkRepository
         }
         catch (\Exception $e)
         {
-//            dd($e);
             DB::rollback();
         }
 
         return $homework;
+    }
+
+    public function update(array $data, Homework $homework)
+    {
+
+        $homework_type = 'Μαθήματος';
+        if($data['homework_type'] == 1)
+        {
+            $homework_type = 'Εργαστηριακή';
+        }
+
+        $homework->update([
+            'subject_id' => $data['subject_id'],
+            'title' => $data['title'],
+            'summary' => $data['summary'],
+            'due_date' => $data['due_date'],
+            'max_grade' => $data['max_grade'],
+            'start_date' => $data['start_date'],
+            'homework_type' => $homework_type,
+            'filepath' => 'test'
+        ]);
+
+        return $homework;
+    }
+
+    public function delete(Homework $homework)
+    {
+        $homework->delete();
     }
 }

@@ -113,14 +113,21 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('index', [GroupController::class, 'index'])->name('groups');
         Route::get('create/{subject?}', [GroupController::class, 'create'])->name('group.create');
         Route::post('store', [GroupController::class, 'store'])->name('group.store');
+        Route::get('{group}/show', [GroupController::class, 'show'])->name('group.show');
+        Route::get('{group}/edit', [GroupController::class, 'edit'])->name('group.edit');
+        Route::post('{group}/update', [GroupController::class, 'update'])->name('group.update');
+        Route::get('{group}/delete', [GroupController::class, 'delete'])->name('group.delete');
     });
 
-    //Homework Managment
+    //Homework Management
     Route::group(['prefix' => 'homework'], function(){
        Route::get('index', [HomeworkController::class, 'index'])->name('homework');
        Route::get('create', [HomeworkController::class, 'create'])->name('homework.create');
        Route::post('store', [HomeworkController::class, 'store'])->name('homework.store');
        Route::get('{homework}/show', [HomeworkController::class, 'show'])->name('homework.show');
+       Route::get('{homework}/edit', [HomeworkController::class, 'edit'])->name('homework.edit');
+       Route::post('{homework}/update', [HomeworkController::class, 'update'])->name('homework.update');
+       Route::get('{homework}/delete', [HomeworkController::class, 'delete'])->name('homework.delete');
     });
 });
 
