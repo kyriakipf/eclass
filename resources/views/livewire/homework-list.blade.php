@@ -1,4 +1,4 @@
-<div class="col-md-12" wire:key='subjects'>
+<div class="col-md-12" wire:key='homework'>
     <table>
         @if(count($homework) != 0)
             <thead>
@@ -26,11 +26,11 @@
                                 class="paragraph">{{$single->subject->title}}</p></a>
                     </td>
                     <td>
-                        <a href="{{route('homework.show', ['homework' => $single])}}" class="edit"><i
+                        <a href="{{route('homework.edit', ['homework' => $single])}}" class="edit"><i
                                 class="fa-regular fa-pencil"></i></a>
                     </td>
                     <td>
-                        <a href="{{route('homework.show', ['homework' => $single])}}" class="delete"><i
+                        <a href="{{route('homework.delete', ['homework' => $single])}}" class="delete"><i
                                 class="fa-regular fa-trash-can"></i></a>
                     </td>
                 </tr>

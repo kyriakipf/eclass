@@ -94,7 +94,7 @@ class SubjectController extends Controller
             'semester' => $request->semester
         ]);
 
-        return redirect()->route('subjects');
+        return redirect()->route('subject.show', $subject);
     }
 
     public function delete(Subject $subject){

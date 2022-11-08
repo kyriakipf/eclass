@@ -88,8 +88,8 @@
                         <div class="dropdown">
                             <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Μηνύματα</p>
                             <div class="dropdown-content">
-                                <a href="#" class="menu">Δημιουργία</a>
-                                <a href="#" class="menu">Προβολή</a>
+                                <a href="{{route('teacher.email.create')}}" class="menu">Δημιουργία</a>
+                                <a href="{{route('teacher.email')}}" class="menu">Προβολή</a>
                             </div>
                         </div>
                     </li>
@@ -101,7 +101,7 @@
                     <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i
                             class="fa-solid fa-angle-down"></i></p>
                     <div class="dropdown-content">
-                        <a href="#" class="menu">Πληροφορίες</a>
+                        <a href="{{route('teacher.info.show')}}" class="menu">Πληροφορίες</a>
                         <a href="{{route('change.password.view')}}" class="menu">Αλλαγή Κωδικού</a>
                         <a href="{{route('signout')}}" class="menu">Αποσύνδεση</a>
                     </div>

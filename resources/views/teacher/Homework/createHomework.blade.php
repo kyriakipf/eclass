@@ -46,6 +46,9 @@
                     <label for="max_grade" class="input-label">Μέγιστη Βαθμολογία</label>
                     <input type="number" id="max_grade" name="max_grade">
                 </div>
+                <div class="col-md-6">
+                    <input type="file" name="file" class="form-control">
+                </div>
                 <div class="summary col-md-12">
                     <label class="input-label" for="summary">Περιγραφή</label>
                     <textarea name="summary" class="text-input area-input" placeholder="Γράψτε εδώ..."

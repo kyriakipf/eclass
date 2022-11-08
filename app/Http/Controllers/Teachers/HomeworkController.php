@@ -45,6 +45,9 @@ class HomeworkController extends Controller
 
     public function store(Request $request)
     {
+        if (isset($request->file)){
+            $this->fileUploadRepository->fileUpload($request->file);
+        }
         $homework = $this->homeworkRepository->store($request->all());
 
         return redirect()->route('homework.show', $homework);

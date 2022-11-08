@@ -14,7 +14,7 @@ class AdminSendEmailController extends Controller
 {
     public function index()
     {
-        $emails = Message::all();
+        $emails =  Message::query()->where('from', '=', auth()->user()->email)->get();
         return view('admin.viewEmails' , ['emails' => $emails]);
     }
 
@@ -54,6 +54,17 @@ class AdminSendEmailController extends Controller
         }
         $email->save();
         return redirect()->back();
+    }
+
+    public function show(Message $email)
+    {
+        return view('admin.showEmail', ['email' => $email]);
+    }
+
+    public function delete(Message $email)
+    {
+        $email->delete();
+        return redirect()->route('admin.email');
     }
 
 }

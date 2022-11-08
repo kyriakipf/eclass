@@ -34,10 +34,6 @@
                 <h3>Ομάδες</h3>
                 <a href="{{route('group.create')}}">Προσθήκη Ομάδας</a>
                 @if(count($subject->groups) != 0)
-                    <div class="group-info">
-                        <p>Όνομα</p>
-                        <p>Αριθμός Μαθητών</p>
-                    </div>
                     @foreach($subject->groups as $group)
                         <div class="group-info">
                             <a href="{{route('group.show' , $group)}}">{{$group->title}}</a>
@@ -49,7 +45,9 @@
                 <h3>Εργασίες</h3>
                 <a href="{{route('homework.create')}}">Προσθήκη Εργασίας</a>
                 @foreach($homeworks as $homework)
-                    <a href="{{route('homework.show' , $homework)}}">{{$homework->title}}</a>
+                    <div>
+                        <a href="{{route('homework.show' , $homework)}}">{{$homework->title}}</a>
+                    </div>
                 @endforeach
             </div>
         </div>

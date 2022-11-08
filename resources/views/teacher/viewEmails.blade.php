@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.teacher')
 @section('stylesheets')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset("css/createEmail.css")}}">
@@ -8,10 +8,6 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="top-section row col-md-12">
-            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
-            </div>
-        </div>
         <div class="bottom-section">
             <div class="topRow">
                 <p class="title purple">Μηνύματα</p>
@@ -35,22 +31,22 @@
                             @foreach($emails as $email)
                                 <tr class="tableRow">
                                     <td class="col-md-3">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->subject}}</p></a>
+                                        <a href="{{route('teacher.email.show', $email)}}"><p class="paragraph">{{$email->subject}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->message}}</p></a>
+                                        <a href="{{route('teacher.email.show', $email)}}"><p class="paragraph">{{$email->message}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->from}}</p></a>
+                                        <a href="{{route('teacher.email.show', $email)}}"><p class="paragraph">{{$email->from}}</p></a>
                                     </td>
                                     <td class="col-md-2">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->to}}</p></a>
+                                        <a href="{{route('teacher.email.show', $email)}}"><p class="paragraph">{{$email->to}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->send_date}}</p></a>
+                                        <a href="{{route('teacher.email.show', $email)}}"><p class="paragraph">{{$email->send_date}}</p></a>
                                     </td>
                                     <td>
-                                        <a href="{{route('admin.email.delete', $email)}}" class="delete"><i
+                                        <a href="{{route('teacher.email.delete', $email)}}" class="delete"><i
                                                 class="fa-regular fa-trash-can"></i></a>
                                     </td>
                                 </tr>

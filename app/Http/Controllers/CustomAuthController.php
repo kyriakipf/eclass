@@ -15,10 +15,20 @@ class CustomAuthController extends Controller
 
         return Redirect('/');
     }
-
     public function changePasswordView(){
-       return view('auth.change-password');
+//        dd();
+        switch (strtolower(auth()->user()->role->role_name))
+        {
+            case('teacher'):
+                return view('teacher.change-password');
+            case('administrator'):
+                return view('auth.change-password');
+            case('student'):
+                return view('student.change-password');
+        }
+
     }
+
 
     public function changePassword(Request $request){
         $request->validate([
