@@ -10,18 +10,16 @@ use Psy\Util\Str;
 class FileUploader
 {
     /**
-     * FileSaveLocation::SAVE_LOCATION['PUBLIC'] \public
      * FileSaveLocation::SAVE_LOCATION['INTERNAL_STORAGE'] i.e. \storage\app
      * FileSaveLocation::SAVE_LOCATION['INTERNAL_STORAGE_PUBLIC'] i.e. \storage\app\public
      */
-    const SAVE_LOCATION = ['PUBLIC' => 1, 'INTERNAL_STORAGE' => 2, 'INTERNAL_STORAGE_PUBLIC' => 3];
+    const SAVE_LOCATION = ['INTERNAL_STORAGE' => 2, 'INTERNAL_STORAGE_PUBLIC' => 3];
 
     protected $save_location;
     protected $auto_rename;
 
     /**
-     * @param int $saveLocationFlag usage-> FileUploader::SAVE_LOCATION['PUBLIC'] for saving to \public
-     * FileUploader::SAVE_LOCATION['INTERNAL_STORAGE'] i.e. \storage\app (this is the DEFAULT used!)
+     * @param int $saveLocationFlag usage->FileUploader::SAVE_LOCATION['INTERNAL_STORAGE'] i.e. \storage\app (this is the DEFAULT used!)
      * FileUploader::SAVE_LOCATION['INTERNAL_STORAGE_PUBLIC'] i.e. \storage\app\public
      * @param bool $autoRename Default set to false. Use it if you wish files to be renamed automatically to avoid over writing.
      * If set to true it will add a time stamp at the beginning of the filename
@@ -45,12 +43,8 @@ class FileUploader
      * @return array ['filename', 'filepath', 'relativePath']
      * @throws \Exception
      */
-    public function Save(?UploadedFile $file, string $extraPath, string $newFilename = '', bool $emptyFinalDirectory = false, bool $sanitizeFilename = true) : array
+    public function Save(UploadedFile $file, string $extraPath, string $newFilename = '', bool $emptyFinalDirectory = false, bool $sanitizeFilename = true) : array
     {
-        if(!$file)
-        {
-            return ['filename' => '', 'filepath' => '', 'relativePath' => ''];
-        }
 
         $filename = $file->getClientOriginalName();
         $extension = $file->getClientOriginalExtension();
@@ -60,33 +54,17 @@ class FileUploader
         // check the location selected and call the respective method
         switch ($this->save_location)
         {
-            case self::SAVE_LOCATION['PUBLIC']:
-                return $this->savePublic($file, $extraPath, $filename, $emptyFinalDirectory);
             case self::SAVE_LOCATION['INTERNAL_STORAGE']: // \storage\app
                 return $this->saveToStorage($file, $this->getAbsPathToStorageFolder($extraPath),
                     $extraPath . DIRECTORY_SEPARATOR, $filename, $emptyFinalDirectory);
             case self::SAVE_LOCATION['INTERNAL_STORAGE_PUBLIC']: // \storage\app\public
                 return $this->saveToStorage($file, $this->getAbsPathToStoragePublicFolder($extraPath),
                     DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . $extraPath . DIRECTORY_SEPARATOR, $filename, $emptyFinalDirectory);
-            case self::SAVE_LOCATION['CLOUD']:
-                return ['filename' => '', 'filepath' => '', 'relativePath' => ''];
             default:
                 throw new \Exception('FileUploader -> unrecognised save location!');
         }
     }
 
-
-    /**
-     * @param UploadedFile|null $file
-     * @param string $extraPath
-     * @param bool $emptyFinalDirectory
-     * @param string $filename
-     * @return array
-     */
-    protected function savePublic(UploadedFile $file, string $extraPath, string $filename, bool $emptyFinalDirectory): array
-    {
-        throw new \Exception('FileUploader -> Method not Implemented');
-    }
 
 
     /**

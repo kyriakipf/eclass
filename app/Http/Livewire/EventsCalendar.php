@@ -10,6 +10,13 @@ class EventsCalendar extends LivewireCalendar
 {
     public function events() : \Illuminate\Support\Collection
     {
-        return Homework::all();
+        return Homework::query()->where('uploaded_by', '=', auth()->user()->id)->get()->map(function (Homework $homework){
+            return [
+                'id' => $homework->id,
+                'title' => $homework->title,
+                'description'=> $homework->summary,
+                'date' => $homework->due_date
+            ];
+        });
     }
 }
