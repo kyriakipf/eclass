@@ -16,7 +16,7 @@ class HomeworkController extends Controller
     protected $subjectRepository;
 
 
-    public function __construct(HomeworkRepository $homeworkRepository, SubjectRepository $subjectRepository)
+    public function __construct(HomeworkRepository $homeworkRepository, SubjectRepository $subjectRepository, )
     {
         $this->homeworkRepository = $homeworkRepository;
         $this->subjectRepository = $subjectRepository;

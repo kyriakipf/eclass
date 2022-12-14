@@ -53,50 +53,20 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($subjects as $subject)
+{{--                    @dd($subject->teacher)--}}
                 <tr class="table-row">
                     <td class="col-md-3">
-                        <p class="paragraph">Λογικός Προγραμματισμός</p>
+                        <p class="paragraph">{{$subject->title}}</p>
                     </td>
                     <td class="col-md-3">
-                        <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
+{{--                        <p class="paragraph">{{$subject->teacher->user->name}} {{$subject->teacher->user->surname}}</p>--}}
                     </td>
                     <td class="col-md-3">
                         <p class="paragraph">1023</p>
                     </td>
                 </tr>
-                <tr class="table-row">
-                    <td class="col-md-3">
-                        <p class="paragraph">Μαθηματική Ανάλυση & Στοιχεία Γραμμικής Άλγεβρας</p>
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">520</p>
-                    </td>
-                </tr>
-                <tr class="table-row">
-                    <td class="col-md-3">
-                        <p class="paragraph">Μαθηματική Ανάλυση & Στοιχεία Γραμμικής Άλγεβρας</p>
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">520</p>
-                    </td>
-                </tr>
-                <tr class="table-row">
-                    <td class="col-md-3">
-                        <p class="paragraph">Μαθηματική Ανάλυση & Στοιχεία Γραμμικής Άλγεβρας</p>
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">Κωνσταντίνος Αλεύρης</p>
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">520</p>
-                    </td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
