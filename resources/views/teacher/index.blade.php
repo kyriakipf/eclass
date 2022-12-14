@@ -9,7 +9,7 @@
             <div class="card-body col-md-4">
                 <p class="title">Example</p>
                 <div class="card-content">
-
+                    <livewire:events-calendar/>
                 </div>
             </div>
         </div>

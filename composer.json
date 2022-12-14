@@ -15,7 +15,7 @@
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.4",
         "yoeunes/toastr": "^1.2",
-      "ext-http": "*"
+        "asantibanez/livewire-calendar": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
