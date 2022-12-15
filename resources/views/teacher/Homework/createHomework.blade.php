@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <div class="bottom-section">
-        <form action="{{route('homework.store')}}" method="post">
+        <form action="{{route('homework.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-container row">
                 <div class="title col-md-3">

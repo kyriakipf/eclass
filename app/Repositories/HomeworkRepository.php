@@ -14,7 +14,7 @@ class HomeworkRepository
         return Homework::query()->where('uploaded_by', '=' , $teacherId)->get();
     }
 
-    public function store(array $data)
+    public function store(array $data, $file_path, $filename)
     {
         $user = auth()->user()->id;
         $homework = null;
@@ -40,7 +40,7 @@ class HomeworkRepository
                 'max_grade' => $data['max_grade'],
                 'start_date' => $data['start_date'],
                 'homework_type' => $homework_type,
-              'filepath' => 'test'
+              'filepath' => $file_path . DIRECTORY_SEPARATOR . $filename
             ]);
 
             DB::commit();

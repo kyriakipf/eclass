@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Teachers;
 use App\Http\Controllers\Controller;
 use App\Models\Homework;
 use App\Models\Subject;
+use App\Repositories\FileUploadRepository;
 use App\Repositories\HomeworkRepository;
 use App\Repositories\SubjectRepository;
 use Illuminate\Http\Request;
@@ -14,12 +15,14 @@ class HomeworkController extends Controller
 {
     protected $homeworkRepository;
     protected $subjectRepository;
+    protected $fileUploadRepository;
 
 
-    public function __construct(HomeworkRepository $homeworkRepository, SubjectRepository $subjectRepository, )
+    public function __construct(HomeworkRepository $homeworkRepository, SubjectRepository $subjectRepository,FileUploadRepository $fileUploadRepository)
     {
         $this->homeworkRepository = $homeworkRepository;
         $this->subjectRepository = $subjectRepository;
+        $this->fileUploadRepository = $fileUploadRepository;
     }
 
 
@@ -45,10 +48,14 @@ class HomeworkController extends Controller
 
     public function store(Request $request)
     {
-        if (isset($request->file)){
-            $this->fileUploadRepository->fileUpload($request->file);
+        $file = $request->file('file');
+        $filename = $file->getClientOriginalName();
+        $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email;
+
+        if (isset($file)){
+            $this->fileUploadRepository->fileUpload($file,$filename, $file_path);
         }
-        $homework = $this->homeworkRepository->store($request->all());
+        $homework = $this->homeworkRepository->store($request->all(), $file_path, $filename);
 
         return redirect()->route('homework.show', $homework);
     }
