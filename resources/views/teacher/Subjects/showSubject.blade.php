@@ -8,6 +8,7 @@
 @section('content')
     <div class="bottom-section">
         <div class="row">
+            <a href="{{route('subjects')}}">Back</a>
             <div class=" main-info">
                 <h1>{{$subject->title}}</h1>
                 @foreach($users as $user)

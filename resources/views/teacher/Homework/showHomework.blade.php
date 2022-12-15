@@ -7,6 +7,7 @@
 @endsection
 @section('content')
     <div class="bottom-section">
+        <a href="{{route('subject.show', ['subject' => $homework->subject])}}">Back</a>
         <p>Title: {{$homework->title}}</p>
         <p>Summary: {{$homework->summary}}</p>
         <p>User: {{$homework->user->name}} {{$homework->user->surname}}</p>
