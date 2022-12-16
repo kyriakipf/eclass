@@ -10,7 +10,7 @@
         <form action="{{route('homework.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-container row">
-                <div class="title col-md-3">
+                <div class=" col-md-3">
                     <label for="title" class="input-label">Τίτλος Εργασίας</label>
                     <input name="title" id="title" type="text"
                            placeholder="Γράψτε εδώ..." class="text-input">

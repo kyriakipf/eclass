@@ -14,7 +14,7 @@
         <form action="{{route('subject.store')}}" method="post">
             @csrf
             <div class="form-container row">
-                <div class="title col-md-3">
+                <div class=" col-md-3">
                     <label for="title" class="input-label">Τίτλος Μαθήματος</label>
                     <input name="title" id="title" type="text"
                            placeholder="Γράψτε εδώ..." class="text-input">

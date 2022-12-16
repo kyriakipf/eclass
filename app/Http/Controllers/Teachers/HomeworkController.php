@@ -49,13 +49,16 @@ class HomeworkController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('file');
-        $filename = $file->getClientOriginalName();
-        $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email;
 
         if (isset($file)){
+            $filename = $file->getClientOriginalName();
+            $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email;
             $this->fileUploadRepository->fileUpload($file,$filename, $file_path);
+            $homework = $this->homeworkRepository->store($request->all(), $file_path, $filename);
+        }else
+        {
+            $homework = $this->homeworkRepository->store($request->all());
         }
-        $homework = $this->homeworkRepository->store($request->all(), $file_path, $filename);
 
         return redirect()->route('homework.show', $homework);
     }

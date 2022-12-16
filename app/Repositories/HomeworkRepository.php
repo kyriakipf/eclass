@@ -5,22 +5,32 @@ namespace App\Repositories;
 use App\Models\Homework;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
 
 class HomeworkRepository
 {
 
     public function getAllRelatedToTeacher(int $teacherId)
     {
-        return Homework::query()->where('uploaded_by', '=' , $teacherId)->get();
+        return Homework::query()->where('uploaded_by', '=', $teacherId)->get();
     }
 
-    public function store(array $data, $file_path, $filename)
+    public function store(array $data, $file_path = null, $filename = null)
     {
         $user = auth()->user()->id;
         $homework = null;
         $homework_type = 'Μαθήματος';
+        $path = null;
 
-        if($data['homework_type'] == 1)
+        if (!$file_path == null)
+        {
+            $path = $file_path . DIRECTORY_SEPARATOR . $filename;
+        }
+
+
+
+        if ($data['homework_type'] == 1)
         {
             $homework_type = 'Εργαστηριακή';
         }
@@ -40,12 +50,11 @@ class HomeworkRepository
                 'max_grade' => $data['max_grade'],
                 'start_date' => $data['start_date'],
                 'homework_type' => $homework_type,
-              'filepath' => $file_path . DIRECTORY_SEPARATOR . $filename
+                'filepath' => $path
             ]);
 
             DB::commit();
-        }
-        catch (\Exception $e)
+        } catch (\Exception $e)
         {
             DB::rollback();
         }
@@ -57,7 +66,7 @@ class HomeworkRepository
     {
 
         $homework_type = 'Μαθήματος';
-        if($data['homework_type'] == 1)
+        if ($data['homework_type'] == 1)
         {
             $homework_type = 'Εργαστηριακή';
         }
