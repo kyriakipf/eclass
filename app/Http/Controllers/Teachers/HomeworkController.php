@@ -10,6 +10,8 @@ use App\Repositories\HomeworkRepository;
 use App\Repositories\SubjectRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use phpDocumentor\Reflection\DocBlock\Tags\Formatter\AlignFormatter;
 
 class HomeworkController extends Controller
 {
@@ -50,9 +52,10 @@ class HomeworkController extends Controller
     {
         $file = $request->file('file');
 
+        $subject = Subject::find($request->subject_id);
         if (isset($file)){
             $filename = $file->getClientOriginalName();
-            $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email;
+            $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $subject->title . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR .$request->homework_type;
             $this->fileUploadRepository->fileUpload($file,$filename, $file_path);
             $homework = $this->homeworkRepository->store($request->all(), $file_path, $filename);
         }else
@@ -83,7 +86,23 @@ class HomeworkController extends Controller
 
     public function update(Request $request, Homework $homework)
     {
-        $homework = $this->homeworkRepository->update($request->all(), $homework);
+        $file = $request->file('file');
+
+        if ($homework->filepath != null)
+        {
+            Storage::delete($homework->filepath);
+        }
+
+        $subject = Subject::find($request->subject_id);
+        if (isset($file)){
+            $filename = $file->getClientOriginalName();
+            $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $subject->title . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $homework->homework_type;
+            $this->fileUploadRepository->fileUpload($file,$filename, $file_path);
+            $homework = $this->homeworkRepository->update($request->all(), $homework ,$file_path, $filename);
+        }else
+        {
+            $homework = $this->homeworkRepository->update($request->all(), $homework);
+        }
 
         return redirect()->route('homework.show', $homework);
     }
@@ -92,8 +111,17 @@ class HomeworkController extends Controller
     public function delete(Homework $homework)
     {
         $subject = Subject::find($homework->subject_id);
+        Storage::delete($homework->filepath);
         $this->homeworkRepository->delete($homework);
 
         return redirect()->route('subject.show',$subject);
+    }
+
+    public function deleteFile(Homework $homework)
+    {
+        Storage::delete($homework->filepath);
+        $this->homeworkRepository->removeFile($homework);
+
+        return redirect()->route('homework.show', $homework);
     }
 }

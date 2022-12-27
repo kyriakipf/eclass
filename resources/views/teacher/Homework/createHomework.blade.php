@@ -28,8 +28,8 @@
                     <label for="type" class="input-label">Τύπος Εργασίας</label>
                     <select name="homework_type" id="type" type=""
                             class="text-input">
-                        <option value="0">Μαθήματος</option>
-                        <option value="1">Εργαστηριακή</option>
+                        <option value="Μαθήματος">Μαθήματος</option>
+                        <option value="Εργαστηριακή">Εργαστηριακή</option>
                     </select>
                 </div>
                 <div class="dates col-md-4 row">

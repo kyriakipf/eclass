@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectsTable extends Migration
+class CreateSemestersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('semesters', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('summary')->nullable();
-            $table->boolean('isPublic');
-            $table->string('password')->nullable();
-            $table->string('tmima');
-            $table->string('semester');
+            $table->string('number');
+            $table->date('starts_at');
+            $table->date('ends_at');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('semesters');
     }
 }

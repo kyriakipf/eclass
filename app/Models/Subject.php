@@ -12,7 +12,7 @@ class Subject extends Model
     protected $fillable =[
         'title',
         'summary',
-        'semester' ,
+        'semester_id' ,
         'isPublic' ,
         'password' ,
         'tmima'
@@ -36,5 +36,10 @@ class Subject extends Model
     public function getRelatedHomework($userId)
     {
         return Homework::query()->where('uploaded_by', '=', $userId)->get();
+    }
+
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class);
     }
 }

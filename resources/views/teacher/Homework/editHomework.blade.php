@@ -27,9 +27,9 @@
                 <div class="subject col-md-2">
                     <label for="type" class="input-label">Τύπος Εργασίας</label>
                     <select name="homework_type" id="type" type="" class="text-input">
-                        <option value="0" @if($homework->homework_type == 'Μαθήματος') selected @endif>Μαθήματος
+                        <option value="Μαθήματος" @if($homework->homework_type == 'Μαθήματος') selected @endif>Μαθήματος
                         </option>
-                        <option value="1" @if($homework->homework_type == 'Εργαστηριακή') selected @endif>Εργαστηριακή
+                        <option value="Εργαστηριακή" @if($homework->homework_type == 'Εργαστηριακή') selected @endif>Εργαστηριακή
                         </option>
                     </select>
                 </div>
@@ -57,6 +57,11 @@
                     <div class="col-md-3">
                         <p>Αρχείο</p>
                         <a href="{{$homework->filepath}}" download>{{basename($homework->filepath)}}</a>
+                        <a href="{{route('homework.file.delete' , ['homework' => $homework])}}"> Διαγραφή αρχείου</a>
+                        <p>Αλλαγή αρχείου</p>
+                        <div class="col-md-6">
+                            <input type="file" name="file" class="form-control">
+                        </div>
                     </div>
                 @endif
                 <div class="summary col-md-12">

@@ -20,10 +20,6 @@ class CreateFilesTable extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('section_id');
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
-            $table->unsignedBigInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('file_types')->onDelete('cascade');
             $table->string('filepath');
             $table->timestamps();
         });

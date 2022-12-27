@@ -44,14 +44,9 @@
                         <label for="semester" class="input-label">Εξάμηνο</label>
                         <select name="semester" id="semester" type="s"
                                 class="text-input">
-                            <option value="1">1ο Εξάμηνο</option>
-                            <option value="2">2ο Εξάμηνο</option>
-                            <option value="3">3ο Εξάμηνο</option>
-                            <option value="4">4ο Εξάμηνο</option>
-                            <option value="5">5ο Εξάμηνο</option>
-                            <option value="6">6ο Εξάμηνο</option>
-                            <option value="7">7ο Εξάμηνο</option>
-                            <option value="8">8ο Εξάμηνο</option>
+                            @foreach($semesters as $semester)
+                                <option @if($subject->semester_id == $semester->id) selected @endif value="{{$semester->id}}">{{$semester->number}}ο Εξάμηνο</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="protected col-md-1">

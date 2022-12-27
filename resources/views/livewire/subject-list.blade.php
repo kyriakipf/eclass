@@ -23,7 +23,7 @@
                     </td>
                     <td class="col-md-3">
                         <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
-                                class="paragraph">{{$subject->semester}}</p></a>
+                                class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p></a>
                     </td>
                     <td>
                         <a href="{{route('subject.edit' , ['subject' => $subject])}}" class="edit"><i

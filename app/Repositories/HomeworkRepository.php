@@ -20,7 +20,6 @@ class HomeworkRepository
     {
         $user = auth()->user()->id;
         $homework = null;
-        $homework_type = 'Μαθήματος';
         $path = null;
 
         if (!$file_path == null)
@@ -28,12 +27,6 @@ class HomeworkRepository
             $path = $file_path . DIRECTORY_SEPARATOR . $filename;
         }
 
-
-
-        if ($data['homework_type'] == 1)
-        {
-            $homework_type = 'Εργαστηριακή';
-        }
 
         DB::beginTransaction();
 
@@ -49,7 +42,7 @@ class HomeworkRepository
                 'due_date' => $data['due_date'],
                 'max_grade' => $data['max_grade'],
                 'start_date' => $data['start_date'],
-                'homework_type' => $homework_type,
+                'homework_type' => $data['homework_type'],
                 'filepath' => $path
             ]);
 
@@ -62,13 +55,13 @@ class HomeworkRepository
         return $homework;
     }
 
-    public function update(array $data, Homework $homework)
+    public function update(array $data, Homework $homework, $file_path = null, $filename = null)
     {
+        $path = null;
 
-        $homework_type = 'Μαθήματος';
-        if ($data['homework_type'] == 1)
+        if (!$file_path == null)
         {
-            $homework_type = 'Εργαστηριακή';
+            $path = $file_path . DIRECTORY_SEPARATOR . $filename;
         }
 
         $homework->update([
@@ -78,8 +71,8 @@ class HomeworkRepository
             'due_date' => $data['due_date'],
             'max_grade' => $data['max_grade'],
             'start_date' => $data['start_date'],
-            'homework_type' => $homework_type,
-            'filepath' => 'test'
+            'homework_type' => $data['homework_type'],
+            'filepath' => $path
         ]);
 
         return $homework;
@@ -88,5 +81,12 @@ class HomeworkRepository
     public function delete(Homework $homework)
     {
         $homework->delete();
+    }
+
+    public function removeFile(Homework $homework)
+    {
+        $homework->update([
+          'filepath' => null
+        ]);
     }
 }

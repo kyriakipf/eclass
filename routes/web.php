@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\Teachers\EmailController;
 use App\Http\Controllers\Teachers\FileUploadController;
 use App\Http\Controllers\Teachers\GroupController;
@@ -104,9 +105,6 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
 //Teacher
 Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
 
-    //FileUpload
-//    Route::post('file/upload', [FileUploadController::class, 'fileUploadPost'])->name('file.upload.post');
-
     //Subject Management
     Route::group(['prefix' => 'subject'], function (){
         Route::get('index', [SubjectController::class , 'index'])->name('subjects');
@@ -116,6 +114,14 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('{subject}/edit', [SubjectController::class, 'edit'])->name('subject.edit');
         Route::post('{subject}/update', [SubjectController::class, 'update'])->name('subject.update');
         Route::get('{subject}/delete', [SubjectController::class, 'delete'])->name('subject.delete');
+        Route::get('{subject}/directory/create', [SubjectController::class, 'directoryCreate'])->name('subject.directory.create');
+        Route::post('{subject}/directory/store', [SubjectController::class, 'directoryStore'])->name('subject.directory.store');
+        Route::get('{subject}/subdirectory/{folder}/create', [SubjectController::class, 'subDirectoryCreate'])->name('subject.subdirectory.create');
+        Route::post('{subject}/subdirectory/{folder}/store', [SubjectController::class, 'subDirectoryStore'])->name('subject.subdirectory.store');
+        Route::get('{subject}/directory/{folder}/show', [SubjectController::class, 'directoryShow'])->name('subject.directory.show');
+        Route::post('{subject}/file/store/{folder?}', [SubjectController::class, 'fileStore'])->name('subject.file.store');
+        Route::get('{subject}/file/upload/{folder?}', [SubjectController::class, 'fileUpload'])->name('subject.file.upload');
+        Route::get('{subject}/file/{file}/download', [SubjectController::class, 'fileDownload'])->name('subject.file.download');
     });
 
     //Group Management
@@ -138,6 +144,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
        Route::get('{homework}/edit', [HomeworkController::class, 'edit'])->name('homework.edit');
        Route::post('{homework}/update', [HomeworkController::class, 'update'])->name('homework.update');
        Route::get('{homework}/delete', [HomeworkController::class, 'delete'])->name('homework.delete');
+        Route::get('{homework}/file/delete', [HomeworkController::class, 'deleteFile'])->name('homework.file.delete');
     });
 
 
@@ -154,6 +161,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
     Route::get('info', [InfoController::class, 'show'])->name('teacher.info.show');
 
 });
+
 
 
 

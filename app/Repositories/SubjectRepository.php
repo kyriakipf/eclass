@@ -20,7 +20,7 @@ class SubjectRepository
          $subject =  Subject::create([
                 'title'=> $title,
                 'summary'=> $description,
-                'semester' => $semester,
+                'semester_id' => $semester,
                 'isPublic' => $public,
                 'password' => $password,
                 'tmima' => $tmimaId

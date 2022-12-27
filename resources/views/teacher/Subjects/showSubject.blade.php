@@ -14,7 +14,7 @@
                 @foreach($users as $user)
                     <h3>{{$user->name}} {{$user->surname}}</h3>
                 @endforeach
-                <p>{{$subject->semester}}o Εξάμηνο
+                <p>{{$subject->semester->number}}o Εξάμηνο
                     @if($subject->isPublic)
                         - Κωδικός: {{$subject->password}}
                     @endif
@@ -27,9 +27,22 @@
                 {{$subject->summary}}
             </div>
             <div class="files">
-                <h3>Αρχεία</h3>
-                <a href="#">Προσθήκη Αρχείου</a>
-                {{--                TODO files-> redesign database for files and create crud functionality          --}}
+                <a href="{{route('subject.file.upload' , ['subject' => $subject])}}">Προσθήκη Αρχείου</a>
+                <a href="{{route('subject.directory.create',['subject' => $subject])}}">Δημιουργία Φακέλου</a>
+                @if($files != null)
+                    <p>Αρχεία</p>
+                    @foreach($files as $file)
+                        <div>
+                            <a href="{{route('subject.file.download', ['file' => basename($file), 'subject' => $subject])}}" >{{basename($file)}}</a>
+                        </div>
+                    @endforeach
+                @else
+                    <p>Δεν υπάρχουν διαθέσιμα αρχεία</p>
+                @endif
+                <h3>Φακέλοι</h3>
+                @foreach($folders as $folder)
+                    <a href="{{route('subject.directory.show', ['subject' => $subject ,'folder' => basename($folder)])}}">{{basename($folder)}}</a>
+                @endforeach
             </div>
             <div class="groups">
                 <h3>Ομάδες</h3>
