@@ -101,12 +101,12 @@
                                     <input type="file" name="students" id="file" class="file-input" required/>
                                 </div>
                             </div>
-                            <div class="col-md-3 download--btn-container">
+                            <div class="col-md-4 download--btn-container">
                                 <a href="{{route('template.download', [ 'name'=>'studentTemplate'])}}"
                                    class="download button bold" download><i class="fa-light fa-download"></i>ΛΗΨΗ
                                     TEMPLATE</a>
                             </div>
-                            <div class="col-md-3 btn-container">
+                            <div class="col-md-4 btn-container">
                                 <button type="submit" class="button bold">ΠΡΟΣΘΗΚΗ</button>
                             </div>
                         </div>
