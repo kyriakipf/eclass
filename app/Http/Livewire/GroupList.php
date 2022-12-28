@@ -3,10 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Group;
-use App\Models\Subject;
-use App\Models\SubjectTeacher;
 use App\Models\Teacher;
-use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -38,11 +35,16 @@ class GroupList extends Component
 
     public function render()
     {
+
         $groups = Group::query()->whereRelation('subject', function ($query){
             $query->whereRelation('teacher', 'user_id', '=', auth()->user()->id);
         })
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
+
+
+
+
         return view('livewire.group-list', ['groups' => $groups]);
     }
 }

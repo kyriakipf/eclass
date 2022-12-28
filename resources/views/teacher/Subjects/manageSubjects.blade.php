@@ -8,12 +8,20 @@
 @endsection
 @section('content')
     <div class="mainInfo">
+
         <div class="bottom-section">
             <p class="title purple">Μαθήματα</p>
-            <div class="topRow">
-{{--                <a class="search" href="{{route('student.search')}}"><i class="fa-light fa-magnifying-glass"></i>--}}
-                    Αναζήτηση</a>
-            </div>
+            <form action="{{route('subject.search.form')}}" method="POST">
+                @csrf
+                <div class="row addForm">
+                    <label for="search">Αναζήτηση</label>
+                    <input class="search text-input col-md-12" id="search" name="search" type="text" minlength="4"
+                           placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες...">
+                    <div class="col-md-2">
+                        <button type="submit" class="button light">ΑΝΑΖΗΤΗΣΗ</button>
+                    </div>
+                </div>
+            </form>
             <div class="row">
                 @livewire('subject-list', [ 'subjects' => $subjects])
             </div>

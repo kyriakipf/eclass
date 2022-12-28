@@ -15,7 +15,8 @@ class Subject extends Model
         'semester_id' ,
         'isPublic' ,
         'password' ,
-        'tmima'
+        'tmima',
+        'directory'
     ];
 
     public function teacher()

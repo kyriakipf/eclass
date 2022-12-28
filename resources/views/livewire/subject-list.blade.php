@@ -5,7 +5,7 @@
             <tr class="tableRow colTitles">
                 <th class="sort" wire:click="sortBy('title')">Τιτλος</th>
                 <th class="sort" wire:click="sortBy('summary')">Περιγραφη</th>
-                <th class="sort" wire:click="sortBy('semester')">Εξάμηνο</th>
+                <th class="sort" wire:click="sortBy('semester_id')">Εξάμηνο</th>
                 <th></th>
                 <th></th>
             </tr>

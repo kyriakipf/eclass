@@ -17,6 +17,9 @@ use App\Http\Controllers\Teachers\FileUploadController;
 use App\Http\Controllers\Teachers\GroupController;
 use App\Http\Controllers\Teachers\HomeworkController;
 use App\Http\Controllers\Teachers\InfoController;
+use App\Http\Controllers\Teachers\SearchGroupController;
+use App\Http\Controllers\Teachers\SearchHomeworkController;
+use App\Http\Controllers\Teachers\SearchSubjectController;
 use App\Http\Controllers\Teachers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -122,6 +125,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::post('{subject}/file/store/{folder?}', [SubjectController::class, 'fileStore'])->name('subject.file.store');
         Route::get('{subject}/file/upload/{folder?}', [SubjectController::class, 'fileUpload'])->name('subject.file.upload');
         Route::get('{subject}/file/{file}/download', [SubjectController::class, 'fileDownload'])->name('subject.file.download');
+        Route::match(['get', 'post'],'/search/form', [SearchSubjectController::class, 'search'])->name('subject.search.form');
     });
 
     //Group Management
@@ -133,6 +137,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('{group}/edit', [GroupController::class, 'edit'])->name('group.edit');
         Route::post('{group}/update', [GroupController::class, 'update'])->name('group.update');
         Route::get('{group}/delete', [GroupController::class, 'delete'])->name('group.delete');
+        Route::match(['get', 'post'],'/search/form', [SearchGroupController::class, 'search'])->name('group.search.form');
     });
 
     //Homework Management
@@ -145,6 +150,8 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
        Route::post('{homework}/update', [HomeworkController::class, 'update'])->name('homework.update');
        Route::get('{homework}/delete', [HomeworkController::class, 'delete'])->name('homework.delete');
         Route::get('{homework}/file/delete', [HomeworkController::class, 'deleteFile'])->name('homework.file.delete');
+        Route::get('{homework}/file/download', [HomeworkController::class, 'fileDownload'])->name('homework.file.download');
+        Route::match(['get', 'post'],'/search/form', [SearchHomeworkController::class, 'search'])->name('homework.search.form');
     });
 
 

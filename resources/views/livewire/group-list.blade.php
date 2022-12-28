@@ -1,4 +1,4 @@
-<div class="col-md-12" wire:key='groups'>
+<div class="col-md-12" wire:key='group'>
     <table>
         @if(count($groups) != 0)
             <thead>

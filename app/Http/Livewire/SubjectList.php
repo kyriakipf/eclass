@@ -3,9 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Subject;
-use App\Models\User;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -21,9 +18,11 @@ class SubjectList extends Component
     public function sortBy($field)
     {
         $this->resetPage();
-        if ($this->sortField === $field) {
+        if ($this->sortField == $field)
+        {
             $this->sortAsc = !$this->sortAsc;
-        } else {
+        } else
+        {
             $this->sortAsc = true;
         }
 

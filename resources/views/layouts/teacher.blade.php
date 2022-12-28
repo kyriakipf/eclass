@@ -77,15 +77,6 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Ημερολόγιο</p>
-                            <div class="dropdown-content">
-                                <a href="#" class="menu">Δημιουργία</a>
-                                <a href="#" class="menu">Προβολή</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="dropdown">
                             <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Μηνύματα</p>
                             <div class="dropdown-content">
                                 <a href="{{route('teacher.email.create')}}" class="menu">Δημιουργία</a>

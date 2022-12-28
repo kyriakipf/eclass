@@ -81,7 +81,7 @@ class SubjectController extends Controller
         $users = User::getRelatedTeachers();
         $teacherIds = SubjectTeacher::getTeacherIds($subject);
         $homeworks = Subject::getRelatedHomework(auth()->user()->id);
-        $path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $subject->title . DIRECTORY_SEPARATOR . 'Ύλη';
+        $path = $subject->directory . DIRECTORY_SEPARATOR . 'Ύλη';
         $folders = Storage::directories($path);
         $files = Storage::files($path);
 
@@ -124,6 +124,8 @@ class SubjectController extends Controller
 
     public function delete(Subject $subject)
     {
+        $path = $subject->directory;
+        Storage::deleteDirectory($path);
         $subject->delete();
 
         return redirect()->back()->with('success', 'Το μάθημα διαγράφηκε επιτυχώς.');
@@ -139,7 +141,7 @@ class SubjectController extends Controller
 
     public function directoryStore(Subject $subject, Request $request)
     {
-        $path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $subject->title . DIRECTORY_SEPARATOR . 'Ύλη' . DIRECTORY_SEPARATOR . $request->title;
+        $path = $subject->directory . DIRECTORY_SEPARATOR . 'Ύλη' . DIRECTORY_SEPARATOR . $request->title;
         Storage::makeDirectory($path);
 
         return redirect()->route('subject.show', $subject);
@@ -148,7 +150,7 @@ class SubjectController extends Controller
 
     public function directoryShow(Subject $subject, $folder)
     {
-        $subjectPath = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $subject->title;
+        $subjectPath = $subject->directory;
         $subjectFolders = Storage::allDirectories($subjectPath);
 
         $folderpath = '';
@@ -179,7 +181,7 @@ class SubjectController extends Controller
 
     public function subDirectoryStore(Subject $subject, $folder, Request $request)
     {
-        $path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $subject->title . DIRECTORY_SEPARATOR . 'Ύλη' . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $request->title;
+        $path = $subject->directory . DIRECTORY_SEPARATOR . 'Ύλη' . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $request->title;
         Storage::makeDirectory($path);
 
         return redirect()->route('subject.directory.show', ['subject' => $subject, 'folder' => $folder]);
@@ -196,7 +198,7 @@ class SubjectController extends Controller
     {
         $file = $request->file('file');
         $file_path = '';
-        $subjectPath = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $subject->title;
+        $subjectPath = $subject->directory;
 
         if (isset($file))
         {

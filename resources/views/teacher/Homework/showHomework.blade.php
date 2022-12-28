@@ -18,7 +18,7 @@
         @else
             <div class="col-md-3">
                 <p>Αρχείο</p>
-                <a href="{{$homework->filepath}}" download>{{basename($homework->filepath)}}</a>
+                <a href="{{route('homework.file.download', [ 'homework' => $homework])}}" >{{basename($homework->filepath)}}</a>
             </div>
         @endif
         <a href="{{route('homework.edit',  $homework)}}">Edit</a>

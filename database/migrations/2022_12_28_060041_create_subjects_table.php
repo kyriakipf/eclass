@@ -20,6 +20,7 @@ class CreateSubjectsTable extends Migration
             $table->boolean('isPublic');
             $table->string('password')->nullable();
             $table->string('tmima');
+            $table->string('directory')->nullable();
             $table->unsignedBigInteger('semester_id');
             $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
             $table->timestamps();
