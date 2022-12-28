@@ -10,7 +10,6 @@
     <div class="mainInfo">
     </div>
     <div class="bottom-section">
-        {{--        @dd($email)--}}
         <p class="title purple">{{$email->subject}}</p>
         <div class="form-container row">
             <div class="typeSelection selection col-md-6">

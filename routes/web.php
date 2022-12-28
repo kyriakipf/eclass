@@ -17,6 +17,7 @@ use App\Http\Controllers\Teachers\FileUploadController;
 use App\Http\Controllers\Teachers\GroupController;
 use App\Http\Controllers\Teachers\HomeworkController;
 use App\Http\Controllers\Teachers\InfoController;
+use App\Http\Controllers\Teachers\SearchEmailController;
 use App\Http\Controllers\Teachers\SearchGroupController;
 use App\Http\Controllers\Teachers\SearchHomeworkController;
 use App\Http\Controllers\Teachers\SearchSubjectController;
@@ -162,6 +163,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('send', [EmailController::class, 'process'])->name('teacher.email.process');
         Route::get('{email}/show', [EmailController::class, 'show'])->name('teacher.email.show');
         Route::get('{email}/delete', [EmailController::class, 'delete'])->name('teacher.email.delete');
+        Route::match(['get', 'post'],'/search/form', [SearchEmailController::class, 'search'])->name('teacher.email.search.form');
     });
 
     //Info
