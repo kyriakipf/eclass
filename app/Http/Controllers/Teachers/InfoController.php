@@ -11,4 +11,17 @@ class InfoController extends Controller
     {
         return view('teacher.Info.showInfo');
     }
+
+
+    public function edit()
+    {
+        return view('teacher.info.editInfo');
+    }
+
+
+    public function update(Request $request)
+    {
+
+    }
+
 }

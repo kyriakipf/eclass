@@ -33,6 +33,10 @@ class Student extends Model
         return $this->belongsTo(Group::class);
     }
 
+    public function subject()
+    {
+        return $this->belongsToMany(Subject::class, 'subject_students', 'student_id', 'subject_id')->withTimestamps();
+    }
 
     public function homework()
     {

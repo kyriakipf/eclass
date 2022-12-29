@@ -101,8 +101,9 @@ class SubjectController extends Controller
 
     public function update(Request $request, Subject $subject)
     {
-        $password = null;
         $subject = Subject::find($subject->id);
+        $isPublic = $subject->isPublic;
+        $password = $subject->password;
 
         if ($request->public == "on")
         {

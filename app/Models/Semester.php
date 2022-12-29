@@ -16,25 +16,5 @@ class Semester extends Model
         return $this->hasMany(Subject::class);
     }
 
-    public function getActive()
-    {
-        $semesters = Semester::all();
 
-        $active = [];
-
-        foreach ($semesters as $semester)
-        {
-            if ($this->isActive($semester))
-            {
-                $active []= $semester;
-            }
-        }
-
-        return $active;
-    }
-
-    private function isActive($semester)
-    {
-        return Carbon::now()->between($semester->starts_at, $semester->ends_at);
-    }
 }

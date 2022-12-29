@@ -24,6 +24,11 @@ class Subject extends Model
         return $this->belongsToMany(Teacher::class, 'subject_teachers', 'subject_id', 'teacher_id')->withTimestamps();
     }
 
+    public function student()
+    {
+        return $this->belongsToMany(Teacher::class, 'subject_students', 'subject_id', 'student_id')->withTimestamps();
+    }
+
     public function groups()
     {
         return $this->hasMany(Group::class, 'subject_id', 'id');

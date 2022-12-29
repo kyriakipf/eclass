@@ -168,6 +168,8 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
 
     //Info
     Route::get('info', [InfoController::class, 'show'])->name('teacher.info.show');
+    Route::get('info/edit', [InfoController::class, 'edit'])->name('teacher.info.edit');
+    Route::post('info/update', [InfoController::class, 'update'])->name('teacher.info.update');
 
 });
 
