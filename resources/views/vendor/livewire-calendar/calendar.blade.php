@@ -10,17 +10,17 @@
     </div>
 
     <div class="flex">
-        <div class="w-full">
-            <div class="inline-block min-w-full overflow-hidden">
+        <div class="">
+            <div class="inline-block">
 
-                <div class="w-full flex flex-row">
+                <div class="flex flex-row">
                     @foreach($monthGrid->first() as $day)
                         @include($dayOfWeekView, ['day' => $day])
                     @endforeach
                 </div>
 
                 @foreach($monthGrid as $week)
-                    <div class="w-full flex flex-row">
+                    <div class=" flex flex-row">
                         @foreach($week as $day)
                             @include($dayView, [
                                     'componentId' => $componentId,

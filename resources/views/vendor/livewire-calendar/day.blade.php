@@ -4,19 +4,19 @@
     ondragleave="onLivewireCalendarEventDragLeave(event, '{{ $componentId }}', '{{ $day }}', '{{ $dragAndDropClasses }}');"
     ondragover="onLivewireCalendarEventDragOver(event);"
     ondrop="onLivewireCalendarEventDrop(event, '{{ $componentId }}', '{{ $day }}', {{ $day->year }}, {{ $day->month }}, {{ $day->day }}, '{{ $dragAndDropClasses }}');"
-    class="flex-1 h-40 lg:h-48 border border-gray-200 -mt-px -ml-px"
-    style="min-width: 10rem;">
+    class="flex-1 h-{60px} lg:h-{60px} border border-gray-200 -mt-px -ml-px"
+    style="">
 
     {{-- Wrapper for Drag and Drop --}}
     <div
-        class="w-full h-full"
+        class=" h-{60px}"
         id="{{ $componentId }}-{{ $day }}">
 
         <div
             @if($dayClickEnabled)
                 wire:click="onDayClick({{ $day->year }}, {{ $day->month }}, {{ $day->day }})"
             @endif
-            class="w-full h-full p-2 {{ $dayInMonth ? $isToday ? 'bg-yellow-100' : ' bg-white ' : 'bg-gray-100' }} flex flex-col">
+            class=" h-{60px} p-2 {{ $dayInMonth ? $isToday ? 'bg-yellow-100' : ' bg-white ' : 'bg-gray-100' }} flex flex-col">
 
             {{-- Number of Day --}}
             <div class="flex items-center">
@@ -35,9 +35,6 @@
                 <div class="grid grid-cols-1 grid-flow-row gap-2">
                     @foreach($events as $event)
                         <div
-                            @if($dragAndDropEnabled)
-                                draggable="true"
-                            @endif
                             ondragstart="onLivewireCalendarEventDragStart(event, '{{ $event['id'] }}')">
                             <a href="{{route('homework.show', ['homework' => $event['id']])}}">
                             @include($eventView, [

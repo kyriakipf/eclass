@@ -10,28 +10,31 @@
                 <div class="form-container row">
                     <div class=" col-md-3">
                         <label for="title" class="input-label">Όνομα</label>
-                        <input name="title" id="title" type="text"
+                        <input name="name" id="title" type="text"
                                placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->name}}">
                     </div>
                     <div class=" col-md-3">
                         <label for="title" class="input-label">Επίθετο</label>
-                        <input name="title" id="title" type="text"
+                        <input name="surname" id="title" type="text"
                                placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->surname}}">
                     </div>
                     <div class=" col-md-3">
                         <label for="title" class="input-label">email</label>
-                        <input name="title" id="title" type="text"
+                        <input name="email" id="title" type="text"
                                placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->email}}">
                     </div>
                     <div class=" col-md-3">
                         <label for="title" class="input-label">Ιδιότητα</label>
-                        <input name="title" id="title" type="text"
+                        <input name="idiotita" id="title" type="text"
                                placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->teacher->idiotita}}">
                     </div>
                     <div class=" col-md-3">
                         <label for="title" class="input-label">Διεύθυνση Γραφείου</label>
-                        <input name="title" id="title" type="text"
+                        <input name="address" id="title" type="text"
                                placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->teacher->office_address}}">
+                    </div>
+                    <div class="btn-container col-md-2">
+                        <button type="submit" class="button bold ">Ενημέρωση</button>
                     </div>
                 </div>
             </form>
