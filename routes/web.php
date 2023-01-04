@@ -177,7 +177,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
 
 
 //Student
-Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'student', 'middleware' => ['auth']], function(){
 
     //Info
     Route::group(['prefix' => 'info'], function(){
