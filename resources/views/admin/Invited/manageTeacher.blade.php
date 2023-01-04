@@ -56,7 +56,7 @@
                                            placeholder="Γράψτε εδώ..." required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="input-container focused">
                                     <label for="email" class="input-label">E-mail</label>
                                     <input type="text" name="email" id="email" class="text-input"
@@ -64,13 +64,24 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="select-container focused">
                                     <label class="input-label" for="domain">Τμήμα:</label>
                                     <select class="select-input" name="domain" id="domain" required>
                                         <option value="" selected disabled>Επιλέξτε Τμήμα</option>
                                         @foreach($domains as $domain)
                                             <option value="{{$domain->id}}">{{$domain->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="select-container focused">
+                                    <label class="input-label" for="job_role">Ιδιότητα:</label>
+                                    <select class="select-input" name="job_role" id="job_role" required>
+                                        <option value="" selected disabled>Επιλέξτε Ιδιότητα</option>
+                                        @foreach($job_roles as $job_role)
+                                            <option value="{{$job_role->id}}">{{$job_role->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -116,6 +127,7 @@
                                 <th>Επίθετο</th>
                                 <th>Email</th>
                                 <th>Τμήμα</th>
+                                <th>Ιδιοτητα</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -123,17 +135,20 @@
                             <tbody>
                             @foreach($entities as $entity)
                                 <tr class="tableRow">
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <p class="name paragraph">{{$entity->name}}</p>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <p class="paragraph">{{$entity->surname}}</p>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <p class="paragraph">{{$entity->email}}</p>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <p class="paragraph">{{$entity->domain->name}}</p>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <p class="paragraph">{{$entity->job_role->name}}</p>
                                     </td>
                                     <td>
                                         <a href="{{route('teacher.process' , $entity)}}"><i

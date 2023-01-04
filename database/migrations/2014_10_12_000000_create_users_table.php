@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('surname');
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
-            $table->foreignId('tmima')->nullable();
-            $table->foreign('tmima')->references('id')->on('domains')->onDelete('cascade');
+            $table->unsignedBigInteger('domain_id')->nullable();
+            $table->foreign('domain_id')->references('id')->on('domains')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

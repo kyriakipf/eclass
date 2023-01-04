@@ -7,7 +7,7 @@
         <div class="top-section row col-md-12">
             <div class="stats-container col-md-6">
                 <div class="stats col-md-5">
-                    <div class="title">
+                    <div class="subtitle">
                         <p><i class="fa-solid fa-envelope"></i> Προσκεκλημένοι:</p>
                     </div>
                     <div class="data">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="stats col-md-5">
-                    <div class="title">
+                    <div class="subtitle">
                         <p><i class="fa-solid fa-pencil"></i> Εγγεγραμμένοι:</p>
                     </div>
                     <div class="data">
@@ -37,37 +37,43 @@
                     </div>
                 </div>
             </div>
-            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
-            </div>
         </div>
     </div>
     <div class="bottom-section col-md-12 row">
-        <div class="courses col-md-5">
-            <p class="subtitle">Μαθήματα Εξαμήνου</p>
+        <div class="subtitle col-md-6">
+            Μαθήματα Εξαμήνου
             <table>
-                <thead>
-                <tr class="tableRow colTitles">
-                    <th>ΤΙΤΛΟΣ</th>
-                    <th>ΚΑΘΗΓΗΤΗΣ</th>
-                    <th>ΕΓΓΕΓΡΑΜΜΕΝΟΙ</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($subjects as $subject)
-{{--                    @dd($subject->teacher)--}}
-                <tr class="table-row">
-                    <td class="col-md-3">
-                        <p class="paragraph">{{$subject->title}}</p>
-                    </td>
-                    <td class="col-md-3">
-{{--                        <p class="paragraph">{{$subject->teacher->user->name}} {{$subject->teacher->user->surname}}</p>--}}
-                    </td>
-                    <td class="col-md-3">
-                        <p class="paragraph">1023</p>
-                    </td>
-                </tr>
-                @endforeach
-                </tbody>
+                @if(!is_null($activeSubjects))
+                    <thead>
+                    <tr class="tableRow colTitles">
+                        <th class="sort" wire:click="sortBy('title')">Τιτλος</th>
+                        <th class="sort" wire:click="sortBy('summary')">Περιγραφη</th>
+                        <th class="sort" wire:click="sortBy('semester_id')">Εξάμηνο</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($activeSubjects as $subject)
+                        <tr class="tableRow">
+                            <td class="col-md-3">
+                                <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                                        class="paragraph">{{$subject->title}}</p></a>
+                            </td>
+                            <td class="col-md-5">
+                                <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                                        class="paragraph">{{substr($subject->summary, 0,130)}}...</p>
+                                </a>
+                            </td>
+                            <td class="col-md-3">
+                                <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                                        class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    @else
+                        <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
+                    @endif
+                    </tbody>
             </table>
         </div>
         <div class="courses-chart col-md-6">

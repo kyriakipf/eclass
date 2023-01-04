@@ -18,10 +18,8 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('am',100)->unique();
-            $table->string('phone')->nullable();;
-            $table->string('address')->nullable();;
-            $table->string('profile_image')->nullable();
-            $table->string('profile_image_path')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
             $table->date('member_since')->nullable();
             $table->timestamps();
         });

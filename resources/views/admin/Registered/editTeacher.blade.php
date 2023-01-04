@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="bottom-section">
-            <form action="{{route('teacher.update', $teacher)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('teacher.update', ['user' => $teacher])}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row addForm">
                     <div class="col-md-5">
@@ -41,6 +41,18 @@
                             <label class="input-label" for="domain">Τμήμα:</label>
                             <input type="text" class="text-input" name="domain" id="domain"
                                    value="{{$teacher->domain->name}}" required readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="select-container focused">
+                            <label class="input-label" for="job_role">Ιδιότητα:</label>
+                            <select class="select-input" name="job_role" id="job_role" required>
+                                <option value="" selected disabled>Επιλέξτε Ιδιότητα</option>
+                                @foreach($job_roles as $job_role)
+                                    <option value="{{$job_role->id}}"
+                                            @if($job_role->id == $teacher->teacher->job_role->id) selected @endif >{{$job_role->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-3 btn-container">

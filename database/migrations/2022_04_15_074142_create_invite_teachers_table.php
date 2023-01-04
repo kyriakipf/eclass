@@ -22,6 +22,7 @@ class CreateInviteTeachersTable extends Migration
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('token', 16)->unique();
             $table->integer('tmima');
+            $table->integer('job_role_id');
             $table->boolean('invited')->default(false);
             $table->timestamps();
         });

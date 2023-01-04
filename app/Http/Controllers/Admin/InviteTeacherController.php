@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\InviteTeacherCreated;
 use App\Models\Domain;
 use App\Models\InviteTeacher;
+use App\Models\JobRole;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -18,7 +19,8 @@ class InviteTeacherController extends Controller
         $domains = Domain::all();
         $teachers = InviteTeacher::where('role_id', '=' , 2)->get();
         $registeredTeachers = Teacher::all();
-        return view('admin.invited.manageTeacher', ['entities' => $teachers, 'registered' => $registeredTeachers,'domains' => $domains]);
+        $job_roles = JobRole::all();
+        return view('admin.invited.manageTeacher', ['entities' => $teachers, 'registered' => $registeredTeachers,'domains' => $domains, 'job_roles' => $job_roles]);
     }
 
     public function store(Request $request)
@@ -34,6 +36,7 @@ class InviteTeacherController extends Controller
             'name' => $request->name,
             'surname' => $request->surname,
             'tmima' => $request->domain,
+            'job_role_id' => $request->job_role,
             'role_id' => 2,
             'invited'=> false,
             'token' => $token
@@ -74,7 +77,7 @@ class InviteTeacherController extends Controller
     }
 
     public function update(Request $request ,InviteTeacher $teacher){
-        $teacher->update(['name' => $request->name , 'surname' => $request->surname , 'email' => $request->email, 'tmima' => $request->domain]);
+        $teacher->update(['name' => $request->name , 'surname' => $request->surname , 'email' => $request->email,  'job_role_id' => $request->job_role, 'tmima' => $request->domain]);
 
 //        return redirect()->back();
         return redirect()->route('teacher.invite')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');
@@ -82,8 +85,9 @@ class InviteTeacherController extends Controller
 
     public function show(InviteTeacher $teacher){
         $domains = Domain::all();
+        $job_roles = JobRole::all();
 
-        return view('admin.invited.editTeacher' , ['domains' => $domains , 'teacher' => $teacher]);
+        return view('admin.invited.editTeacher' , ['domains' => $domains , 'teacher' => $teacher, 'job_roles' => $job_roles]);
     }
 
     public function delete(InviteTeacher $teacher){

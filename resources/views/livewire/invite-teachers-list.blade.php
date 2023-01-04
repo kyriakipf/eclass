@@ -7,6 +7,7 @@
                 <th class="sort title">Επίθετο</th>
                 <th class="sort title">Email</th>
                 <th class="title">Τμήμα</th>
+                <th class="title">Ιδιότητα</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -25,6 +26,9 @@
                     </td>
                     <td class="col-md-3">
                         <p class="paragraph">{{$user->domain->name}}</p>
+                    </td>
+                    <td class="col-md-3">
+                        <p class="paragraph">{{$user->teacher->job_role->name}}</p>
                     </td>
                     <td>
                         <a href="{{route('teacher.invite.show' , $user)}}" class="edit"><i

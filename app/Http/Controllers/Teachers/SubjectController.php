@@ -69,7 +69,7 @@ class SubjectController extends Controller
         $semester = $request->semester;
         $teacherId = $request->teacherId;
         $description = $request->description;
-        $tmimaId = auth()->user()->tmima;
+        $tmimaId = auth()->user()->domain_id;
         $this->subjectRepository->storeSubject($title, $semester, $teacherId, $description, $tmimaId, $public, $password);
 
         return redirect()->back();

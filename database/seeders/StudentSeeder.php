@@ -19,8 +19,8 @@ class StudentSeeder extends Seeder
         DB::table('students')->insert(array(
             array('id'=> 1,'user_id' => 3,
                 'am' => 'e16115',
-                'phone'=>'6978825240',
-                'address'=>'Aristeidou 21',
+                'phone' => '6978825240',
+                'address' => 'Aristeidou 21',
                 'member_since'=> Carbon::create('2016', '10', '01'),
                 )
         ));

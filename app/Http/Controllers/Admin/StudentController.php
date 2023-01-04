@@ -31,7 +31,7 @@ class StudentController extends Controller
             'name' => $invite->name,
             'surname' => $invite->surname,
             'password' => $pass,
-            'tmima' => $invite->tmima,
+            'domain_id' => $invite->tmima,
             'role_id' => 3
         ]);
         $user->save();
@@ -54,7 +54,7 @@ class StudentController extends Controller
 
     public function update(Request $request ,User $student){
         $student->student->update(['am' => $request->am]);
-        $student->update(['tmima' => $student->tmima ,'name' => $request->name , 'surname' => $request->surname , 'email' => $request->email]);
+        $student->update(['domain_id' => $student->domain_id ,'name' => $request->name , 'surname' => $request->surname , 'email' => $request->email]);
 
         return redirect()->route('students')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');
     }

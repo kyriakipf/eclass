@@ -40,7 +40,7 @@ class StudentList extends Component
     public function render()
     {
 
-        $query= DB::table('users')->where('role_id', '=', 3)->where('tmima','=',auth()->user()->tmima)
+        $query= DB::table('users')->where('role_id', '=', 3)->where('domain_id','=',auth()->user()->domain_id)
             ->join('students', 'students.user_id', 'users.id');
 
         if($this->sortField == 'am'){

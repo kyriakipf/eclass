@@ -1,11 +1,11 @@
-@extends('layouts.teacher')
+@extends('layouts.student')
 @section('header')
     admin dashboard
 @endsection
 @section('content')
     <div class="mainInfo">
         <div class="bottom-section">
-            <form action="{{route('teacher.info.update')}}" method="post">
+            <form action="{{route('student.info.update')}}" method="post">
                 @csrf
                 <div class="form-container row">
                     <div class=" col-md-3">
@@ -26,12 +26,12 @@
                     <div class=" col-md-3">
                         <label for="phone" class="input-label">Κινητό Τηλέφωνο</label>
                         <input name="phone" id="phone" type="text"
-                               placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->teacher->phone}}">
+                               placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->student->phone}}">
                     </div>
                     <div class=" col-md-3">
-                        <label for="address" class="input-label">Διεύθυνση Γραφείου</label>
+                        <label for="address" class="input-label">Διεύθυνση</label>
                         <input name="address" id="address" type="text"
-                               placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->teacher->office_address}}">
+                               placeholder="Γράψτε εδώ..." class="text-input" value="{{auth()->user()->student->address}}">
                     </div>
                     <div class="btn-container col-md-2">
                         <button type="submit" class="button bold ">Ενημέρωση</button>

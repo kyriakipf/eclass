@@ -9,13 +9,16 @@ use Illuminate\Support\Facades\Session;
 
 class CustomAuthController extends Controller
 {
-    public function signOut() {
+    public function signOut()
+    {
         Session::flush();
         Auth::logout();
 
         return Redirect('/');
     }
-    public function changePasswordView(){
+
+    public function changePasswordView()
+    {
 //        dd();
         switch (strtolower(auth()->user()->role->role_name))
         {
@@ -30,26 +33,39 @@ class CustomAuthController extends Controller
     }
 
 
-    public function changePassword(Request $request){
+    public function changePassword(Request $request)
+    {
         $request->validate([
             'oldPassword' => 'required',
             'newPassword' => 'required',
             'confirmPassword' => 'required',
         ]);
         $user = Auth::user();
-        if (Hash::check($request->oldPassword, $user->password)){
-            if ($request->newPassword === $request->confirmPassword){
+        $pass = $user->password;
+
+        if (Hash::check($request->oldPassword, $pass))
+        {
+
+            if (Hash::check($request->newPassword, $pass))
+            {
+                return back()->with('error', "New password can't be the same as the old password!");
+            }
+
+            if ($request->newPassword === $request->confirmPassword)
+            {
                 $user->password = Hash::make($request->newPassword);
                 $user->save();
-            }else{
-                return back()->with('error', 'New paswords do not match!');
+                return back()->with('success', 'Password changed');
+            }else
+            {
+                return back()->with('error', 'New passwords do not match!');
             }
-        }else{
+
+        }else
+        {
             return back()->with('error', 'Current password does not match!');
         }
 
-        if (!Hash::check($request->current_password, $user->password)) {
-            return back()->with('error', 'Current password does not match!');
-        }
+
     }
 }

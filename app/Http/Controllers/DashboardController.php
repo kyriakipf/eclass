@@ -27,7 +27,7 @@ class DashboardController extends Controller
 
         if ($user->role_id == 1)
         {
-            return view('admin.index', ['teachers' => $teachers, 'students' => $students, 'invitedTeachers' => $invitedTeachers, 'invitedStudents' => $invitedStudents, 'subjects' => $subjects]);
+            return view('admin.index', ['teachers' => $teachers, 'students' => $students, 'invitedTeachers' => $invitedTeachers, 'invitedStudents' => $invitedStudents, 'subjects' => $subjects , 'activeSubjects' => $activeSubs]);
         } elseif ($user->role_id == 2)
         {
             return view('teacher.index', ['subjects' => $activeSubs]);
@@ -45,6 +45,13 @@ class DashboardController extends Controller
 
     private function getCurrentSubjects($role)
     {
+        $currMonth = Carbon::now()->month;
+        $type = 'Εαρινό';
+
+        if ($currMonth > 2 && $currMonth < 8)
+        {
+            $type = 'Χειμερινό';
+        }
 
         switch ($role)
         {
@@ -56,16 +63,10 @@ class DashboardController extends Controller
                 $relation = 'student';
                 $id = auth()->user()->student->id;
                 break;
+            case 'Administrator':
+                return Subject::query()->whereRelation('semester', 'type', '=', $type)->get();
             default:
                 return 'Unkown role';
-        }
-
-        $currMonth = Carbon::now()->month;
-        $type = 'Εαρινό';
-
-        if ($currMonth > 2 && $currMonth < 8)
-        {
-            $type = 'Χειμερινό';
         }
 
         return Subject::query()->whereRelation($relation, $relation . '_id', '=', $id)->whereRelation('semester', 'type', '=', $type)->get();

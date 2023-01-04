@@ -16,7 +16,7 @@ class TeacherSeeder extends Seeder
     {
         DB::table('teachers')->delete();
         DB::table('teachers')->insert(array(
-            array('id'=> 1,'user_id' => 2,  'phone' => '6979924250', 'eidikotita' => 'Pliroforiki', 'idiotita' => 'Epikouros', 'office_address' => 'Ipsilantou 12')
+            array('id'=> 1,'user_id' => 2,  'phone' => '6979924250', 'job_role_id' => 1, 'office_address' => 'Ipsilantou 12')
         ));
     }
 }

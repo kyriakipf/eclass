@@ -11,9 +11,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\Teachers\EmailController;
-use App\Http\Controllers\Teachers\FileUploadController;
 use App\Http\Controllers\Teachers\GroupController;
 use App\Http\Controllers\Teachers\HomeworkController;
 use App\Http\Controllers\Teachers\InfoController;
@@ -40,11 +38,11 @@ Route::get('/', function () {return view('auth.login');});
 Route::get('signout', [CustomAuthController::class, 'signout'])->middleware(['auth'])->name('signout');
 Route::get('dashboard',[DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
+//Password
 Route::get('change/password/view', [CustomAuthController::class, 'changePasswordView'])->middleware(['auth'])->name('change.password.view');
 Route::post('change/password/store', [CustomAuthController::class, 'changePassword'])->middleware(['auth'])->name('change.password.store');
 
 //Invites
-
 Route::post('{invite}/teacher/store', [TeacherController::class, 'store'])->name('teacher.store');
 Route::post('{invite}/student/store', [StudentController::class, 'store'])->name('student.store');
 
@@ -57,7 +55,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
 
         Route::get('{teacher}/show', [TeacherController::class, 'show'])->name('teacher.show');
         Route::get('{teacher}/invite/show', [InviteTeacherController::class, 'show'])->name('teacher.invite.show');
-        Route::post('{teacher}/update', [TeacherController::class, 'update'])->name('teacher.update');
+        Route::post('{user}/update', [TeacherController::class, 'update'])->name('teacher.update');
         Route::post('{teacher}/invite/update', [InviteTeacherController::class, 'update'])->name('teacher.invite.update');
         Route::get('{teacher}/delete', [TeacherController::class, 'delete'])->name('teacher.delete');
         Route::get('{teacher}/invite/delete', [InviteTeacherController::class, 'delete'])->name('teacher.invite.delete');
@@ -93,13 +91,18 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
         Route::get('/search', [SearchStudentController::class, 'searchIndex'])->name('student.search');
         Route::match(['get', 'post'],'/search/form', [SearchStudentController::class, 'search'])->name('student.search.form');
     });
-
     Route::group(['prefix' => 'email'], function() {
         Route::get('create', [AdminSendEmailController::class, 'create'])->name('admin.email.create');
         Route::get('index', [AdminSendEmailController::class, 'index'])->name('admin.email');
         Route::get('send', [AdminSendEmailController::class, 'process'])->name('admin.email.process');
         Route::get('{email}/show', [EmailController::class, 'show'])->name('admin.email.show');
         Route::get('{email}/delete', [EmailController::class, 'delete'])->name('admin.email.delete');
+    });
+    Route::group(['prefix' => 'subject'], function (){
+        Route::get('index', [App\Http\Controllers\Admin\SubjectController::class , 'index'])->name('admin.subjects');
+    Route::get('{subject}/show', [App\Http\Controllers\Admin\SubjectController::class, 'show'])->name('admin.subject.show');
+    Route::get('{subject}/directory/{folder}/show', [App\Http\Controllers\Admin\SubjectController::class, 'directoryShow'])->name('admin.subject.directory.show');
+        Route::get('{subject}/file/{file}/download', [App\Http\Controllers\Admin\SubjectController::class, 'fileDownload'])->name('admin.subject.file.download');
     });
     Route::get('template/{name}/download', [\App\Http\Controllers\DownloadTemplateController::class, 'downloadTemplate'])->name('template.download');
 
@@ -155,7 +158,6 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::match(['get', 'post'],'/search/form', [SearchHomeworkController::class, 'search'])->name('homework.search.form');
     });
 
-
     //Email
     Route::group(['prefix' => 'email'], function(){
         Route::get('index', [EmailController::class, 'index'])->name('teacher.email');
@@ -174,6 +176,28 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
 });
 
 
+//Student
+Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function(){
+
+    //Info
+    Route::group(['prefix' => 'info'], function(){
+        Route::get('/', [App\Http\Controllers\Students\InfoController::class, 'show'])->name('student.info.show');
+        Route::get('/edit', [App\Http\Controllers\Students\InfoController::class, 'edit'])->name('student.info.edit');
+        Route::post('/update', [App\Http\Controllers\Students\InfoController::class, 'update'])->name('student.info.update');
+    });
+
+    //Subject
+    Route::group(['prefix' => 'subject'], function(){
+        Route::get('/', [App\Http\Controllers\Students\SubjectController::class, 'index'])->name('student.subjects');
+        Route::get('/all', [App\Http\Controllers\Students\SubjectController::class, 'getAll'])->name('student.subject.all');
+        Route::get('/register/form', [App\Http\Controllers\Students\SubjectController::class, 'registerForm'])->name('student.subject.register.form');
+        Route::post('/{subject}/register', [App\Http\Controllers\Students\SubjectController::class, 'register'])->name('student.subject.register');
+        Route::get('{subject}/show', [App\Http\Controllers\Students\SubjectController::class, 'show'])->name('student.subject.show');
+        Route::get('{subject}/directory/{folder}/show', [App\Http\Controllers\Students\SubjectController::class, 'directoryShow'])->name('student.subject.directory.show');
+        Route::get('{subject}/file/{file}/download', [App\Http\Controllers\Students\SubjectController::class, 'fileDownload'])->name('student.subject.file.download');
+    });
+
+});
 
 
 

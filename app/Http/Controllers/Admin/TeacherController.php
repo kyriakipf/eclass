@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Domain;
 use App\Models\Invite;
 use App\Models\InviteTeacher;
+use App\Models\JobRole;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,13 +32,14 @@ class TeacherController extends Controller
             'name' => $invite->name,
             'surname' => $invite->surname,
             'role_id' => 2,
-            'tmima' => $invite->tmima,
+            'domain_id' => $invite->tmima,
             'password' => $pass
         ]);
         $user->save();
 
         $teacher = new Teacher([
             'user_id'=>$user->id,
+            'job_role_id' => $invite->job_role_id,
         ]);
         $teacher->save();
         // delete the invite so it can't be used again
@@ -48,12 +50,16 @@ class TeacherController extends Controller
 
     public function show(User $teacher){
         $domains = Domain::all();
+        $job_roles = JobRole::all();
 
-        return view('admin.registered.editTeacher' , ['domains' => $domains , 'teacher' => $teacher]);
+        return view('admin.registered.editTeacher' , ['domains' => $domains , 'teacher' => $teacher, 'job_roles' => $job_roles]);
     }
 
-    public function update(Request $request ,User $teacher){
-        $teacher->update(['tmima' => $teacher->tmima,'name' => $request->name , 'surname' => $request->surname , 'email' => $request->email]);
+    public function update(Request $request ,User $user){
+        $user->update(['domain_id' => $user->domain_id,'name' => $request->name , 'surname' => $request->surname , 'email' => $request->email]);
+//dd($user);
+       $teacher =  Teacher::query()->where('user_id', '=', $user->id)->first();
+       $teacher->update(['job_role_id' => $request->job_role]);
 
         return redirect()->route('teachers')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');
     }

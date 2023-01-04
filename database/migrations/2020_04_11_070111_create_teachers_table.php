@@ -18,8 +18,8 @@ class CreateTeachersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('phone')->nullable();
-            $table->string('eidikotita')->nullable();
-            $table->string('idiotita')->nullable();
+            $table->unsignedBigInteger('job_role_id')->nullable();
+            $table->foreign('job_role_id')->references('id')->on('job_roles')->onDelete('cascade');
             $table->string('office_address')->nullable();
             $table->timestamps();
         });

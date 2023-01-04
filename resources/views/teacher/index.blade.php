@@ -8,7 +8,6 @@
             <p class="header">Αρχική</p>
             <div class="card-container row">
                 <div class="card-body col-md-4">
-                    <p class="title">Calendar</p>
                     <div class="row">
                         <div class="active subjects col-md-7">
                             Τα μαθήματα των τωρινών εξαμήνων
@@ -59,6 +58,7 @@
                             </table>
                         </div>
                         <div class="col-md-5">
+                            <p class="title">Calendar</p>
                             <livewire:events-calendar
                                 before-calendar-view="vendor/livewire-calendar/before"
                                 after-calendar-view="vendor/livewire-calendar/after"

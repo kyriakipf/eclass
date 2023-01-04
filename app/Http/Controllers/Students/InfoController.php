@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Teachers;
+namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
-use App\Models\Teacher;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,23 +11,23 @@ class InfoController extends Controller
 {
     public function show()
     {
-        return view('teacher.Info.showInfo');
+        return view('student.Info.showInfo');
     }
 
 
     public function edit()
     {
-        return view('teacher.info.editInfo');
+        return view('student.info.editInfo');
     }
 
 
     public function update(Request $request)
     {
         $userId = auth()->user()->id;
-        $teacherId = auth()->user()->teacher->id;
+        $studentId = auth()->user()->student->id;
 
         $user = User::find($userId);
-        $teacher = Teacher::find($teacherId);
+        $student = Student::find($studentId);
 
         $user->update([
             'email' => $request->email,
@@ -35,13 +35,12 @@ class InfoController extends Controller
             'surname' => $request->surname
         ]);
 
-        $teacher->update([
-            'idiotita' => $request->idiotita,
-            'office_address' => $request->address,
+        $student->update([
+            'address' => $request->address,
             'phone' => $request->phone
         ]);
 
-        return view('teacher.Info.showInfo');
+        return view('student.Info.showInfo');
     }
 
 }

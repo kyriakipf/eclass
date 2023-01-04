@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="{{asset("css/v4-shims.css")}}">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    @yield('stylesheets')
     <link rel="stylesheet" href="{{asset("css/styles.css")}}">
+    @yield('stylesheets')
     <title>@yield('title') - eClass</title>
 
 </head>
@@ -43,48 +43,44 @@
                 <ul class="nav-bar">
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-user-tie"></i>Καθηγητές</p>
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Μαθήματα</p>
                             <div class="dropdown-content">
-                                <a href="{{route('teacher.invite')}}" class="menu">Προσθήκη</a>
-                                <a href="{{route('teachers')}}" class="menu">Προβολή</a>
+                                <a href="{{route('student.subjects')}}" class="menu">Τα Μαθήματα μου</a>
+                                <a href="{{route('student.subject.all')}}" class="menu">Εγγραφή σε Μάθημα</a>
                             </div>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Φοιτητές</p>
+                            <p class="menu"><i class="fa-solid fa-clipboard-calendar"></i>Ημερολόγιο</p>
                             <div class="dropdown-content">
-                                <a href="{{route('student.invite')}}" class="menu">Προσθήκη</a>
-                                <a href="{{route('students')}}" class="menu">Προβολή</a>
+                                <a href="#" class="menu">Προβολή</a>
                             </div>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-message-dots"></i>Μηνύματα</p>
+                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Μηνύματα</p>
                             <div class="dropdown-content">
-                                <a href="{{route('admin.email.create')}}" class="menu">Προσθήκη</a>
-                                <a href="{{route('admin.email')}}" class="menu">Προβολή</a>
+                                <a href="#" class="menu">Δημιουργία</a>
+                                <a href="#" class="menu">Προβολή</a>
                             </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <a href="{{route('admin.subjects')}}" ><p class="menu"><i class="fa-solid fa-books"></i>Μαθήματα</p></a>
                         </div>
                     </li>
                 </ul>
+
             </div>
             <div class="userSettings">
                 <div class="dropdown">
-                    <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i class="fa-solid fa-angle-down"></i></p>
+                    <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i
+                            class="fa-solid fa-angle-down"></i></p>
                     <div class="dropdown-content">
+                        <a href="{{route('student.info.show')}}" class="menu">Πληροφορίες</a>
                         <a href="{{route('change.password.view')}}" class="menu">Αλλαγή Κωδικού</a>
                         <a href="{{route('signout')}}" class="menu">Αποσύνδεση</a>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="content">
             <div class="content-container">

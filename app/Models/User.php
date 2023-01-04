@@ -25,7 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
-        'tmima'
+        'domain_id'
     ];
 
     /**
@@ -64,7 +64,7 @@ class User extends Authenticatable
 
     public function domain()
     {
-        return $this->belongsTo(Domain::class, 'tmima', 'id', '=');
+        return $this->belongsTo(Domain::class, 'domain_id', 'id', '=');
     }
 
     public function homework()
@@ -73,14 +73,14 @@ class User extends Authenticatable
     }
 
     public function getRelatedTeachers(){
-        $domain = auth()->user()->tmima;
-        $teachers = User::query()->where('tmima', '=',$domain)->where('role_id','=',2)->get();
+        $domain = auth()->user()->domain_id;
+        $teachers = User::query()->where('domain_id', '=',$domain)->where('role_id','=',2)->get();
         return $teachers;
     }
 
     public function getRelatedStudents(){
-        $domain = auth()->user()->tmima;
-        $students = User::query()->where('tmima','=',$domain)->where('role_id','=',3)->get();
+        $domain = auth()->user()->domain_id;
+        $students = User::query()->where('domain_id','=',$domain)->where('role_id','=',3)->get();
         return $students;
     }
 }

@@ -14,8 +14,6 @@ class Student extends Model
         'am',
         'phone',
         'address',
-        'profile_image',
-        'profile_image_path',
         'member_since'
     ];
 

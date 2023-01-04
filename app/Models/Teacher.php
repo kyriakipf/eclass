@@ -12,8 +12,7 @@ class Teacher extends Model
     protected $fillable = [
     'user_id',
     'phone',
-    'eidikotita',
-    'idiotita',
+    'job_role_id',
     'office_address'
 ];
     use HasFactory;
@@ -26,6 +25,11 @@ class Teacher extends Model
     public function subject()
     {
         return $this->belongsToMany(Subject::class, 'subject_teachers', 'teacher_id', 'subject_id')->withTimestamps();
+    }
+
+    public function job_role()
+    {
+        return $this->belongsTo(JobRole::class);
     }
 
 }

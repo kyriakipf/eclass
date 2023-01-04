@@ -34,7 +34,7 @@ class TeacherList extends Component
     public function render()
     {
         $users = User::where('role_id', '=' , '2')
-            ->where('tmima', '=',auth()->user()->tmima)
+            ->where('domain_id', '=',auth()->user()->domain_id)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
         return view('livewire.teacher-list', [
