@@ -33,7 +33,7 @@
                     <p>Αρχεία</p>
                     @foreach($files as $file)
                         <div>
-                            <a href="{{route('subject.file.download', ['file' => basename($file), 'subject' => $subject])}}" >{{basename($file)}}</a>
+                            <a href="{{route('subject.file.download', ['file' => basename($file), 'subject' => $subject])}}">{{basename($file)}}</a>
                         </div>
                     @endforeach
                 @else
@@ -58,11 +58,13 @@
             <div class="homework">
                 <h3>Εργασίες</h3>
                 <a href="{{route('homework.create')}}">Προσθήκη Εργασίας</a>
-                @foreach($homeworks as $homework)
-                    <div>
-                        <a href="{{route('homework.show' , $homework)}}">{{$homework->title}}</a>
-                    </div>
-                @endforeach
+                @if(count($subject->homework) != 0)
+                    @foreach($subject->homework as $homework)
+                        <div>
+                            <a href="{{route('homework.show' , $homework)}}">{{$homework->title}}</a>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
 @endsection

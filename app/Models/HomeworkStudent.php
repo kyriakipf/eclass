@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubjectStudent extends Model
+class HomeworkStudent extends Model
 {
-    use HasFactory;
-
-    protected $fillable = [
-        'subject_id',
+    protected $fillable =[
+        'homework_id',
         'student_id',
+        'filename',
+        'filepath'
     ];
+
+    use HasFactory;
 }

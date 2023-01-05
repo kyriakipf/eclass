@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Students;
 use App\Http\Controllers\Controller;
 use App\Models\File;
 use App\Models\Subject;
+use App\Models\SubjectStudent;
 use App\Models\SubjectTeacher;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -78,5 +79,47 @@ class SubjectController extends Controller
         $file = File::query()->where('subject_id', '=', $subject->id)->where('filename', '=', $fileName)->first();
 
         return Storage::download($file->filepath . '/' . $fileName);
+    }
+
+
+    public function register(Request $request)
+    {
+        $subject = Subject::find($request->id);
+
+        $student = auth()->user()->student->id;
+
+        if (is_null($subject->password))
+        {
+            SubjectStudent::create([
+                'subject_id' => $request->id,
+                'student_id' => $student
+            ]);
+
+            return response()->json('Εγγραφήκατε στο μάθημα ' . $subject->title . ' 😇');
+        }
+
+        if ($subject->password == $request->pass)
+        {
+            SubjectStudent::create([
+                'subject_id' => $request->id,
+                'student_id' => $student
+            ]);
+
+            return response()->json('Εγγραφήκατε στο μάθημα ' . $subject->name . '😇');
+        }
+
+        return response()->json('LATHOS TSIRKO OLOKLIRO 👿 👹 👺')->setStatusCode('401');
+    }
+
+    public function unregister(Request $request)
+    {
+        $subject = Subject::find($request->id);
+        $student = auth()->user()->student->id;
+
+        $relation = SubjectStudent::query()->where('subject_id', '=', $request->id)->where('student_id', '=', $student)->first();
+        $relation->delete();
+
+        return response()->json('Απεγγραφήκατε από το μάθημα ' . $subject->name . ' 🤬');
+
     }
 }

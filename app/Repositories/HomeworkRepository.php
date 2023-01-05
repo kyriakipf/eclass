@@ -3,10 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Homework;
-use App\Models\Teacher;
+use App\Models\HomeworkStudent;
 use Illuminate\Support\Facades\DB;
-use function PHPUnit\Framework\isEmpty;
-use function PHPUnit\Framework\isNull;
 
 class HomeworkRepository
 {
@@ -88,5 +86,13 @@ class HomeworkRepository
         $homework->update([
           'filepath' => null
         ]);
+    }
+
+    public function createStudentRelation($homework, $studentId, string $file_path, string $filename)
+    {
+        $homework->students()->attach($studentId, [
+            'filename' => $filename,
+            'filepath' => $file_path . DIRECTORY_SEPARATOR . $filename
+            ]);
     }
 }

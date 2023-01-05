@@ -191,12 +191,27 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth']], function(){
         Route::get('/', [App\Http\Controllers\Students\SubjectController::class, 'index'])->name('student.subjects');
         Route::get('/all', [App\Http\Controllers\Students\SubjectController::class, 'getAll'])->name('student.subject.all');
         Route::get('/register/form', [App\Http\Controllers\Students\SubjectController::class, 'registerForm'])->name('student.subject.register.form');
-        Route::post('/{subject}/register', [App\Http\Controllers\Students\SubjectController::class, 'register'])->name('student.subject.register');
+        Route::post('/register', [App\Http\Controllers\Students\SubjectController::class, 'register'])->name('student.subject.register');
+        Route::post('/unregister', [App\Http\Controllers\Students\SubjectController::class, 'unregister'])->name('student.subject.unregister');
         Route::get('{subject}/show', [App\Http\Controllers\Students\SubjectController::class, 'show'])->name('student.subject.show');
         Route::get('{subject}/directory/{folder}/show', [App\Http\Controllers\Students\SubjectController::class, 'directoryShow'])->name('student.subject.directory.show');
         Route::get('{subject}/file/{file}/download', [App\Http\Controllers\Students\SubjectController::class, 'fileDownload'])->name('student.subject.file.download');
     });
 
+    //Homework
+    Route::group(['prefix' => 'homework'],function(){
+        Route::get('{homework}/show', [App\Http\Controllers\Students\HomeworkController::class, 'show'])->name('student.homework.show');
+        Route::get('{homework}/file/download', [App\Http\Controllers\Students\HomeworkController::class, 'fileDownload'])->name('student.homework.file.download');
+        Route::get('{homework}/self/file/download', [App\Http\Controllers\Students\HomeworkController::class, 'selfFileDownload'])->name('student.homework.selffile.download');
+        Route::post('{homework}/file/upload', [App\Http\Controllers\Students\HomeworkController::class, 'fileStore'])->name('student.homework.file.store');
+    });
+
+    //Group
+    Route::group(['prefix' => 'group'],function(){
+        Route::post('/register', [App\Http\Controllers\Students\GroupController::class, 'register'])->name('student.group.register');
+        Route::post('/unregister', [App\Http\Controllers\Students\GroupController::class, 'unregister'])->name('student.group.unregister');
+        Route::get('{group}/show', [App\Http\Controllers\Students\GroupController::class, 'show'])->name('student.group.show');
+    });
 });
 
 

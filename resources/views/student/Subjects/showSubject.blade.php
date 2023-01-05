@@ -31,7 +31,7 @@
                     <p>Αρχεία</p>
                     @foreach($files as $file)
                         <div>
-                            <a href="{{route('student.subject.file.download', ['file' => basename($file), 'subject' => $subject])}}" >{{basename($file)}}</a>
+                            <a href="{{route('student.subject.file.download', ['file' => basename($file), 'subject' => $subject])}}">{{basename($file)}}</a>
                         </div>
                     @endforeach
                 @else
@@ -47,18 +47,79 @@
                 @if(count($subject->groups) != 0)
                     @foreach($subject->groups as $group)
                         <div class="group-info">
-{{--                            <a href="{{route('student.group.show' , $group)}}">{{$group->title}}</a>--}}
+                            <a href="{{route('student.group.show',['group' => $group])}}">{{$group->title}}
+                                {{count($group->student)}}/{{$group->capacity}}</a>
+                            <input type="checkbox" value="{{$group->id}}" class="group-submit"
+                                   @foreach(auth()->user()->student->groups as $gr) @if($gr->id == $group->id ) checked @endif @endforeach>
                         </div>
                     @endforeach
                 @endif
             </div>
             <div class="homework">
                 <h3>Εργασίες</h3>
-                @foreach($homeworks as $homework)
-                    <div>
-{{--                        <a href="{{route('student.homework.show' , $homework)}}">{{$homework->title}}</a>--}}
-                    </div>
-                @endforeach
+                @if(count($subject->homework) != 0)
+                    @foreach($subject->homework as $homework)
+                        <div>
+                            <a href="{{route('student.homework.show', ['homework' => $homework])}}">{{$homework->title}}</a>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
+    </div>
+@endsection
+@section('javascripts')
+    <script>
+        let pending = false;
+        $(document).ready(function () {
+            $('.group-submit').on('click', function (e) {
+                e.preventDefault()
+                if (pending) {
+                    return
+                }
+                const checked = $(this)[0].checked;
+                const gid = $(this).val()
+                if (checked) {
+                    registerGroup(gid, $(this))
+                } else {
+                    unRegisterGroup(gid, $(this))
+                }
+            })
+        });
+
+        function registerGroup(gid, checkbox) {
+            pending = true
+            $.post("{{route('student.group.register')}}", {id: gid})
+                .done(function (res) {
+                    toastr.success(res);
+                    checkbox.prop("checked", true)
+                })
+                .error(function (err) {
+                    toastr.error(err.responseJSON)
+                    checkbox.prop("checked", false)
+                })
+                .always(function () {
+                    pending = false
+                })
+
+            ;
+        }
+
+        function unRegisterGroup(cid, checkbox) {
+            pending = true
+            $.post("{{route('student.group.unregister')}}", {id: cid})
+                .done(function (res) {
+                    toastr.warning(res);
+                    checkbox.prop("checked", false)
+                })
+                .error(function (err) {
+                    toastr.error('Κάτι πήγε στραβά :(');
+                    checkbox.prop("checked", true)
+                })
+                .always(function () {
+                    pending = false
+                })
+            ;
+        }
+    </script>
 @endsection

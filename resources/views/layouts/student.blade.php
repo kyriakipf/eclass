@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset("css/v4-shims.css")}}">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{asset("css/styles.css")}}">
     @yield('stylesheets')
     <title>@yield('title') - eClass</title>
@@ -108,6 +109,13 @@
         @elseif(Session::has('warning'))
         toastr.warning('{{ Session::get('warning') }}');
         @endif
+    });
+</script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
 </script>
 @yield('javascripts')
