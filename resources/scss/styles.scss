@@ -24,6 +24,7 @@ body {
                 top: 0;
                 right: 0;
                 padding: 30px 90px 0 80px;
+                justify-content: space-between;
 
                 & .userSettings {
                     & p {
@@ -119,7 +120,9 @@ body {
                         }
                     }
                 }
-
+                & .nav-item{
+                    margin-bottom: 20px;
+                }
                 & .sidebar-header {
 
 
@@ -157,7 +160,6 @@ body {
 
                     & .nav-item {
 
-
                         & a {
 
 
@@ -186,7 +188,7 @@ body {
 
     & .top-section {
         justify-content: space-between;
-        margin-top: 200px;
+        margin-top: 120px;
 
         & .banner {
             width: 440px;
@@ -222,7 +224,7 @@ body {
                     padding: 5px;
 
                     & .counter {
-                        color: $white;
+                        color: $purple;
                         display: flex;
                         font-size: 18px;
                         align-items: flex-end;

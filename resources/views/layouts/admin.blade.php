@@ -34,12 +34,12 @@
 <section id="main">
     <div class="dashboard">
         <div class="sidebar">
-            <div class="sidebar-header col-md-5">
+            <div class="sidebar-header col-md-3">
                 <a href="{{route('dashboard')}}" class="logoLink">
                     <div style="background-image: url({{ asset('assets/img/logo_white.png') }})" class="logo"></div>
                 </a>
             </div>
-            <div class="list-container col-md-6">
+            <div class="list-container col-md-7">
                 <ul class="nav-bar">
                     <li class="nav-item">
                         <div class="dropdown">
@@ -75,9 +75,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="userSettings">
+            <div class="nav-item">
                 <div class="dropdown">
-                    <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i class="fa-solid fa-angle-down"></i></p>
+                    <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i class="fa-solid fa-angle-down fa-sm"></i></p>
                     <div class="dropdown-content">
                         <a href="{{route('change.password.view')}}" class="menu">Αλλαγή Κωδικού</a>
                         <a href="{{route('signout')}}" class="menu">Αποσύνδεση</a>

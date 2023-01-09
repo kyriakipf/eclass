@@ -34,7 +34,7 @@ class DashboardController extends Controller
         } elseif ($user->role_id == 3)
         {
             $student = Student::query()->where('user_id', '=', auth()->user()->id)->first();
-            return view('student.index', ['student' => $student]);
+            return view('student.index', ['student' => $student, 'subjects' => $activeSubs]);
         } else
         {
             return view('login');
@@ -47,8 +47,7 @@ class DashboardController extends Controller
     {
         $currMonth = Carbon::now()->month;
         $type = 'Εαρινό';
-
-        if ($currMonth > 2 && $currMonth < 8)
+        if ($currMonth <= 2 || $currMonth > 8)
         {
             $type = 'Χειμερινό';
         }
@@ -66,7 +65,7 @@ class DashboardController extends Controller
             case 'Administrator':
                 return Subject::query()->whereRelation('semester', 'type', '=', $type)->get();
             default:
-                return 'Unkown role';
+                return 'Unknown role';
         }
 
         return Subject::query()->whereRelation($relation, $relation . '_id', '=', $id)->whereRelation('semester', 'type', '=', $type)->get();

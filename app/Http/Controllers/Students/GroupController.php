@@ -21,7 +21,7 @@ class GroupController extends Controller
                 'student_id' => $student
             ]);
 
-            return response()->json('Εγγραφήκατε στην ομάδα ' . $group->title . '😇');
+            return response()->json('Εγγραφήκατε στην ομάδα ' . $group->title);
     }
 
     public function unregister(Request $request)
@@ -32,7 +32,12 @@ class GroupController extends Controller
         $relation = GroupStudent::query()->where('group_id', '=', $request->id)->where('student_id', '=', $student)->first();
         $relation->delete();
 
-        return response()->json('Απεγγραφήκατε από την ομαδα ' . $group->title . ' 🤬');
+        return response()->json('Απεγγραφήκατε από την ομαδα ' . $group->title);
 
+    }
+
+    public function show(Group $group)
+    {
+        return view('student.groups.showGroup', ['group' => $group]);
     }
 }

@@ -66,5 +66,8 @@
                     @endforeach
                 @endif
             </div>
+            <div class="'email">
+                <a href="{{route('teacher.email.subject.create', ['subject' => $subject])}}">Αποστολή email</a>
+            </div>
         </div>
 @endsection

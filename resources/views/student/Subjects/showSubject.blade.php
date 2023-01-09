@@ -47,10 +47,10 @@
                 @if(count($subject->groups) != 0)
                     @foreach($subject->groups as $group)
                         <div class="group-info">
-                            <a href="{{route('student.group.show',['group' => $group])}}">{{$group->title}}
+                            <a   @foreach(auth()->user()->student->groups as $gr) @if($gr->id == $group->id ) href="{{route('student.group.show',['group' => $group])}}" @endif @endforeach>{{$group->title}}
                                 {{count($group->student)}}/{{$group->capacity}}</a>
                             <input type="checkbox" value="{{$group->id}}" class="group-submit"
-                                   @foreach(auth()->user()->student->groups as $gr) @if($gr->id == $group->id ) checked @endif @endforeach>
+                                   @foreach(auth()->user()->student->groups as $gr) @if($gr->id == $group->id ) checked @elseif(!is_null(auth()->user()->student->groups)) disabled @endif @if(count($group->student) == $group->capacity) disabled @endif @endforeach>
                         </div>
                     @endforeach
                 @endif
@@ -101,8 +101,8 @@
                 .always(function () {
                     pending = false
                 })
-
             ;
+            setTimeout(location.reload.bind(location), 1000);
         }
 
         function unRegisterGroup(cid, checkbox) {
@@ -120,6 +120,7 @@
                     pending = false
                 })
             ;
+            setTimeout(location.reload.bind(location), 1000);
         }
     </script>
 @endsection

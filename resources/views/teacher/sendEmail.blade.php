@@ -24,6 +24,7 @@
                                     : {{$student->user->email}}</option>
                             @endforeach
                         </select>
+                        <input id="selectall" type="checkbox" >Select All
                     </div>
                     <div class="subject col-md-6">
                         <label for="emailSubject" class="input-label">Subject</label>
@@ -49,22 +50,20 @@
     <script>
         var f = $.noConflict();
         f(document).ready(function () {
-            f(".typeSelection").change(function () {
-                f(this).find("option:selected").each(function () {
-                    var optionValue = f(this).attr("value");
-                    if (optionValue) {
-                        f(".select").not("." + optionValue).parent().addClass("disabled");
-                        f("." + optionValue).parent().removeClass("disabled");
-                    } else {
-                        $(".select").addClass("disabled");
-                    }
-                });
-            }).trigger('change');
-
             f('select').each(function () {
                 f(this).select2({
                     closeOnSelect: false,
                     scrollAfterSelect: true
+                });
+
+                f("#selectall").click(function(){
+                    if(f("#selectall").is(':checked')){
+                        f("#userSelect > option").prop("selected", "selected");
+                        f("#userSelect").trigger("change");
+                    } else {
+                        f("#userSelect > option").removeAttr("selected");
+                        f("#userSelect").trigger("change");
+                    }
                 });
             });
         });

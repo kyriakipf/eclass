@@ -25,7 +25,7 @@
         <form action="{{route('student.homework.file.store',['homework' => $homework])}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
-                <input type="file" name="file" class="form-control">
+                <input type="file" name="file" class="form-control" required>
             </div>
             <div class="btn-container col-md-2">
                 <button type="submit" class="button bold ">Προσθήκη Αρχείου</button>

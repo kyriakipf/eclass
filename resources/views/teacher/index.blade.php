@@ -40,6 +40,10 @@
                                                 </a>
                                             </td>
                                             <td>
+                                                <a href="{{route('teacher.email.subject.create', ['subject' => $subject])}}"><i
+                                                        class="fa-regular fa-envelope"></i></a>
+                                            </td>
+                                            <td>
                                                 <a href="{{route('subject.edit' , ['subject' => $subject])}}"
                                                    class="edit"><i
                                                         class="fa-regular fa-pencil"></i></a>

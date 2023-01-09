@@ -162,6 +162,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
     Route::group(['prefix' => 'email'], function(){
         Route::get('index', [EmailController::class, 'index'])->name('teacher.email');
         Route::get('create', [EmailController::class, 'create'])->name('teacher.email.create');
+        Route::get('{subject}/create', [EmailController::class, 'createForSubject'])->name('teacher.email.subject.create');
         Route::get('send', [EmailController::class, 'process'])->name('teacher.email.process');
         Route::get('{email}/show', [EmailController::class, 'show'])->name('teacher.email.show');
         Route::get('{email}/delete', [EmailController::class, 'delete'])->name('teacher.email.delete');
@@ -211,6 +212,16 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth']], function(){
         Route::post('/register', [App\Http\Controllers\Students\GroupController::class, 'register'])->name('student.group.register');
         Route::post('/unregister', [App\Http\Controllers\Students\GroupController::class, 'unregister'])->name('student.group.unregister');
         Route::get('{group}/show', [App\Http\Controllers\Students\GroupController::class, 'show'])->name('student.group.show');
+    });
+
+    //Email
+    Route::group(['prefix' => 'email'], function(){
+        Route::get('index', [App\Http\Controllers\Students\EmailController::class, 'index'])->name('student.email');
+        Route::get('create', [App\Http\Controllers\Students\EmailController::class, 'create'])->name('student.email.create');
+        Route::get('send', [App\Http\Controllers\Students\EmailController::class, 'process'])->name('student.email.process');
+        Route::get('{email}/show', [App\Http\Controllers\Students\EmailController::class, 'show'])->name('student.email.show');
+        Route::get('{email}/delete', [App\Http\Controllers\Students\EmailController::class, 'delete'])->name('student.email.delete');
+        Route::match(['get', 'post'],'/search/form', [App\Http\Controllers\Students\SearchEmailController::class, 'search'])->name('student.email.search.form');
     });
 });
 

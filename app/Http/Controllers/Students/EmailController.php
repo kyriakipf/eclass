@@ -1,36 +1,40 @@
 <?php
 
-namespace App\Http\Controllers\Teachers;
+namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
 use App\Mail\customEmail;
 use App\Models\Message;
-use App\Models\Student;
-use App\Models\Subject;
 use App\Models\Teacher;
-use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class EmailController extends Controller
 {
     public function index()
     {
-        $emails = Message::query()->where('from', '=', auth()->user()->email)->get();
-        return view('teacher.viewEmails', ['emails' => $emails]);
+        $emails = Message::all();
+
+        $mail = new Collection();
+
+        foreach ($emails as $email)
+        {
+            if (Str::contains($email->to, auth()->user()->email))
+            {
+                $mail->push($email);
+            }
+        }
+        return view('student.viewEmails', ['emails' => $mail]);
     }
 
     public function create()
     {
-        $students = Student::query()->whereRelation('user','domain_id','=', auth()->user()->domain_id)->get();
-        return view('teacher.sendEmail', ['students' => $students]);
-    }
+        $teachers = Teacher::query()->whereRelation('user', 'domain_id', '=',  auth()->user()->domain_id)->get();
 
-    public function createForSubject(Subject $subject)
-    {
-        $students = $subject->student;
-        return view('teacher.sendEmail', ['students' => $students]);
+        return view('student.sendEmail', ['teachers' => $teachers]);
     }
 
     public function process(Request $request)
@@ -49,19 +53,18 @@ class EmailController extends Controller
         }
 
         $email->save();
-        return redirect()->route('teacher.email');
+        return redirect()->route('student.email');
     }
 
 
     public function show(Message $email)
     {
-        return view('teacher.showEmail', ['email' => $email]);
+        return view('student.showEmail', ['email' => $email]);
     }
 
     public function delete(Message $email)
     {
         $email->delete();
-        return redirect()->route('teacher.email');
+        return redirect()->route('student.email');
     }
-
 }

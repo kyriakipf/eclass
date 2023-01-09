@@ -8,6 +8,7 @@
                 <th class="sort" wire:click="sortBy('semester_id')">Εξάμηνο</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -24,6 +25,10 @@
                     <td class="col-md-3">
                         <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                 class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p></a>
+                    </td>
+                    <td>
+                        <a href="{{route('teacher.email.subject.create', ['subject' => $subject])}}"><i
+                                class="fa-regular fa-envelope"></i></a>
                     </td>
                     <td>
                         <a href="{{route('subject.edit' , ['subject' => $subject])}}" class="edit"><i

@@ -35,12 +35,12 @@
 <section id="main">
     <div class="dashboard">
         <div class="sidebar">
-            <div class="sidebar-header col-md-5">
+            <div class="sidebar-header col-md-3">
                 <a href="{{route('dashboard')}}" class="logoLink">
                     <div style="background-image: url({{ asset('assets/img/logo_white.png') }})" class="logo"></div>
                 </a>
             </div>
-            <div class="list-container col-md-6">
+            <div class="list-container col-md-7">
                 <ul class="nav-bar">
                     <li class="nav-item">
                         <div class="dropdown">
@@ -63,15 +63,15 @@
                         <div class="dropdown">
                             <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Μηνύματα</p>
                             <div class="dropdown-content">
-                                <a href="#" class="menu">Δημιουργία</a>
-                                <a href="#" class="menu">Προβολή</a>
+                                <a href="{{route('student.email.create')}}" class="menu">Δημιουργία</a>
+                                <a href="{{route('student.email')}}" class="menu">Προβολή</a>
                             </div>
                         </div>
                     </li>
                 </ul>
 
             </div>
-            <div class="userSettings">
+            <div class="nav-item">
                 <div class="dropdown">
                     <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i
                             class="fa-solid fa-angle-down"></i></p>

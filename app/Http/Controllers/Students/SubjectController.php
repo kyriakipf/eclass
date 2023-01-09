@@ -81,7 +81,6 @@ class SubjectController extends Controller
         return Storage::download($file->filepath . '/' . $fileName);
     }
 
-
     public function register(Request $request)
     {
         $subject = Subject::find($request->id);
@@ -95,7 +94,7 @@ class SubjectController extends Controller
                 'student_id' => $student
             ]);
 
-            return response()->json('Εγγραφήκατε στο μάθημα ' . $subject->title . ' 😇');
+            return response()->json('Εγγραφήκατε στο μάθημα ' . $subject->title);
         }
 
         if ($subject->password == $request->pass)
@@ -105,10 +104,10 @@ class SubjectController extends Controller
                 'student_id' => $student
             ]);
 
-            return response()->json('Εγγραφήκατε στο μάθημα ' . $subject->name . '😇');
+            return response()->json('Εγγραφήκατε στο μάθημα ' . $subject->name );
         }
 
-        return response()->json('LATHOS TSIRKO OLOKLIRO 👿 👹 👺')->setStatusCode('401');
+        return response()->json('Λάθος κωδικός')->setStatusCode('401');
     }
 
     public function unregister(Request $request)
@@ -119,7 +118,7 @@ class SubjectController extends Controller
         $relation = SubjectStudent::query()->where('subject_id', '=', $request->id)->where('student_id', '=', $student)->first();
         $relation->delete();
 
-        return response()->json('Απεγγραφήκατε από το μάθημα ' . $subject->name . ' 🤬');
+        return response()->json('Απεγγραφήκατε από το μάθημα ' . $subject->name);
 
     }
 }

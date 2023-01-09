@@ -9,6 +9,9 @@ class Subject extends Model
 {
     use HasFactory;
 
+    /**
+     * @var mixed
+     */
     protected $fillable =[
         'title',
         'summary',
@@ -26,7 +29,7 @@ class Subject extends Model
 
     public function student()
     {
-        return $this->belongsToMany(Teacher::class, 'subject_students', 'subject_id', 'student_id')->withTimestamps();
+        return $this->belongsToMany(Student::class, 'subject_students', 'subject_id', 'student_id')->withTimestamps();
     }
 
     public function groups()
