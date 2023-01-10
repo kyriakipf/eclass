@@ -52,7 +52,7 @@ class SubjectController extends Controller
         $subfolders = Storage::directories($folderpath);
 
         $files = Storage::files($folderpath);
-        return view('teacher.subjects.showSubjectDirectory', ['subfolders' => $subfolders, 'files' => $files, 'subject' => $subject, 'folder' => basename($folderpath)]);
+        return view('admin.subjects.showSubjectDirectory', ['subfolders' => $subfolders, 'files' => $files, 'subject' => $subject, 'folder' => basename($folderpath)]);
     }
 
     public function fileDownload(Subject $subject, $fileName)
