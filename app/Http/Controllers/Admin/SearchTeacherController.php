@@ -25,7 +25,7 @@ class SearchTeacherController extends Controller
         if ($request->domain || $request->search) {
             if ($request->search) {
                 $userQuery->where('role_id', '=', 2)
-                    ->where('tmima','=',auth()->user()->tmima)
+                    ->where('domain_id','=',auth()->user()->domain_id)
                 ->where(function (Builder $query) use ($request) {
                     return $query->where('name', 'like', "%".$request->search."%")
                         ->orWhere('surname', 'like', "%".$request->search."%")

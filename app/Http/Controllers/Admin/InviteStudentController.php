@@ -34,7 +34,7 @@ class InviteStudentController extends Controller
             'surname' => $request->surname,
             'token' => $token,
             'am' => $request->am,
-            'tmima' => $request->domain,
+            'tmima' => auth()->user()->domain_id,
             'role_id' => 3
         ]);
         // redirect back where we came from
@@ -73,7 +73,7 @@ class InviteStudentController extends Controller
     }
 
     public function update(Request $request ,InviteStudent $student){
-        $student->update(['name' => $request->name , 'surname' => $request->surname , 'email' => $request->email, 'tmima' => $request->domain , 'am' => $request->am]);
+        $student->update(['name' => $request->name , 'surname' => $request->surname , 'email' => $request->email, 'tmima' => auth()->user()->domain_id, 'am' => $request->am]);
 
 //        return redirect()->back();
         return redirect()->route('student.invite')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');

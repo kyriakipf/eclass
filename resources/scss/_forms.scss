@@ -45,7 +45,7 @@ form {
         background-color: $white;
         border: 1px solid $lightSubText;
         width: 100%;
-        padding: 65px 0 60px 400px;
+        padding: 65px 0 60px 280px;
         margin: 0 16px 44px 0;
         cursor: pointer;
         align-content: center;
@@ -108,6 +108,10 @@ form {
 
     & .download--btn-container {
         margin-top: 25px;
+    }
+
+    & .disabled {
+        background-color: $gray !important;
     }
 
 }

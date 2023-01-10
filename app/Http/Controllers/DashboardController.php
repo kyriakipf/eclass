@@ -24,10 +24,12 @@ class DashboardController extends Controller
         $subjects = Subject::all();
         $user = auth()->user();
         $activeSubs = $this->getCurrentSubjects(auth()->user()->role->role_name);
+        $summerSubjects = Subject::query()->whereRelation('semester','type', '=', 'Εαρινό')->get();
+        $winterSubjects = Subject::query()->whereRelation('semester','type', '=', 'Χειμερινό')->get();
 
         if ($user->role_id == 1)
         {
-            return view('admin.index', ['teachers' => $teachers, 'students' => $students, 'invitedTeachers' => $invitedTeachers, 'invitedStudents' => $invitedStudents, 'subjects' => $subjects , 'activeSubjects' => $activeSubs]);
+            return view('admin.index', ['teachers' => $teachers, 'students' => $students, 'invitedTeachers' => $invitedTeachers, 'invitedStudents' => $invitedStudents, 'subjects' => $subjects , 'activeSubjects' => $activeSubs, 'winterSubjects' => $winterSubjects, 'summerSubjects'=>$summerSubjects]);
         } elseif ($user->role_id == 2)
         {
             return view('teacher.index', ['subjects' => $activeSubs]);

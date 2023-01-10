@@ -37,20 +37,44 @@
                     </div>
                 </div>
             </div>
+            <div class="stats-container col-md-5">
+                <div class="stats col-md-5">
+                    <div class="subtitle">
+                        <p><i class="fa-solid fa-books"></i> Χειμερινό:</p>
+                    </div>
+                    <div class="data">
+                        <div class="counter">
+                            <p class="number">{{count($winterSubjects)}}</p>
+                            <p>Μαθήματα</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats col-md-5">
+                    <div class="subtitle">
+                        <p><i class="fa-solid fa-books"></i> Εαρινό:</p>
+                    </div>
+                    <div class="data">
+                        <div class="counter">
+                            <p class="number">{{count($summerSubjects)}}</p>
+                            <p>Μαθήματα</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="bottom-section col-md-12 row">
-        <div class="subtitle col-md-6">
-            Μαθήματα Εξαμήνου
+        <div class="col-md-6">
+            <p class="title">Μαθήματα Τρέχοντος Εξαμήνου</p>
             <table>
                 @if(!is_null($activeSubjects))
                     <thead>
-                    <tr class="tableRow colTitles">
-                        <th class="subtitle">Τιτλος</th>
-                        <th class="subtitle">Περιγραφη</th>
-                        <th class="subtitle">Καθηγητής</th>
-                        <th class="subtitle">Εξάμηνο</th>
-                        <th class="subtitle">Εγγραμμένοι</th>
+                    <tr class="tableRow">
+                        <th class="colTitles">Τιτλος</th>
+                        <th class="colTitles">Περιγραφη</th>
+                        <th class="colTitles">Καθηγητής</th>
+                        <th class="colTitles">Εξάμηνο</th>
+                        <th class="colTitles">Εγγραμμένοι</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -89,7 +113,7 @@
             </table>
         </div>
         <div class="courses-chart col-md-6">
-            <p class="subtitle">Φοιτητές ανα Μάθημα</p>
+            <p class="title">Φοιτητές ανα Μάθημα</p>
         </div>
     </div>
     </div>

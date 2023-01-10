@@ -7,33 +7,7 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="top-section row col-md-12">
-            <div class="stats-container col-md-6">
-                <div class="stats col-md-5">
-                    <div class="title">
-                        <p><i class="fa-solid fa-envelope"></i> Προσκεκλημένοι:</p>
-                    </div>
-                    <div class="data">
-                        <div class="counter">
-                            <p class="number">{{count($entities)}}</p>
-                            <p>Φοιτητές</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="stats col-md-5">
-                    <div class="title">
-                        <p><i class="fa-solid fa-pencil"></i> Εγγεγραμμένοι:</p>
-                    </div>
-                    <div class="data">
-                        <div class="counter">
-                            <p class="number">{{count($registered)}}</p>
-                            <p>Φοιτητές</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
-            </div>
+        <div class="top-section row col-md-12"></div>
         </div>
         <div class="bottom-section">
             <div class="row">
@@ -73,16 +47,13 @@
 
                             <div class="col-md-4">
                                 <div class="select-container focused">
-                                    <label class="input-label" for="domain">Τμήμα:</label>
-                                    <select class="select-input" name="domain" id="domain" required>
-                                        <option value="" selected disabled>Επιλέξτε Τμήμα</option>
-                                        @foreach($domains as $domain)
-                                            <option value="{{$domain->id}}">{{$domain->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="select-container focused">
+                                        <label class="input-label" for="domain">Τμήμα</label>
+                                        <input class="select-input disabled" name="domain" id="domain" type="text" required readonly value=" {{auth()->user()->domain->name}}">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 btn-container">
+                            <div class="col-md-4 btn-container">
                                 <button type="submit" class="button bold">
                                     <span>ΠΡΟΣΘΗΚΗ</span>
                                 </button>
@@ -131,16 +102,16 @@
                             <tbody>
                             @foreach($entities as $entity)
                                 <tr class="tableRow">
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <p class="name paragraph">{{$entity->name}}</p>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <p class="paragraph">{{$entity->surname}}</p>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <p class="paragraph">{{$entity->email}}</p>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <p class="paragraph">{{$entity->domain->name}}</p>
                                     </td>
                                     <td class="col-md-2">

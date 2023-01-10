@@ -7,9 +7,15 @@ body {
     border-top: 5px solid $pink;
     overflow-x: hidden;
 
-    & a {
+    & a{
         text-decoration: none;
-        color: black;
+        color: purple;
+        transition: color 0.5s linear;
+
+        &:hover{
+            color: $pink;
+            transition: color 0.5s linear;
+        }
     }
 
     & section#main {
@@ -25,6 +31,7 @@ body {
                 right: 0;
                 padding: 30px 90px 0 80px;
                 justify-content: space-between;
+                z-index: 9999999999;
 
                 & .userSettings {
                     & p {
@@ -199,7 +206,7 @@ body {
         }
 
         & .stats-container {
-            margin: 35px 120px 50px 120px;
+            margin: 40px 0 40px 75px;
             display: flex;
             justify-content: flex-start;
             gap: 40px;
@@ -243,9 +250,9 @@ body {
     & .bottom-section {
         background-color: $lightGray;
         border-top: 2px solid $pink;
-        padding: 160px 80px 0 140px;
+        padding: 18px 80px 0 140px;
         justify-content: space-between;
-        min-height: 750px;
+        min-height: fit-content;
         margin-left: 0;
 
         & .row {
@@ -259,16 +266,6 @@ body {
                 border-bottom: 1px solid $darkerPurple;
                 width: 28%;
                 margin-bottom: 50px;
-            }
-
-            & .colTitles {
-                font-size: 12px;
-                color: $darkerPurple;
-                font-weight: 500;
-            }
-
-            & .table-row {
-
             }
         }
     }

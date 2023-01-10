@@ -13,8 +13,17 @@ table {
 
     & tbody {
         & tr {
+
+            &:hover {
+                & p {
+                    color: $pink;
+                    transition: color 0.5s linear;
+                }
+            }
+
             & td {
                 padding: 10px;
+                transition: color 0.5s linear;
 
                 & p {
                     margin-bottom: 0;
@@ -27,7 +36,6 @@ table {
                     padding: 4px 8px;
                     margin: 0;
                     transition: color 0.15s linear;
-
                 }
 
                 & .edit {

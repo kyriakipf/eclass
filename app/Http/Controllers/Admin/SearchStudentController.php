@@ -27,7 +27,7 @@ class SearchStudentController extends Controller
         if ($request->search) {
             if ($request->search) {
                 $userQuery->where('role_id', '=', 3)
-                    ->where('tmima', '=', auth()->user()->tmima)
+                    ->where('domain_id', '=', auth()->user()->domain_id)
                     ->where(function (Builder $query) use ($request) {
                         return $query->where('name', 'like', "%" . $request->search . "%")
                             ->orWhere('surname', 'like', "%" . $request->search . "%")
@@ -36,7 +36,7 @@ class SearchStudentController extends Controller
                 $studentQuery->where('am', 'like', "%" . $request->search . "%");
                 if ($studentQuery->count() > 0) {
                     $studentsTemp = $studentQuery->pluck('user_id');
-                    $users = User::query()->where('tmima','=',auth()->user()->tmima)->whereIn('id', $studentsTemp)->get();
+                    $users = User::query()->where('domain_id','=',auth()->user()->domain_id)->whereIn('id', $studentsTemp)->get();
                 } elseif ($userQuery->count() > 0) {
                     $users = $userQuery->get();
                 }

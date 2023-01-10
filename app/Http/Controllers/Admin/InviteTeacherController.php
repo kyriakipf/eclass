@@ -35,7 +35,7 @@ class InviteTeacherController extends Controller
             'email' => $request->email,
             'name' => $request->name,
             'surname' => $request->surname,
-            'tmima' => $request->domain,
+            'tmima' => auth()->user()->domain_id,
             'job_role_id' => $request->job_role,
             'role_id' => 2,
             'invited'=> false,
@@ -77,7 +77,7 @@ class InviteTeacherController extends Controller
     }
 
     public function update(Request $request ,InviteTeacher $teacher){
-        $teacher->update(['name' => $request->name , 'surname' => $request->surname , 'email' => $request->email,  'job_role_id' => $request->job_role, 'tmima' => $request->domain]);
+        $teacher->update(['name' => $request->name , 'surname' => $request->surname , 'email' => $request->email,  'job_role_id' => $request->job_role, 'tmima' => auth()->user()->domain_id]);
 
 //        return redirect()->back();
         return redirect()->route('teacher.invite')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');

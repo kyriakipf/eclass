@@ -7,6 +7,7 @@
 @endsection
 @section('content')
     <div class="mainInfo">
+        <div class="top-section"></div>
         <div class="bottom-section">
             <div class="row">
                 <div class="col-md-5">
@@ -38,18 +39,13 @@
 
                             <div class="col-md-4">
                                 <div class="select-container focused">
-                                    <label class="input-label" for="domain">Τμήμα:</label>
-                                    <select class="select-input" name="domain" id="domain" required>
-                                        <option value="" selected disabled>Επιλέξτε Τμήμα</option>
-                                        @foreach($domains as $domain)
-                                            <option value="{{$domain->id}}">{{$domain->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <label class="input-label" for="domain">Τμήμα</label>
+                                    <input class="select-input disabled" name="domain" id="domain" type="text" required readonly value=" {{auth()->user()->domain->name}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="select-container focused">
-                                    <label class="input-label" for="job_role">Ιδιότητα:</label>
+                                    <label class="input-label" for="job_role">Ιδιότητα</label>
                                     <select class="select-input" name="job_role" id="job_role" required>
                                         <option value="" selected disabled>Επιλέξτε Ιδιότητα</option>
                                         @foreach($job_roles as $job_role)
@@ -58,7 +54,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3 btn-container">
+                            <div class="col-md-4 btn-container">
                                 <button type="submit" class="button bold">
                                     <span>ΠΡΟΣΘΗΚΗ</span>
                                 </button>

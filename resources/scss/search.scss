@@ -2,17 +2,29 @@
 
 .addForm {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end !important;
+    align-items: baseline;
 
     & .search {
-        margin-top: 30px;
+        margin-top: 0;
+        width: 30% !important;
+        margin-right: 0 !important;
     }
 
-    & button {
+    & .button {
 
+    }
+
+    & .minimalButton {
+        transition: color 0.5s linear;
+
+        &:hover {
+            color: $pink;
+            transition: color 0.5s linear;
+        }
     }
 }
 
-table {
+.table {
 
 }

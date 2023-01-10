@@ -57,7 +57,6 @@ class TeacherController extends Controller
 
     public function update(Request $request ,User $user){
         $user->update(['domain_id' => $user->domain_id,'name' => $request->name , 'surname' => $request->surname , 'email' => $request->email]);
-//dd($user);
        $teacher =  Teacher::query()->where('user_id', '=', $user->id)->first();
        $teacher->update(['job_role_id' => $request->job_role]);
 

@@ -11,19 +11,20 @@
 
 @section('content')
     <section id="content">
-        <div class="top-section row col-md-12">
-            <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">
-            </div>
-        </div>
+        <div class="top-section row col-md-12"></div>
         <div class="bottom-section">
-            <p class="title purple">Αναζήτηση Μαθητή</p>
+            <div class="row" style="justify-content: space-between; align-items: center">
+                <p class="title purple col-md-2">Φοιτητές</p>
+                <a href="{{route('students')}}" class="col-md-2">Προβολή όλων</a>
+            </div>
             <form action="{{route('student.search.form')}}" method="POST">
                 @csrf
                 <div class="row addForm">
                     <input class="search text-input col-md-12" name="search" type="text" minlength="4"
                            placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες...">
-                    <div class="col-md-2">
-                        <button type="submit" class="button light">ΑΝΑΖΗΤΗΣΗ</button>
+                    <div class="col-md-1">
+                        <button type="submit" class="light minimalButton"><i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -55,7 +56,7 @@
                             <td class="col-md-3">
                                 <p class="paragraph">{{$user->email}}</p>
                             </td>
-                            <td class="col-md-3">
+                            <td class="col-md-2">
                                 <p class="paragraph">{{$user->student->am}}</p>
                             </td>
                             <td class="col-md-3">

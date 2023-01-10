@@ -3,6 +3,8 @@
     teacher dashboard
 @endsection
 @section('content')
+    <div class="top-section row col-md-12">
+    </div>
     <div class="bottom-section">
         <div class="mainInfo">
             <p class="header">Αρχική</p>

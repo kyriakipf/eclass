@@ -1,7 +1,17 @@
 .addForm {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end !important;
+  align-items: baseline;
 }
 .addForm .search {
-  margin-top: 30px;
+  margin-top: 0;
+  width: 30% !important;
+  margin-right: 0 !important;
+}
+.addForm .minimalButton {
+  transition: color 0.5s linear;
+}
+.addForm .minimalButton:hover {
+  color: #F9627D;
+  transition: color 0.5s linear;
 }

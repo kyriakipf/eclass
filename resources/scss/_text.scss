@@ -10,9 +10,12 @@ body {
     }
 
     & .title{
-        font-size: 22px;
-        font-weight: 700;
-        color: $white;
+        font-size: 20px;
+        font-weight: 800;
+        color: $purple;
+        border-bottom: 1px solid $darkerPurple;
+        width: fit-content;
+        margin-bottom: 50px;
     }
     & .subtitle {
         font-size: 18px;
@@ -47,5 +50,11 @@ body {
         color: $white;
         font-size: 16px;
         font-weight: 300;
+    }
+
+    & .colTitles {
+        font-size: 17px;
+        color: $purple;
+        font-weight: 600;
     }
 }

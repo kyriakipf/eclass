@@ -2,7 +2,7 @@
     <table class="table-body">
         @if(count($users) != 0)
             <thead>
-            <tr class="tableRow colTitles">
+            <tr class="tableRow">
                 <th class="sort" wire:click="sortBy('name')">Όνομα</th>
                 <th class="sort" wire:click="sortBy('surname')">Επίθετο</th>
                 <th class="sort" wire:click="sortBy('email')">Email</th>
@@ -30,10 +30,10 @@
                     <td class="col-md-2">
                         <p class="paragraph">{{$user->teacher->job_role->name}}</p>
                     </td>
-                    <td>
+                    <td class="col-md-1" style="align-self: flex-end">
                         <a href="{{route('teacher.show' , $user)}}"><i class="fa-regular fa-pencil"></i></a>
                     </td>
-                    <td>
+                    <td class="col-md-1" style="align-self: flex-end">
                         <a href="{{route('teacher.delete' , $user)}}"><i class="fa-regular fa-trash-can"></i></a>
                     </td>
                 </tr>
