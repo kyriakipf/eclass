@@ -100,7 +100,8 @@
             "closeButton": true,
             "timeOut": "5000",
             "progressBar": true,
-            "extendedTimeOut": "5000"
+            "extendedTimeOut": "5000",
+            "positionClass": 'toast-bottom-right'
         }
         @if (Session::has('error'))
         toastr.error('{{ Session::get('error') }}');

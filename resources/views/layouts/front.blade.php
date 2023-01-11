@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{asset("css/v4-shims.css")}}">
     <link rel="stylesheet" href="{{asset("css/styles.css")}}">
     <link rel="stylesheet" href="{{asset("css/login.css")}}">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <title>eClass - Σύνδεση Χρήστη</title>
 
     @yield('stylesheets')
@@ -30,6 +32,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="{{asset("js/bootstrap.js")}}"></script>
 <script src="{{asset("js/theme-scripts.js")}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    $(document).ready(function () {
+        toastr.options = {
+            "closeButton": true,
+            "timeOut": "5000",
+            "progressBar": true,
+            "extendedTimeOut": "5000",
+            "positionClass": 'toast-bottom-right'
+        }
+        @if (Session::has('error'))
+        toastr.error('{{ Session::get('error') }}');
+        @elseif(Session::has('success'))
+        toastr.success('{{ Session::get('success') }}');
+        @elseif(Session::has('warning'))
+        toastr.warning('{{ Session::get('warning') }}');
+        @endif
+    });
+</script>
 @yield('javascripts')
 </body>
 </html>

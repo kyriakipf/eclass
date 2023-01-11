@@ -26,6 +26,11 @@ class TeacherController extends Controller
     }
     public function store(Request $request, InviteTeacher $invite)
     {
+        if ($request->password != $request->confirmPassword)
+        {
+            return redirect()->back()->with('error','Οι κωδικοί δεν ταιριάζουν.');
+        }
+
         $pass = Hash::make($request->password);
         $user = new User([
             'email' => $invite->email,
@@ -56,9 +61,14 @@ class TeacherController extends Controller
     }
 
     public function update(Request $request ,User $user){
+        $request->validate(
+            ['email' => 'required|email'],
+            ['email.email' => 'Το email δεν έχει την σωστή μορφή.']
+        );
+
         $user->update(['domain_id' => $user->domain_id,'name' => $request->name , 'surname' => $request->surname , 'email' => $request->email]);
-       $teacher =  Teacher::query()->where('user_id', '=', $user->id)->first();
-       $teacher->update(['job_role_id' => $request->job_role]);
+        $teacher =  Teacher::query()->where('user_id', '=', $user->id)->first();
+        $teacher->update(['job_role_id' => $request->job_role]);
 
         return redirect()->route('teachers')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');
     }

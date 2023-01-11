@@ -11,3 +11,23 @@
 .bottom-section form .form-container .semester select {
   width: 30%;
 }
+.bottom-section .collapsable {
+  overflow: hidden;
+  transition: 0.5s all;
+}
+.bottom-section .show-less {
+  cursor: pointer;
+}
+.bottom-section .show-more {
+  cursor: pointer;
+}
+
+.folder-files .type {
+  flex: 0 0 80px;
+}
+.folder-files .name {
+  flex: 1;
+}
+.folder-files .date {
+  flex: 0 0 200px;
+}

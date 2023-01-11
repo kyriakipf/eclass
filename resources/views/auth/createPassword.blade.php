@@ -25,6 +25,11 @@
                                 <input id="password" class="text-input" type="password" name="password" required
                                        autocomplete="current-password"/>
                             </div>
+                            <div class="input">
+                                <label for="password" class="input-label">Επαλήθευση Κωδικού</label>
+                                <input id="password" class="text-input" type="password" name="confirmPassword" required
+                                       autocomplete="current-password"/>
+                            </div>
                             <div class="buttons">
                                 <button class="button bold">Δημιουργία Κωδικού</button>
                             </div>

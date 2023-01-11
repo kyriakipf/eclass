@@ -25,6 +25,11 @@ class InviteTeacherController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate(
+            ['email' => 'required|email'],
+            ['email.email' => 'Το email δεν έχει την σωστή μορφή.']
+        );
+
         do {
             //generate a random string using Laravel's str_random helper
             $token = Str::random();
@@ -77,9 +82,14 @@ class InviteTeacherController extends Controller
     }
 
     public function update(Request $request ,InviteTeacher $teacher){
+
+        $request->validate(
+            ['email' => 'required|email'],
+            ['email.email' => 'Το email δεν έχει την σωστή μορφή.']
+        );
+
         $teacher->update(['name' => $request->name , 'surname' => $request->surname , 'email' => $request->email,  'job_role_id' => $request->job_role, 'tmima' => auth()->user()->domain_id]);
 
-//        return redirect()->back();
         return redirect()->route('teacher.invite')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');
     }
 
@@ -92,6 +102,7 @@ class InviteTeacherController extends Controller
 
     public function delete(InviteTeacher $teacher){
         $teacher->delete();
+
         return redirect()->back()->with('success','Ο χρήστης διαγράφηκε επιτυχώς.');
 
     }

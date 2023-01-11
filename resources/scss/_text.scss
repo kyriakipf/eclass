@@ -18,21 +18,21 @@ body {
         margin-bottom: 50px;
     }
     & .subtitle {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 700;
         color: $purple;
     }
 
     & .smallTitle{
-        font-size: 12px;
+        font-size: 16px;
         color: $purple;
-        font-weight: 700;
+        font-weight: 400;
     }
 
     & .paragraph {
         font-size: 16px;
         font-weight: 400;
-        color: $purple;
+        color: black;
     }
 
     & .comment {
@@ -56,5 +56,40 @@ body {
         font-size: 17px;
         color: $purple;
         font-weight: 600;
+    }
+
+    & .button {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        margin: 15px 0 45px 0;
+
+        &.bold {
+            background-color: $purple;
+            border: 1px solid $purple;
+            color: $white;
+            transition: all 0.25s linear;
+
+            &:hover {
+                background-color: $white;
+                color: $purple;
+                transition: all 0.25s linear;
+            }
+        }
+
+        &.light {
+            background-color: $white;
+            border: 1px solid $purple;
+            color: $purple;
+            transition: all 0.25s linear;
+
+            &:hover {
+                background-color: $purple;
+                color: $white;
+                transition: all 0.25s linear;
+            }
+        }
+
     }
 }

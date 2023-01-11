@@ -10,6 +10,11 @@
         <div class="top-section"></div>
         <div class="bottom-section">
             <div class="row">
+                @if($errors->any())
+                    <p class="alert alert-danger">
+                        {{$errors->all()[0]}}
+                    </p>
+                @endif
                 <div class="col-md-5">
                     <form action="{{route('teacher.invite.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf

@@ -42,16 +42,21 @@ Route::get('dashboard',[DashboardController::class, 'index'])->middleware(['auth
 Route::get('change/password/view', [CustomAuthController::class, 'changePasswordView'])->middleware(['auth'])->name('change.password.view');
 Route::post('change/password/store', [CustomAuthController::class, 'changePassword'])->middleware(['auth'])->name('change.password.store');
 
+
+
 //Invites
+Route::get('admin/create', [TeacherController::class, 'create'])->name('teacher.create');
 Route::post('{invite}/teacher/store', [TeacherController::class, 'store'])->name('teacher.store');
+Route::get('admin/teacher/accept/{token}', [InviteTeacherController::class, 'accept'])->name('teacher.accept');
+Route::get('admin/create', [StudentController::class, 'create'])->name('student.create');
 Route::post('{invite}/student/store', [StudentController::class, 'store'])->name('student.store');
+Route::get('admin/student/accept/{token}', [InviteStudentController::class, 'accept'])->name('student.accept');
 
 //Admin
 Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
     //Admin Teacher Management
     Route::group(['prefix' => 'teacher'],function(){
         Route::get('index', [TeacherController::class, 'index'])->name('teachers');
-        Route::get('create', [TeacherController::class, 'create'])->name('teacher.create');
 
         Route::get('{teacher}/show', [TeacherController::class, 'show'])->name('teacher.show');
         Route::get('{teacher}/invite/show', [InviteTeacherController::class, 'show'])->name('teacher.invite.show');
@@ -66,13 +71,11 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
         Route::get('invite', [InviteTeacherController::class, 'invite'])->name('teacher.invite');
         Route::post('invite/store', [InviteTeacherController::class, 'store'])->name('teacher.invite.store');
         Route::get('{teacher}/invite', [InviteTeacherController::class, 'process'])->name('teacher.process');
-        Route::get('accept/{token}', [InviteTeacherController::class, 'accept'])->name('teacher.accept');
         Route::get('/search', [SearchTeacherController::class, 'searchIndex'])->name('teacher.search');
         Route::match(['get', 'post'],'/search/form', [SearchTeacherController::class, 'search'])->name('teacher.search.form');
     });
     Route::group(['prefix' => 'student'], function(){
         Route::get('index', [StudentController::class, 'index'])->name('students');
-        Route::get('create', [StudentController::class, 'create'])->name('student.create');
 
         Route::get('{student}/show', [StudentController::class, 'show'])->name('student.show');
         Route::get('{student}/invite/show', [InviteStudentController::class, 'show'])->name('student.invite.show');
@@ -87,7 +90,6 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
         Route::get('/mass/invite', [InviteStudentController::class, 'massProcess'])->name('student.mass.process');
         Route::get('invite', [InviteStudentController::class, 'invite'])->name('student.invite');
         Route::get('{student}/invite', [InviteStudentController::class, 'process'])->name('student.process');
-        Route::get('accept/{token}', [InviteStudentController::class, 'accept'])->name('student.accept');
         Route::get('/search', [SearchStudentController::class, 'searchIndex'])->name('student.search');
         Route::match(['get', 'post'],'/search/form', [SearchStudentController::class, 'search'])->name('student.search.form');
     });
@@ -98,14 +100,20 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
         Route::get('{email}/show', [EmailController::class, 'show'])->name('admin.email.show');
         Route::get('{email}/delete', [EmailController::class, 'delete'])->name('admin.email.delete');
     });
+
     Route::group(['prefix' => 'subject'], function (){
         Route::get('index', [App\Http\Controllers\Admin\SubjectController::class , 'index'])->name('admin.subjects');
-    Route::get('{subject}/show', [App\Http\Controllers\Admin\SubjectController::class, 'show'])->name('admin.subject.show');
-    Route::get('{subject}/directory/{folder}/show', [App\Http\Controllers\Admin\SubjectController::class, 'directoryShow'])->name('admin.subject.directory.show');
+        Route::get('{subject}/show', [App\Http\Controllers\Admin\SubjectController::class, 'show'])->name('admin.subject.show');
+        Route::get('{subject}/directory/{folder}/show', [App\Http\Controllers\Admin\SubjectController::class, 'directoryShow'])->name('admin.subject.directory.show');
         Route::get('{subject}/file/{file}/download', [App\Http\Controllers\Admin\SubjectController::class, 'fileDownload'])->name('admin.subject.file.download');
+        Route::get('{subject}/file/show', [App\Http\Controllers\Admin\SubjectController::class, 'fileShow'])->name('admin.subject.file.show');
     });
+
     Route::get('template/{name}/download', [\App\Http\Controllers\DownloadTemplateController::class, 'downloadTemplate'])->name('template.download');
 
+    Route::get('group/{group}/show', [App\Http\Controllers\Admin\GroupController::class, 'show'])->name('admin.group.show');
+    Route::get('homework/{homework}/show', [App\Http\Controllers\Admin\HomeworkController::class, 'show'])->name('admin.homework.show');
+    Route::get('homework/{homework}/file/download', [App\Http\Controllers\Admin\HomeworkController::class, 'fileDownload'])->name('admin.homework.file.download');
 });
 
 

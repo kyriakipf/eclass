@@ -112,19 +112,19 @@ body .title {
   margin-bottom: 50px;
 }
 body .subtitle {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #70246A;
 }
 body .smallTitle {
-  font-size: 12px;
+  font-size: 16px;
   color: #70246A;
-  font-weight: 700;
+  font-weight: 400;
 }
 body .paragraph {
   font-size: 16px;
   font-weight: 400;
-  color: #70246A;
+  color: black;
 }
 body .comment {
   font-size: 16px;
@@ -143,6 +143,35 @@ body .colTitles {
   font-size: 17px;
   color: #70246A;
   font-weight: 600;
+}
+body .button {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 15px 0 45px 0;
+}
+body .button.bold {
+  background-color: #70246A;
+  border: 1px solid #70246A;
+  color: #FFFFFF;
+  transition: all 0.25s linear;
+}
+body .button.bold:hover {
+  background-color: #FFFFFF;
+  color: #70246A;
+  transition: all 0.25s linear;
+}
+body .button.light {
+  background-color: #FFFFFF;
+  border: 1px solid #70246A;
+  color: #70246A;
+  transition: all 0.25s linear;
+}
+body .button.light:hover {
+  background-color: #70246A;
+  color: #FFFFFF;
+  transition: all 0.25s linear;
 }
 
 table {
@@ -929,14 +958,20 @@ select {
 .mt-1 {
   margin-top: 0.25rem;
 }
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.ml-auto {
+  margin-left: auto;
+}
 .mb-4 {
   margin-bottom: 1rem;
 }
 .mt-6 {
   margin-top: 1.5rem;
 }
-.mt-3 {
-  margin-top: 0.75rem;
+.mt-5 {
+  margin-top: 1.25rem;
 }
 .block {
   display: block;
@@ -1082,6 +1117,9 @@ select {
 }
 .items-center {
   align-items: center;
+}
+.justify-start {
+  justify-content: flex-start;
 }
 .justify-end {
   justify-content: flex-end;
@@ -1251,6 +1289,9 @@ select {
 }
 .text-center {
   text-align: center;
+}
+.align-baseline {
+  vertical-align: baseline;
 }
 .text-sm {
   font-size: 0.875rem;
@@ -1442,7 +1483,7 @@ body section#main .dashboard .sidebar {
   right: 0;
   padding: 30px 90px 0 80px;
   justify-content: space-between;
-  z-index: 9999999999;
+  z-index: 999999999;
 }
 body section#main .dashboard .sidebar .userSettings p i {
   margin-left: 10px;
@@ -1544,6 +1585,7 @@ body section#main .dashboard .sidebar .userSettings {
 }
 body .top-section {
   justify-content: space-between;
+  padding: 18px 0 0 100px;
   margin-top: 120px;
 }
 body .top-section .banner {
@@ -1585,8 +1627,7 @@ body .top-section .stats-container .stats .data .counter .number {
 }
 body .bottom-section {
   background-color: #F1F4FD;
-  border-top: 2px solid #F9627D;
-  padding: 18px 80px 0 140px;
+  padding: 18px 100px 0 100px;
   justify-content: space-between;
   min-height: -moz-fit-content;
   min-height: fit-content;

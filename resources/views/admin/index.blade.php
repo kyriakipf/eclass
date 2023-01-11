@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="top-section row col-md-12">
+        <div class="top-section row col-md-12" style="border-bottom: 2px solid #F9627D;">
             <div class="stats-container col-md-6">
                 <div class="stats col-md-5">
                     <div class="subtitle">

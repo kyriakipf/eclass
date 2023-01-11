@@ -21,9 +21,9 @@ class SubjectController extends Controller
 
     public function show(Subject $subject)
     {
-        $users = User::getRelatedTeachers();
+        $users = $subject->teacher;
         $teacherIds = SubjectTeacher::getTeacherIds($subject);
-        $homeworks = Subject::getRelatedHomework(auth()->user()->id);
+        $homeworks = $subject->homework;
         $path = $subject->directory . DIRECTORY_SEPARATOR . 'Ύλη';
         $folders = Storage::directories($path);
         $files = Storage::files($path);
@@ -61,5 +61,15 @@ class SubjectController extends Controller
         $file = File::query()->where('subject_id', '=', $subject->id)->where('filename', '=', $fileName)->first();
 
         return Storage::download($file->filepath . '/' . $fileName);
+    }
+
+    public function fileShow(Subject $subject)
+    {
+        $users = $subject->teacher;
+        $path = $subject->directory . DIRECTORY_SEPARATOR . 'Ύλη';
+        $files = Storage::files($path);
+        $folders = Storage::directories($path);
+
+        return view('admin.subjects.showFiles' , ['files' => $files, 'folders' => $folders, 'subject'=> $subject ,'users' => $users]);
     }
 }

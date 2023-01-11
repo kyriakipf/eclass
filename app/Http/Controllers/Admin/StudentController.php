@@ -25,6 +25,10 @@ class StudentController extends Controller
 
     public function store(Request $request, InviteStudent $invite)
     {
+        if ($request->password != $request->confirmPassword)
+        {
+            return redirect()->back()->with('error','Οι κωδικοί δεν ταιριάζουν.');
+        }
         $pass = Hash::make($request->password);
         $user = new User([
             'email' => $invite->email,
@@ -53,6 +57,11 @@ class StudentController extends Controller
     }
 
     public function update(Request $request ,User $student){
+        $request->validate(
+            ['email' => 'required|email'],
+            ['email.email' => 'Το email δεν έχει την σωστή μορφή.']
+        );
+
         $student->student->update(['am' => $request->am]);
         $student->update(['domain_id' => $student->domain_id ,'name' => $request->name , 'surname' => $request->surname , 'email' => $request->email]);
 

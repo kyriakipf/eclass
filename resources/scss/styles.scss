@@ -31,7 +31,7 @@ body {
                 right: 0;
                 padding: 30px 90px 0 80px;
                 justify-content: space-between;
-                z-index: 9999999999;
+                z-index: 999999999;
 
                 & .userSettings {
                     & p {
@@ -195,6 +195,8 @@ body {
 
     & .top-section {
         justify-content: space-between;
+        padding: 18px 0 0 100px;
+
         margin-top: 120px;
 
         & .banner {
@@ -249,8 +251,8 @@ body {
 
     & .bottom-section {
         background-color: $lightGray;
-        border-top: 2px solid $pink;
-        padding: 18px 80px 0 140px;
+
+        padding: 18px 100px 0 100px;
         justify-content: space-between;
         min-height: fit-content;
         margin-left: 0;

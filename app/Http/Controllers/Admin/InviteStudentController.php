@@ -23,6 +23,11 @@ class InviteStudentController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate(
+            ['email' => 'required|email'],
+            ['email.email' => 'Το email δεν έχει την σωστή μορφή.']
+        );
+
         do {
             $token = Str::random();
         } //check if the token already exists and if it does, try again
@@ -72,20 +77,27 @@ class InviteStudentController extends Controller
         return view('auth.createPassword' , ['token' => $token] , ['invite' => $invite]);
     }
 
-    public function update(Request $request ,InviteStudent $student){
+    public function update(Request $request ,InviteStudent $student)
+    {
+        $request->validate(
+            ['email' => 'required|email'],
+            ['email.email' => 'Το email δεν έχει την σωστή μορφή.']
+        );
+
         $student->update(['name' => $request->name , 'surname' => $request->surname , 'email' => $request->email, 'tmima' => auth()->user()->domain_id, 'am' => $request->am]);
 
-//        return redirect()->back();
         return redirect()->route('student.invite')->with('success','Τα στοιχεία του χρήστη ενημερώθηκαν επιτυχώς.');
     }
 
-    public function show(InviteStudent $student){
+    public function show(InviteStudent $student)
+    {
         $domains = Domain::all();
 
         return view('admin.invited.editStudent' , ['domains' => $domains , 'student' => $student]);
     }
 
-    public function delete(InviteStudent $student){
+    public function delete(InviteStudent $student)
+    {
         $student->delete();
         return redirect()->back()->with('success','Ο χρήστης διαγράφηκε επιτυχώς.');
 

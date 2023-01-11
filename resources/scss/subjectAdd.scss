@@ -32,4 +32,29 @@
             }
         }
     }
+
+    .collapsable{
+        overflow: hidden;
+        transition: 0.5s all;
+    }
+    .show-less{
+        cursor: pointer;
+    }
+    .show-more{
+        cursor: pointer;
+    }
+}
+
+.folder-files{
+
+    .type{
+        flex: 0 0 80px;
+    }
+    .name{
+        flex: 1;
+    }
+    .date{
+        flex: 0 0 200px;
+    }
+
 }
