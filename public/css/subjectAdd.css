@@ -8,9 +8,6 @@
 .bottom-section form .form-container {
   justify-content: flex-start;
 }
-.bottom-section form .form-container .semester select {
-  width: 30%;
-}
 .bottom-section .collapsable {
   overflow: hidden;
   transition: 0.5s all;
@@ -22,12 +19,27 @@
   cursor: pointer;
 }
 
-.folder-files .type {
-  flex: 0 0 80px;
+.folder-files-row {
+  height: 50px;
+  align-items: center;
 }
-.folder-files .name {
+.folder-files-row:nth-child(even) {
+  background-color: #E5E9F6;
+}
+.folder-files-row .type {
+  text-align: center;
+  flex: 0 0 110px;
+}
+.folder-files-row .name {
   flex: 1;
 }
-.folder-files .date {
+.folder-files-row .size {
   flex: 0 0 200px;
+}
+.folder-files-row .date {
+  flex: 0 0 200px;
+}
+.folder-files-row .download {
+  text-align: center;
+  flex: 0 0 80px;
 }

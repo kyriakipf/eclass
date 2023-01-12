@@ -42,7 +42,8 @@
                                     </td>
                                     <td class="col-md-2">
                                         <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
-                                                class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p></a>
+                                                class="paragraph">{{$subject->semester->number}}<small>ο</small> Εξάμηνο
+                                            </p></a>
                                     </td>
                                     <td class="col-md-3"><a
                                             href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
@@ -50,13 +51,12 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            @else
-                                <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
-                            @endif
                             </tbody>
+                        @else
+                            <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
+                        @endif
                     </table>
                 </div>
-
             </div>
         </div>
     </div>

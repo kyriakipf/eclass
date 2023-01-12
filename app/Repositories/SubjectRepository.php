@@ -24,7 +24,7 @@ class SubjectRepository
                 'isPublic' => $public,
                 'password' => $password,
                 'tmima' => $tmimaId,
-                'directory' => strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $title
+                'directory' =>  strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $title
 
             ]);
 

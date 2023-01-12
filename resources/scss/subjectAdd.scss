@@ -1,60 +1,87 @@
 @import "variables";
 
 
-.bottom-section{
-    padding: 30px 80px 0 140px ;
-    & .buttons{
+.bottom-section {
+    padding: 30px 80px 0 140px;
+
+    & .buttons {
         justify-content: flex-start !important;
         margin-bottom: 30px;
-        & .btn-container{
-            & a{
-                &:hover{
+
+        & .btn-container {
+            & a {
+                &:hover {
                 }
             }
         }
     }
-    & form{
-        & .form-container{
+
+    & form {
+        & .form-container {
             justify-content: flex-start;
-            & .semester{
-                & select{
-                    width: 30%;
+
+            & .semester {
+                & select {
                 }
             }
-            & div{
-                & label{
+
+            & div {
+                & label {
 
                 }
 
-                & input{
+                & input {
 
                 }
             }
         }
     }
 
-    .collapsable{
+    .collapsable {
         overflow: hidden;
         transition: 0.5s all;
     }
-    .show-less{
+
+    .show-less {
         cursor: pointer;
     }
-    .show-more{
+
+    .show-more {
         cursor: pointer;
     }
 }
 
-.folder-files{
+.folder-files {
 
-    .type{
-        flex: 0 0 80px;
+    &-row {
+        height: 50px;
+        align-items: center;
+        &:nth-child(even){
+            background-color: $gray;
+        }
+
+        .type {
+            text-align: center;
+            flex: 0 0 110px;
+        }
+
+        .name {
+            flex: 1;
+        }
+
+        .size {
+            flex: 0 0 200px;
+        }
+
+        .date {
+            flex: 0 0 200px;
+        }
+
+        .download {
+            text-align: center;
+            flex: 0 0 80px;
+        }
     }
-    .name{
-        flex: 1;
-    }
-    .date{
-        flex: 0 0 200px;
-    }
+
 
 }

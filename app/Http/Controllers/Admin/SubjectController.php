@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\File;
 use App\Models\Subject;
 use App\Models\SubjectTeacher;
-use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use function Livewire\str;
 
 class SubjectController extends Controller
 {
@@ -24,9 +24,9 @@ class SubjectController extends Controller
         $users = $subject->teacher;
         $teacherIds = SubjectTeacher::getTeacherIds($subject);
         $homeworks = $subject->homework;
-        $path = $subject->directory . DIRECTORY_SEPARATOR . 'Ύλη';
+        $path = 'public' . DIRECTORY_SEPARATOR . $subject->directory . DIRECTORY_SEPARATOR . 'Ύλη';
         $folders = Storage::directories($path);
-        $files = Storage::files($path);
+        $files = $subject->files;
 
         return view('admin.subjects.showSubject', ['users' => $users, 'subject' => $subject, 'teacherIds' => $teacherIds, 'homeworks' => $homeworks, 'folders' => $folders, 'files' => $files]);
     }
@@ -34,7 +34,8 @@ class SubjectController extends Controller
     public function directoryShow(Subject $subject, $folder)
     {
         $subjectPath = $subject->directory;
-        $subjectFolders = Storage::allDirectories($subjectPath);
+        $users = $subject->teacher;
+        $subjectFolders = Storage::allDirectories('public' . DIRECTORY_SEPARATOR . $subjectPath);
 
         $folderpath = '';
 
@@ -51,8 +52,20 @@ class SubjectController extends Controller
 
         $subfolders = Storage::directories($folderpath);
 
-        $files = Storage::files($folderpath);
-        return view('admin.subjects.showSubjectDirectory', ['subfolders' => $subfolders, 'files' => $files, 'subject' => $subject, 'folder' => basename($folderpath)]);
+        $files = new Collection();
+        $sizes = [];
+        foreach ($subject->files as $file)
+        {
+            if ('public' . DIRECTORY_SEPARATOR . $file->filepath == str_replace('/', '\\', $folderpath))
+            {
+                $files->push($file);
+                $file_size = Storage::size('public' . DIRECTORY_SEPARATOR . $file->filepath . DIRECTORY_SEPARATOR . $file->filename);
+                $sizes [] = number_format($file_size / 1024, 2);
+
+            }
+        }
+//        dd($files);
+        return view('admin.subjects.showSubjectDirectory', ['subfolders' => $subfolders, 'files' => $files, 'subject' => $subject, 'folder' => $folderpath, 'users' => $users, 'sizes' => $sizes]);
     }
 
     public function fileDownload(Subject $subject, $fileName)
@@ -67,9 +80,20 @@ class SubjectController extends Controller
     {
         $users = $subject->teacher;
         $path = $subject->directory . DIRECTORY_SEPARATOR . 'Ύλη';
-        $files = Storage::files($path);
-        $folders = Storage::directories($path);
+        $folders = Storage::directories('public' . DIRECTORY_SEPARATOR . $path);
+        $files = new Collection();
+        $sizes = [];
+        foreach ($subject->files as $file)
+        {
+            if ($file->filepath == $path)
+            {
+                $files->push($file);
+                $file_size = Storage::size('public' . DIRECTORY_SEPARATOR . $file->filepath . DIRECTORY_SEPARATOR . $file->filename);
+                $sizes [] = number_format($file_size / 1024, 2);
 
-        return view('admin.subjects.showFiles' , ['files' => $files, 'folders' => $folders, 'subject'=> $subject ,'users' => $users]);
+
+            }
+        }
+        return view('admin.subjects.showFiles', ['files' => $files, 'folders' => $folders, 'subject' => $subject, 'users' => $users, 'sizes' => $sizes]);
     }
 }

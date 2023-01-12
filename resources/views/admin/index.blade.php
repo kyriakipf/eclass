@@ -67,7 +67,7 @@
         <div class="col-md-6">
             <p class="title">Μαθήματα Τρέχοντος Εξαμήνου</p>
             <table>
-                @if(!is_null($activeSubjects))
+                @if(count($activeSubjects) > 0)
                     <thead>
                     <tr class="tableRow">
                         <th class="colTitles">Τιτλος</th>

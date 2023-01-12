@@ -9,22 +9,22 @@
 @section('content')
     <div class="mainInfo">
         <div class="top-section row col-md-12"></div>
-        </div>
-        <div class="bottom-section">
-            <p class="title purple">&nbsp;Φοιτητές&nbsp;&nbsp;</p>
-            <form action="{{route('student.search.form')}}" method="POST">
-                @csrf
-                <div class="row addForm">
-                    <input class="search text-input col-md-12" name="search" type="text" minlength="4"
-                           placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες..." id="search">
-                    <div class="col-md-1">
-                        <button type="submit" class="light minimalButton"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
+    </div>
+    <div class="bottom-section">
+        <p class="title purple">&nbsp;Φοιτητές&nbsp;&nbsp;</p>
+        <form action="{{route('student.search.form')}}" method="POST">
+            @csrf
+            <div class="row addForm">
+                <input class="search text-input col-md-12" name="search" type="text" minlength="4"
+                       placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες..." id="search">
+                <div class="col-md-1">
+                    <button type="submit" class="light minimalButton"><i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
-            </form>
-            <div class="row">
-                @livewire('student-list', [ 'users' => $users])
             </div>
+        </form>
+        <div class="row">
+            @livewire('student-list', [ 'users' => $users])
         </div>
     </div>
 @endsection

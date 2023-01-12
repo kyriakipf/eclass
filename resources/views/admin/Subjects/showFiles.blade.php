@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{asset("css/subjectAdd.css")}}">
 @endsection
 @section('header')
-    teacher dashboard
+    admin dashboard
 @endsection
 @section('content')
     <div class="mainInfo">
@@ -30,67 +30,55 @@
         </div>
         <div class="bottom-section">
             <div class="row">
-                <div class="flex mt-3">
+                @if(isset($subfolders) && isset($files))
+                    <p class="paragraph">Δεν υπάρχουν διαθέσιμα έγγραφα</p>
+                @else
+                <div class="col-lg-7 col-md-9">
+                    <div class="folder-files">
+                        <div class="flex folder-files-row">
+                            <div class="type">ΤΥΠΟΣ</div>
+                            <div class="name">ΟΝΟΜΑ</div>
+                            <div class="date">ΗΜΕΡΟΜΗΝΙΑ</div>
+                            <div class="size">ΜΕΓΕΘΟΣ</div>
+                            <div class="download">ΛΗΨΗ</div>
+                        </div>
+                        @foreach($folders as $folder)
 
-                </div>
+                            <div class="flex folder-files-row">
+                                <div class="type"><i class="purple fa-regular fa-folder-open"></i></div>
+                                <div class="name">
+                                    <a href="{{route('admin.subject.directory.show', ['subject' => $subject ,'folder' => basename($folder)])}}">
+                                        {{basename($folder)}}
+                                    </a>
+                                </div>
+                                <div class="size">&emsp;&emsp;&emsp;-</div>
+                                <div class="date">&emsp;&emsp;-</div>
+                                <div class="download">-</div>
+                            </div>
 
-                <h3>Φακέλοι</h3>
-                <div class="folder-files">
-                    <div class="flex">
-                        <div class="type">TYPE</div>
-                        <div class="name">NAME</div>
-                        <div class="date">DATE</div>
+                        @endforeach
+                        @foreach($files as $file)
+
+                            <div class="flex folder-files-row">
+                                <div class="type"><i class="purple fa-regular fa-file-lines"></i></div>
+
+                                <div class="name"><a
+                                        href="{{asset('storage/' . $file->filepath . DIRECTORY_SEPARATOR . $file->filename)}}"
+                                        target="_blank">{{$file->filename}}</a></div>
+                                <div class="date">
+                                    &emsp;{{\Carbon\Carbon::parse($file->created_at)->format('d-m-Y')}}</div>
+                                <div class="size">&ensp;{{$sizes[$loop->index]}} KB</div>
+                                <div class="download">
+                                    <a href="{{route('admin.subject.file.download', ['subject' => $subject ,'file' => $file->filename])}}"><i
+                                            class="fa-regular fa-download"></i></a>
+                                </div>
+                            </div>
+
+                        @endforeach
+                        @endif
                     </div>
-                    @foreach($folders as $folder)
-                        <a href="{{route('admin.subject.directory.show', ['subject' => $subject ,'folder' => basename($folder)])}}">
-                            <div class="flex">
-                                <div class="type">FOLDER</div>
-                                <div class="name">{{basename($folder)}}</div>
-                                <div class="date"></div>
-                            </div>
-                        </a>
-
-                    @endforeach
-                    @foreach($files as $file)
-                        <a href="{{route('admin.subject.file.download', ['subject' => $subject ,'file' => basename($file)])}}">
-                            <div class="flex">
-                                <div class="type">FILE</div>
-                                <div class="name">{{basename($file)}}</div>
-                                <div class="date"></div>
-                            </div>
-                        </a>
-                    @endforeach
                 </div>
-
-
             </div>
-            <h3>Arxeia</h3>
-            @foreach($files as $file)
-                <a href="{{route('admin.subject.file.download', ['subject' => $subject ,'file' => basename($file)])}}">{{basename($file)}}</a>
-
-            @endforeach
-
         </div>
     </div>
-    </div>
-@endsection
-
-@section('javascripts')
-    <script>
-        const s = $.noConflict();
-        s(document).ready(function () {
-            s('.collapsable').css({"maxHeight": "100px"})
-            s('.show-less').hide()
-            s('.show-more').on('click', function () {
-                s('.collapsable').css({"maxHeight": "unset"})
-                s('.show-more').hide()
-                s('.show-less').show()
-            })
-            s('.show-less').on('click', function () {
-                s('.collapsable').css({"maxHeight": "100px"})
-                s('.show-more').show()
-                s('.show-less').hide()
-            })
-        });
-    </script>
 @endsection

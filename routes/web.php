@@ -138,6 +138,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('{subject}/file/upload/{folder?}', [SubjectController::class, 'fileUpload'])->name('subject.file.upload');
         Route::get('{subject}/file/{file}/download', [SubjectController::class, 'fileDownload'])->name('subject.file.download');
         Route::match(['get', 'post'],'/search/form', [SearchSubjectController::class, 'search'])->name('subject.search.form');
+        Route::get('{subject}/file/show', [SubjectController::class, 'fileShow'])->name('subject.file.show');
     });
 
     //Group Management

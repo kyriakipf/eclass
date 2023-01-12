@@ -7,8 +7,6 @@
 @endsection
 @section('content')
     <div class="top-section">
-{{--        <div style="background-image: url({{ asset('assets/img/boy.png') }})" class="banner col-md-6">--}}
-{{--        </div>--}}
     </div>
     <div class="bottom-section">
         <form action="{{route('subject.store')}}" method="post">
@@ -19,19 +17,7 @@
                     <input name="title" id="title" type="text"
                            placeholder="Γράψτε εδώ..." class="text-input">
                 </div>
-                <div class="teacher col-md-2">
-                    <label for="teacher" class="input-label">Καθηγητής</label>
-                    <select name="teacherId" id="teacher" type="s"
-                            class="text-input">
-
-                        @foreach($users as $user)
-
-                            <option @if(auth()->user()->id === $user->id) selected
-                                    @endif value="{{$user->teacher->id}}">{{$user->name}} {{$user->surname}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="semester col-md-7">
+                <div class="semester col-md-1" >
                     <label for="semester" class="input-label">Εξάμηνο</label>
                     <select name="semester" id="semester" type="s"
                             class="text-input">

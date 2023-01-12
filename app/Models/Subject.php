@@ -51,4 +51,9 @@ class Subject extends Model
     {
         return $this->belongsTo(Semester::class);
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

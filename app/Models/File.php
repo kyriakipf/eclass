@@ -15,4 +15,9 @@ class File extends Model
         'user_id',
         'filepath'
     ];
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }
