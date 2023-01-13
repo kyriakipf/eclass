@@ -6,8 +6,10 @@
     teacher dashboard
 @endsection
 @section('content')
+    <div class="top-section">
+    </div>
     <div class="bottom-section">
-        <form action="{{route('homework.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('homework.store', ['subject' => $subject])}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-container row">
                 <div class=" col-md-3">
@@ -16,17 +18,8 @@
                            placeholder="Γράψτε εδώ..." class="text-input">
                 </div>
                 <div class="subject col-md-2">
-                    <label for="subject" class="input-label">ΜάΘημα</label>
-                    <select name="subject_id" id="subject" type=""
-                            class="text-input">
-                        @foreach($subjects as $subject)
-                            <option value="{{$subject->id}}">{{$subject->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="subject col-md-2">
                     <label for="type" class="input-label">Τύπος Εργασίας</label>
-                    <select name="homework_type" id="type" type=""
+                    <select name="homework_type" id="type"
                             class="text-input">
                         <option value="Μαθήματος">Μαθήματος</option>
                         <option value="Εργαστηριακή">Εργαστηριακή</option>
@@ -42,12 +35,13 @@
                         <input type="datetime-local" id="due_date" name="due_date" class="date-input">
                     </div>
                 </div>
-                <div class="grade col-md-1">
+                <div class="grade col-md-2">
                     <label for="max_grade" class="input-label">Μέγιστη Βαθμολογία</label>
                     <input type="number" id="max_grade" name="max_grade">
                 </div>
-                <div class="col-md-6">
-                    <input type="file" name="file" class="form-control">
+                <div class="col-md-3">
+                    <label class="input-label" for="file">Πρόσθήκη Αρχείου</label>
+                    <input type="file" name="file" id="file" class="form-control">
                 </div>
                 <div class="summary col-md-12">
                     <label class="input-label" for="summary">Περιγραφή</label>

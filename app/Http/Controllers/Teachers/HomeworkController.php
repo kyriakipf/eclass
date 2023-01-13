@@ -20,7 +20,7 @@ class HomeworkController extends Controller
     protected $fileUploadRepository;
 
 
-    public function __construct(HomeworkRepository $homeworkRepository, SubjectRepository $subjectRepository,FileUploadRepository $fileUploadRepository)
+    public function __construct(HomeworkRepository $homeworkRepository, SubjectRepository $subjectRepository, FileUploadRepository $fileUploadRepository)
     {
         $this->homeworkRepository = $homeworkRepository;
         $this->subjectRepository = $subjectRepository;
@@ -39,31 +39,28 @@ class HomeworkController extends Controller
     }
 
 
-    public function create()
+    public function create(Subject $subject)
     {
-        $user = auth()->user();
-        $subjects = $this->subjectRepository->getRelated($user->teacher);
-
-        return view('teacher.homework.createHomework', ['subjects' => $subjects]);
+        return view('teacher.homework.createHomework', ['subject' => $subject]);
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, Subject $subject)
     {
         $file = $request->file('file');
 
-        $subject = Subject::find($request->subject_id);
-        if (isset($file)){
-            $filename = $file->getClientOriginalName();
-            $file_path = $subject->directory . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR .$request->homework_type;
-            $this->fileUploadRepository->fileUpload($file,$filename, $file_path);
-            $homework = $this->homeworkRepository->store($request->all(), $file_path, $filename);
-        }else
+        if (isset($file))
         {
-            $homework = $this->homeworkRepository->store($request->all());
+            $filename = $file->getClientOriginalName();
+            $file_path = 'public' . DIRECTORY_SEPARATOR . $subject->directory . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $request->homework_type;
+            $this->fileUploadRepository->fileUpload($file, $filename, $file_path);
+            $homework = $this->homeworkRepository->store($request->all(), $subject->id, $file_path, $filename);
+        } else
+        {
+            $homework = $this->homeworkRepository->store($request->all(), $subject->id);
         }
 
-        return redirect()->route('homework.show', $homework);
+        return redirect()->route('homework.show', ['homework' => $homework]);
     }
 
 
@@ -75,16 +72,13 @@ class HomeworkController extends Controller
     }
 
 
-    public function edit(Homework $homework)
+    public function edit(Homework $homework, Subject $subject)
     {
-        $user = auth()->user();
-        $subjects = $this->subjectRepository->getRelated($user->teacher);
-
-        return view('teacher.homework.editHomework', ['homework' => $homework, 'subjects' => $subjects]);
+        return view('teacher.homework.editHomework', ['homework' => $homework, 'subject' => $subject]);
     }
 
 
-    public function update(Request $request, Homework $homework)
+    public function update(Request $request, Homework $homework, Subject $subject)
     {
         $file = $request->file('file');
 
@@ -93,33 +87,33 @@ class HomeworkController extends Controller
             Storage::delete($homework->filepath);
         }
 
-        $subject = Subject::find($request->subject_id);
-        if (isset($file)){
-            $filename = $file->getClientOriginalName();
-            $file_path = $subject->directory . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $homework->homework_type;
-            $this->fileUploadRepository->fileUpload($file,$filename, $file_path);
-            $homework = $this->homeworkRepository->update($request->all(), $homework ,$file_path, $filename);
-        }else
+        if (isset($file))
         {
-            $homework = $this->homeworkRepository->update($request->all(), $homework);
+            $filename = $file->getClientOriginalName();
+            $file_path = 'public' . DIRECTORY_SEPARATOR . $subject->directory . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $homework->homework_type;
+            $this->fileUploadRepository->fileUpload($file, $filename, $file_path);
+            $homework = $this->homeworkRepository->update($request->all(), $homework, $subject->id, $file_path, $filename);
+        } else
+        {
+            $homework = $this->homeworkRepository->update($request->all(), $homework, $subject->id);
         }
 
-        return redirect()->route('homework.show', $homework);
+        return redirect()->route('homework.show', ['homework' => $homework, 'subject'=> $subject]);
     }
 
 
     public function delete(Homework $homework)
     {
         $subject = Subject::find($homework->subject_id);
-        Storage::delete($homework->filepath);
+        Storage::delete('public' . DIRECTORY_SEPARATOR . $homework->filepath);
         $this->homeworkRepository->delete($homework);
 
-        return redirect()->route('subject.show',$subject);
+        return redirect()->route('subject.show', $subject);
     }
 
     public function deleteFile(Homework $homework)
     {
-        Storage::delete($homework->filepath);
+        Storage::delete('public' . DIRECTORY_SEPARATOR . $homework->filepath);
         $this->homeworkRepository->removeFile($homework);
 
         return redirect()->route('homework.show', $homework);
@@ -128,6 +122,6 @@ class HomeworkController extends Controller
 
     public function fileDownload(Homework $homework)
     {
-        return Storage::download($homework->filepath);
+        return Storage::download('public' . DIRECTORY_SEPARATOR . $homework->filepath);
     }
 }

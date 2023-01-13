@@ -17,7 +17,7 @@
             <div class="row addForm">
                 <input class="search text-input col-md-12" name="search" type="text" minlength="4"
                        placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες..." id="search">
-                <div class="col-md-1">
+                <div class="col-auto">
                     <button type="submit" class="light minimalButton"><i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>

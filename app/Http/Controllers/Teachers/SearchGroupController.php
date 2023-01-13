@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Teachers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Group;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SearchGroupController extends Controller
 {
-    public function search(Request $request)
+    public function search(Request $request, Subject $subject)
     {
-        $groupQuery = Group::query()->whereRelation('subject', function ($query){
-            $query->whereRelation('teacher', 'user_id', '=', auth()->user()->id);
-        });
+        $groupQuery = Group::query()->whereRelation('subject', 'subject_id', '=', $subject->id);
+//            function ($query){
+//            $query->whereRelation('teacher', 'user_id', '=', auth()->user()->id);
+//        });
 
         if ($request->search) {
             if ($request->search) {
@@ -28,13 +30,13 @@ class SearchGroupController extends Controller
 
 
             if (count($groups) > 0) {
-                return view('teacher.search.groups', ['groups' => $groups]);
+                return view('teacher.search.groups', ['groups' => $groups, 'subject' => $subject]);
             }else {
-                return view('teacher.search.groups', ['groups' => []]);
+                return view('teacher.search.groups', ['groups' => [], 'subject' => $subject]);
             }
 
         } else {
-            return view('teacher.search.groups', ['groups' => []]);
+            return view('teacher.search.groups', ['groups' => [], 'subject' => $subject]);
         }
 
     }

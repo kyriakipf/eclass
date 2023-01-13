@@ -9,17 +9,6 @@
     <div class="top-section">
     </div>
     <div class="bottom-section">
-        <div class="buttons row">
-            <div class="btn-container col-md-2">
-                <a href="#" class="purple">Προσθήκη Ομαδας</a>
-            </div>
-            <div class="btn-container col-md-2">
-                <a href="#" class="purple">Προσθήκη Αρχείου</a>
-            </div>
-            <div class="btn-container col-md-2">
-                <a href="#" class="purple">Προσθήκη Εργασίας</a>
-            </div>
-        </div>
         <div class="form-container">
             <form action="{{route('subject.update' , ['subject'=>$subject])}}" method="post">
                 @csrf

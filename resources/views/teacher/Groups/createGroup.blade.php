@@ -6,33 +6,25 @@
     teacher dashboard
 @endsection
 @section('content')
+    <div class="top-section row col-md-12"></div>
     <div class="bottom-section">
-        <form action="{{route('group.store')}}" method="post">
+        <form action="{{route('group.store', ['subject' => $subject])}}" method="post">
             @csrf
-            <div class="form-container row">
+            <div class="form-container row" style="justify-content: flex-start">
                 <div class="col-md-3">
                     <label for="title" class="input-label">Τίτλος Ομάδας</label>
                     <input name="title" id="title" type="text"
-                           placeholder="Γράψτε εδώ..." class="text-input">
+                           placeholder="Γράψτε εδώ..." class="text-input" required>
                 </div>
-                <div class="subject col-md-2">
-                    <label for="subject" class="input-label">ΜάΘημα</label>
-                    <select name="subjectId" id="subject" type=""
-                            class="text-input">
-                        @foreach($subjects as $subject)
-                            <option value="{{$subject->id}}">{{$subject->title}}</option>
-                        @endforeach
-                    </select>
+                <div class="col-md-3">
+                    <label class="input-label" for="capacity">Αριθμός Φοιτητών</label>
+                    <input type="number" name="capacity" id="capacity" min="0" required>
                 </div>
                 <div class="summary col-md-12">
                     <label class="input-label" for="summary">Περιγραφή</label>
                     <textarea name="summary" class="text-input area-input" placeholder="Γράψτε εδώ..."
                               id="summary" cols="30"
                               rows="10" required></textarea>
-                </div>
-                <div class="capacity">
-                    <label for="capacity">Αριθμός Μαθητών</label>
-                    <input type="number" name="capacity" min="0">
                 </div>
                 <div class="btn-container col-md-2">
                     <button type="submit" class="button bold ">Δημιουργία</button>

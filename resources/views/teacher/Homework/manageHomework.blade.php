@@ -1,12 +1,15 @@
 @extends('layouts.teacher')
 @section('stylesheets')
     <link rel="stylesheet" href="{{asset("css/subjectAdd.css")}}">
+    @livewireStyles
 @endsection
 @section('header')
     teacher dashboard
 @endsection
 @section('content')
     <div class="mainInfo">
+        <div class="top-section">
+        </div>
         <div class="bottom-section">
             <p class="title purple">Εργασίες</p>
             <form action="{{route('homework.search.form')}}" method="POST">
@@ -25,4 +28,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('javascripts')
+    @livewireScripts
 @endsection

@@ -35,21 +35,31 @@
                         <p class="subtitle">Περιγραφή</p>
                         @if($subject->summary != null)
                             <p class="paragraph collapsable">{{$subject->summary}}</p>
-                            <span class="show-more">Περισσότερα...</span>
-                            <span class="show-less">Λιγότερα...</span>
+                            @if(strlen($subject->summary) > 5300)
+                                <span class="show-more">Περισσότερα...</span>
+                                <span class="show-less">Λιγότερα...</span>
+                            @endif
                         @else
                             <p class="paragraph">Δεν υπάρχει διαθέσιμη περιγραφή.</p>
                         @endif
                     </div>
                 </div>
-                <div class="mt-5">
-                    @if($files != null)
+                <div class="flex mt-5 gap-4">
+                    <div class="col-auto">
                         <a href="{{route('subject.file.show', ['subject' => $subject])}}"
                            class=" button bold">Έγγραφα
                             Μαθήματος</a>
-                    @else
-                        <p>Δεν υπάρχουν διαθέσιμα έγγραφα</p>
-                    @endif
+                    </div>
+                    <div class="col-auto">
+                        <a href="{{route('subject.homework.show', ['subject' => $subject])}}"
+                           class=" button bold">Εργασίες
+                            Μαθήματος</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="{{route('subject.groups.show', ['subject' => $subject])}}"
+                           class=" button bold">Ομάδες
+                            Μαθήματος</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,14 +89,12 @@
         {{--                    <a href="{{route('teacher.email.subject.create', ['subject' => $subject])}}">Αποστολή email</a>--}}
         {{--                </div>--}}
     </div>
-    </div>
-    </div>
 @endsection
 @section('javascripts')
     <script>
         const s = $.noConflict();
         s(document).ready(function () {
-            s('.collapsable').css({"maxHeight": "100px"})
+            s('.collapsable').css({"maxHeight": "500px"})
             s('.show-less').hide()
             s('.show-more').on('click', function () {
                 s('.collapsable').css({"maxHeight": "unset"})
@@ -94,7 +102,7 @@
                 s('.show-less').show()
             })
             s('.show-less').on('click', function () {
-                s('.collapsable').css({"maxHeight": "100px"})
+                s('.collapsable').css({"maxHeight": "500px"})
                 s('.show-more').show()
                 s('.show-less').hide()
             })

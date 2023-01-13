@@ -13,13 +13,13 @@ class GroupRepository
         return Group::all();
     }
 
-    public function store($input)
+    public function store($input, $subjectId)
     {
         DB::beginTransaction();
 
         try {
            $group =  Group::create([
-                'subject_id' => $input['subjectId'],
+                'subject_id' => $subjectId,
                 'title' => $input['title'],
                 'summary' => $input['summary'],
                 'capacity' => $input['capacity']
@@ -33,10 +33,10 @@ class GroupRepository
         }
     }
 
-    public function update(array $data, Group $group)
+    public function update(array $data, Group $group, $subjectId)
     {
         $group->update([
-            'subject_id' => $data['subjectId'],
+            'subject_id' => $subjectId,
             'title' => $data['title'],
             'summary' => $data['summary'],
             'capacity' => $data['capacity']

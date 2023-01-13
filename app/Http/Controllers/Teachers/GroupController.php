@@ -29,37 +29,42 @@ class GroupController extends Controller
     }
 
 
-    public function create()
+    public function create(Subject $subject)
     {
-        return view('teacher.groups.createGroup', ['subjects' => $this->subjectRepository->getAll()]);
+        return view('teacher.groups.createGroup', ['subject' => $subject]);
     }
 
 
-    public function store(Request $request, $subjectId = null)
+    public function store(Request $request, Subject $subject)
     {
-        $group = $this->groupRepository->store($request->input());
+        $group = $this->groupRepository->store($request->input(), $subject->id);
 
         return redirect()->route('group.show', $group);
     }
 
 
-    public function edit(Group $group)
+    public function edit(Group $group, Subject $subject)
     {
-        return view('teacher.groups.editGroup', ['group' => $group, 'subjects' => $this->subjectRepository->getAll()] );
+        return view('teacher.groups.editGroup', ['group' => $group, 'subject' => $subject] );
     }
 
 
-    public function update(Group $group, Request $request)
+    public function update(Group $group, Request $request, Subject $subject)
     {
-        $group = $this->groupRepository->update($request->all(),$group);
+        $group = $this->groupRepository->update($request->all(),$group, $subject->id);
 
-        return view('teacher.groups.showGroup', ['group' => $group]);
+        $subject = $group->subject;
+        $users = $subject->teacher;
+
+        return view('teacher.groups.showGroup', ['group' => $group, 'users' => $users]);
     }
 
 
     public function show(Group $group)
     {
-        return view('teacher.groups.showGroup', ['group' => $group]);
+        $subject = $group->subject;
+        $users = $subject->teacher;
+        return view('teacher.groups.showGroup', ['group' => $group, 'users' => $users]);
     }
 
     public function delete(Group $group)

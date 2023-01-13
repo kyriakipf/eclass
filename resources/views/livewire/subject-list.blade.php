@@ -1,6 +1,11 @@
 <div class="col-md-12" wire:key='subjects'>
-    <table>
-        @if(count($subjects) != 0)
+    @if(count($subjects) == 0)
+        <div class="tableRow">
+            <a href="{{route('subject.create')}}" class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα. Πατήστε εδώ για να
+                δημιουργήσετε ένα μάθημα.</a>
+        </div>
+    @else
+        <table>
             <thead>
             <tr class="tableRow colTitles">
                 <th class="sort col-md-2" wire:click="sortBy('title')">Τιτλος</th>
@@ -24,7 +29,7 @@
                                 class="paragraph">{{substr($subject->summary, 0,60)}}...</p></a>
                     </td>
                     <td class="col-md-2">
-                        <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                        <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                 class="paragraph">{{$subject->teacher[0]->user->name}} {{$subject->teacher[0]->user->surname}}</p>
                         </a>
                     </td>
@@ -33,7 +38,7 @@
                                 class="paragraph">{{$subject->semester->number}}<small>ο</small> Εξάμηνο</p></a>
                     </td>
                     <td class="col-md-2">
-                        <a href="{{route('admin.subject.show' , ['subject' => $subject])}}">
+                        <a href="{{route('subject.show' , ['subject' => $subject])}}">
                             <p class="paragraph">{{count($subject->student)}}</p></a>
                     </td>
                     <td class="col-md-1">
@@ -47,9 +52,7 @@
                 </tr>
             @endforeach
             </tbody>
-        @else
-            <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
-        @endif
-    </table>
+        </table>
+    @endif
     {{ $subjects->links('livewire.pagination-links') }}
 </div>

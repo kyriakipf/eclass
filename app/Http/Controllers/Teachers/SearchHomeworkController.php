@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Teachers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Homework;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SearchHomeworkController extends Controller
 {
-    public function search(Request $request)
+    public function search(Request $request, Subject $subject)
     {
         $teacher = auth()->user()->teacher;
-        $hwQuery = Homework::query()->whereRelation('subject', function ($query){
-            $query->whereRelation('teacher', 'user_id', '=', auth()->user()->id);
-        });
+        $hwQuery = Homework::query()->whereRelation('subject', 'subject_id', '=', $subject->id);
+
+//            function ($query){
+//            $query->whereRelation('teacher', 'user_id', '=', auth()->user()->id);
+//        });
 
         if ($request->search) {
             if ($request->search) {
@@ -32,13 +35,13 @@ class SearchHomeworkController extends Controller
 
 
             if (count($homework) > 0) {
-                return view('teacher.search.homework', ['homework' => $homework]);
+                return view('teacher.search.homework', ['homework' => $homework, 'subject' => $subject]);
             }else {
-                return view('teacher.search.homework', ['homework' => []]);
+                return view('teacher.search.homework', ['homework' => [], 'subject' => $subject]);
             }
 
         } else {
-            return view('teacher.search.homework', ['homework' => []]);
+            return view('teacher.search.homework', ['homework' => [], 'subject' => $subject]);
         }
 
     }

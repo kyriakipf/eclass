@@ -24,27 +24,29 @@
                     </p>
                 </div>
                 <div class="col-md-1 ml-auto">
-                    <a href="{{route('subjects')}}">Επιστροφή</a>
+                    <a href="{{route('subject.show' , ['subject' => $subject])}}">Επιστροφή</a>
                 </div>
             </div>
         </div>
         <div class="bottom-section">
             <div class="row gap-3">
                 <div class="col-lg-7 col-md-9">
-
-                    @if(isset($subfolders) && isset($files))
-                        <p class="paragraph">Δεν υπάρχουν διαθέσιμα έγγραφα</p>
-                    @else
-                        <div class="folder-files">
+                    <div class="folder-files">
+                        <div class="flex folder-files-row">
+                            <div class="type">ΤΥΠΟΣ</div>
+                            <div class="name">ΟΝΟΜΑ</div>
+                            <div class="date">ΗΜΕΡΟΜΗΝΙΑ</div>
+                            <div class="size">ΜΕΓΕΘΟΣ</div>
+                            <div class="download">ΛΗΨΗ</div>
+                        </div>
+                        @if(count($folders) <= 0 && count($files) <= 0)
                             <div class="flex folder-files-row">
-                                <div class="type">ΤΥΠΟΣ</div>
-                                <div class="name">ΟΝΟΜΑ</div>
-                                <div class="date">ΗΜΕΡΟΜΗΝΙΑ</div>
-                                <div class="size">ΜΕΓΕΘΟΣ</div>
-                                <div class="download">ΛΗΨΗ</div>
+                                <div>
+                                    <p class="ml-4 paragraph">Δεν υπάρχουν διαθέσιμα έγγραφα</p>
+                                </div>
                             </div>
+                        @else
                             @foreach($folders as $folder)
-
                                 <div class="flex folder-files-row">
                                     <div class="type"><i class="purple fa-regular fa-folder-open"></i></div>
                                     <div class="name">
@@ -56,13 +58,10 @@
                                     <div class="date">&emsp;&emsp;-</div>
                                     <div class="download">-</div>
                                 </div>
-
                             @endforeach
                             @foreach($files as $file)
-
                                 <div class="flex folder-files-row">
                                     <div class="type"><i class="purple fa-regular fa-file-lines"></i></div>
-
                                     <div class="name"><a
                                             href="{{asset('storage/' . $file->filepath . DIRECTORY_SEPARATOR . $file->filename)}}"
                                             target="_blank">{{$file->filename}}</a></div>
@@ -70,42 +69,43 @@
                                         &emsp;{{\Carbon\Carbon::parse($file->created_at)->format('d-m-Y')}}</div>
                                     <div class="size">&ensp;{{$sizes[$loop->index]}} KB</div>
                                     <div class="download">
-                                        <a href="{{route('admin.subject.file.download', ['subject' => $subject ,'file' => $file->filename])}}"><i
+                                        <a href="{{route('subject.file.download', ['subject' => $subject ,'file' => $file->filename])}}"><i
                                                 class="fa-regular fa-download"></i></a>
                                     </div>
                                 </div>
                             @endforeach
-                        </div>
-                    @endif
+                        @endif
+                    </div>
                 </div>
                 <div class="col">
                     <div class="flex mb-3 mt-[13px] " style="justify-content: space-between">
-                        <p id="folder-form-toggle" class="purple"><i class="fa-light fa-folder-plus fa-lg"></i>&nbsp;Δημιουργία
+                        <p id="folder-form-toggle" class="purple cursor-pointer"><i class="fa-light fa-folder-plus fa-lg"></i>&nbsp;Δημιουργία
                             Φακέλου</p>
-                        <p id="files-form-toggle" class="purple"><i class="fa-light fa-file-plus fa-lg"></i>&nbsp;Μεταφόρτωση Αρχείου</p>
+                        <p id="files-form-toggle" class="purple cursor-pointer"><i class="fa-light fa-file-plus fa-lg"></i>&nbsp;Μεταφόρτωση
+                            Αρχείου</p>
                     </div>
-                    <form id="folder-form" class="mt-5 pt-1 d-none"
+                    <form id="folder-form" class="flex mt-5 pt-1 d-none gap-4"
                           action="{{route('subject.directory.store',['subject' => $subject])}}" method="post">
                         @csrf
-                        <div class=" col-auto">
+                        <div class=" col-5">
                             <label for="title" class="input-label">Όνομα Φακέλου</label>
                             <input name="title" id="title" type="text"
                                    placeholder="Γράψτε εδώ..." class="text-input">
                         </div>
 
-                        <div class="btn-container col-auto">
+                        <div class="btn-container col-3 mt-2">
                             <button type="submit" class="button bold ">Δημιουργία Φακέλου</button>
                         </div>
                     </form>
-                    <form id="files-form" class="mt-5 pt-1 d-none"
-                          action="{{route('subject.file.store',['subject' => $subject, 'folder' => $folder])}}"
+                    <form id="files-form" class="flex mt-5 pt-1 d-none gap-4"
+                          action="{{route('subject.file.store',['subject' => $subject, 'folder' => $fold])}}"
                           method="post"
                           enctype="multipart/form-data">
                         @csrf
-                        <div class="col-auto">
+                        <div class="col-5 mt-8  small-file-input">
                             <input type="file" name="file" class="form-control">
                         </div>
-                        <div class="btn-container col-auto">
+                        <div class="btn-container col-3 mt-2">
                             <button type="submit" class="button bold ">Προσθήκη Αρχείου</button>
                         </div>
                     </form>
@@ -118,21 +118,20 @@
     <script>
         const cc = $.noConflict();
         cc(document).ready(function () {
-           const folderToggle = cc('#folder-form-toggle')
-           const filesToggle = cc('#files-form-toggle')
-           const folderForm = cc('#folder-form')
-           const filesForm = cc('#files-form')
+            const folderToggle = cc('#folder-form-toggle')
+            const filesToggle = cc('#files-form-toggle')
+            const folderForm = cc('#folder-form')
+            const filesForm = cc('#files-form')
 
-            folderToggle.on('click', function (){
+            folderToggle.on('click', function () {
                 folderForm.removeClass('d-none')
                 filesForm.addClass('d-none')
             })
 
-            filesToggle.on('click', function (){
+            filesToggle.on('click', function () {
                 filesForm.removeClass('d-none')
                 folderForm.addClass('d-none')
             })
-
 
 
         });

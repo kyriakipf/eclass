@@ -6,33 +6,25 @@
     teacher dashboard
 @endsection
 @section('content')
+    <div class="top-section row col-md-12"></div>
     <div class="bottom-section">
-        <form action="{{route('group.update', $group)}}" method="post">
+        <form action="{{route('group.update', ['group' => $group, 'subject' => $group->subject])}}" method="post">
             @csrf
-            <div class="form-container row">
-                <div class="title col-md-3">
+            <div class="form-container row" style="justify-content: flex-start">
+                <div class="col-md-3">
                     <label for="title" class="input-label">Τίτλος Ομάδας</label>
                     <input name="title" id="title" type="text"
                            placeholder="Γράψτε εδώ..." class="text-input" value="{{$group->title}}">
                 </div>
-                <div class="subject col-md-2">
-                    <label for="subject" class="input-label">ΜάΘημα</label>
-                    <select name="subjectId" id="subject" type=""
-                            class="text-input">
-                        @foreach($subjects as $subject)
-                            <option value="{{$subject->id}}" @if($group->subject_id == $subject->id) selected @endif>{{$subject->title}}</option>
-                        @endforeach
-                    </select>
+                <div class="col-md-3">
+                    <label for="capacity" class="input-label">Αριθμός Μαθητών</label>
+                    <input type="number" name="capacity" id="capacity" min="0" value="{{$group->capacity}}">
                 </div>
                 <div class="summary col-md-12">
                     <label class="input-label" for="summary">Περιγραφή</label>
                     <textarea name="summary" class="text-input area-input" placeholder="Γράψτε εδώ..."
                               id="summary" cols="30"
                               rows="10" required>{{$group->summary}}</textarea>
-                </div>
-                <div class="capacity">
-                    <label for="capacity">Αριθμός Μαθητών</label>
-                    <input type="number" name="capacity" min="0" value="{{$group->capacity}}">
                 </div>
                 <div class="btn-container col-md-2">
                     <button type="submit" class="button bold ">Ενημέρωση</button>

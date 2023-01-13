@@ -132,39 +132,41 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('{subject}/directory/create', [SubjectController::class, 'directoryCreate'])->name('subject.directory.create');
         Route::post('{subject}/directory/store', [SubjectController::class, 'directoryStore'])->name('subject.directory.store');
         Route::get('{subject}/subdirectory/{folder}/create', [SubjectController::class, 'subDirectoryCreate'])->name('subject.subdirectory.create');
-        Route::post('{subject}/subdirectory/{folder}/store', [SubjectController::class, 'subDirectoryStore'])->name('subject.subdirectory.store');
-        Route::get('{subject}/directory/{folder}/show', [SubjectController::class, 'directoryShow'])->name('subject.directory.show');
-        Route::post('{subject}/file/store/{folder?}', [SubjectController::class, 'fileStore'])->name('subject.file.store');
-        Route::get('{subject}/file/upload/{folder?}', [SubjectController::class, 'fileUpload'])->name('subject.file.upload');
+        Route::post('{subject}/subdirectory/{folder}/store', [SubjectController::class, 'subDirectoryStore'])->name('subject.subdirectory.store')->where('folder', '.*');
+        Route::get('{subject}/directory/{folder}/show', [SubjectController::class, 'directoryShow'])->name('subject.directory.show')->where('folder', '.*');
+        Route::post('{subject}/file/store/{folder?}', [SubjectController::class, 'fileStore'])->name('subject.file.store')->where('folder', '.*');
+        Route::get('{subject}/file/upload/{folder?}', [SubjectController::class, 'fileUpload'])->name('subject.file.upload')->where('folder', '.*');
         Route::get('{subject}/file/{file}/download', [SubjectController::class, 'fileDownload'])->name('subject.file.download');
         Route::match(['get', 'post'],'/search/form', [SearchSubjectController::class, 'search'])->name('subject.search.form');
         Route::get('{subject}/file/show', [SubjectController::class, 'fileShow'])->name('subject.file.show');
+        Route::get('{subject}/homework/show', [SubjectController::class, 'homeworkShow'])->name('subject.homework.show');
+        Route::get('{subject}/groups/show', [SubjectController::class, 'groupShow'])->name('subject.groups.show');
     });
 
     //Group Management
     Route::group(['prefix' => 'group'], function (){
         Route::get('index', [GroupController::class, 'index'])->name('groups');
         Route::get('create/{subject?}', [GroupController::class, 'create'])->name('group.create');
-        Route::post('store', [GroupController::class, 'store'])->name('group.store');
+        Route::post('{subject}/store', [GroupController::class, 'store'])->name('group.store');
         Route::get('{group}/show', [GroupController::class, 'show'])->name('group.show');
-        Route::get('{group}/edit', [GroupController::class, 'edit'])->name('group.edit');
-        Route::post('{group}/update', [GroupController::class, 'update'])->name('group.update');
+        Route::get('{group}/{subject}/edit', [GroupController::class, 'edit'])->name('group.edit');
+        Route::post('{group}/{subject}/update', [GroupController::class, 'update'])->name('group.update');
         Route::get('{group}/delete', [GroupController::class, 'delete'])->name('group.delete');
-        Route::match(['get', 'post'],'/search/form', [SearchGroupController::class, 'search'])->name('group.search.form');
+        Route::match(['get', 'post'],'{subject}/search/form', [SearchGroupController::class, 'search'])->name('group.search.form');
     });
 
     //Homework Management
     Route::group(['prefix' => 'homework'], function(){
        Route::get('index', [HomeworkController::class, 'index'])->name('homework');
-       Route::get('create', [HomeworkController::class, 'create'])->name('homework.create');
-       Route::post('store', [HomeworkController::class, 'store'])->name('homework.store');
+       Route::get('{subject}/create', [HomeworkController::class, 'create'])->name('homework.create');
+       Route::post('{subject}/store', [HomeworkController::class, 'store'])->name('homework.store');
        Route::get('{homework}/show', [HomeworkController::class, 'show'])->name('homework.show');
-       Route::get('{homework}/edit', [HomeworkController::class, 'edit'])->name('homework.edit');
-       Route::post('{homework}/update', [HomeworkController::class, 'update'])->name('homework.update');
+       Route::get('{homework}/{subject}/edit', [HomeworkController::class, 'edit'])->name('homework.edit');
+       Route::post('{homework}/{subject}/update', [HomeworkController::class, 'update'])->name('homework.update');
        Route::get('{homework}/delete', [HomeworkController::class, 'delete'])->name('homework.delete');
         Route::get('{homework}/file/delete', [HomeworkController::class, 'deleteFile'])->name('homework.file.delete');
         Route::get('{homework}/file/download', [HomeworkController::class, 'fileDownload'])->name('homework.file.download');
-        Route::match(['get', 'post'],'/search/form', [SearchHomeworkController::class, 'search'])->name('homework.search.form');
+        Route::match(['get', 'post'],'{subject}/search/form', [SearchHomeworkController::class, 'search'])->name('homework.search.form');
     });
 
     //Email

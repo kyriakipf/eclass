@@ -11,6 +11,7 @@ class FileRepository
     public function create(Subject $subject, $file_path, string $filename)
     {
         $path = str_replace('public/', '',$file_path);
+        $path = str_replace('public\\', '',$path);
         File::create([
             'filename' => $filename,
             'subject_id' => $subject->id,

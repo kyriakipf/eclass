@@ -1,6 +1,7 @@
 @extends('layouts.teacher')
 @section('stylesheets')
     <link rel="stylesheet" href="{{asset("css/subjectAdd.css")}}">
+    @livewireStyles
 @endsection
 @section('header')
     teacher dashboard
@@ -9,7 +10,7 @@
     <div class="mainInfo">
         <div class="bottom-section">
             <p class="title purple">Εργαστηριακές Ομάδες</p>
-            <form action="{{route('group.search.form')}}" method="POST">
+            <form action="{{route('group.search.form', ['subject' => $subject])}}" method="POST">
                 @csrf
                 <div class="row addForm">
                     <label for="search">Αναζήτηση</label>
@@ -25,4 +26,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('javascripts')
+    @livewireScripts
 @endsection

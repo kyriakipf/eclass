@@ -15,22 +15,22 @@
             @foreach($groups as $group)
                 <tr class="tableRow ">
                     <td class="col-md-3">
-                        <a href="{{route('group.show', $group)}}"><p class="paragraph">{{$group->title}}</p></a>
-                    </td>
-                    <td class="col-md-5">
-                        <a href="{{route('group.show', $group)}}"><p class="paragraph">{{substr($group->summary, 0,130)}}...</p></a>
-                    </td>
-                    <td class="col-md-5">
-                        <a href="{{route('group.show', $group)}}"><p class="paragraph">{{$group->subject->title}}</p></a>
+                        <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}"><p class="paragraph">{{$group->title}}</p></a>
                     </td>
                     <td class="col-md-3">
-                        <a href="{{route('group.show', $group)}}"><p class="paragraph">{{$group->capacity}}</p></a>
+                        <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}"><p class="paragraph">{{substr($group->summary, 0,130)}}...</p></a>
                     </td>
-                    <td>
-                        <a href="{{route('group.edit', $group)}}" class="edit"><i
+                    <td class="col-md-3">
+                        <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}"><p class="paragraph">{{$group->subject->title}}</p></a>
+                    </td>
+                    <td class="col-md-auto">
+                        <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}"><p class="paragraph">{{$group->capacity}}</p></a>
+                    </td>
+                    <td class="col-auto">
+                        <a href="{{route('group.edit', ['group' => $group, 'subject' => $group->subject])}}" class="edit"><i
                                 class="fa-regular fa-pencil"></i></a>
                     </td>
-                    <td>
+                    <td class="col-auto">
                         <a href="{{route('group.delete', $group)}}" class="delete"><i
                                 class="fa-regular fa-trash-can"></i></a>
                     </td>

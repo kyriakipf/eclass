@@ -14,7 +14,7 @@ class HomeworkRepository
         return Homework::query()->where('uploaded_by', '=', $teacherId)->get();
     }
 
-    public function store(array $data, $file_path = null, $filename = null)
+    public function store(array $data, $subjectId ,$file_path = null, $filename = null)
     {
         $user = auth()->user()->id;
         $homework = null;
@@ -22,7 +22,9 @@ class HomeworkRepository
 
         if (!$file_path == null)
         {
-            $path = $file_path . DIRECTORY_SEPARATOR . $filename;
+            $fpath = str_replace('public/', '',$file_path);
+            $fpath = str_replace('public\\', '',$fpath);
+            $path = $fpath . DIRECTORY_SEPARATOR . $filename;
         }
 
 
@@ -33,7 +35,7 @@ class HomeworkRepository
 
             $homework = Homework::create
             ([
-                'subject_id' => $data['subject_id'],
+                'subject_id' => $subjectId,
                 'uploaded_by' => $user,
                 'title' => $data['title'],
                 'summary' => $data['summary'],
@@ -53,17 +55,19 @@ class HomeworkRepository
         return $homework;
     }
 
-    public function update(array $data, Homework $homework, $file_path = null, $filename = null)
+    public function update(array $data, Homework $homework, $subjectId ,$file_path = null, $filename = null)
     {
         $path = null;
 
         if (!$file_path == null)
         {
-            $path = $file_path . DIRECTORY_SEPARATOR . $filename;
+            $fpath = str_replace('public/', '',$file_path);
+            $fpath = str_replace('public\\', '',$fpath);
+            $path = $fpath . DIRECTORY_SEPARATOR . $filename;
         }
 
         $homework->update([
-            'subject_id' => $data['subject_id'],
+            'subject_id' => $subjectId,
             'title' => $data['title'],
             'summary' => $data['summary'],
             'due_date' => $data['due_date'],

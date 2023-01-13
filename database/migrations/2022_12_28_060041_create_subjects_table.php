@@ -16,7 +16,7 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('summary')->nullable();
+            $table->text('summary')->nullable();
             $table->boolean('isPublic');
             $table->string('password')->nullable();
             $table->string('tmima');

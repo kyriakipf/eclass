@@ -41,6 +41,16 @@ form {
         }
     }
 
+    & .small-file-input
+    {
+        background-color: $white;
+        border: 1px solid $lightSubText;
+        padding: 30px 0 30px 50px;
+        margin: 0 0 30px 0;
+        cursor: pointer;
+        align-content: center;
+    }
+
     & .file-input {
         background-color: $white;
         border: 1px solid $lightSubText;

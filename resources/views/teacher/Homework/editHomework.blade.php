@@ -6,8 +6,10 @@
     teacher dashboard
 @endsection
 @section('content')
+    <div class="top-section">
+    </div>
     <div class="bottom-section">
-        <form action="{{route('homework.update',  $homework)}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('homework.update',  ['homework' => $homework, 'subject' => $subject])}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-container row">
                 <div class="col-md-3">
@@ -16,20 +18,12 @@
                            placeholder="" class="text-input" value="{{$homework->title}}">
                 </div>
                 <div class="subject col-md-2">
-                    <label for="subject" class="input-label">ΜάΘημα</label>
-                    <select name="subject_id" id="subject" class="text-input">
-                        @foreach($subjects as $subject)
-                            <option value="{{$subject->id}}"
-                                    @if($homework->subject_id == $subject->id) selected @endif>{{$subject->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="subject col-md-2">
                     <label for="type" class="input-label">Τύπος Εργασίας</label>
                     <select name="homework_type" id="type" type="" class="text-input">
                         <option value="Μαθήματος" @if($homework->homework_type == 'Μαθήματος') selected @endif>Μαθήματος
                         </option>
-                        <option value="Εργαστηριακή" @if($homework->homework_type == 'Εργαστηριακή') selected @endif>Εργαστηριακή
+                        <option value="Εργαστηριακή" @if($homework->homework_type == 'Εργαστηριακή') selected @endif>
+                            Εργαστηριακή
                         </option>
                     </select>
                 </div>
@@ -45,22 +39,25 @@
                                value="{{\Carbon\Carbon::parse($homework->due_date)->format('Y-m-d h:m')}}">
                     </div>
                 </div>
-                <div class="grade col-md-1">
+                <div class="grade col-md-2">
                     <label for="max_grade" class="input-label">Μέγιστη Βαθμολογία</label>
                     <input type="number" id="max_grade" name="max_grade" value="{{$homework->max_grade}}">
                 </div>
                 @if(is_null($homework->filepath))
-                    <div class="col-md-6">
-                        <input type="file" name="file" class="form-control">
+                    <div class="col-md-3">
+                        <label class="input-label" for="file">Πρόσθήκη Αρχείου</label>
+                        <input type="file" name="file" id="file" class="form-control">
                     </div>
                 @else
-                    <div class="col-md-3">
-                        <p>Αρχείο</p>
-                        <a href="{{$homework->filepath}}" download>{{basename($homework->filepath)}}</a>
-                        <a href="{{route('homework.file.delete' , ['homework' => $homework])}}"> Διαγραφή αρχείου</a>
-                        <p>Αλλαγή αρχείου</p>
+                    <div class="col-md-3 flex gap-4">
                         <div class="col-md-6">
-                            <input type="file" name="file" class="form-control">
+                            <p class="input-label">Αρχείο</p>
+                            <a href="{{$homework->filepath}}" download>{{basename($homework->filepath)}}</a>
+                            <a href="{{route('homework.file.delete' , ['homework' => $homework])}}"><i class="fa-regular fa-trash-can text-lg ml-1"></i></a>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="input-label" for="file">Αλλαγή Αρχείου</label>
+                            <input type="file" name="file" id="file" class="form-control">
                         </div>
                     </div>
                 @endif
