@@ -17,6 +17,8 @@ class CreateSubjectsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('summary')->nullable();
+            $table->string('ects');
+            $table->string('type');
             $table->boolean('isPublic');
             $table->string('password')->nullable();
             $table->string('tmima');

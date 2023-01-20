@@ -7,19 +7,23 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="top-section row col-md-12"></div>
-        <div class="bottom-section">
-            <div class="col-md-auto">
-                <div class="flex">
-                    <p class="title" style="margin-bottom: 0 !important;">Ομάδες</p>
+        <div class="top-section row">
+            <div class=" main-info flex justify-start align-baseline">
+                <div class="col-md-auto">
+                    <div class="flex">
+                        <p class="title" style="margin-bottom: 0 !important;">Ομάδες</p>
+                    </div>
+                    <p class="paragraph mt-1">
+                        <a href="{{route('group.create', ['subject' => $subject])}}" class="paragraph">Προσθήκη</a>
+                    </p>
                 </div>
-                <p class="paragraph mt-1">
-                    <a href="{{route('group.create', ['subject' => $subject])}}" class="paragraph">Προσθήκη</a>
-                </p>
+                <div class="col-md-1 ml-auto">
+                    <a href="{{route('subject.show' , ['subject' => $subject])}}">Επιστροφή</a>
+                </div>
+
             </div>
-            <div class="col-md-1 ml-auto">
-                <a href="{{route('subject.show' , ['subject' => $subject])}}">Επιστροφή</a>
-            </div>
+        </div>
+        <div class="bottom-section">
             <form action="{{route('group.search.form', ['subject' => $subject])}}" method="POST">
                 @csrf
                 <div class="row addForm">
@@ -33,8 +37,8 @@
             </form>
             <div class="row">
                 <div class="col-md-12">
-                    <table>
-                        @if(count($groups) != 0)
+                    @if(count($groups) != 0)
+                        <table>
                             <thead>
                             <tr class="tableRow colTitles">
                                 <th class="sort">Τιτλος</th>
@@ -65,7 +69,8 @@
                                     <td class="col-md-auto">
                                         <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
                                             <p
-                                                class="paragraph">{{count($group->student)}}/{{$group->capacity}}</p></a>
+                                                class="paragraph">{{count($group->student)}}/{{$group->capacity}}</p>
+                                        </a>
                                     </td>
                                     <td class="col-auto">
                                         <a href="{{route('group.edit', ['group' => $group, 'subject' => $group->subject])}}"
@@ -79,15 +84,17 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            @else
-                                <div class="tableRow">
-                                    <a href="{{route('group.create', ['subject' => $subject])}}" class="paragraph">Δεν
-                                        υπάρχουν διαθέσιμες ομάδες. Πατήστε εδώ για να
-                                        δημιουργήσετε μια ομάδα.</a>
-                                </div>
                             </tbody>
-                        @endif
-                    </table>
+                        </table>
+                        {{$groups->links()}}
+                    @else
+                        <div class="tableRow">
+                            <a href="{{route('group.create', ['subject' => $subject])}}" class="paragraph">Δεν
+                                υπάρχουν διαθέσιμες ομάδες. Πατήστε εδώ για να
+                                δημιουργήσετε μια ομάδα.</a>
+                        </div>
+
+                    @endif
                 </div>
             </div>
         </div>

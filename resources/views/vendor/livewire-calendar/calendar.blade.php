@@ -1,4 +1,4 @@
-<div  class="border-1 border-light-blue p-2"
+<div  class=""
     @if($pollMillis !== null && $pollAction !== null)
         wire:poll.{{ $pollMillis }}ms="{{ $pollAction }}"
     @elseif($pollMillis !== null)

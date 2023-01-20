@@ -29,7 +29,6 @@ class customEmail extends Mailable
      */
     public function build()
     {
-//        dd($this->request);
         return $this->from(auth()->user()->email)
             ->view('emails.customEmail', ['request' => $this->request]);
     }

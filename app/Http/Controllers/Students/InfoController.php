@@ -23,24 +23,31 @@ class InfoController extends Controller
 
     public function update(Request $request)
     {
-        $userId = auth()->user()->id;
-        $studentId = auth()->user()->student->id;
+        try
+        {
+            $userId = auth()->user()->id;
+            $studentId = auth()->user()->student->id;
 
-        $user = User::find($userId);
-        $student = Student::find($studentId);
+            $user = User::find($userId);
+            $student = Student::find($studentId);
 
-        $user->update([
-            'email' => $request->email,
-            'name' => $request->name,
-            'surname' => $request->surname
-        ]);
+            $user->update([
+                'email' => $request->email,
+                'name' => $request->name,
+                'surname' => $request->surname
+            ]);
 
-        $student->update([
-            'address' => $request->address,
-            'phone' => $request->phone
-        ]);
+            $student->update([
+                'address' => $request->address,
+                'phone' => $request->phone
+            ]);
+        }catch (\Exception $e)
+        {
+            return redirect()->back()->with('error','Υπήρξε πρόβλημα με την ενημέρωση των στοιχείων');
+        }
 
-        return view('student.Info.showInfo');
+
+        return view('student.Info.showInfo')->with('success','Τα στοιχεία ενημερώθηκαν επιτυχώς');
     }
 
 }

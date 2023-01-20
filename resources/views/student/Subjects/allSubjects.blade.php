@@ -7,9 +7,10 @@
 @endsection
 @section('content')
     <div class="mainInfo">
+        <div class="top-section">
+        </div>
         <div class="bottom-section">
             <p class="title purple">Μαθήματα</p>
-            <a href="{{route('student.subject.register.form')}}">Εγγραφή σε μάθημα</a>
             <div class="row">
                 <div class="col-md-12">
                     <table>
@@ -19,6 +20,8 @@
                                 <th class="subtitle">Τιτλος</th>
                                 <th class="subtitle">Περιγραφη</th>
                                 <th class="subtitle">Εξάμηνο</th>
+                                <th class="subtitle">Κωδικός</th>
+                                <th class="subtitle">Εγγραφή</th>
                             </tr>
                             </thead>
                             <tbody>

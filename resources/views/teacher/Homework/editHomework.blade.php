@@ -50,12 +50,12 @@
                     </div>
                 @else
                     <div class="col-md-3 flex gap-4">
-                        <div class="col-md-6">
-                            <p class="input-label">Αρχείο</p>
+                        <div class="col-auto">
+                            <p class="input-label">Υπάρχον Αρχείο</p>
                             <a href="{{$homework->filepath}}" download>{{basename($homework->filepath)}}</a>
                             <a href="{{route('homework.file.delete' , ['homework' => $homework])}}"><i class="fa-regular fa-trash-can text-lg ml-1"></i></a>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-auto">
                             <label class="input-label" for="file">Αλλαγή Αρχείου</label>
                             <input type="file" name="file" id="file" class="form-control">
                         </div>

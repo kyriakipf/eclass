@@ -43,5 +43,5 @@
             @endif
             </tbody>
     </table>
-    {{ $users->links('livewire.pagination-links') }}
+    {{ $users->links() }}
 </div>

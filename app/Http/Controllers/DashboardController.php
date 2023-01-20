@@ -24,8 +24,8 @@ class DashboardController extends Controller
         $subjects = Subject::all();
         $user = auth()->user();
         $activeSubs = $this->getCurrentSubjects(auth()->user()->role->role_name);
-        $summerSubjects = Subject::query()->whereRelation('semester','type', '=', 'Εαρινό')->get();
-        $winterSubjects = Subject::query()->whereRelation('semester','type', '=', 'Χειμερινό')->get();
+        $summerSubjects = Subject::query()->whereRelation('semester','type', '=', 'Εαρινό')->paginate(5);
+        $winterSubjects = Subject::query()->whereRelation('semester','type', '=', 'Χειμερινό')->paginate(5);
 
         if ($user->role_id == 1)
         {
@@ -65,12 +65,12 @@ class DashboardController extends Controller
                 $id = auth()->user()->student->id;
                 break;
             case 'Administrator':
-                return Subject::query()->whereRelation('semester', 'type', '=', $type)->get();
+                return Subject::query()->whereRelation('semester', 'type', '=', $type)->paginate(4);
             default:
                 return 'Unknown role';
         }
 
-        return Subject::query()->whereRelation($relation, $relation . '_id', '=', $id)->whereRelation('semester', 'type', '=', $type)->get();
+        return Subject::query()->whereRelation($relation, $relation . '_id', '=', $id)->whereRelation('semester', 'type', '=', $type)->paginate(4);
     }
 
 }

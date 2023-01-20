@@ -11,7 +11,7 @@
                 <th class="sort col-md-2" wire:click="sortBy('title')">Τιτλος</th>
                 <th class="sort col-md-2" wire:click="sortBy('summary')">Περιγραφη</th>
                 <th class="subtitle col-md-2">Καθηγητής</th>
-                <th class="subtitle col-md-2" wire:click="sortBy('semester')">Εξάμηνο</th>
+                <th class="subtitle col-md-2" wire:click="sortBy('semester_id')">Εξάμηνο</th>
                 <th class="subtitle col-md-2">Εγγεγραμμενοι Φοιτητές</th>
                 <th class="col-md-1"></th>
                 <th class="col-md-1"></th>
@@ -54,5 +54,5 @@
             </tbody>
         </table>
     @endif
-    {{ $subjects->links('livewire.pagination-links') }}
+    {{ $subjects->links() }}
 </div>

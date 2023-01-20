@@ -6,7 +6,7 @@
                 <th class="sort" wire:click="sortBy('title')">Τιτλος</th>
                 <th class="sort" wire:click="sortBy('summary')">Περιγραφη</th>
                 <th class="sort" wire:click="sortBy('subject_id')">Μάθημα</th>
-                <th class="sort" wire:click="sortBy('capacity')">Μέγιστος Αριθμός Εγγραφών</th>
+                <th class="sort">Μέγιστος Αριθμός Εγγραφών</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -24,7 +24,7 @@
                         <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}"><p class="paragraph">{{$group->subject->title}}</p></a>
                     </td>
                     <td class="col-md-auto">
-                        <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}"><p class="paragraph">{{$group->capacity}}</p></a>
+                        <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}"><p class="paragraph">{{count($group->student)}}/{{$group->capacity}}</p></a>
                     </td>
                     <td class="col-auto">
                         <a href="{{route('group.edit', ['group' => $group, 'subject' => $group->subject])}}" class="edit"><i
@@ -41,5 +41,5 @@
             @endif
             </tbody>
     </table>
-    {{ $groups->links('livewire.pagination-links') }}
+    {{ $groups->links() }}
 </div>

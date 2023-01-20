@@ -66,8 +66,9 @@
     <div class="bottom-section col-md-12 row">
         <div class="col-md-6">
             <p class="title">Μαθήματα Τρέχοντος Εξαμήνου</p>
-            <table>
-                @if(count($activeSubjects) > 0)
+            @if(count($activeSubjects) > 0)
+                {{$activeSubjects->links()}}
+                <table>
                     <thead>
                     <tr class="tableRow">
                         <th class="colTitles">Τιτλος</th>
@@ -106,11 +107,11 @@
                             </td>
                         </tr>
                     @endforeach
-                    @else
-                        <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
-                    @endif
                     </tbody>
-            </table>
+                </table>
+            @else
+                <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
+            @endif
         </div>
         <div class="courses-chart col-md-6">
             <p class="title">Φοιτητές ανα Μάθημα</p>

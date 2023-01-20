@@ -17,7 +17,7 @@ class InviteTeacherController extends Controller
     public function invite()
     {
         $domains = Domain::all();
-        $teachers = InviteTeacher::where('role_id', '=' , 2)->get();
+        $teachers = InviteTeacher::where('role_id', '=' , 2)->paginate(5);
         $registeredTeachers = Teacher::all();
         $job_roles = JobRole::all();
         return view('admin.invited.manageTeacher', ['entities' => $teachers, 'registered' => $registeredTeachers,'domains' => $domains, 'job_roles' => $job_roles]);

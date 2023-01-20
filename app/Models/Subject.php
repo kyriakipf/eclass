@@ -16,6 +16,8 @@ class Subject extends Model
         'title',
         'summary',
         'semester_id' ,
+        'ects',
+        'type',
         'isPublic' ,
         'password' ,
         'tmima',
@@ -55,5 +57,10 @@ class Subject extends Model
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    public function message()
+    {
+        return $this->hasMany(Message::class);
     }
 }

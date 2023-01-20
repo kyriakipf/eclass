@@ -47,13 +47,20 @@ class EmailController extends Controller
         ]);
         $email->save();
 
-        $email->to = $request->userSelect;
-        foreach ($request->userSelect as $user) {
-            Mail::to($user)->send(new customEmail($request));
+        try
+        {
+            $email->to = $request->userSelect;
+            foreach ($request->userSelect as $user) {
+                Mail::to($user)->send(new customEmail($request));
+            }
+
+            $email->save();
+        }catch (\Exception $e)
+        {
+            return redirect()->back()->with('error','Υπήρξε πρόβλημα με την αποστολή του μηνύματος');
         }
 
-        $email->save();
-        return redirect()->route('student.email');
+        return redirect()->route('student.email')->with('success','Το μήνυμα στάλθηκε επιτυχώς');
     }
 
 
@@ -65,6 +72,6 @@ class EmailController extends Controller
     public function delete(Message $email)
     {
         $email->delete();
-        return redirect()->route('student.email');
+        return redirect()->route('student.email')->with('success','Το μήνυμα διαγράφηκε επιτυχώς');
     }
 }

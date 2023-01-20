@@ -10,26 +10,30 @@
 
 
 @section('content')
-    <div class="top-section row col-md-12"></div>
-    <div class="bottom-section">
-        <div class="col-md-auto">
-            <div class="flex">
-                <p class="title" style="margin-bottom: 0 !important;">Ομάδες</p>
+    <div class="top-section row">
+        <div class=" main-info flex justify-start align-baseline">
+            <div class="col-md-auto">
+                <div class="flex">
+                    <p class="title" style="margin-bottom: 0 !important;">Ομάδες</p>
+                </div>
+                <p class="paragraph mt-1">
+                    <a href="{{route('group.create', ['subject' => $subject])}}" class="paragraph">Προσθήκη</a>
+                </p>
             </div>
-            <p class="paragraph mt-1">
-                <a href="{{route('group.create', ['subject' => $subject])}}" class="paragraph">Προσθήκη</a>
-            </p>
+            <div class="col-md-1 ml-auto">
+                <a href="{{route('subject.show' , ['subject' => $subject])}}">Επιστροφή</a>
+            </div>
         </div>
-        <div class="col-md-1 ml-auto">
-            <a href="{{route('subject.show' , ['subject' => $subject])}}">Επιστροφή</a>
-        </div>
+    </div>
+    <div class="bottom-section">
         <form action="{{route('group.search.form', ['subject' => $subject])}}" method="POST">
             @csrf
             <div class="row addForm">
                 <input class="search text-input col-md-12" name="search" type="text" minlength="4"
                        placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες...">
                 <div class="col-auto">
-                    <button type="submit" class="minimalButton light"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" class="minimalButton light"><i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
             </div>
         </form>

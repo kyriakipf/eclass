@@ -42,14 +42,16 @@
                         @endif
                     </div>
                 </div>
-                <div class="mt-5">
-                    @if($files != null)
-                        <a href="{{route('admin.subject.file.show', ['subject' => $subject])}}"
-                           class=" button bold">Έγγραφα
-                            Μαθήματος</a>
-                    @else
-                        <p>Δεν υπάρχουν διαθέσιμα έγγραφα</p>
-                    @endif
+                <div class="flex mt-5 gap-4">
+                    <div class="col-auto">
+                        @if($files != null)
+                            <a href="{{route('admin.subject.file.show', ['subject' => $subject])}}"
+                               class=" button bold">Έγγραφα
+                                Μαθήματος</a>
+                        @else
+                            <p>Δεν υπάρχουν διαθέσιμα έγγραφα</p>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

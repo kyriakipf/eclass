@@ -11,6 +11,7 @@ use App\Repositories\SubjectRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use mysql_xdevapi\Exception;
 use phpDocumentor\Reflection\DocBlock\Tags\Formatter\AlignFormatter;
 
 class HomeworkController extends Controller
@@ -48,19 +49,25 @@ class HomeworkController extends Controller
     public function store(Request $request, Subject $subject)
     {
         $file = $request->file('file');
-
-        if (isset($file))
+        try
         {
-            $filename = $file->getClientOriginalName();
-            $file_path = 'public' . DIRECTORY_SEPARATOR . $subject->directory . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $request->homework_type;
-            $this->fileUploadRepository->fileUpload($file, $filename, $file_path);
-            $homework = $this->homeworkRepository->store($request->all(), $subject->id, $file_path, $filename);
-        } else
+            if (isset($file))
+            {
+                $filename = $file->getClientOriginalName();
+                $file_path = 'public' . DIRECTORY_SEPARATOR . $subject->directory . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $request->homework_type;
+                $this->fileUploadRepository->fileUpload($file, $filename, $file_path);
+                $homework = $this->homeworkRepository->store($request->all(), $subject->id, $file_path, $filename);
+            } else
+            {
+                $homework = $this->homeworkRepository->store($request->all(), $subject->id);
+            }
+        }catch (\Exception $e)
         {
-            $homework = $this->homeworkRepository->store($request->all(), $subject->id);
+            return redirect()->back()->with('error','Υπήρξε πρόβλημα με την δημιουργία της εργασίας');
         }
 
-        return redirect()->route('homework.show', ['homework' => $homework]);
+
+        return redirect()->route('homework.show', ['homework' => $homework])->with('success', 'Η εργασία δημιουργήθηκε επιτυχώς');
     }
 
 
@@ -82,23 +89,31 @@ class HomeworkController extends Controller
     {
         $file = $request->file('file');
 
-        if ($homework->filepath != null)
+        try
         {
-            Storage::delete($homework->filepath);
+            if ($homework->filepath != null)
+            {
+                Storage::delete($homework->filepath);
+            }
+
+            if (isset($file))
+            {
+                $filename = $file->getClientOriginalName();
+                $file_path = 'public' . DIRECTORY_SEPARATOR . $subject->directory . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $homework->homework_type;
+                $this->fileUploadRepository->fileUpload($file, $filename, $file_path);
+                $homework = $this->homeworkRepository->update($request->all(), $homework, $subject->id, $file_path, $filename);
+            } else
+            {
+                $homework = $this->homeworkRepository->update($request->all(), $homework, $subject->id);
+            }
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->back()->with('error', 'Υπήρξε πρόβλημα με την ενημέρωση των στοιχείων της εργασίας');
         }
 
-        if (isset($file))
-        {
-            $filename = $file->getClientOriginalName();
-            $file_path = 'public' . DIRECTORY_SEPARATOR . $subject->directory . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $homework->homework_type;
-            $this->fileUploadRepository->fileUpload($file, $filename, $file_path);
-            $homework = $this->homeworkRepository->update($request->all(), $homework, $subject->id, $file_path, $filename);
-        } else
-        {
-            $homework = $this->homeworkRepository->update($request->all(), $homework, $subject->id);
-        }
 
-        return redirect()->route('homework.show', ['homework' => $homework, 'subject'=> $subject]);
+        return redirect()->route('homework.show', ['homework' => $homework, 'subject'=> $subject])->with('success','Τα στοιχεία της εργασίας ενημερώθηκαν επιτυχώς');
     }
 
 
@@ -108,7 +123,7 @@ class HomeworkController extends Controller
         Storage::delete('public' . DIRECTORY_SEPARATOR . $homework->filepath);
         $this->homeworkRepository->delete($homework);
 
-        return redirect()->route('subject.show', $subject);
+        return redirect()->route('subject.show', $subject)->with('success','Η εργασία διαγράγηκε επιτυχώς');
     }
 
     public function deleteFile(Homework $homework)
@@ -116,7 +131,7 @@ class HomeworkController extends Controller
         Storage::delete('public' . DIRECTORY_SEPARATOR . $homework->filepath);
         $this->homeworkRepository->removeFile($homework);
 
-        return redirect()->route('homework.show', $homework);
+        return redirect()->route('homework.show', $homework)->with('success', 'Το αρχείο διαγράφηκε επιτυχώς');
     }
 
 

@@ -52,27 +52,17 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Ομάδες</p>
-                            <div class="dropdown-content">
-                                <a href="{{route('group.create', '')}}" class="menu">Δημιουργία</a>
-                                <a href="{{route('groups')}}" class="menu">Προβολή</a>
-                            </div>
+                            <a href="{{route('groups')}}" ><p class="menu"><i class="fa-solid fa-clipboard-user"></i>Ομάδες</p></a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Εργασίες</p>
-                            <div class="dropdown-content">
-                                <a href="{{route('homework')}}" class="menu">Προβολή</a>
-                            </div>
+                            <a href="{{route('homework')}}"><p class="menu"><i class="fa-solid fa-clipboard-user"></i>Εργασίες</p></a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-clipboard-user"></i>Φοιτητές</p>
-                            <div class="dropdown-content">
-                                <a href="#" class="menu">Προβολή</a>
-                            </div>
+                            <a href="#" class="menu"><p class="menu"><i class="fa-solid fa-clipboard-user"></i>Φοιτητές</p></a>
                         </div>
                     </li>
                     <li class="nav-item">

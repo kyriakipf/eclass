@@ -6,6 +6,7 @@
     teacher dashboard
 @endsection
 @section('content')
+    <div class="top-section"></div>
     <div class="bottom-section">
         <a href="{{route('student.subject.show', ['subject' => $homework->subject])}}">Back</a>
         <p>Title: {{$homework->title}}</p>

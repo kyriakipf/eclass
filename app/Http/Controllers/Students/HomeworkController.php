@@ -30,13 +30,13 @@ class HomeworkController extends Controller
     {
         $student = auth()->user()->student;
         $homework = Homework::find($homeworkId);
-        $filepath = $student->homework()->where('homework_id', '=', $homeworkId)->first();
-        if (!is_null($filepath))
-        {
-            $path = $filepath->pivot->filepath;
-        }
+        $filepath = 'public' . DIRECTORY_SEPARATOR . auth()->user()->role->role_name . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $homework->subject->title . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $homework->homework_type;
+//        if (!is_null($filepath))
+//        {
+//            $path = $filepath->pivot->filepath;
+//        }
 
-        return view('student.homework.showHomework', ['homework' => $homework, 'filepath' => basename($path)]);
+        return view('student.homework.showHomework', ['homework' => $homework, 'filepath' => basename($filepath)]);
     }
 
     public function fileDownload(Homework $homework)
@@ -48,23 +48,30 @@ class HomeworkController extends Controller
     {
         $studentId = auth()->user()->student->id;
         $hw = Homework::query()->whereRelation('students','student_id', '=', $studentId)->whereRelation('students','homework_id', '=', $homework->id)->first();
-
-        if (!is_null($hw))
+        try
         {
-            $hw->students()->detach($studentId);
+            if (!is_null($hw))
+            {
+                $hw->students()->detach($studentId);
+            }
+
+            $file = $request->file('file');
+
+            $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $homework->subject->title . DIRECTORY_SEPARATOR . $homework->title;
+
+
+            $filename = $file->getClientOriginalName();
+            $this->fileUploadRepository->fileUpload($file, $filename, $file_path);
+            $this->homeworkRepository->createStudentRelation($homework, $studentId, $file_path, $filename);
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->back()->with('error','Υπήρξε πρόβλημα με την μεταφόρτωση του αρχείου');
         }
 
-        $file = $request->file('file');
-
-        $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $homework->subject->title . DIRECTORY_SEPARATOR . $homework->title;
 
 
-        $filename = $file->getClientOriginalName();
-        $this->fileUploadRepository->fileUpload($file, $filename, $file_path);
-        $this->homeworkRepository->createStudentRelation($homework, $studentId, $file_path, $filename);
-
-
-        return view('student.homework.showHomework', ['homework' => $homework, 'filepath' => $filename]);
+        return view('student.homework.showHomework', ['homework' => $homework, 'filepath' => $filename])->with('success','Το αρχείο ανέβηκε επιτυχώς');
     }
 
     public function selfFileDownload(Homework $homework)

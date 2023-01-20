@@ -18,24 +18,29 @@
                         <input name="title" id="title" type="text"
                                placeholder="Γράψτε εδώ..." class="text-input" value="{{$subject->title}}">
                     </div>
-                    <div class="teacher col-md-2">
-                        <label for="teacher" class="input-label">Καθηγητής</label>
-                        <select name="teacherId" id="teacher" type="s"
-                                class="text-input">
-
-                            @foreach($users as $user)
-                                <option @if($teacherIds === $user->teacher->id) selected
-                                        @endif value="{{$user->teacher->id}}">{{$user->name}} {{$user->surname}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="semester col-md-7">
+                    <div class="semester col-md-1">
                         <label for="semester" class="input-label">Εξάμηνο</label>
                         <select name="semester" id="semester" type="s"
                                 class="text-input">
                             @foreach($semesters as $semester)
                                 <option @if($subject->semester_id == $semester->id) selected @endif value="{{$semester->id}}">{{$semester->number}}ο Εξάμηνο</option>
                             @endforeach
+                        </select>
+                    </div>
+                    <div class=" col-md-1">
+                        <label for="ects" class="input-label">ECTS</label>
+                        <input name="ects" id="ects" type="text"
+                               placeholder="Γράψτε εδώ..." class="text-input" value="{{$subject->ects}}">
+                    </div>
+                    <div class="semester col-md-1" >
+                        <label for="type" class="input-label">Είδος Μαθήματος</label>
+                        <select name="type" id="type" type="s"
+                                class="text-input">
+                            <option value="Κορμού" @if($subject->type === 'Κορμού') selected
+                                @endif>Κορμού</option>
+                            <option value="Επιλογής" @if($subject->type === 'Επιλογής') selected
+                                @endif>Επιλογής</option>
+
                         </select>
                     </div>
                     <div class="protected col-md-1">

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class SubjectRepository
 {
 
-    public function storeSubject(string $title, string $semester, string $description, int $tmimaId, bool $public, string $password = null)
+    public function storeSubject(string $title, string $semester, string $ects, string $type,string $description, int $tmimaId, bool $public, string $password = null)
     {
         DB::beginTransaction();
 
@@ -22,6 +22,8 @@ class SubjectRepository
                 'title' => $title,
                 'summary' => $description,
                 'semester_id' => $semester,
+                'ects' => $ects,
+                'type' => $type,
                 'isPublic' => $public,
                 'password' => $password,
                 'tmima' => $tmimaId,

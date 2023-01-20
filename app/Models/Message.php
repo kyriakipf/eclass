@@ -16,4 +16,9 @@ class Message extends Model
         'send_date',
         'subject_id'
     ];
+
+    public function subjects()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
 }

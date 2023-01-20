@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class SearchGroupController extends Controller
 {
-    public function search(Request $request, Subject $subject)
+    public function search(Request $request, Subject $subject =  null)
     {
         $groupQuery = Group::query()->whereRelation('subject', 'subject_id', '=', $subject->id);
 //            function ($query){

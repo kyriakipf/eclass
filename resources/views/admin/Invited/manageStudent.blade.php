@@ -12,9 +12,9 @@
     <div class="bottom-section">
         <div class="row">
             @if($errors->any())
-                    <p class="alert alert-danger">
-                        {{$errors->all()[0]}}
-                    </p>
+                <p class="alert alert-danger">
+                    {{$errors->all()[0]}}
+                </p>
             @endif
             <div class="col-md-5">
                 <form action="{{route('student.invite.store')}}" method="POST" enctype="multipart/form-data">
@@ -93,6 +93,9 @@
                 @if(count($entities) != 0)
                     <a href="{{route('student.mass.process')}}"><i class="fa-regular fa-envelope "></i>Μαζική
                         Πρόσκληση</a>
+                    <div>
+                        {{$entities->links()}}
+                    </div>
                     <table>
                         <thead>
                         <tr class="tableRow colTitles">

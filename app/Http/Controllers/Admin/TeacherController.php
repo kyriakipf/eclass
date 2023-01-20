@@ -22,7 +22,9 @@ class TeacherController extends Controller
     }
 
     public function create(User $user){
+
         return view('auth.createPassword' , ['user' => $user]);
+
     }
     public function store(Request $request, InviteTeacher $invite)
     {

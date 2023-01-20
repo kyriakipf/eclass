@@ -63,7 +63,7 @@
                         <div class="dropdown">
                             <p class="menu"><i class="fa-solid fa-message-dots"></i>Μηνύματα</p>
                             <div class="dropdown-content">
-                                <a href="{{route('admin.email.create')}}" class="menu">Προσθήκη</a>
+                                <a href="{{route('admin.email.create')}}" class="menu">Δημιουργία</a>
                                 <a href="{{route('admin.email')}}" class="menu">Προβολή</a>
                             </div>
                         </div>

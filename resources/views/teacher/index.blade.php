@@ -9,8 +9,9 @@
         <div class="bottom-section row">
             <div class="col-md-7">
                 <p class="title">Μαθήματα Τρέχοντος Εξαμήνου</p>
-                <table>
-                    @if(count($subjects) > 0)
+                @if(count($subjects) > 0)
+                    {{$subjects->links()}}
+                    <table>
                         <thead>
                         <tr class="tableRow">
                             <th class="colTitles">Τιτλος</th>
@@ -24,39 +25,39 @@
                         @foreach($subjects as $subject)
                             <tr class="tableRow">
                                 <td class="col-md-2">
-                                    <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                                    <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{$subject->title}}</p></a>
                                 </td>
                                 <td class="col-md-2">
-                                    <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                                    <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{substr($subject->summary, 0,130)}}...</p>
                                     </a>
                                 </td>
                                 <td class="col-md-2">
-                                    <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                                    <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{$subject->teacher[0]->user->name}} {{$subject->teacher[0]->user->surname}}</p>
                                     </a>
                                 </td>
                                 <td class="col-md-2">
-                                    <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                                    <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p>
                                     </a>
                                 </td>
                                 <td class="col-md-2">
-                                    <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
+                                    <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{count($subject->student)}}</p>
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
-                        @else
-                            <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα...</p>
-                        </tbody>
-                    @endif
-                </table>
+                    </table>
+                @else
+                    <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα...</p>
+                    </tbody>
+                @endif
             </div>
             <div class="col-md-5">
-                <p class="title">Calendar</p>
+                <p class="title">Ημερολόγιο</p>
                 <livewire:events-calendar
                     before-calendar-view="vendor/livewire-calendar/before"
                     after-calendar-view="vendor/livewire-calendar/after"

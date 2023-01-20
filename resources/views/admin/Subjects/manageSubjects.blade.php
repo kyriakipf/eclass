@@ -13,8 +13,9 @@
             <p class="title purple">Μαθήματα</p>
             <div class="row">
                 <div class="col-md-12">
+                    @if(count($subjects) != 0)
+                        {{$subjects->links()}}
                     <table>
-                        @if(count($subjects) != 0)
                             <thead>
                             <tr class="tableRow colTitles">
                                 <th class="subtitle">Τιτλος</th>
@@ -52,10 +53,10 @@
                                 </tr>
                             @endforeach
                             </tbody>
-                        @else
-                            <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
-                        @endif
                     </table>
+                    @else
+                        <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
+                    @endif
                 </div>
             </div>
         </div>

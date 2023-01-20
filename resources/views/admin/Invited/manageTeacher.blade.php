@@ -45,7 +45,8 @@
                             <div class="col-md-4">
                                 <div class="select-container focused">
                                     <label class="input-label" for="domain">Τμήμα</label>
-                                    <input class="select-input disabled" name="domain" id="domain" type="text" required readonly value=" {{auth()->user()->domain->name}}">
+                                    <input class="select-input disabled" name="domain" id="domain" type="text" required
+                                           readonly value=" {{auth()->user()->domain->name}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -93,6 +94,9 @@
                     @if(count($entities) != 0)
                         <a href="{{route('teacher.mass.process')}}"><i class="fa-regular fa-envelope "></i>Μαζική
                             Πρόσκληση</a>
+                        <div>
+                            {{$entities->links()}}
+                        </div>
                         <table>
                             <thead>
                             <tr class="tableRow colTitles">

@@ -21,6 +21,7 @@
                         @if($subject->isPublic)
                             | Κωδικός Μαθήματος: {{$subject->password}}
                         @endif
+                        | ECTS: {{$subject->ects}} | {{$subject->type}}
                     </p>
                 </div>
                 <div class="col-md-1 ml-auto">
@@ -60,34 +61,14 @@
                            class=" button bold">Ομάδες
                             Μαθήματος</a>
                     </div>
+                    <div class="col-auto">
+                        <a href="{{route('subject.email.show', ['subject' => $subject])}}"
+                           class=" button bold">Μηνύματα
+                            Μαθήματος</a>
+                    </div>
                 </div>
             </div>
         </div>
-        {{--                <div class="groups">--}}
-        {{--                    <h3>Ομάδες</h3>--}}
-        {{--                    <a href="{{route('group.create')}}">Προσθήκη Ομάδας</a>--}}
-        {{--                    @if(count($subject->groups) != 0)--}}
-        {{--                        @foreach($subject->groups as $group)--}}
-        {{--                            <div class="group-info">--}}
-        {{--                                <a href="{{route('group.show' , $group)}}">{{$group->title}}</a>--}}
-        {{--                            </div>--}}
-        {{--                        @endforeach--}}
-        {{--                    @endif--}}
-        {{--                </div>--}}
-        {{--                <div class="homework">--}}
-        {{--                    <h3>Εργασίες</h3>--}}
-        {{--                    <a href="{{route('homework.create')}}">Προσθήκη Εργασίας</a>--}}
-        {{--                    @if(count($subject->homework) != 0)--}}
-        {{--                        @foreach($subject->homework as $homework)--}}
-        {{--                            <div>--}}
-        {{--                                <a href="{{route('homework.show' , $homework)}}">{{$homework->title}}</a>--}}
-        {{--                            </div>--}}
-        {{--                        @endforeach--}}
-        {{--                    @endif--}}
-        {{--                </div>--}}
-        {{--                <div class="'email">--}}
-        {{--                    <a href="{{route('teacher.email.subject.create', ['subject' => $subject])}}">Αποστολή email</a>--}}
-        {{--                </div>--}}
     </div>
 @endsection
 @section('javascripts')

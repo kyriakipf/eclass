@@ -8,23 +8,30 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="top-section row col-md-12">
+        <div class="top-section row">
+            <div class=" main-info flex justify-start align-baseline">
+                <div class="col-md-auto">
+                    <div class="flex">
+                        <p class="title" style="margin-bottom: 0 !important;">Μηνύματα</p>
+                    </div>
+                    <p class="paragraph mt-1">
+                        <a href="{{route('admin.email.create')}}" class="paragraph">Δημιουργία</a>
+                    </p>
+                </div>
+            </div>
         </div>
         <div class="bottom-section">
-            <div class="topRow">
-                <p class="title purple">Μηνύματα</p>
-            </div>
             <div class="row">
                 <div class="col-md-12">
+                    @if(count($emails) != 0)
+                        {{$emails->links()}}
                     <table>
-                        @if(count($emails) != 0)
                             <thead>
                             <tr class="tableRow colTitles">
-                                <th>Subject</th>
-                                <th>Content</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Send Date</th>
+                                <th>Θέμα</th>
+                                <th>Περιεχόμενο</th>
+                                <th>Από</th>
+                                <th>Ημερομηνία Αποστολής</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -33,19 +40,21 @@
                             @foreach($emails as $email)
                                 <tr class="tableRow">
                                     <td class="col-md-3">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->subject}}</p></a>
+                                        <a href="{{route('admin.email.show', $email)}}"><p
+                                                class="paragraph">{{$email->subject}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->message}}</p></a>
+                                        <a href="{{route('admin.email.show', $email)}}"><p
+                                                class="paragraph">{{substr($email->message,0,50)}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->from}}</p></a>
-                                    </td>
-                                    <td class="col-md-2">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->to}}</p></a>
+                                        <a href="{{route('admin.email.show', $email)}}"><p
+                                                class="paragraph">{{$email->from}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('admin.email.show', $email)}}"><p class="paragraph">{{$email->send_date}}</p></a>
+                                        <a href="{{route('admin.email.show', $email)}}"><p
+                                                class="paragraph">{{\Carbon\Carbon::parse($email->send_date)->format('d-m-Y')}}</p>
+                                        </a>
                                     </td>
                                     <td>
                                         <a href="{{route('admin.email.delete', $email)}}" class="delete"><i
@@ -53,17 +62,14 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            @else
-                                <p class="paragraph">Δεν υπάρχουν μηνύματα.</p>
-                            @endif
                             </tbody>
                     </table>
+                    @else
+                        <p class="paragraph">Δεν υπάρχουν μηνύματα.</p>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-@endsection
-@section('javascripts')
-    @livewireScripts
 @endsection
 

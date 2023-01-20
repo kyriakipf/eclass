@@ -53,7 +53,7 @@ Route::post('{invite}/student/store', [StudentController::class, 'store'])->name
 Route::get('admin/student/accept/{token}', [InviteStudentController::class, 'accept'])->name('student.accept');
 
 //Admin
-Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin' , 'middleware' => ['auth', 'role:Administrator']], function () {
     //Admin Teacher Management
     Route::group(['prefix' => 'teacher'],function(){
         Route::get('index', [TeacherController::class, 'index'])->name('teachers');
@@ -97,8 +97,8 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
         Route::get('create', [AdminSendEmailController::class, 'create'])->name('admin.email.create');
         Route::get('index', [AdminSendEmailController::class, 'index'])->name('admin.email');
         Route::get('send', [AdminSendEmailController::class, 'process'])->name('admin.email.process');
-        Route::get('{email}/show', [EmailController::class, 'show'])->name('admin.email.show');
-        Route::get('{email}/delete', [EmailController::class, 'delete'])->name('admin.email.delete');
+        Route::get('{email}/show', [AdminSendEmailController::class, 'show'])->name('admin.email.show');
+        Route::get('{email}/delete', [AdminSendEmailController::class, 'delete'])->name('admin.email.delete');
     });
 
     Route::group(['prefix' => 'subject'], function (){
@@ -118,7 +118,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth']], function () {
 
 
 //Teacher
-Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
+Route::group(['prefix' => 'teacher', 'middleware' => ['auth', 'role:Teacher']], function() {
 
     //Subject Management
     Route::group(['prefix' => 'subject'], function (){
@@ -141,6 +141,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('{subject}/file/show', [SubjectController::class, 'fileShow'])->name('subject.file.show');
         Route::get('{subject}/homework/show', [SubjectController::class, 'homeworkShow'])->name('subject.homework.show');
         Route::get('{subject}/groups/show', [SubjectController::class, 'groupShow'])->name('subject.groups.show');
+        Route::get('{subject}/email/show', [SubjectController::class, 'emailShow'])->name('subject.email.show');
     });
 
     //Group Management
@@ -152,7 +153,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
         Route::get('{group}/{subject}/edit', [GroupController::class, 'edit'])->name('group.edit');
         Route::post('{group}/{subject}/update', [GroupController::class, 'update'])->name('group.update');
         Route::get('{group}/delete', [GroupController::class, 'delete'])->name('group.delete');
-        Route::match(['get', 'post'],'{subject}/search/form', [SearchGroupController::class, 'search'])->name('group.search.form');
+        Route::match(['get', 'post'],'search/form/{subject?}', [SearchGroupController::class, 'search'])->name('group.search.form');
     });
 
     //Homework Management
@@ -161,12 +162,12 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
        Route::get('{subject}/create', [HomeworkController::class, 'create'])->name('homework.create');
        Route::post('{subject}/store', [HomeworkController::class, 'store'])->name('homework.store');
        Route::get('{homework}/show', [HomeworkController::class, 'show'])->name('homework.show');
-       Route::get('{homework}/{subject}/edit', [HomeworkController::class, 'edit'])->name('homework.edit');
-       Route::post('{homework}/{subject}/update', [HomeworkController::class, 'update'])->name('homework.update');
+       Route::get('{homework}/edit/{subject?}', [HomeworkController::class, 'edit'])->name('homework.edit');
+       Route::post('{homework}/update/{subject?}', [HomeworkController::class, 'update'])->name('homework.update');
        Route::get('{homework}/delete', [HomeworkController::class, 'delete'])->name('homework.delete');
         Route::get('{homework}/file/delete', [HomeworkController::class, 'deleteFile'])->name('homework.file.delete');
         Route::get('{homework}/file/download', [HomeworkController::class, 'fileDownload'])->name('homework.file.download');
-        Route::match(['get', 'post'],'{subject}/search/form', [SearchHomeworkController::class, 'search'])->name('homework.search.form');
+        Route::match(['get', 'post'],'search/form/{subject?}', [SearchHomeworkController::class, 'search'])->name('homework.search.form');
     });
 
     //Email
@@ -189,7 +190,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth']], function() {
 
 
 //Student
-Route::group(['prefix' => 'student', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'student', 'middleware' => ['auth', 'role:Student']], function(){
 
     //Info
     Route::group(['prefix' => 'info'], function(){
@@ -208,6 +209,10 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth']], function(){
         Route::get('{subject}/show', [App\Http\Controllers\Students\SubjectController::class, 'show'])->name('student.subject.show');
         Route::get('{subject}/directory/{folder}/show', [App\Http\Controllers\Students\SubjectController::class, 'directoryShow'])->name('student.subject.directory.show');
         Route::get('{subject}/file/{file}/download', [App\Http\Controllers\Students\SubjectController::class, 'fileDownload'])->name('student.subject.file.download');
+        Route::get('{subject}/file/show', [App\Http\Controllers\Students\SubjectController::class, 'fileShow'])->name('student.subject.file.show');
+        Route::get('{subject}/homework/show', [App\Http\Controllers\Students\SubjectController::class, 'homeworkShow'])->name('student.subject.homework.show');
+        Route::get('{subject}/groups/show', [App\Http\Controllers\Students\SubjectController::class, 'groupShow'])->name('student.subject.groups.show');
+        Route::get('{subject}/email/show', [App\Http\Controllers\Students\SubjectController::class, 'emailShow'])->name('student.subject.email.show');
     });
 
     //Homework

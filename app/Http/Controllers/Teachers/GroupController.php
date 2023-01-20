@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Models\Subject;
 use App\Repositories\GroupRepository;
 use App\Repositories\SubjectRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -25,7 +26,14 @@ class GroupController extends Controller
 
     public function index()
     {
-        return view('teacher.Groups.manageGroups', ['groups' => $this->groupRepository->getAll()]);
+        $subjects = auth()->user()->teacher->subject;
+        $groups = new Collection();
+
+        foreach ($subjects as $subject)
+        {
+            $groups->push($subject->groups);
+        }
+        return view('teacher.Groups.manageGroups', ['groups' => $groups]);
     }
 
 
@@ -37,9 +45,15 @@ class GroupController extends Controller
 
     public function store(Request $request, Subject $subject)
     {
-        $group = $this->groupRepository->store($request->input(), $subject->id);
+        try
+        {
+            $group = $this->groupRepository->store($request->input(), $subject->id);
+        }catch (\Exception $e)
+        {
+            return redirect()->back()->with('error', 'Υπήρξε πρόβλημα με την δημιοργία της ομάδας');
+        }
 
-        return redirect()->route('group.show', $group);
+        return redirect()->route('group.show', $group)->with('success', 'Η ομάδα δημιουργήθηκε επιτυχώς');
     }
 
 
@@ -51,12 +65,19 @@ class GroupController extends Controller
 
     public function update(Group $group, Request $request, Subject $subject)
     {
-        $group = $this->groupRepository->update($request->all(),$group, $subject->id);
+        try
+        {
+            $group = $this->groupRepository->update($request->all(),$group, $subject->id);
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->back()->with('error', 'Υπήρξε πρόβλημα με την ενημέρωση των στοιχείων της ομάδας');
+        }
 
         $subject = $group->subject;
         $users = $subject->teacher;
 
-        return view('teacher.groups.showGroup', ['group' => $group, 'users' => $users]);
+        return view('teacher.groups.showGroup', ['group' => $group, 'users' => $users])->with('success','Τα στοιχεία ενημερώθηκαν επιτυχώς');
     }
 
 
@@ -72,6 +93,6 @@ class GroupController extends Controller
         $subject = Subject::find($group->subject_id);
         $this->groupRepository->delete($group);
 
-        return redirect()->route('subject.show',$subject);
+        return redirect()->route('subject.show',$subject)->with('success','Η ομάδα διαγράφηκε επιτυχώς');
     }
 }

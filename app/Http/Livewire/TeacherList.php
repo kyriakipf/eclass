@@ -10,7 +10,7 @@ class TeacherList extends Component
 {
     use WithPagination;
 
-    public $perPage = 5;
+    public $perPage = 10;
     public $sortField ='surname';
     public $sortAsc = true;
     public $search = '';

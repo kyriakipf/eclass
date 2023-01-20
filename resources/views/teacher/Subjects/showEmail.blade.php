@@ -19,6 +19,9 @@
                         <a href="{{route('teacher.email.create')}}" class="paragraph">Δημιουργία</a>
                     </p>
                 </div>
+                <div class="col-md-1 ml-auto">
+                    <a href="{{route('subject.show' , ['subject' => $subject])}}">Επιστροφή</a>
+                </div>
             </div>
         </div>
         <div class="bottom-section">
@@ -35,8 +38,8 @@
             </form>
             <div class="row">
                 <div class="col-md-12">
-                    @if(count($emails) != 0)
                     <table>
+                        @if(count($emails) != 0)
                             <thead>
                             <tr class="tableRow colTitles">
                                 <th>Θέμα</th>
@@ -77,12 +80,11 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @else
+                                <p class="paragraph">Δεν υπάρχουν μηνύματα.</p>
+                            @endif
                             </tbody>
                     </table>
-                        {{$emails->links()}}
-                    @else
-                        <p class="paragraph">Δεν υπάρχουν μηνύματα.</p>
-                    @endif
                 </div>
             </div>
         </div>

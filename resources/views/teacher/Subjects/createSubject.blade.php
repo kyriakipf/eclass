@@ -27,6 +27,20 @@
                         @endforeach
                     </select>
                 </div>
+                <div class=" col-md-1">
+                    <label for="ects" class="input-label">ECTS</label>
+                    <input name="ects" id="ects" type="text"
+                           placeholder="Γράψτε εδώ..." class="text-input">
+                </div>
+                <div class="semester col-md-1" >
+                    <label for="type" class="input-label">Είδος Μαθήματος</label>
+                    <select name="type" id="type" type="s"
+                            class="text-input">
+                            <option value="Κορμού">Κορμού</option>
+                            <option value="Επιλογής">Επιλογής</option>
+
+                    </select>
+                </div>
                 <div class="protected col-md-1">
                     <label class="input-label" for="protected">Εγγραφή με κωδικό</label>
                     <input type="checkbox" id="protected" name="public">

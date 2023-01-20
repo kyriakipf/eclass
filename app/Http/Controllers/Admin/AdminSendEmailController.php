@@ -14,7 +14,7 @@ class AdminSendEmailController extends Controller
 {
     public function index()
     {
-        $emails =  Message::query()->where('from', '=', auth()->user()->email)->get();
+        $emails =  Message::query()->where('from', '=', auth()->user()->email)->paginate(5);
         return view('admin.viewEmails' , ['emails' => $emails]);
     }
 
@@ -27,7 +27,6 @@ class AdminSendEmailController extends Controller
 
     public function process(Request $request)
     {
-//        dd($request);
         $email = new Message([
             'from' => auth()->user()->email,
             'subject' => $request->emailSubject,
@@ -37,23 +36,45 @@ class AdminSendEmailController extends Controller
         $email->save();
         if ($request->userType == 'teacher') {
             $email->to = $request->teacherSelect;
-
-            foreach ($request->teacherSelect as $teacher) {
-                Mail::to($teacher)->send(new customEmail($request));
+            try
+            {
+                foreach ($request->teacherSelect as $teacher) {
+                    Mail::to($teacher)->send(new customEmail($request));
+                }
+            }catch (\Exception $e)
+            {
+                $email->delete();
+                return redirect()->back()->with('error','Υπήρξε πρόβλημα στην αποστολή του μηνύματος');
             }
         } elseif ($request->userType == 'student') {
             $email->to = $request->studentSelect;
-            foreach ($request->studentSelect as $student) {
-                Mail::to($student)->send(new customEmail($request));
+            try
+            {
+                foreach ($request->studentSelect as $student) {
+                    Mail::to($student)->send(new customEmail($request));
+                }
+            }catch (\Exception $e)
+            {
+                $email->delete();
+                return redirect()->back()->with('error','Υπήρξε πρόβλημα στην αποστολή του μηνύματος');
             }
+
         } else {
             $email->to = $request->userSelect;
-            foreach ($request->userSelect as $user) {
-                Mail::to($user)->send(new customEmail($request));
+            try
+            {
+                foreach ($request->userSelect as $user) {
+                    Mail::to($user)->send(new customEmail($request));
+                }
+            }catch (\Exception $e)
+            {
+                $email->delete();
+                return redirect()->back()->with('error','Υπήρξε πρόβλημα στην αποστολή του μηνύματος');
             }
+
         }
         $email->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Το μήνυμα στάλθηκε επιτυχώς');
     }
 
     public function show(Message $email)
@@ -64,7 +85,7 @@ class AdminSendEmailController extends Controller
     public function delete(Message $email)
     {
         $email->delete();
-        return redirect()->route('admin.email');
+        return redirect()->route('admin.email')->with('success', 'Το μήνυμα διαγράφηκε');
     }
 
 }

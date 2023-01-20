@@ -8,13 +8,13 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-
+<div class="top-section"></div>
         <div class="bottom-section">
             <p class="title purple">Μαθήματα</p>
             <div class="row">
                 <div class="col-md-12">
+                    @if(count($subjects) != 0)
                     <table>
-                        @if(count($subjects) != 0)
                             <thead>
                             <tr class="tableRow colTitles">
                                 <th class="subtitle">Τιτλος</th>
@@ -39,11 +39,12 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            @else
-                                <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
-                            @endif
                             </tbody>
                     </table>
+                        {{$subjects->links()}}
+                    @else
+                        <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
+                    @endif
                 </div>
 
             </div>

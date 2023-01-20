@@ -13,6 +13,7 @@ use App\Repositories\FileUploadRepository;
 use App\Repositories\SubjectRepository;
 use http\Client\Response;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
@@ -53,25 +54,33 @@ class SubjectController extends Controller
     {
         $public = false;
         $password = null;
-
-        if (isset($request->public))
+        try
         {
-            $public = true;
-            $password = $request->password;
+            if (isset($request->public))
+            {
+                $public = true;
+                $password = $request->password;
+            }
+
+            $request->validate([
+                'title' => 'required',
+                'semester' => 'required'
+            ]);
+
+            $title = $request->title;
+            $semester = $request->semester;
+            $description = $request->description;
+            $ects = $request->ects;
+            $type = $request->type;
+            $tmimaId = auth()->user()->domain_id;
+            $subject = $this->subjectRepository->storeSubject($title, $semester, $ects, $type, $description, $tmimaId, $public, $password);
+        }catch (\Exception $e)
+        {
+            return redirect()->back()->with('error','Υπήρξε πρόβλημα με την δημιουργία μαθήματος');
         }
 
-        $request->validate([
-            'title' => 'required',
-            'semester' => 'required'
-        ]);
 
-        $title = $request->title;
-        $semester = $request->semester;
-        $description = $request->description;
-        $tmimaId = auth()->user()->domain_id;
-        $subject = $this->subjectRepository->storeSubject($title, $semester, $description, $tmimaId, $public, $password);
-
-        return redirect()->route('subject.show', $subject);
+        return redirect()->route('subject.show', $subject)->with('success','Το μάθημα δημιουργήθηκε επιτυχώς');
     }
 
 
@@ -112,6 +121,8 @@ class SubjectController extends Controller
         $subject->update([
             'title' => $request->title,
             'summary' => $request->description,
+            'ects' => $request->ects,
+            'type' => $request->type,
             'isPublic' => $isPublic,
             'password' => $password,
             'semester_id' => $request->semester
@@ -251,15 +262,22 @@ class SubjectController extends Controller
 
     public function homeworkShow(Subject $subject)
     {
-        $homework = $subject->homework;
+        $homework = $subject->homework()->paginate(5);
 
         return view('teacher.subjects.showHomework', ['homework' => $homework, 'subject' => $subject]);
     }
 
     public function groupShow(Subject $subject)
     {
-        $groups = $subject->groups;
+        $groups = $subject->groups()->paginate(5);
 
         return view('teacher.subjects.showGroups', ['groups' => $groups, 'subject' => $subject]);
+    }
+
+    public function emailShow(Subject $subject)
+    {
+        $emails = $subject->message;
+
+        return view('teacher.subjects.showEmail', ['emails' => $emails, 'subject' => $subject]);
     }
 }

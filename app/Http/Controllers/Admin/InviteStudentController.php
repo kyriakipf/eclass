@@ -16,7 +16,7 @@ class InviteStudentController extends Controller
     public function invite()
     {
         $domains = Domain::all();
-        $students = InviteStudent::where('role_id', '=' , 3)->get();
+        $students = InviteStudent::where('role_id', '=' , 3)->paginate(5);
         $registered = Student::all();
         return view('admin.invited.manageStudent', ['entities' => $students,'domains' => $domains , 'registered' => $registered]);
     }
