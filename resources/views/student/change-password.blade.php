@@ -4,6 +4,7 @@
 @endsection
 @section('content')
     <div class="mainInfo">
+        <div class="top-section"></div>
         <div class="bottom-section">
             <p class="title purple">Αλλαγή Κωδικού</p>
             <form action="{{route('change.password.store')}}" method="POST" enctype="multipart/form-data">

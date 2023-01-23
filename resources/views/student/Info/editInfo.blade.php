@@ -4,6 +4,7 @@
 @endsection
 @section('content')
     <div class="mainInfo">
+        <div class="top-section"></div>
         <div class="bottom-section">
             <form action="{{route('student.info.update')}}" method="post">
                 @csrf

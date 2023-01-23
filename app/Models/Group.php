@@ -11,6 +11,7 @@ class Group extends Model
     protected $fillable =[
         'title',
         'summary',
+        'time',
         'subject_id' ,
         'capacity' ,
     ];

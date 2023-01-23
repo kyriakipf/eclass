@@ -85,7 +85,8 @@ class GroupController extends Controller
     {
         $subject = $group->subject;
         $users = $subject->teacher;
-        return view('teacher.groups.showGroup', ['group' => $group, 'users' => $users]);
+        $students = $group->student;
+        return view('teacher.groups.showGroup', ['group' => $group, 'users' => $users, 'students' => $students]);
     }
 
     public function delete(Group $group)

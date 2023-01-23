@@ -47,7 +47,7 @@ class InfoController extends Controller
         }
 
 
-        return view('student.Info.showInfo')->with('success','Τα στοιχεία ενημερώθηκαν επιτυχώς');
+        return redirect()->route( 'student.info.show')->with('success','Τα στοιχεία ενημερώθηκαν επιτυχώς');
     }
 
 }

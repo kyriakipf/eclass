@@ -31,12 +31,13 @@ class HomeworkController extends Controller
         $student = auth()->user()->student;
         $homework = Homework::find($homeworkId);
         $filepath = 'public' . DIRECTORY_SEPARATOR . auth()->user()->role->role_name . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $homework->subject->title . DIRECTORY_SEPARATOR . 'Εργασίες' . DIRECTORY_SEPARATOR . $homework->homework_type;
-//        if (!is_null($filepath))
-//        {
-//            $path = $filepath->pivot->filepath;
-//        }
-
-        return view('student.homework.showHomework', ['homework' => $homework, 'filepath' => basename($filepath)]);
+        $file = $student->homework()->where('homework_id', '=', $homeworkId)->first();
+        $selfFile = null;
+        if ($file != null)
+        {
+            $selfFile = $file->pivot->filename;
+        }
+        return view('student.homework.showHomework', ['homework' => $homework, 'filepath' => basename($filepath), 'selfFile' => $selfFile]);
     }
 
     public function fileDownload(Homework $homework)
@@ -57,7 +58,7 @@ class HomeworkController extends Controller
 
             $file = $request->file('file');
 
-            $file_path = strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $homework->subject->title . DIRECTORY_SEPARATOR . $homework->title;
+            $file_path ='public' . DIRECTORY_SEPARATOR . strtolower(auth()->user()->role->role_name) . DIRECTORY_SEPARATOR . auth()->user()->email . DIRECTORY_SEPARATOR . $homework->subject->title . DIRECTORY_SEPARATOR . $homework->title;
 
 
             $filename = $file->getClientOriginalName();
@@ -66,20 +67,24 @@ class HomeworkController extends Controller
         }
         catch (\Exception $e)
         {
-            return redirect()->back()->with('error','Υπήρξε πρόβλημα με την μεταφόρτωση του αρχείου');
+            return redirect()->route('student.homework.show', ['homework' => $homework, 'subject' => $homework->subject])->with('error','Υπήρξε πρόβλημα με την μεταφόρτωση του αρχείου');
         }
 
 
 
-        return view('student.homework.showHomework', ['homework' => $homework, 'filepath' => $filename])->with('success','Το αρχείο ανέβηκε επιτυχώς');
+        return redirect()->route('student.homework.show', ['homework' => $homework, 'subject' => $homework->subject])->with('success','Το αρχείο ανέβηκε επιτυχώς');
     }
 
     public function selfFileDownload(Homework $homework)
     {
         $student = auth()->user()->student;
 
-        $filepath = $student->homework()->where('homework_id', '=', $homework->id)->first()->pivot->filepath;
-
+        $file = $student->homework()->where('homework_id', '=', $homework->id)->first();
+        $filepath = null;
+        if ($file != null)
+        {
+            $filepath = $file->pivot->filepath;
+        }
         return Storage::download($filepath);
     }
 }

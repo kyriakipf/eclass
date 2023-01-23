@@ -1,4 +1,4 @@
-@extends('layouts.teacher')
+@extends('layouts.student')
 @section('stylesheets')
     <link rel="stylesheet" href="{{asset("css/search.css")}}">
 @endsection

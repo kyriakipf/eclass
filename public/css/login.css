@@ -10,7 +10,8 @@ section#login .boy {
   background-position: center;
   position: absolute;
   bottom: 0;
-  right: 146px;
+  right: 0;
+  z-index: -1;
 }
 section#login .credits {
   position: absolute;
@@ -33,13 +34,14 @@ section#login .credits p::after {
   background-color: #FFFFFF;
   transform: rotate(45deg);
   position: absolute;
-  bottom: 32px;
-  left: 42px;
+  bottom: 25%;
+  left: 14%;
 }
 section#login .credits i {
   color: #FFFFFF;
   font-size: 20px;
   margin-left: 40px;
+  margin-top: 10px;
 }
 section#login .row {
   margin-top: 250px;

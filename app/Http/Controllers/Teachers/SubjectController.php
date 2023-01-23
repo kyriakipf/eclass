@@ -276,7 +276,7 @@ class SubjectController extends Controller
 
     public function emailShow(Subject $subject)
     {
-        $emails = $subject->message;
+        $emails = $subject->message()->paginate(5);
 
         return view('teacher.subjects.showEmail', ['emails' => $emails, 'subject' => $subject]);
     }

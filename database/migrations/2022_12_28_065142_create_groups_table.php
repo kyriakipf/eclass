@@ -18,6 +18,7 @@ class CreateGroupsTable extends Migration
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->string('title');
+            $table->string('time');
             $table->string('summary');
             $table->string('capacity');
             $table->timestamps();

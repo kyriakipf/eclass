@@ -24,7 +24,7 @@
                         @foreach($users as $user)
                             {{$user->user->name}} {{$user->user->surname}}
                         @endforeach
-                        | Αριθμός Φοιτητών: {{$group->capacity}}
+                        | Αριθμός Φοιτητών: {{$group->capacity}} | Ώρα: {{$group->time}}
 
                     </p>
                 </div>
@@ -48,6 +48,31 @@
                             <p class="paragraph">Δεν υπάρχει διαθέσιμη περιγραφή.</p>
                         @endif
                     </div>
+                </div>
+                <div class="students col-md-12 mt-4">
+                    @if(isset($students))
+                        <p class="subtitle">Εγγεγραμμένοι Φοιτητές</p>
+                        <table>
+                            <thead>
+                            <tr class="tableRow colTitles">
+                                <th class="sort">Όνομα</th>
+                                <th class="sort">Επίθετο</th>
+                                <th class="sort">Email</th>
+                                <th class="sort">Αρ. Μητρώου</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($students as $student)
+                                <td>{{$student->user->name}}</td>
+                                <td>{{$student->user->surname}}</td>
+                                <td>{{$student->user->email}}</td>
+                                <td>{{$student->am}}</td>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <p class="paragraph">Δεν υπάρχουν εγγεγραμμένοι φοιτητές.</p>
+                    @endif
                 </div>
             </div>
         </div>

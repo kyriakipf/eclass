@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{asset("css/v4-shims.css")}}">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <link rel="stylesheet" href="{{asset("css/styles.css")}}">
     @yield('stylesheets')
     <title>@yield('title') - eClass</title>
@@ -53,10 +53,8 @@
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <p class="menu"><i class="fa-solid fa-clipboard-calendar"></i>Ημερολόγιο</p>
-                            <div class="dropdown-content">
-                                <a href="#" class="menu">Προβολή</a>
-                            </div>
+                            <a href="{{route('student.calendar.show')}}" ><p class="menu"><i
+                                        class="fa-solid fa-calendar-range"></i>Ημερολόγιο</p></a>
                         </div>
                     </li>
                     <li class="nav-item">

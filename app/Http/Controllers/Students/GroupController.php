@@ -38,6 +38,8 @@ class GroupController extends Controller
 
     public function show(Group $group)
     {
-        return view('student.groups.showGroup', ['group' => $group]);
+        $users = $group->subject->teacher;
+        $students = $group->student;
+        return view('student.groups.showGroup', ['group' => $group, 'students' => $students, 'users' => $users]);
     }
 }

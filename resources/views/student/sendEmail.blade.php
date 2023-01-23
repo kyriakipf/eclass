@@ -8,42 +8,59 @@
 @endsection
 @section('content')
     <div class="mainInfo">
-    </div>
-    <div class="bottom-section">
-        <p class="title purple">Δημιουργία Μηνύματος</p>
-        <form action="{{route('student.email.process')}}">
-            <div class="form-container row">
-                <div class="typeSelection selection col-md-6">
-                </div>
-                <div class="student selection col-md-6 ">
-                    <label for="userSelect" class="input-label">Επιλέξτε χρήστες: </label>
-                    <select name="userSelect[]" id="userSelect" class="select text-input "
-                            multiple="multiple">
-                        @foreach($teachers as $teacher)
-                            <option
-                                value="{{$teacher->user->email}}">{{$teacher->user->surname}} {{$teacher->user->name}}
-                                : {{$teacher->user->email}}</option>
-                        @endforeach
-                    </select>
-                    <input id="selectall" type="checkbox">Select All
-                </div>
-                <div class="subject col-md-6">
-                    <label for="emailSubject" class="input-label">Subject</label>
-                    <textarea name="emailSubject" id="emailSubject" cols="30" rows="10"
-                              placeholder="Γράψτε εδώ..." class="text-input area-input"></textarea>
-                </div>
-                <div class="content col-md-6">
-                    <label class="input-label" for="emailContent">Content</label>
-                    <textarea name="emailContent" class="text-input area-input" placeholder="Γράψτε εδώ..."
-                              id="emailContent" cols="30"
-                              rows="10" required></textarea>
-                </div>
-                <div class="btn-container col-md-2">
-                    <button type="submit" class="button bold ">Αποστολή</button>
+        <div class="top-section">
+            <div class=" main-info flex justify-start align-baseline">
+                <div class="col-md-auto">
+                    <div class="flex">
+                        <p class="title" style="margin-bottom: 0 !important;">Δημιουργία Μηνύματος</p>
+                    </div>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="bottom-section">
+            <form action="{{route('student.email.process')}}">
+                <div class="form-container row">
+                    <div class="selection col-md-6">
+                        <label for="subjectSelect" class="input-label">Επιλέξτε μάθημα: </label>
+                        <select name="subjectSelect" id="subjectSelect" class="select text-input ">
+                            @foreach($subjects as $subject)
+                                <option
+                                    value="{{$subject->id}}">{{$subject->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="student selection col-md-6 ">
+                        <label for="userSelect" class="input-label">Επιλέξτε χρήστες: </label>
+                        <select name="userSelect[]" id="userSelect" class="select text-input "
+                                multiple="multiple">
+                            @foreach($teachers as $teacher)
+                                <option
+                                    value="{{$teacher->user->email}}">{{$teacher->user->surname}} {{$teacher->user->name}}
+                                    : {{$teacher->user->email}}</option>
+                            @endforeach
+                        </select>
+                        <div class="mt-2">
+                            <label for="selectall" class="checkbox-label">Επιλογή Όλων</label>
+                            <input id="selectall" type="checkbox" >
+                        </div>
+                    </div>
+                    <div class="subject col-md-6">
+                        <label for="emailSubject" class="input-label">ΘΕΜΑ</label>
+                        <textarea name="emailSubject" id="emailSubject" cols="30" rows="10"
+                                  placeholder="Γράψτε εδώ..." class="text-input area-input"></textarea>
+                    </div>
+                    <div class="content col-md-6">
+                        <label class="input-label" for="emailContent">ΠΕΡΙΕΧΟΜΕΝΟ</label>
+                        <textarea name="emailContent" class="text-input area-input" placeholder="Γράψτε εδώ..."
+                                  id="emailContent" cols="30"
+                                  rows="10" required></textarea>
+                    </div>
+                    <div class="btn-container col-md-2">
+                        <button type="submit" class="button bold ">Αποστολή</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection
 @section('javascripts')

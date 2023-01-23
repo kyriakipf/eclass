@@ -21,6 +21,7 @@ class GroupRepository
            $group =  Group::create([
                 'subject_id' => $subjectId,
                 'title' => $input['title'],
+                'time' => $input['time'],
                 'summary' => $input['summary'],
                 'capacity' => $input['capacity']
             ]);
@@ -38,6 +39,7 @@ class GroupRepository
         $group->update([
             'subject_id' => $subjectId,
             'title' => $data['title'],
+            'time' => $data['time'],
             'summary' => $data['summary'],
             'capacity' => $data['capacity']
         ]);

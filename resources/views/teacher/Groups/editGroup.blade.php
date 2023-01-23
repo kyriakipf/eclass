@@ -18,7 +18,11 @@
                 </div>
                 <div class="col-md-3">
                     <label for="capacity" class="input-label">Αριθμός Μαθητών</label>
-                    <input type="number" name="capacity" id="capacity" min="0" value="{{$group->capacity}}">
+                    <input type="number" name="capacity" id="capacity" min="0" class="text-input" value="{{$group->capacity}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="time" class="input-label">Ώρα</label>
+                    <input type="text" name="time" id="time" min="0" class="text-input" value="{{$group->time}}">
                 </div>
                 <div class="summary col-md-12">
                     <label class="input-label" for="summary">Περιγραφή</label>

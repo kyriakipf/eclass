@@ -44,6 +44,7 @@
                                 <th class="sort">Τιτλος</th>
                                 <th class="sort">Περιγραφη</th>
                                 <th class="sort">Μάθημα</th>
+                                <th class="sort">Ώρα</th>
                                 <th class="sort">Μέγιστος Αριθμός Εγγραφών</th>
                                 <th></th>
                                 <th></th>
@@ -52,19 +53,25 @@
                             <tbody>
                             @foreach($groups as $group)
                                 <tr class="tableRow">
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
                                             <p class="paragraph">{{$group->title}}</p></a>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
                                             <p
                                                 class="paragraph">{{substr($group->summary, 0,130)}}...</p></a>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td class="col-md-2">
                                         <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
                                             <p
                                                 class="paragraph">{{$group->subject->title}}</p></a>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
+                                            <p
+                                                class="paragraph">{{$group->time}}</p>
+                                        </a>
                                     </td>
                                     <td class="col-md-auto">
                                         <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">

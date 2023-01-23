@@ -32,9 +32,10 @@ class EmailController extends Controller
 
     public function create()
     {
+        $subjects = auth()->user()->student->subject;
         $teachers = Teacher::query()->whereRelation('user', 'domain_id', '=',  auth()->user()->domain_id)->get();
 
-        return view('student.sendEmail', ['teachers' => $teachers]);
+        return view('student.sendEmail', ['teachers' => $teachers, 'subjects' => $subjects]);
     }
 
     public function process(Request $request)

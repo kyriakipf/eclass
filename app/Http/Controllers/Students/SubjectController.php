@@ -163,4 +163,18 @@ class SubjectController extends Controller
 
         return view('student.subjects.showHomework', ['homework' => $homework, 'subject' => $subject]);
     }
+
+    public function groupShow(Subject $subject)
+    {
+        $groups = $subject->groups()->paginate(5);
+
+        return view('student.subjects.showGroups', ['groups' => $groups, 'subject' => $subject]);
+    }
+
+    public function emailShow(Subject $subject)
+    {
+        $emails = $subject->message()->paginate(5);
+
+        return view('student.subjects.showEmail', ['emails' => $emails, 'subject' => $subject]);
+    }
 }

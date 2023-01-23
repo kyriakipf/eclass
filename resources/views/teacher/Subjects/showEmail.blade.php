@@ -38,8 +38,8 @@
             </form>
             <div class="row">
                 <div class="col-md-12">
-                    <table>
-                        @if(count($emails) != 0)
+                    @if(count($emails) != 0)
+                        <table>
                             <thead>
                             <tr class="tableRow colTitles">
                                 <th>Θέμα</th>
@@ -80,11 +80,12 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            @else
-                                <p class="paragraph">Δεν υπάρχουν μηνύματα.</p>
-                            @endif
                             </tbody>
-                    </table>
+                        </table>
+                        {{$emails->links()}}
+                    @else
+                        <p class="paragraph">Δεν υπάρχουν μηνύματα.</p>
+                    @endif
                 </div>
             </div>
         </div>

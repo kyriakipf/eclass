@@ -48,22 +48,22 @@ class CustomAuthController extends Controller
 
             if (Hash::check($request->newPassword, $pass))
             {
-                return back()->with('error', "New password can't be the same as the old password!");
+                return back()->with('error', "Ο νέος κωδικός δεν μπορεί να είναι ίδιος με τον παλιό!");
             }
 
             if ($request->newPassword === $request->confirmPassword)
             {
                 $user->password = Hash::make($request->newPassword);
                 $user->save();
-                return back()->with('success', 'Password changed');
+                return back()->with('success', 'Ο κωδικός άλλαξε επιτυχώς');
             }else
             {
-                return back()->with('error', 'New passwords do not match!');
+                return back()->with('error', 'Οι νέοι κωδικοί δεν ταιριάζουν!');
             }
 
         }else
         {
-            return back()->with('error', 'Current password does not match!');
+            return back()->with('error', 'Ο τρέχον κωδικός δεν είναι σωστός!');
         }
 
 

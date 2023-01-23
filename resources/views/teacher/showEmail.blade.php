@@ -24,7 +24,7 @@
     <div class="bottom-section">
         <div class="flex justify-start mt-3">
             <div class="col-auto">
-                <p class="smallTitle">{{$email->subject}}</p>
+                <p class="smallTitle">Θέμα: {{$email->subject}}</p>
                 <p class="paragraph mt-2">{{$email->message}}</p>
             </div>
         </div>

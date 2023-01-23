@@ -2,24 +2,34 @@
 @section('stylesheets')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset("css/createEmail.css")}}">
+    <link rel="stylesheet" href="{{asset("css/search.css")}}">
 @endsection
 @section('header')
     admin dashboard
 @endsection
 @section('content')
     <div class="mainInfo">
-        <div class="bottom-section">
-            <div class="topRow">
-                <p class="title purple">Μηνύματα</p>
+        <div class="top-section row">
+            <div class=" main-info flex justify-start align-baseline">
+                <div class="col-md-auto">
+                    <div class="flex">
+                        <p class="title" style="margin-bottom: 0 !important;">Μηνύματα</p>
+                    </div>
+                    <p class="paragraph mt-1">
+                        <a href="{{route('student.email.create')}}" class="paragraph">Δημιουργία</a>
+                    </p>
+                </div>
             </div>
+        </div>
+        <div class="bottom-section">
             <form action="{{route('student.email.search.form')}}" method="POST">
                 @csrf
                 <div class="row addForm">
-                    <label for="search">Αναζήτηση</label>
                     <input class="search text-input col-md-12" id="search" name="search" type="text" minlength="4"
                            placeholder="Παρακαλώ συμπληρώστε τουλάχιστον 4 χαρακτήρες...">
-                    <div class="col-md-2">
-                        <button type="submit" class="button light">ΑΝΑΖΗΤΗΣΗ</button>
+                    <div class="col-auto">
+                        <button type="submit" class="minimalButton light"><i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -29,12 +39,11 @@
                         @if(count($emails) != 0)
                             <thead>
                             <tr class="tableRow colTitles">
-                                <th>Subject</th>
-                                <th>Content</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Send Date</th>
-                                <th></th>
+                                <th>Θέμα</th>
+                                <th>Περιεχόμενο</th>
+                                <th>Από</th>
+                                <th>Μάθημα</th>
+                                <th>Ημερομηνία Αποστολής</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -42,19 +51,24 @@
                             @foreach($emails as $email)
                                 <tr class="tableRow">
                                     <td class="col-md-3">
-                                        <a href="{{route('student.email.show', $email)}}"><p class="paragraph">{{$email->subject}}</p></a>
+                                        <a href="{{route('student.email.show', $email)}}"><p
+                                                class="paragraph">{{$email->subject}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('student.email.show', $email)}}"><p class="paragraph">{{$email->message}}</p></a>
+                                        <a href="{{route('student.email.show', $email)}}"><p
+                                                class="paragraph">{{$email->message}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('student.email.show', $email)}}"><p class="paragraph">{{$email->from}}</p></a>
+                                        <a href="{{route('student.email.show', $email)}}"><p
+                                                class="paragraph">{{$email->from}}</p></a>
                                     </td>
                                     <td class="col-md-2">
-                                        <a href="{{route('student.email.show', $email)}}"><p class="paragraph">{{$email->to}}</p></a>
+                                        <a href="{{route('student.email.show', $email)}}"><p
+                                                class="paragraph">{{$email->subjects->title}}</p></a>
                                     </td>
                                     <td class="col-md-3">
-                                        <a href="{{route('student.email.show', $email)}}"><p class="paragraph">{{$email->send_date}}</p></a>
+                                        <a href="{{route('student.email.show', $email)}}"><p
+                                                class="paragraph">{{$email->send_date}}</p></a>
                                     </td>
                                     <td>
                                         <a href="{{route('student.email.delete', $email)}}" class="delete"><i

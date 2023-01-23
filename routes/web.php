@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Students\CalendarController;
 use App\Http\Controllers\Teachers\EmailController;
 use App\Http\Controllers\Teachers\GroupController;
 use App\Http\Controllers\Teachers\HomeworkController;
@@ -239,6 +240,9 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth', 'role:Student']], 
         Route::get('{email}/delete', [App\Http\Controllers\Students\EmailController::class, 'delete'])->name('student.email.delete');
         Route::match(['get', 'post'],'/search/form', [App\Http\Controllers\Students\SearchEmailController::class, 'search'])->name('student.email.search.form');
     });
+
+    //Calendar
+    Route::get('calendar', [CalendarController::class, 'index'])->name('student.calendar.show');
 });
 
 

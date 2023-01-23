@@ -16,9 +16,13 @@
                     <input name="title" id="title" type="text"
                            placeholder="Γράψτε εδώ..." class="text-input" required>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label class="input-label" for="capacity">Αριθμός Φοιτητών</label>
-                    <input type="number" name="capacity" id="capacity" min="0" required>
+                    <input type="number" name="capacity" id="capacity" min="0" class="text-input" required>
+                </div>
+                <div class="col-md-2">
+                    <label class="input-label" for="time">Ώρα</label>
+                    <input type="text" name="time" id="time" min="0" class="text-input" required>
                 </div>
                 <div class="summary col-md-12">
                     <label class="input-label" for="summary">Περιγραφή</label>

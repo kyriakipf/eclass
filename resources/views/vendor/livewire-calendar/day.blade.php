@@ -8,14 +8,14 @@
 
     {{-- Wrapper for Drag and Drop --}}
     <div
-        class=" h-100px"
+        class=""
         id="{{ $componentId }}-{{ $day }}">
 
         <div
             @if($dayClickEnabled)
                 wire:click="onDayClick({{ $day->year }}, {{ $day->month }}, {{ $day->day }})"
             @endif
-            class=" {{ $dayInMonth ? $isToday ? 'bg-yellow-100' : ' bg-white ' : 'bg-gray-100' }}">
+            class=" {{ $dayInMonth ? $isToday ? 'bg-yellow-100' : ' bg-white ' : 'bg-gray-100' }} h-32">
 
             {{-- Number of Day --}}
             <div class="flex items-center ml-1 mb-1">
@@ -30,8 +30,8 @@
             </div>
 
             {{-- Events --}}
-            <div class="overflow-y-auto">
-                <div class="w-4 h-14 mt-1 ml-2">
+            <div class="overflow-y-auto custom-scrollbar">
+                <div class="w-4 h-32 mt-1 ml-2">
                     @if($dayInMonth)
                     @foreach($events as $event)
                         <div

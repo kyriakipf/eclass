@@ -9,9 +9,9 @@
         @includeIf($beforeCalendarView)
     </div>
 
-    <div class="flex">
+    <div class="">
         <div class="">
-            <div class="inline-block">
+            <div class="inline-block w-full h-full">
 
                 <div class="flex flex-row">
                     @foreach($monthGrid->first() as $day)
