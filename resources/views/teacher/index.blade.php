@@ -7,7 +7,7 @@
         <div class="top-section row col-md-12">
         </div>
         <div class="bottom-section row">
-            <div class="col-md-7">
+            <div class="col-xl-6">
                 <p class="title">Μαθήματα Τρέχοντος Εξαμήνου</p>
                 @if(count($subjects) > 0)
                     {{$subjects->links()}}
@@ -18,7 +18,7 @@
                             <th class="colTitles">Περιγραφη</th>
                             <th class="colTitles">Καθηγητής</th>
                             <th class="colTitles">Εξάμηνο</th>
-                            <th class="colTitles">Εγγραμμένοι</th>
+                            <th class="colTitles">Φοιτητές</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,22 +28,22 @@
                                     <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{$subject->title}}</p></a>
                                 </td>
-                                <td class="col-md-2">
+                                <td>
                                     <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{substr($subject->summary, 0,130)}}...</p>
                                     </a>
                                 </td>
-                                <td class="col-md-2">
+                                <td >
                                     <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{$subject->teacher[0]->user->name}} {{$subject->teacher[0]->user->surname}}</p>
                                     </a>
                                 </td>
-                                <td class="col-md-2">
+                                <td>
                                     <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p>
                                     </a>
                                 </td>
-                                <td class="col-md-2">
+                                <td>
                                     <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{count($subject->student)}}</p>
                                     </a>
@@ -56,7 +56,7 @@
                     </tbody>
                 @endif
             </div>
-            <div class="col-md-5">
+            <div class="col-xl-6">
                 <p class="title">Ημερολόγιο</p>
                 <livewire:events-calendar
                     before-calendar-view="vendor/livewire-calendar/before"

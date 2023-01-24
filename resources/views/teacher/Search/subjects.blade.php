@@ -41,15 +41,15 @@
 
                     @foreach($subjects as $subject)
                         <tr class="tableRow">
-                            <td class="col-md-3">
+                            <td>
                                 <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                         class="paragraph">{{$subject->title}}</p></a>
                             </td>
-                            <td class="col-md-5">
+                            <td >
                                 <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                         class="paragraph">{{substr($subject->summary, 0,130)}}...</p></a>
                             </td>
-                            <td class="col-md-3">
+                            <td >
                                 <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                         class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p></a>
                             </td>

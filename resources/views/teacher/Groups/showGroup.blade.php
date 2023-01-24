@@ -24,7 +24,7 @@
                         @foreach($users as $user)
                             {{$user->user->name}} {{$user->user->surname}}
                         @endforeach
-                        | Αριθμός Φοιτητών: {{$group->capacity}} | Ώρα: {{$group->time}}
+                        | Αριθμός Θέσεων: {{count($group->student)}}/{{$group->capacity}} | Ώρα: {{$group->time}}
 
                     </p>
                 </div>

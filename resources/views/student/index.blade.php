@@ -7,7 +7,7 @@
         <div class="top-section row col-md-12">
         </div>
         <div class="bottom-section row">
-            <div class="col-md-7">
+            <div class="col-xl-6">
                 <p class="title">Μαθήματα Τρέχοντος Εξαμήνου</p>
                 @if(count($subjects) > 0)
                     {{$subjects->links()}}
@@ -18,7 +18,7 @@
                             <th class="colTitles">Περιγραφη</th>
                             <th class="colTitles">Καθηγητής</th>
                             <th class="colTitles">Εξάμηνο</th>
-                            <th class="colTitles">Εγγραμμένοι</th>
+                            <th class="colTitles">Φοιτητές</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,7 +56,7 @@
                     <p class="paragraph">Δεν υπάρχουν διαθέσιμα μαθήματα.</p>
                 @endif
             </div>
-            <div class="col-md-5">
+            <div class="col-xl-6">
                 <p class="title">Ημερολόγιο</p>
                 <div>
                     <livewire:events-calendar

@@ -48,26 +48,26 @@
 
                     @foreach($users as $user)
                         <tr class="tableRow">
-                            <td class="col-md-2">
+                            <td >
                                 <p class="paragraph">{{$user->name}}</p>
                             </td>
-                            <td class="col-md-2">
+                            <td >
                                 <p class="paragraph">{{$user->surname}}</p>
                             </td>
-                            <td class="col-md-2">
+                            <td >
                                 <p class="paragraph">{{$user->email}}</p>
                             </td>
-                            <td class="col-md-2">
+                            <td >
                                 <p class="paragraph">{{$user->domain->name}}</p>
                             </td>
-                            <td class="col-md-2">
+                            <td >
                                 <p class="paragraph">{{$user->teacher->job_role->name}}</p>
                             </td>
-                            <td class="col-md-1" style="align-self: flex-end">
+                            <td  style="align-self: flex-end">
                                 <a href="{{route('teacher.show' , $user)}}" class="edit"><i
                                         class="fa-regular fa-pencil"></i></a>
                             </td>
-                            <td class="col-md-1" style="align-self: flex-end">
+                            <td  style="align-self: flex-end">
                                 <a href="{{route('teacher.delete' , $user)}}" class="delete"><i
                                         class="fa-regular fa-trash-can"></i></a>
                             </td>

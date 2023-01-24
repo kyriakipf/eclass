@@ -28,25 +28,25 @@
                             <tbody>
                             @foreach($subjects as $subject)
                                 <tr class="tableRow">
-                                    <td class="col-md-2">
+                                    <td>
                                         <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
                                                 class="paragraph">{{$subject->title}}</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
                                                 class="paragraph">{{substr($subject->summary, 0,130)}}...</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
                                                 class="paragraph">{{$subject->teacher[0]->user->name}} {{$subject->teacher[0]->user->surname}}</p>
                                         </a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
                                                 class="paragraph">{{$subject->semester->number}}<small>ο</small> Εξάμηνο
                                             </p></a>
                                     </td>
-                                    <td class="col-md-3"><a
+                                    <td ><a
                                             href="{{route('admin.subject.show' , ['subject' => $subject])}}"><p
                                                 class="paragraph">{{count($subject->student)}}</p></a>
                                     </td>

@@ -30,7 +30,7 @@
         </div>
         <div class="bottom-section">
             <div class="row gap-3">
-                <div class="col-lg-7 col-md-9">
+                <div class="col-xl-7 col-md-9">
                     <div class="folder-files">
                         <div class="flex folder-files-row">
                             <div class="type">ΤΥΠΟΣ</div>
@@ -38,6 +38,7 @@
                             <div class="date">ΗΜΕΡΟΜΗΝΙΑ</div>
                             <div class="size">ΜΕΓΕΘΟΣ</div>
                             <div class="download">ΛΗΨΗ</div>
+                            <div class="delete"></div>
                         </div>
                         @if(count($folders) <= 0 && count($files) <= 0)
                             <div class="flex folder-files-row">
@@ -57,6 +58,7 @@
                                     <div class="size">&emsp;&emsp;&emsp;-</div>
                                     <div class="date">&emsp;&emsp;-</div>
                                     <div class="download">-</div>
+                                    <div class="delete"><a href="{{route('teacher.subject.directory.delete', ['subject' => $subject, 'folder' => $folder])}}"><i class="fa-solid fa-trash-can"></i></a></div>
                                 </div>
                             @endforeach
                             @foreach($files as $file)
@@ -72,6 +74,8 @@
                                         <a href="{{route('subject.file.download', ['subject' => $subject ,'file' => $file->filename])}}"><i
                                                 class="fa-regular fa-download"></i></a>
                                     </div>
+                                    <div class="delete"><a href="{{route('teacher.subject.file.delete', ['subject' => $subject, 'file' => $file])}}"><i class="fa-solid fa-trash-can"></i></a></div>
+
                                 </div>
                             @endforeach
                         @endif
@@ -96,6 +100,7 @@
                         <div class="btn-container col-3 mt-2">
                             <button type="submit" class="button bold ">Δημιουργία Φακέλου</button>
                         </div>
+                        <p class="paragraph">Εάν δημιουργήσετε φάκελο με όνομα που ήδη υπάρχει, ο παλιός φάκελος θα αντικατασταθεί.</p>
                     </form>
                     <form id="files-form" class="flex mt-5 pt-1 d-none gap-4"
                           action="{{route('subject.file.store',['subject' => $subject, 'folder' => $fold])}}"
@@ -108,6 +113,7 @@
                         <div class="btn-container col-3 mt-2">
                             <button type="submit" class="button bold ">Προσθήκη Αρχείου</button>
                         </div>
+                        <p class="paragraph">Εάν ανεβάσετε αρχείο με όνομα που ήδη υπάρχει, το παλιό αρχείο θα αντικατασταθεί.</p>
                     </form>
                 </div>
             </div>

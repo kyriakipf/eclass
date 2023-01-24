@@ -43,7 +43,7 @@
                                 <th class="sort">Τιτλος</th>
                                 <th class="sort">Περιγραφη</th>
                                 <th class="sort">Μάθημα</th>
-                                <th class="sort">Είδος Εργασίας</th>
+                                <th class="sort">Είδος</th>
                                 <th class="sort">Προθεσμία</th>
                                 <th></th>
                                 <th></th>
@@ -52,37 +52,37 @@
                             <tbody>
                             @foreach($homework as $single)
                                 <tr class="tableRow">
-                                    <td class="col-md-2">
+                                    <td>
                                         <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                             <p class="paragraph">{{$single->title}}</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td>
                                         <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                             <p
                                                 class="paragraph">{{substr($single->summary, 0,130)}}...</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td>
                                         <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                             <p
                                                 class="paragraph">{{$single->subject->title}}</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td>
                                         <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                             <p
                                                 class="paragraph">{{$single->homework_type}}</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td>
                                         <a href="{{route('homework.show', ['homework' => $single , 'subject' => $single->subject])}}">
                                             <p
                                                 class="paragraph">{{\Carbon\Carbon::parse($single->due_date)->format('d-m-Y')}}</p>
                                         </a>
                                     </td>
-                                    <td class="col-auto">
+                                    <td>
                                         <a href="{{route('homework.edit', ['homework' => $single, 'subject' => $subject])}}"
                                            class="edit"><i
                                                 class="fa-regular fa-pencil"></i></a>
                                     </td>
-                                    <td class="col-auto">
+                                    <td>
                                         <a href="{{route('homework.delete', ['homework' => $single])}}"
                                            class="delete"><i
                                                 class="fa-regular fa-trash-can"></i></a>

@@ -28,13 +28,13 @@
                             @foreach($subjects as $subject)
                                 <tr class="tableRow">
 
-                                    <td class="col-md-3">
+                                    <td >
                                         <p class="paragraph">{{$subject->title}}</p>
                                     </td>
-                                    <td class="col-md-5">
+                                    <td >
                                         <p class="paragraph">{{substr($subject->summary, 0,130)}}...</p>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td >
                                         <p class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p>
                                     </td>
                                     <td>
@@ -42,7 +42,7 @@
                                             <input type="text" class="course-password" id="pass-{{$subject->id}}">
                                         @endif
                                     </td>
-                                    <td class="col-1 text-center">
+                                    <td class=" text-center">
                                         <input type="checkbox" value="{{$subject->id}}" class="course-submit" @foreach(auth()->user()->student->subject as $sub) @if($sub->id == $subject->id ) checked @endif @endforeach>
                                     </td>
                                 </tr>

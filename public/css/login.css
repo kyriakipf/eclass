@@ -10,13 +10,19 @@ section#login .boy {
   background-position: center;
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: -149px;
   z-index: -1;
+}
+@media only screen and (max-width: 1200px) {
+  section#login .boy {
+    bottom: -121px;
+    right: -215px;
+  }
 }
 section#login .credits {
   position: absolute;
   bottom: 40px;
-  right: 1239px;
+  left: 25px;
 }
 section#login .credits p {
   background-color: #FFFFFF;

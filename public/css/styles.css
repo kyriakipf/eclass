@@ -44,7 +44,7 @@ form .file-input {
   background-color: #FFFFFF;
   border: 1px solid #DFDFDF;
   width: 100%;
-  padding: 65px 0 60px 280px;
+  padding: 65px 0 60px 36%;
   margin: 0 16px 44px 0;
   cursor: pointer;
   align-content: center;
@@ -95,8 +95,9 @@ form .download {
   padding: 15px 30px;
   text-decoration: none !important;
 }
-form .download--btn-container {
-  margin-top: 25px;
+form .download--btn-container a {
+  display: block;
+  text-align: center;
 }
 form .disabled {
   background-color: #E5E9F6 !important;
@@ -198,24 +199,22 @@ table thead th {
   margin-bottom: 20px;
   color: #70246A;
 }
-table tbody tr:hover p {
-  color: #F9627D;
-  transition: color 0.5s linear;
-}
 table tbody tr td {
-  padding: 10px;
+  padding: 25px 0px;
   transition: color 0.5s linear;
 }
 table tbody tr td p {
   margin-bottom: 0;
 }
 table tbody tr td a {
-  font-size: 20px;
   color: #9095A2;
   font-weight: 500;
-  padding: 4px 8px;
   margin: 0;
   transition: color 0.15s linear;
+}
+table tbody tr td a:hover {
+  color: #F9627D;
+  transition: color 0.5s linear;
 }
 table tbody tr td .edit:hover {
   color: #00B8A3;
@@ -1530,6 +1529,11 @@ body section#main .dashboard .sidebar {
   justify-content: space-between;
   z-index: 999999999;
 }
+@media only screen and (max-width: 1400px) {
+  body section#main .dashboard .sidebar {
+    padding: 30px 40px 0px;
+  }
+}
 body section#main .dashboard .sidebar .userSettings p i {
   margin-left: 10px;
 }
@@ -1544,6 +1548,11 @@ body section#main .dashboard .sidebar .dropdown {
   display: inline-block;
   transition: all 0.5s linear;
   min-width: 160px;
+}
+@media only screen and (max-width: 1400px) {
+  body section#main .dashboard .sidebar .dropdown {
+    min-width: 140px;
+  }
 }
 body section#main .dashboard .sidebar .dropdown p {
   margin: 10px 10px 0 10px;
@@ -1605,6 +1614,9 @@ body section#main .dashboard .sidebar .dropdown:hover .dropdown-content::before 
 body section#main .dashboard .sidebar .nav-item {
   margin-bottom: 20px;
 }
+body section#main .dashboard .sidebar .nav-item.user {
+  margin-left: auto;
+}
 body section#main .dashboard .sidebar .sidebar-header a {
   color: #FFFFFF;
 }
@@ -1630,7 +1642,7 @@ body section#main .dashboard .sidebar .userSettings {
 }
 body .top-section {
   justify-content: space-between;
-  padding: 18px 0 0 100px;
+  padding: 18px 0 0 50px;
   margin-top: 120px;
 }
 body .top-section .banner {
@@ -1641,7 +1653,7 @@ body .top-section .banner {
   margin-left: 15px;
 }
 body .top-section .stats-container {
-  margin: 40px 0 40px 75px;
+  margin: 40px 0 40px 0;
   display: flex;
   justify-content: flex-start;
   gap: 40px;
@@ -1672,7 +1684,7 @@ body .top-section .stats-container .stats .data .counter .number {
 }
 body .bottom-section {
   background-color: #F1F4FD;
-  padding: 18px 100px 0 100px;
+  padding: 18px 50px 0 50px;
   justify-content: space-between;
   min-height: -moz-fit-content;
   min-height: fit-content;

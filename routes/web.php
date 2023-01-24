@@ -143,6 +143,9 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth', 'role:Teacher']], 
         Route::get('{subject}/homework/show', [SubjectController::class, 'homeworkShow'])->name('subject.homework.show');
         Route::get('{subject}/groups/show', [SubjectController::class, 'groupShow'])->name('subject.groups.show');
         Route::get('{subject}/email/show', [SubjectController::class, 'emailShow'])->name('subject.email.show');
+        Route::get('{subject}/students/show', [SubjectController::class, 'studentsShow'])->name('subject.students.show');
+        Route::get('{subject}/directory/{folder}/delete', [SubjectController::class ,'directoryDelete'])->name('teacher.subject.directory.delete')->where('folder', '.*');
+        Route::get('{subject}/file/{file}/delete', [SubjectController::class ,'fileDelete'])->name('teacher.subject.file.delete')->where('file', '.*');
     });
 
     //Group Management
@@ -168,6 +171,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth', 'role:Teacher']], 
        Route::get('{homework}/delete', [HomeworkController::class, 'delete'])->name('homework.delete');
         Route::get('{homework}/file/delete', [HomeworkController::class, 'deleteFile'])->name('homework.file.delete');
         Route::get('{homework}/file/download', [HomeworkController::class, 'fileDownload'])->name('homework.file.download');
+        Route::get('student/{student}/{homework}/file/download', [HomeworkController::class, 'studentFileDownload'])->name('teacher.homework.studentfile.download');
         Route::match(['get', 'post'],'search/form/{subject?}', [SearchHomeworkController::class, 'search'])->name('homework.search.form');
     });
 
@@ -187,6 +191,8 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth', 'role:Teacher']], 
     Route::get('info/edit', [InfoController::class, 'edit'])->name('teacher.info.edit');
     Route::post('info/update', [InfoController::class, 'update'])->name('teacher.info.update');
 
+    //Students
+    Route::get('student/{student}/show/{subject}', [App\Http\Controllers\Teachers\StudentController::class, 'show'])->name('teacher.student.show');
 });
 
 
@@ -214,6 +220,7 @@ Route::group(['prefix' => 'student', 'middleware' => ['auth', 'role:Student']], 
         Route::get('{subject}/homework/show', [App\Http\Controllers\Students\SubjectController::class, 'homeworkShow'])->name('student.subject.homework.show');
         Route::get('{subject}/groups/show', [App\Http\Controllers\Students\SubjectController::class, 'groupShow'])->name('student.subject.groups.show');
         Route::get('{subject}/email/show', [App\Http\Controllers\Students\SubjectController::class, 'emailShow'])->name('student.subject.email.show');
+
     });
 
     //Homework

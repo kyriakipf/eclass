@@ -21,4 +21,9 @@ class Message extends Model
     {
         return $this->belongsTo(Subject::class, 'subject_id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'message_user',  'message_id','user_id');
+    }
 }

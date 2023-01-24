@@ -66,6 +66,11 @@
                            class=" button bold">Μηνύματα
                             Μαθήματος</a>
                     </div>
+                    <div class="col-auto">
+                        <a href="{{route('subject.students.show', ['subject' => $subject])}}"
+                           class=" button bold">Φοιτητές
+                            Μαθήματος</a>
+                    </div>
                 </div>
             </div>
         </div>

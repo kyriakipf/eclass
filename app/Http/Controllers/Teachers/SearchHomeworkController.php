@@ -10,14 +10,18 @@ use Illuminate\Http\Request;
 
 class SearchHomeworkController extends Controller
 {
-    public function search(Request $request, Subject $subject)
+    public function search(Request $request, Subject $subject = null)
     {
         $teacher = auth()->user()->teacher;
-        $hwQuery = Homework::query()->whereRelation('subject', 'subject_id', '=', $subject->id);
 
-//            function ($query){
-//            $query->whereRelation('teacher', 'user_id', '=', auth()->user()->id);
-//        });
+        if (!$subject)
+        {
+            $hwQuery = Homework::query()->where('uploaded_by', '=', auth()->user()->id);
+
+
+        }else{
+            $hwQuery = Homework::query()->whereRelation('subject', 'subject_id', '=', $subject->id);
+        }
 
         if ($request->search) {
             if ($request->search) {

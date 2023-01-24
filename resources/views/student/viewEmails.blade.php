@@ -50,23 +50,23 @@
                             <tbody>
                             @foreach($emails as $email)
                                 <tr class="tableRow">
-                                    <td class="col-md-3">
+                                    <td>
                                         <a href="{{route('student.email.show', $email)}}"><p
                                                 class="paragraph">{{$email->subject}}</p></a>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td >
                                         <a href="{{route('student.email.show', $email)}}"><p
                                                 class="paragraph">{{$email->message}}</p></a>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td >
                                         <a href="{{route('student.email.show', $email)}}"><p
                                                 class="paragraph">{{$email->from}}</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('student.email.show', $email)}}"><p
-                                                class="paragraph">{{$email->subjects->title}}</p></a>
+                                                class="paragraph">@if($email->subjects){{$email->subjects->title}}@else - @endif</p></a>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td >
                                         <a href="{{route('student.email.show', $email)}}"><p
                                                 class="paragraph">{{$email->send_date}}</p></a>
                                     </td>

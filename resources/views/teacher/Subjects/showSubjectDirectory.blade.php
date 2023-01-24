@@ -31,12 +31,14 @@
         <div class="bottom-section">
             <div class="row gap-3">
                 <div class="col-lg-7 col-md-9">
+                    <div class="folder-files">
                         <div class="flex folder-files-row">
                             <div class="type">ΤΥΠΟΣ</div>
                             <div class="name">ΟΝΟΜΑ</div>
                             <div class="date">ΗΜΕΡΟΜΗΝΙΑ</div>
                             <div class="size">ΜΕΓΕΘΟΣ</div>
                             <div class="download">ΛΗΨΗ</div>
+                            <div class="delete"></div>
                         </div>
                         @if(count($subfolders) <= 0 && count($files) <= 0)
                             <div class="flex folder-files-row">
@@ -46,7 +48,6 @@
                             </div>
                         @else
                             @foreach($subfolders as $f)
-
                                 <div class="flex folder-files-row">
                                     <div class="type"><i class="purple fa-regular fa-folder-open"></i></div>
                                     <div class="name">
@@ -57,14 +58,13 @@
                                     <div class="size">&emsp;&emsp;&emsp;-</div>
                                     <div class="date">&emsp;&emsp;-</div>
                                     <div class="download">-</div>
+                                    <div class="delete"><a
+                                            href="{{route('teacher.subject.directory.delete', ['subject' => $subject, 'folder' => $f])}}"><i class="fa-solid fa-trash-can"></i></a></div>
                                 </div>
-
                             @endforeach
                             @foreach($files as $file)
-
                                 <div class="flex folder-files-row">
                                     <div class="type"><i class="purple fa-regular fa-file-lines"></i></div>
-
                                     <div class="name"><a
                                             href="{{asset('storage/' . $file->filepath . DIRECTORY_SEPARATOR . $file->filename)}}"
                                             target="_blank">{{$file->filename}}</a></div>
@@ -75,47 +75,51 @@
                                         <a href="{{route('subject.file.download', ['subject' => $subject ,'file' => $file->filename])}}"><i
                                                 class="fa-regular fa-download"></i></a>
                                     </div>
+                                    <div class="delete"><a href="{{route('teacher.subject.file.delete', ['subject' => $subject, 'file' => $file])}}"><i class="fa-solid fa-trash-can"></i></a></div>
+
                                 </div>
                             @endforeach
-                    </div>
                     @endif
                 </div>
-                <div class="col">
-                    <div class="flex mb-3 mt-[13px] " style="justify-content: space-between">
-                        <p id="folder-form-toggle" class="purple"><i class="fa-light fa-folder-plus fa-lg"></i>&nbsp;Δημιουργία
-                            Φακέλου</p>
-                        <p id="files-form-toggle" class="purple"><i class="fa-light fa-file-plus fa-lg"></i>&nbsp;Μεταφόρτωση
-                            Αρχείου</p>
-                    </div>
-                    <form id="folder-form" class="flex mt-5 pt-1 d-none gap-4"
-                          action="{{route('subject.subdirectory.store',['subject' => $subject, 'folder' => $folder])}}"
-                          method="post">
-                        @csrf
-                        <div class=" col-5">
-                            <label for="title" class="input-label">Όνομα Φακέλου</label>
-                            <input name="title" id="title" type="text"
-                                   placeholder="Γράψτε εδώ..." class="text-input">
-                        </div>
-
-                        <div class="btn-container col-3 mt-2">
-                            <button type="submit" class="button bold ">Δημιουργία Φακέλου</button>
-                        </div>
-                    </form>
-                    <form id="files-form" class="flex mt-5 pt-1 d-none gap-4"
-                          action="{{route('subject.file.store',['subject' => $subject, 'folder' => basename($folder)])}}"
-                          method="post"
-                          enctype="multipart/form-data">
-                        @csrf
-                        <div class="col-5 mt-8 small-file-input">
-                            <input type="file" name="file" class="form-control">
-                        </div>
-                        <div class="btn-container col-3 mt-2">
-                            <button type="submit" class="button bold ">Προσθήκη Αρχείου</button>
-                        </div>
-                    </form>
+            </div>
+            <div class="col">
+                <div class="flex mb-3 mt-[13px] " style="justify-content: space-between">
+                    <p id="folder-form-toggle" class="purple"><i class="fa-light fa-folder-plus fa-lg"></i>&nbsp;Δημιουργία
+                        Φακέλου</p>
+                    <p id="files-form-toggle" class="purple"><i class="fa-light fa-file-plus fa-lg"></i>&nbsp;Μεταφόρτωση
+                        Αρχείου</p>
                 </div>
+                <form id="folder-form" class="flex mt-5 pt-1 d-none gap-4"
+                      action="{{route('subject.subdirectory.store',['subject' => $subject, 'folder' => $folder])}}"
+                      method="post">
+                    @csrf
+                    <div class=" col-5">
+                        <label for="title" class="input-label">Όνομα Φακέλου</label>
+                        <input name="title" id="title" type="text"
+                               placeholder="Γράψτε εδώ..." class="text-input">
+                    </div>
+
+                    <div class="btn-container col-3 mt-2">
+                        <button type="submit" class="button bold ">Δημιουργία Φακέλου</button>
+                    </div>
+                    <p class="paragraph">Εάν δημιουργήσετε φάκελο με όνομα που ήδη υπάρχει, ο παλιός φάκελος θα αντικατασταθεί.</p>
+                </form>
+                <form id="files-form" class="flex mt-5 pt-1 d-none gap-4"
+                      action="{{route('subject.file.store',['subject' => $subject, 'folder' => basename($folder)])}}"
+                      method="post"
+                      enctype="multipart/form-data">
+                    @csrf
+                    <div class="col-5 mt-8 small-file-input">
+                        <input type="file" name="file" class="form-control">
+                    </div>
+                    <div class="btn-container col-3 mt-2">
+                        <button type="submit" class="button bold ">Προσθήκη Αρχείου</button>
+                    </div>
+                    <p class="paragraph">Εάν ανεβάσετε αρχείο με όνομα που ήδη υπάρχει, το παλιό αρχείο θα αντικατασταθεί.</p>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 @endsection
 @section('javascripts')

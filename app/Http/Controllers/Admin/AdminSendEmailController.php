@@ -14,7 +14,8 @@ class AdminSendEmailController extends Controller
 {
     public function index()
     {
-        $emails =  Message::query()->where('from', '=', auth()->user()->email)->paginate(5);
+        $emails = auth()->user()->messages()->paginate(5);
+
         return view('admin.viewEmails' , ['emails' => $emails]);
     }
 
@@ -38,8 +39,12 @@ class AdminSendEmailController extends Controller
             $email->to = $request->teacherSelect;
             try
             {
+                auth()->user()->messages()->attach($email->id);
                 foreach ($request->teacherSelect as $teacher) {
                     Mail::to($teacher)->send(new customEmail($request));
+
+                    $user = User::query()->where('email', '=', $teacher)->first();
+                    $user->messages()->attach($email->id);
                 }
             }catch (\Exception $e)
             {
@@ -50,8 +55,12 @@ class AdminSendEmailController extends Controller
             $email->to = $request->studentSelect;
             try
             {
+                auth()->user()->messages()->attach($email->id);
                 foreach ($request->studentSelect as $student) {
                     Mail::to($student)->send(new customEmail($request));
+
+                    $user = User::query()->where('email', '=', $student)->first();
+                    $user->messages()->attach($email->id);
                 }
             }catch (\Exception $e)
             {
@@ -63,8 +72,12 @@ class AdminSendEmailController extends Controller
             $email->to = $request->userSelect;
             try
             {
-                foreach ($request->userSelect as $user) {
-                    Mail::to($user)->send(new customEmail($request));
+                auth()->user()->messages()->attach($email->id);
+                foreach ($request->userSelect as $userEmail) {
+                    Mail::to($userEmail)->send(new customEmail($request));
+
+                    $user = User::query()->where('email', '=', $userEmail)->first();
+                    $user->messages()->attach($email->id);
                 }
             }catch (\Exception $e)
             {
@@ -84,7 +97,8 @@ class AdminSendEmailController extends Controller
 
     public function delete(Message $email)
     {
-        $email->delete();
+        auth()->user()->messages()->detach($email->id);
+
         return redirect()->route('admin.email')->with('success', 'Το μήνυμα διαγράφηκε');
     }
 

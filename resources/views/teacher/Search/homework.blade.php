@@ -17,13 +17,10 @@
                 <div class="flex">
                     <p class="title" style="margin-bottom: 0 !important;">Εργασίες</p>
                 </div>
-                <p class="paragraph mt-1">
-                    <a href="{{route('homework.create', ['subject' => $subject])}}" class="paragraph">Προσθήκη</a>
-                </p>
             </div>
-            <div class="col-md-1 ml-auto">
-                <a href="{{route('subject.show' , ['subject' => $subject])}}">Επιστροφή</a>
-            </div>
+            @if(!isset($subject))
+                {{$subject = null}}
+            @endif
             <form action="{{route('homework.search.form', ['subject' => $subject])}}" method="POST">
                 @csrf
                 <div class="row addForm">
@@ -52,32 +49,32 @@
 
                 @foreach($homework as $single)
                     <tr class="tableRow">
-                        <td class="col-md-2">
-                            <a href="{{route('homework.show', ['homework' => $single])}}">
+                        <td>
+                            <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                 <p class="paragraph">{{$single->title}}</p></a>
                         </td>
-                        <td class="col-md-2">
-                            <a href="{{route('homework.show', ['homework' => $single])}}"><p
+                        <td >
+                            <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}"><p
                                     class="paragraph">{{substr($single->summary, 0,130)}}...</p></a>
                         </td>
-                        <td class="col-md-2">
-                            <a href="{{route('homework.show', ['homework' => $single])}}"><p
+                        <td >
+                            <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}"><p
                                     class="paragraph">{{$single->subject->title}}</p></a>
                         </td>
-                        <td class="col-md-2">
-                            <a href="{{route('homework.show', ['homework' => $single])}}"><p
+                        <td >
+                            <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}"><p
                                     class="paragraph">{{$single->homework_type}}</p></a>
                         </td>
-                        <td class="col-md-2">
-                            <a href="{{route('homework.show', ['homework' => $single])}}"><p
+                        <td >
+                            <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}"><p
                                     class="paragraph">{{\Carbon\Carbon::parse($single->due_date)->format('d-m-Y')}}</p>
                             </a>
                         </td>
-                        <td class="col-auto">
+                        <td >
                             <a href="{{route('homework.edit', ['homework' => $single])}}" class="edit"><i
                                     class="fa-regular fa-pencil"></i></a>
                         </td>
-                        <td class="col-auto">
+                        <td >
                             <a href="{{route('homework.delete', ['homework' => $single])}}"
                                class="delete"><i
                                     class="fa-regular fa-trash-can"></i></a>
@@ -88,9 +85,8 @@
             </table>
             @else
                 <div class="tableRow">
-                    <a href="{{route('homework.create', ['subject' => $subject])}}" class="paragraph">Δεν
-                        υπάρχουν διαθέσιμα μαθήματα. Πατήστε εδώ για να
-                        δημιουργήσετε ένα μάθημα.</a>
+                    <p class="paragraph">Δεν
+                        υπάρχουν διαθέσιμες εργασίες.</p>
                 </div>
             @endif
         </div>

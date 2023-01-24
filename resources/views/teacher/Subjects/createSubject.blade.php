@@ -12,12 +12,12 @@
         <form action="{{route('subject.store')}}" method="post">
             @csrf
             <div class="form-container row">
-                <div class=" col-md-3">
+                <div class=" col-md-3 col-xl-2">
                     <label for="title" class="input-label">Τίτλος Μαθήματος</label>
                     <input name="title" id="title" type="text"
                            placeholder="Γράψτε εδώ..." class="text-input">
                 </div>
-                <div class="semester col-md-1" >
+                <div class="semester col-md-2 col-xl-2" >
                     <label for="semester" class="input-label">Εξάμηνο</label>
                     <select name="semester" id="semester" type="s"
                             class="text-input">
@@ -27,12 +27,12 @@
                         @endforeach
                     </select>
                 </div>
-                <div class=" col-md-1">
+                <div class="col-md-2 col-xl-2">
                     <label for="ects" class="input-label">ECTS</label>
                     <input name="ects" id="ects" type="text"
                            placeholder="Γράψτε εδώ..." class="text-input">
                 </div>
-                <div class="semester col-md-1" >
+                <div class="semester col-md-3 col-xl-2" >
                     <label for="type" class="input-label">Είδος Μαθήματος</label>
                     <select name="type" id="type" type="s"
                             class="text-input">
@@ -41,22 +41,22 @@
 
                     </select>
                 </div>
-                <div class="protected col-md-1">
+                <div class="protected col-md-3 col-xl-2">
                     <label class="input-label" for="protected">Εγγραφή με κωδικό</label>
                     <input type="checkbox" id="protected" name="public">
                 </div>
-                <div class="password col-md-2">
+                <div class="password col-md-2 col-xl-2">
                     <label class="input-label" for="password">Κωδικός</label>
                     <input name="password" class="text-input" placeholder="Γράψτε εδώ..."
                            id="password" type="text" disabled required>
                 </div>
-                <div class="description col-md-12">
+                <div class="description col-md-12 col-xl-12">
                     <label class="input-label" for="description">Περιγραφή</label>
                     <textarea name="description" class="text-input area-input" placeholder="Γράψτε εδώ..."
                               id="description" cols="30"
                               rows="10" required></textarea>
                 </div>
-                <div class="btn-container col-md-2">
+                <div class="btn-container col-md-2 col-xl-2">
                         <button type="submit" class="button bold ">Δημιουργία</button>
                 </div>
             </div>

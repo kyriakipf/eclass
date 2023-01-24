@@ -36,26 +36,26 @@
                             <tbody>
                             @foreach($homework as $single)
                                 <tr class="tableRow">
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('student.homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                             <p class="paragraph">{{$single->title}}</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('student.homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                             <p
                                                 class="paragraph">{{substr($single->summary, 0,130)}}...</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('student.homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                             <p
                                                 class="paragraph">{{$single->subject->title}}</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('student.homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                                             <p
                                                 class="paragraph">{{$single->homework_type}}</p></a>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <a href="{{route('student.homework.show', ['homework' => $single , 'subject' => $single->subject])}}">
                                             <p
                                                 class="paragraph">{{\Carbon\Carbon::parse($single->due_date)->format('d-m-Y')}}</p>

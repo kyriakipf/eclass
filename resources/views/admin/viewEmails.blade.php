@@ -33,25 +33,24 @@
                                 <th>Από</th>
                                 <th>Ημερομηνία Αποστολής</th>
                                 <th></th>
-                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($emails as $email)
                                 <tr class="tableRow">
-                                    <td class="col-md-3">
+                                    <td >
                                         <a href="{{route('admin.email.show', $email)}}"><p
                                                 class="paragraph">{{$email->subject}}</p></a>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td >
                                         <a href="{{route('admin.email.show', $email)}}"><p
                                                 class="paragraph">{{substr($email->message,0,50)}}</p></a>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td >
                                         <a href="{{route('admin.email.show', $email)}}"><p
                                                 class="paragraph">{{$email->from}}</p></a>
                                     </td>
-                                    <td class="col-md-3">
+                                    <td >
                                         <a href="{{route('admin.email.show', $email)}}"><p
                                                 class="paragraph">{{\Carbon\Carbon::parse($email->send_date)->format('d-m-Y')}}</p>
                                         </a>

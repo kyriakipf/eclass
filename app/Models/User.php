@@ -83,4 +83,9 @@ class User extends Authenticatable
         $students = User::query()->where('domain_id','=',$domain)->where('role_id','=',3)->get();
         return $students;
     }
+
+    public function messages()
+    {
+        return $this->belongsToMany(Message::class, 'message_user',  'user_id','message_id');
+    }
 }

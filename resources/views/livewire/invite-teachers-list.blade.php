@@ -15,19 +15,19 @@
             <tbody>
             @foreach($users as $user)
                 <tr class="tableRow">
-                    <td class="col-md-3">
+                    <td >
                         <p class="paragraph">{{$user->name}}</p>
                     </td>
-                    <td class="col-md-3">
+                    <td >
                         <p class="paragraph">{{$user->surname}}</p>
                     </td>
-                    <td class="col-md-3">
+                    <td >
                         <p class="paragraph">{{$user->email}}</p>
                     </td>
-                    <td class="col-md-3">
+                    <td >
                         <p class="paragraph">{{$user->domain->name}}</p>
                     </td>
-                    <td class="col-md-3">
+                    <td >
                         <p class="paragraph">{{$user->teacher->job_role->name}}</p>
                     </td>
                     <td>

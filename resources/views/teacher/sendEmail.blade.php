@@ -21,7 +21,7 @@
     <div class="bottom-section">
         <form action="{{route('teacher.email.process')}}">
             <div class="form-container row">
-                <div class="selection col-md-6">
+                <div class="selection col-xl-6">
                     <label for="subjectSelect" class="input-label">Επιλέξτε μάθημα: </label>
                     <select name="subjectSelect" id="subjectSelect" class="select text-input ">
                         @foreach($subjects as $subject)
@@ -30,7 +30,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="student selection col-md-6 ">
+                <div class="student selection col-xl-6 ">
                     <label for="userSelect" class="input-label">Επιλέξτε χρήστες: </label>
                     <select name="userSelect[]" id="userSelect" class="select text-input "
                             multiple="multiple">
@@ -45,12 +45,12 @@
                         <input id="selectall" type="checkbox" >
                     </div>
                 </div>
-                <div class="subject col-md-6">
+                <div class="subject col-xl-6">
                     <label for="emailSubject" class="input-label">ΘΕΜΑ</label>
                     <textarea name="emailSubject" id="emailSubject" cols="30" rows="10"
                               placeholder="Γράψτε εδώ..." class="text-input area-input"></textarea>
                 </div>
-                <div class="content col-md-6">
+                <div class="content col-xl-6">
                     <label class="input-label" for="emailContent">ΠΕΡΙΕΧΟΜΕΝΟ</label>
                     <textarea name="emailContent" class="text-input area-input" placeholder="Γράψτε εδώ..."
                               id="emailContent" cols="30"

@@ -54,31 +54,31 @@
                 <tbody>
                 @foreach($groups as $group)
                     <tr class="tableRow">
-                        <td class="col-md-3">
+                        <td>
                             <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
                                 <p class="paragraph">{{$group->title}}</p></a>
                         </td>
-                        <td class="col-md-3">
+                        <td>
                             <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
                                 <p
                                     class="paragraph">{{substr($group->summary, 0,130)}}...</p></a>
                         </td>
-                        <td class="col-md-3">
+                        <td >
                             <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
                                 <p
                                     class="paragraph">{{$group->subject->title}}</p></a>
                         </td>
-                        <td class="col-md-auto">
+                        <td>
                             <a href="{{route('group.show', ['group' => $group, 'subject' => $group->subject])}}">
                                 <p
                                     class="paragraph">{{count($group->student)}}/{{$group->capacity}}</p></a>
                         </td>
-                        <td class="col-auto">
+                        <td >
                             <a href="{{route('group.edit', ['group' => $group, 'subject' => $group->subject])}}"
                                class="edit"><i
                                     class="fa-regular fa-pencil"></i></a>
                         </td>
-                        <td class="col-auto">
+                        <td >
                             <a href="{{route('group.delete', ['group' => $group])}}"
                                class="delete"><i
                                     class="fa-regular fa-trash-can"></i></a>

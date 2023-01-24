@@ -15,14 +15,14 @@ table {
         & tr {
 
             &:hover {
-                & p {
+                &  p{
                     color: $pink;
                     transition: color 0.5s linear;
                 }
             }
 
             & td {
-                padding: 10px;
+                padding: 25px 0px;
                 transition: color 0.5s linear;
 
                 & p {
@@ -30,10 +30,8 @@ table {
                 }
 
                 & a {
-                    font-size: 20px;
                     color: $subText;
                     font-weight: 500;
-                    padding: 4px 8px;
                     margin: 0;
                     transition: color 0.15s linear;
                 }

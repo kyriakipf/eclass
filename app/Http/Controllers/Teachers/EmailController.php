@@ -18,7 +18,7 @@ class EmailController extends Controller
 {
     public function index()
     {
-        $emails = Message::query()->where('from', '=', auth()->user()->email)->paginate(5);
+        $emails = auth()->user()->messages()->paginate(5);
         return view('teacher.viewEmails', ['emails' => $emails]);
     }
 
@@ -49,10 +49,14 @@ class EmailController extends Controller
         try
         {
             $email->to = $request->userSelect;
-            foreach ($request->userSelect as $user) {
-                Mail::to($user)->send(new customEmail($request));
-            }
             $email->save();
+            auth()->user()->messages()->attach($email->id);
+            foreach ($request->userSelect as $userEmail) {
+                Mail::to($userEmail)->send(new customEmail($request));
+
+                $user = User::query()->where('email', '=', $userEmail)->first();
+                $user->messages()->attach($email->id);
+            }
         }catch (\Exception $e)
         {
             $email->delete();
@@ -70,7 +74,8 @@ class EmailController extends Controller
 
     public function delete(Message $email)
     {
-        $email->delete();
+        auth()->user()->messages()->detach($email->id);
+
         return redirect()->route('teacher.email')->with('success', 'Το μήνυμα διαγράφηκε επιτυχώς');
     }
 

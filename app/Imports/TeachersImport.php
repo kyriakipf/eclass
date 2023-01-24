@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Domain;
 use App\Models\InviteTeacher;
+use App\Models\JobRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
@@ -32,8 +33,8 @@ class TeachersImport implements ToCollection, WithHeadingRow, WithValidation , S
                 $token = Str::random();
             } //check if the token already exists and if it does, try again
             while (InviteTeacher::where('token', $token)->first());
-            $domain = Domain::where('name', '=' , $row['domain'])->first();
             $email = $row['email'];
+            $idiotita = JobRole::query()->where('name', '=', $row['role'])->first();
             $user = InviteTeacher::query()->where('email', $email)->first();
             if (!$user) {
                 InviteTeacher::updateOrCreate([
@@ -41,7 +42,8 @@ class TeachersImport implements ToCollection, WithHeadingRow, WithValidation , S
                     'name' => $row['name'],
                     'token' => $token,
                     'surname' => $row['surname'],
-                    'tmima' => $domain->id,
+                    'tmima' => auth()->user()->domain->id,
+                    'job_role_id' => $idiotita->id,
                     'role_id' => 2
                 ]);
             }

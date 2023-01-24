@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teachers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Homework;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Repositories\FileUploadRepository;
 use App\Repositories\HomeworkRepository;
@@ -138,5 +139,16 @@ class HomeworkController extends Controller
     public function fileDownload(Homework $homework)
     {
         return Storage::download('public' . DIRECTORY_SEPARATOR . $homework->filepath);
+    }
+
+    public function studentFileDownload(Student $student, Homework $homework)
+    {
+        $file = $student->homework()->where('homework_id', '=', $homework->id)->first();
+        $filepath = null;
+        if ($file != null)
+        {
+            $filepath = $file->pivot->filepath;
+        }
+        return Storage::download($filepath);
     }
 }

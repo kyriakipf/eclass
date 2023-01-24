@@ -30,7 +30,6 @@ class StudentsImport implements ToCollection, WithValidation, WithHeadingRow, Sk
                 $token = Str::random();
             }while (InviteStudent::where('token', $token)->first()); //check if the token already exists and if it does, try again
             $email = $row['email'];
-            $domain = Domain::where('name', '=' , $row['domain'])->first();
             $user = InviteStudent::query()->where('email', $email)->first();
             if (!$user) {
                 InviteStudent::create([
@@ -39,7 +38,7 @@ class StudentsImport implements ToCollection, WithValidation, WithHeadingRow, Sk
                     'surname' => $row['surname'],
                     'token' => $token,
                     'am' => $row['am'],
-                    'tmima' => $domain->id,
+                    'tmima' => auth()->user()->domain->id,
                     'role_id' => 3
                 ]);
             }

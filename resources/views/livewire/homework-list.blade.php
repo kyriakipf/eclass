@@ -16,15 +16,15 @@
             @foreach($homework as $single)
                 <tr class="tableRow">
                     <td class="col-md-2">
-                        <a href="{{route('homework.show', ['homework' => $single])}}">
+                        <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}">
                             <p class="paragraph">{{$single->title}}</p></a>
                     </td>
                     <td class="col-md-2">
-                        <a href="{{route('homework.show', ['homework' => $single])}}"><p
+                        <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}"><p
                                 class="paragraph">{{substr($single->summary, 0,130)}}...</p></a>
                     </td>
                     <td class="col-md-2">
-                        <a href="{{route('homework.show', ['homework' => $single])}}"><p
+                        <a href="{{route('homework.show', ['homework' => $single, 'subject' => $single->subject])}}"><p
                                 class="paragraph">{{$single->subject->title}}</p></a>
                     </td>
                     <td class="col-md-2">

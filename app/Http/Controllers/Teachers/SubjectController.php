@@ -151,6 +151,12 @@ class SubjectController extends Controller
         return redirect()->back();
     }
 
+    public function directoryDelete(Subject $subject, $folder)
+    {
+        Storage::deleteDirectory($folder);
+
+        return redirect()->back()->with('success', 'Ο φάκελος διαγράφηκε επιτυχώς.');
+    }
 
     public function directoryShow(Subject $subject, $folder)
     {
@@ -230,7 +236,18 @@ class SubjectController extends Controller
         return redirect()->back();
     }
 
+    public function fileDelete(Subject $subject, File $file)
+    {
+        $path = 'public' . DIRECTORY_SEPARATOR . $file->filepath . DIRECTORY_SEPARATOR . $file->filename;
+        if (Storage::exists($path))
+        {
+            Storage::delete($path);
+            $file->delete();
+            return redirect()->back()->with('success', 'Το αρχείο διαγράφηκε επιτυχώς.');
+        }
 
+        return redirect()->back()->with('error', 'Υπήρξε πρόβλημα.');
+    }
     public function fileDownload(Subject $subject, $fileName)
     {
 
@@ -279,5 +296,12 @@ class SubjectController extends Controller
         $emails = $subject->message()->paginate(5);
 
         return view('teacher.subjects.showEmail', ['emails' => $emails, 'subject' => $subject]);
+    }
+
+    public function studentsShow(Subject $subject)
+    {
+        $students = $subject->student()->paginate(10);
+
+        return view('teacher.subjects.showStudents', ['students' => $students, 'subject' => $subject]);
     }
 }

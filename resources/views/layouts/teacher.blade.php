@@ -34,12 +34,12 @@
 <section id="main">
     <div class="dashboard">
         <div class="sidebar">
-            <div class="sidebar-header col-md-3">
+            <div class="sidebar-header col-xl-3">
                 <a href="{{route('dashboard')}}" class="logoLink">
                     <div style="background-image: url({{ asset('assets/img/logo_white.png') }})" class="logo"></div>
                 </a>
             </div>
-            <div class="list-container col-md-7">
+            <div class="list-container col-xl-7">
                 <ul class="nav-bar">
                     <li class="nav-item">
                         <div class="dropdown">
@@ -77,7 +77,7 @@
                 </ul>
 
             </div>
-            <div class="nav-item">
+            <div class="nav-item user">
                 <div class="dropdown">
                     <p class="menu">{{auth()->user()->name}} {{auth()->user()->surname}} <i
                             class="fa-solid fa-angle-down"></i></p>

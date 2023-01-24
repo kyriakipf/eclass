@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\customEmail;
 use App\Models\Message;
 use App\Models\Teacher;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -16,18 +17,9 @@ class EmailController extends Controller
 {
     public function index()
     {
-        $emails = Message::all();
+        $emails = auth()->user()->messages()->paginate(5);
 
-        $mail = new Collection();
-
-        foreach ($emails as $email)
-        {
-            if (Str::contains($email->to, auth()->user()->email))
-            {
-                $mail->push($email);
-            }
-        }
-        return view('student.viewEmails', ['emails' => $mail]);
+        return view('student.viewEmails', ['emails' => $emails]);
     }
 
     public function create()
@@ -44,15 +36,20 @@ class EmailController extends Controller
             'from' => auth()->user()->email,
             'subject' => $request->emailSubject,
             'message' => $request->emailContent,
+            'subject_id' => $request->subjectSelect,
             'send_date' => Carbon::now()
         ]);
         $email->save();
 
         try
         {
+            auth()->user()->messages()->attach($email->id);
             $email->to = $request->userSelect;
-            foreach ($request->userSelect as $user) {
-                Mail::to($user)->send(new customEmail($request));
+            foreach ($request->userSelect as $userEmail) {
+                Mail::to($userEmail)->send(new customEmail($request));
+
+                $user = User::query()->where('email', '=', $userEmail)->first();
+                $user->messages()->attach($email->id);
             }
 
             $email->save();
@@ -72,7 +69,7 @@ class EmailController extends Controller
 
     public function delete(Message $email)
     {
-        $email->delete();
+        auth()->user()->messages()->detach($email->id);
         return redirect()->route('student.email')->with('success','Το μήνυμα διαγράφηκε επιτυχώς');
     }
 }

@@ -11,7 +11,7 @@ class SearchEmailController extends Controller
 {
     public function search(Request $request)
     {
-        $emailQuery = Message::query()->where('from', '=', auth()->user()->email);
+        $emailQuery = auth()->user()->messages();
 
         if ($request->search)
         {

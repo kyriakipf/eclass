@@ -52,27 +52,27 @@
 
                 @foreach($messages as $message)
                     <tr class="tableRow">
-                        <td class="col-md-2">
+                        <td>
                             <a href="{{route('teacher.email.show' , ['email' => $message])}}"><p
                                     class="paragraph">{{$message->subject}}</p></a>
                         </td>
-                        <td class="col-md-2">
+                        <td >
                             <a href="{{route('teacher.email.show' , ['email' => $message])}}"><p
                                     class="paragraph">{{substr($message->message, 0,130)}}...</p></a>
                         </td>
-                        <td class="col-md-2">
+                        <td >
                             <a href="{{route('teacher.email.show' , ['email' => $message])}}"><p
                                     class="paragraph">{{$message->from}}</p></a>
                         </td>
-                        <td class="col-md-2">
+                        <td>
                             <a href="{{route('teacher.email.show' , ['email' => $message])}}"><p
                                     class="paragraph">{{$message->subjects->title}}</p></a>
                         </td>
-                        <td class="col-auto">
+                        <td >
                             <a href="{{route('teacher.email.show' , ['email' => $message])}}"><p
                                     class="paragraph">{{$message->send_date}}</p></a>
                         </td>
-                        <td class="col-auto">
+                        <td >
                             <a href="{{route('teacher.email.delete', ['email' => $message])}}" class="delete"><i
                                     class="fa-regular fa-trash-can"></i></a>
                         </td>

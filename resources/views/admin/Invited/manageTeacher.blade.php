@@ -15,11 +15,11 @@
                         {{$errors->all()[0]}}
                     </p>
                 @endif
-                <div class="col-md-5">
+                <div class="col-xl-6">
                     <form action="{{route('teacher.invite.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <p class="title purple">Προσθήκη Καθηγητή με Προσωπικά Στοιχεία</p>
-                        <div class="row addForm bordered">
+                        <div class="row addForm">
                             <div class="col-md-6">
                                 <div class="input-container focused">
                                     <label for="name" class="input-label">Όνομα</label>
@@ -68,23 +68,23 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-5">
+                <div class="col-xl-6">
                     <form action="{{route('teacher.import')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <p class="title purple">Προσθήκη Καθηγητών μέσω Excel</p>
-                        <div class="row addForm bordered">
+                        <div class="row addForm">
                             <div class="col-md-12">
                                 <div class="input-container focused">
                                     <label for="file" class="input-label">Επιλέξτε Αρχείο</label>
-                                    <input type="file" name="students" id="file" class="file-input" required/>
+                                    <input type="file" name="teachers" id="file" class="file-input" required/>
                                 </div>
                             </div>
-                            <div class="col-md-4 download--btn-container">
+                            <div class="col-md-6 download--btn-container">
                                 <a href="{{route('template.download', [ 'name'=>'teacherTemplate'])}}"
                                    class="download button bold" download><i class="fa-light fa-download"></i>ΛΗΨΗ
                                     TEMPLATE</a>
                             </div>
-                            <div class="col-md-4 btn-container">
+                            <div class="col-md-6 btn-container">
                                 <button type="submit" class="button bold">ΠΡΟΣΘΗΚΗ</button>
                             </div>
                         </div>
@@ -107,24 +107,25 @@
                                 <th>Ιδιοτητα</th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($entities as $entity)
                                 <tr class="tableRow">
-                                    <td class="col-md-2">
+                                    <td >
                                         <p class="name paragraph">{{$entity->name}}</p>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <p class="paragraph">{{$entity->surname}}</p>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <p class="paragraph">{{$entity->email}}</p>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <p class="paragraph">{{$entity->domain->name}}</p>
                                     </td>
-                                    <td class="col-md-2">
+                                    <td >
                                         <p class="paragraph">{{$entity->job_role->name}}</p>
                                     </td>
                                     <td>
