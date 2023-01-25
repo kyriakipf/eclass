@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -17,7 +18,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Facades\Excel;
 
-class TeachersImport implements ToCollection, WithHeadingRow, WithValidation , SkipsOnFailure
+class TeachersImport implements ToCollection, WithHeadingRow, WithValidation , SkipsOnFailure, SkipsEmptyRows
 {
     use Importable, SkipsFailures;
     /**

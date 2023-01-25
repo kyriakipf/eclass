@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
 use App\Mail\customEmail;
+use App\Mail\SendCustomMail;
 use App\Models\Message;
+use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
 use Carbon\Carbon;
@@ -25,7 +27,7 @@ class EmailController extends Controller
     public function create()
     {
         $subjects = auth()->user()->student->subject;
-        $teachers = Teacher::query()->whereRelation('user', 'domain_id', '=',  auth()->user()->domain_id)->get();
+        $teachers = Teacher::query()->whereRelation('user', 'domain_id', '=', auth()->user()->domain_id)->get();
 
         return view('student.sendEmail', ['teachers' => $teachers, 'subjects' => $subjects]);
     }
@@ -41,24 +43,29 @@ class EmailController extends Controller
         ]);
         $email->save();
 
+        $sub = Subject::find($request->subjectSelect);
+        $teacher = $sub->teacher;
+        foreach ($teacher as $t)
+        {
+            $to = $t->user->email;
+        }
+
         try
         {
             auth()->user()->messages()->attach($email->id);
-            $email->to = $request->userSelect;
-            foreach ($request->userSelect as $userEmail) {
-                Mail::to($userEmail)->send(new customEmail($request));
 
-                $user = User::query()->where('email', '=', $userEmail)->first();
-                $user->messages()->attach($email->id);
-            }
+            Mail::to($to)->send(new SendCustomMail($request, $sub->title));
+
+            $user = User::query()->where('email', '=', $to)->first();
+            $user->messages()->attach($email->id);
 
             $email->save();
-        }catch (\Exception $e)
+        } catch (\Exception $e)
         {
-            return redirect()->back()->with('error','Υπήρξε πρόβλημα με την αποστολή του μηνύματος');
+            return redirect()->back()->with('error', 'Υπήρξε πρόβλημα με την αποστολή του μηνύματος');
         }
 
-        return redirect()->route('student.email')->with('success','Το μήνυμα στάλθηκε επιτυχώς');
+        return redirect()->route('student.email')->with('success', 'Το μήνυμα στάλθηκε επιτυχώς');
     }
 
 
@@ -70,6 +77,6 @@ class EmailController extends Controller
     public function delete(Message $email)
     {
         auth()->user()->messages()->detach($email->id);
-        return redirect()->route('student.email')->with('success','Το μήνυμα διαγράφηκε επιτυχώς');
+        return redirect()->route('student.email')->with('success', 'Το μήνυμα διαγράφηκε επιτυχώς');
     }
 }

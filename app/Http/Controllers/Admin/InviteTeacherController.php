@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\InviteTeacherCreated;
+use App\Mail\SendInviteTeacherMail;
 use App\Models\Domain;
 use App\Models\InviteTeacher;
 use App\Models\JobRole;
@@ -53,7 +54,7 @@ class InviteTeacherController extends Controller
 
     public function process(InviteTeacher $teacher)
     {
-        Mail::to($teacher->email)->send(new InviteTeacherCreated($teacher));
+        Mail::to($teacher->email)->send(new SendInviteTeacherMail($teacher));
         $teacher->update(['invited' => true]);
         // redirect back where we came from
         return redirect()
@@ -64,7 +65,7 @@ class InviteTeacherController extends Controller
     {
         $teachers = InviteTeacher::all()->where('invited', '=', false);
         foreach ($teachers as $teacher){
-        Mail::to($teacher->email)->send(new InviteTeacherCreated($teacher));
+        Mail::to($teacher->email)->send(new SendInviteTeacherMail($teacher));
         $teacher->update(['invited' => true]);
         }
         // redirect back where we came from

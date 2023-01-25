@@ -29,21 +29,6 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="student selection col-xl-6 ">
-                        <label for="userSelect" class="input-label">Επιλέξτε χρήστες: </label>
-                        <select name="userSelect[]" id="userSelect" class="select text-input "
-                                multiple="multiple">
-                            @foreach($teachers as $teacher)
-                                <option
-                                    value="{{$teacher->user->email}}">{{$teacher->user->surname}} {{$teacher->user->name}}
-                                    : {{$teacher->user->email}}</option>
-                            @endforeach
-                        </select>
-                        <div class="mt-2">
-                            <label for="selectall" class="checkbox-label">Επιλογή Όλων</label>
-                            <input id="selectall" type="checkbox" >
-                        </div>
-                    </div>
                     <div class="subject col-xl-6">
                         <label for="emailSubject" class="input-label">ΘΕΜΑ</label>
                         <textarea name="emailSubject" id="emailSubject" cols="30" rows="10"

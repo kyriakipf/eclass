@@ -35,8 +35,8 @@
             </form>
             <div class="row">
                 <div class="col-md-12">
+                    @if(count($emails) != 0)
                     <table>
-                        @if(count($emails) != 0)
                             <thead>
                             <tr class="tableRow colTitles">
                                 <th>Θέμα</th>
@@ -81,6 +81,7 @@
                             @endif
                             </tbody>
                     </table>
+                        {{$emails->links()}}
                 </div>
             </div>
         </div>

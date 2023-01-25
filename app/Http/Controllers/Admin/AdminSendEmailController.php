@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\customEmail;
+use App\Mail\SendCustomMail;
 use App\Models\Message;
 use App\Models\User;
 use Carbon\Carbon;
@@ -41,7 +42,7 @@ class AdminSendEmailController extends Controller
             {
                 auth()->user()->messages()->attach($email->id);
                 foreach ($request->teacherSelect as $teacher) {
-                    Mail::to($teacher)->send(new customEmail($request));
+                    Mail::to($teacher)->send(new SendCustomMail($request, null));
 
                     $user = User::query()->where('email', '=', $teacher)->first();
                     $user->messages()->attach($email->id);
@@ -57,7 +58,7 @@ class AdminSendEmailController extends Controller
             {
                 auth()->user()->messages()->attach($email->id);
                 foreach ($request->studentSelect as $student) {
-                    Mail::to($student)->send(new customEmail($request));
+                    Mail::to($student)->send(new SendCustomMail($request, null));
 
                     $user = User::query()->where('email', '=', $student)->first();
                     $user->messages()->attach($email->id);
@@ -74,7 +75,7 @@ class AdminSendEmailController extends Controller
             {
                 auth()->user()->messages()->attach($email->id);
                 foreach ($request->userSelect as $userEmail) {
-                    Mail::to($userEmail)->send(new customEmail($request));
+                    Mail::to($userEmail)->send(new SendCustomMail($request, null));
 
                     $user = User::query()->where('email', '=', $userEmail)->first();
                     $user->messages()->attach($email->id);

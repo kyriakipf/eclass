@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\InviteStudentCreated;
+use App\Mail\SendInviteStudentMail;
 use App\Models\Domain;
 use App\Models\InviteStudent;
 use App\Models\Student;
@@ -49,7 +50,7 @@ class InviteStudentController extends Controller
 
     public function process(InviteStudent $student)
     {
-        Mail::to($student->email)->send(new InviteStudentCreated($student));
+        Mail::to($student->email)->send(new SendInviteStudentMail($student));
         $student->update(['invited' => true]);
         // redirect back where we came from
         return redirect()
@@ -60,7 +61,7 @@ class InviteStudentController extends Controller
     {
         $students = InviteStudent::all()->where('invited', '=', false);
         foreach ($students as $student){
-            Mail::to($student->email)->send(new InviteStudentCreated($student));
+            Mail::to($student->email)->send(new SendInviteStudentMail($student));
             $student->update(['invited' => true]);
         }
         // redirect back where we came from

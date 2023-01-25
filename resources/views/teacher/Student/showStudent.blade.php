@@ -1,6 +1,6 @@
 @extends('layouts.teacher')
 @section('stylesheets')
-    <link rel="stylesheet" href="{{asset("css/subjectAdd.css")}}">
+    <link rel="stylesheet" href="{{asset("css/styles.css")}}">
 @endsection
 @section('header')
     teacher dashboard
@@ -25,72 +25,70 @@
             </div>
         </div>
         <div class="bottom-section">
-            <div class="row gap-3">
-                @if(count($subjects) != 0)
-                    <div>
-                        {{$subjects->links()}}
+            @if(count($subjects) != 0)
+                {{$subjects->links()}}
+                <div class="accordionTitles flex" style="padding: 1rem 1.25rem;">
+                    <div class="flex colTitles" style="flex: 1 0 0%;">
+                        <div class="col-3 ">Όνομα</div>
+                        <div class="col-2">Εξάμηνο</div>
+                        <div class="col-2 ">Εργασίες</div>
+                        <div class="col-3">Ομάδα</div>
+                        <div class="col-2">Ώρα Ομάδας</div>
                     </div>
-                    <p class="subtitle">Μαθήματα</p>
-                    <table>
-                        <thead>
-                        <tr class=" colTitles ">
-                            <th>Όνομα</th>
-                            <th>Εξάμηνο</th>
-                            <th>Εργασίες</th>
-                            <th>Ομάδα</th>
-                            <th>Ώρα Ομάδας</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($subjects as $sub)
-                            <tr>
-                                <td>
-                                    <p class="name paragraph">{{$sub->title}}</p>
-                                </td>
-                                <td>
-                                    <p class="paragraph">{{$sub->semester->number}}<small>ο</small> Εξάμηνο</p>
-                                </td>
-                                <td>
-                                    @if(count($student->homework()->where('subject_id', '=', $sub->id)->get()) <= 0)
-                                        -
-                                    @else
-                                        <ul>
-                                            @foreach($student->homework()->where('subject_id', '=', $sub->id)->get() as $hw)
-                                                <li>
-                                                    <span>{{$hw->title}}</span>
-                                                    <span
-                                                        title="{{$hw->students()->where('student_id', '=', $student->id)->first()->pivot->filename}}"><a
-                                                            href="{{route('teacher.homework.studentfile.download', ['student' => $student ,'homework' => $hw])}}"><i
-                                                                class="purple fa-regular fa-file-arrow-down fa-lg ml-2"></i></a>
-                                                    </span>
-                                                </li>
-                                            @endforeach
-
-                                        </ul>
-                                    @endif
-                                </td>
-                                <td>
-                                    <p class="paragraph">@if(!$student->groups()->where('subject_id', '=', $sub->id)->first())
-                                            -
+                </div>
+                <div class="accordion accordion-flush" id="accordion">
+                    @foreach($subjects as $sub)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-heading{{$loop->index}}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse{{$loop->index}}" aria-expanded="false"
+                                        aria-controls="flush-collapse{{$loop->index}}"
+                                        @if(count($student->homework()->where('subject_id', '=', $sub->id)->get()) == 0) disabled @endif>
+                                <span class="flex w-full">
+                                    <span class="col-3">{{$sub->title}}</span>
+                                    <span class="col-2">{{$sub->semester->number}}</span>
+                                    <span class="col-2 ">{{count($student->homework()->where('subject_id', '=', $sub->id)->get())}}
+                                        / {{count($sub->homework)}}</span>
+                                    <span class="col-3">
+                                        @if(!$student->groups()->where('subject_id', '=', $sub->id)->first())
+                                            <span class="ml-6">-</span>
                                         @else
                                             {{$student->groups()->where('subject_id', '=', $sub->id)->first()->title}}
-                                        @endif</p>
-                                </td>
-                                <td>
-                                    <p class="paragraph">@if(!$student->groups()->where('subject_id', '=', $sub->id)->first())
-                                            -
+                                        @endif
+                                    </span>
+                                    <span class="col-2">
+                                        @if(!$student->groups()->where('subject_id', '=', $sub->id)->first())
+                                            <span class="ml-12">-</span>
                                         @else
                                             {{$student->groups()->where('subject_id', '=', $sub->id)->first()->time}}
-                                        @endif</p>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <p class="paragraph">Δεν υπάρχουν μαθήματα.</p>
-                @endif
-            </div>
+                                        @endif
+                                    </span>
+                                </span>
+                                </button>
+                            </h2>
+                            @if(count($student->homework()->where('subject_id', '=', $sub->id)->get()) > 0)
+                                <div id="flush-collapse{{$loop->index}}" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-heading{{$loop->index}}"
+                                     data-bs-parent="#accordion">
+                                    <span class="accordion-body"  style="padding: 1rem 1.25rem;display: block">
+                                        <span class="flex colTitles  mb-2" style="flex: 1 0 0%;">
+                                            <span class="col-3">Όνομα Εργασίας</span>
+                                            <span class="col-2">Αρχείο</span>
+                                        </span>
+                                        @foreach($student->homework()->where('subject_id', '=', $sub->id)->get() as $hw)
+                                            <span class="flex">
+                                                <span class="col-3">{{$hw->title}}</span>
+                                                <span class="col-2"><a href="{{route('teacher.homework.studentfile.download', ['student' => $student ,'homework' => $hw])}}">{{$hw->students()->where('student_id', '=', $student->id)->first()->pivot->filename}} </a>
+                                                    </span>
+                                                </span>
+                                        @endforeach
+                                    </span>
+                                </div>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 @endsection

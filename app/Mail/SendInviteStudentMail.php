@@ -2,23 +2,24 @@
 
 namespace App\Mail;
 
-use App\Models\Invite;
-use App\Models\InviteTeacher;
+use App\Models\InviteStudent;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class InviteTeacherCreated extends Mailable
+class SendInviteStudentMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    protected $invite;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(InviteTeacher $invite)
+    public function __construct(InviteStudent $invite)
     {
         $this->invite = $invite;
     }
@@ -30,7 +31,6 @@ class InviteTeacherCreated extends Mailable
      */
     public function build()
     {
-        return $this->from('eclass@email.com')
-            ->view('emails.teacherInvite', ['invite' => $this->invite]);
+        return $this->from('eclass@email.com')->subject('Email Ενεργοποίησης')->markdown('emails.sendInviteStudent', ['invite' => $this->invite]);
     }
 }

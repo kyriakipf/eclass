@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teachers;
 
 use App\Http\Controllers\Controller;
 use App\Mail\customEmail;
+use App\Mail\SendCustomMail;
 use App\Models\Message;
 use App\Models\Student;
 use App\Models\Subject;
@@ -45,16 +46,22 @@ class EmailController extends Controller
             'send_date' => Carbon::now()
         ]);
         $email->save();
+        $sub = Subject::find($request->subjectSelect);
 
+        $students = $sub->student;
+        if(count($students) == 0)
+        {
+            return redirect()->back()->with('error', 'Δεν υπάρχουν εγγεγραμένοι μαθητές στο μάθημα');
+        }
         try
         {
             $email->to = $request->userSelect;
             $email->save();
             auth()->user()->messages()->attach($email->id);
-            foreach ($request->userSelect as $userEmail) {
-                Mail::to($userEmail)->send(new customEmail($request));
+            foreach ($students as $student) {
+                Mail::to($student->user->email)->send(new SendCustomMail($request,$sub->title));
 
-                $user = User::query()->where('email', '=', $userEmail)->first();
+                $user = User::query()->where('email', '=', $student->user->email)->first();
                 $user->messages()->attach($email->id);
             }
         }catch (\Exception $e)
