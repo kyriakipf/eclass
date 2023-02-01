@@ -3,9 +3,12 @@
     <section id="login">
         <div class="container">
             <div class="row">
-                <div class="content col-md-4">
-                    <p class="header">Επαναφορά Κωδικού</p>
-                    <div class="card-body">
+                <div class="content flex items-center flex-col mt-20">
+                    <div class="flex col-md-6 items-center gap-x-8">
+                        <a href="{{route('login')}}"><div style="background-image: url({{ asset('assets/img/logo_white.png') }})" class="logo"></div></a>
+                        <div class="header mt-12">Επαναφορά Κωδικού</div>
+                    </div>
+                    <div class="card-body col-md-6">
                         <form method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <!-- Email Address -->

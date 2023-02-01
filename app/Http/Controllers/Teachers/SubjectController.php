@@ -138,7 +138,7 @@ class SubjectController extends Controller
         Storage::deleteDirectory($path);
         $subject->delete();
 
-        return redirect()->back()->with('success', 'Το μάθημα διαγράφηκε επιτυχώς.');
+        return redirect()->route('subjects')->with('success', 'Το μάθημα διαγράφηκε επιτυχώς.');
 
     }
 

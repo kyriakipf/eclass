@@ -54,6 +54,11 @@ section#login .row {
   flex-direction: column;
   align-content: center;
 }
+@media only screen and (max-width: 1750px) {
+  section#login .row {
+    margin-top: 0;
+  }
+}
 section#login .row .logo {
   width: 290px;
   height: 170px;

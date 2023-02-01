@@ -13,6 +13,10 @@
                     <div class="flex">
                         <p class="title" style="margin-bottom: 0 !important;">{{$subject->title}} </p>
                         <p class="smallTitle mt-2">&ensp; {{$subject->semester->number}}<small>o</small> Εξάμηνο</p>
+                        <a href="{{route('subject.edit', ['subject' => $subject])}}" class="ml-5 mt-1"><i
+                                class="fa-regular fa-pencil text-lg"></i></a>
+                        <a href="{{route('subject.delete',  ['subject' => $subject])}}" class="ml-3 mt-1"><i
+                                class="fa-regular fa-trash-can text-lg"></i></a>
                     </div>
                     <p class="paragraph mt-1">
                         @foreach($users as $user)

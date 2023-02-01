@@ -65,7 +65,7 @@
                                 <div class="flex folder-files-row">
                                     <div class="type"><i class="purple fa-regular fa-file-lines"></i></div>
                                     <div class="name"><a
-                                            href="{{asset('storage/' . $file->filepath . DIRECTORY_SEPARATOR . $file->filename)}}"
+                                            href="{{asset('storage' . DIRECTORY_SEPARATOR . $file->filepath . DIRECTORY_SEPARATOR . $file->filename)}}"
                                             target="_blank">{{$file->filename}}</a></div>
                                     <div class="date">
                                         &emsp;{{\Carbon\Carbon::parse($file->created_at)->format('d-m-Y')}}</div>

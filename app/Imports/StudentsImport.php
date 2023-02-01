@@ -17,9 +17,9 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class StudentsImport implements ToCollection, WithValidation, WithHeadingRow, SkipsOnFailure,SkipsEmptyRows
+class StudentsImport implements ToCollection, WithValidation, WithHeadingRow, SkipsOnFailure, SkipsEmptyRows
 {
-    use Importable,SkipsFailures;
+    use Importable, SkipsFailures;
     /**
      * @param Collection $collection
      */
@@ -51,7 +51,7 @@ class StudentsImport implements ToCollection, WithValidation, WithHeadingRow, Sk
         return [
             '*.name' => 'required',
             '*.surname' => 'required',
-            '*.email' => 'required|unique:users',
+            '*.email' => 'required|unique:users|email|unique:invite_students',
             '*.am' => 'required|unique:students'
         ];
     }

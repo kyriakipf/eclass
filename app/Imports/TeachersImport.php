@@ -56,7 +56,7 @@ class TeachersImport implements ToCollection, WithHeadingRow, WithValidation , S
         return [
             '*.name' => 'required',
             '*.surname' => 'required',
-            '*.email' => 'required|unique:users',
+            '*.email' => 'required|unique:users|email|unique:invite_teachers',
         ];
     }
 }

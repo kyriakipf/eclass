@@ -24,13 +24,13 @@
                         <tbody>
                         @foreach($subjects as $subject)
                             <tr class="tableRow">
-                                <td class="col-md-2">
+                                <td>
                                     <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
                                             class="paragraph">{{$subject->title}}</p></a>
                                 </td>
                                 <td>
                                     <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
-                                            class="paragraph">{{substr($subject->summary, 0,130)}}...</p>
+                                            class="paragraph">{{substr($subject->summary, 0,100)}}...</p>
                                     </a>
                                 </td>
                                 <td >
@@ -40,7 +40,7 @@
                                 </td>
                                 <td>
                                     <a href="{{route('subject.show' , ['subject' => $subject])}}"><p
-                                            class="paragraph">{{$subject->semester->number}}ο Εξάμηνο</p>
+                                            class="paragraph">{{$subject->semester->number}}<small>ο</small> Εξάμηνο</p>
                                     </a>
                                 </td>
                                 <td>

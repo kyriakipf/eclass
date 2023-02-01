@@ -19,7 +19,7 @@
                             <div class="input-container focused">
                                 <label for="name" class="input-label">Όνομα:</label>
                                 <input type="text" name="name" id="name"
-                                       placeholder="Γράψτε εδώ..." readonly
+                                       placeholder="Επεξεργαστείτε τα στοιχεία για να προσθέσετε πληροφορίες" readonly
                                        value="{{auth()->user()->name}}"
                                        class="text-input">
                             </div>
@@ -28,7 +28,7 @@
                             <div class="input-container focused">
                                 <label for="name" class="input-label">Επίθετο:</label>
                                 <input type="text" name="name" id="name"
-                                       placeholder="Γράψτε εδώ..." readonly
+                                       placeholder="Επεξεργαστείτε τα στοιχεία για να προσθέσετε πληροφορίες" readonly
                                        value="{{auth()->user()->surname}}"
                                        class="text-input">
                             </div>
@@ -37,7 +37,7 @@
                             <div class="input-container focused">
                                 <label for="name" class="input-label">Email:</label>
                                 <input type="text" name="name" id="name"
-                                       placeholder="Γράψτε εδώ..." readonly
+                                       placeholder="Επεξεργαστείτε τα στοιχεία για να προσθέσετε πληροφορίες" readonly
                                        value="{{auth()->user()->email}}"
                                        class="text-input">
                             </div>
@@ -46,7 +46,7 @@
                             <div class="input-container focused">
                                 <label for="name" class="input-label">Τηλέφωνο:</label>
                                 <input type="text" name="name" id="name"
-                                       placeholder="Γράψτε εδώ..." readonly
+                                       placeholder="Επεξεργαστείτε τα στοιχεία για να προσθέσετε πληροφορίες" readonly
                                        value="{{auth()->user()->teacher->phone}}"
                                        class="text-input">
                             </div>
@@ -55,7 +55,7 @@
                             <div class="input-container focused">
                                 <label for="name" class="input-label">Τμήμα:</label>
                                 <input type="text" name="name" id="name"
-                                       placeholder="Γράψτε εδώ..." readonly
+                                       placeholder="Επεξεργαστείτε τα στοιχεία για να προσθέσετε πληροφορίες" readonly
                                        value="{{auth()->user()->domain->name}}"
                                        class="text-input">
                             </div>
@@ -64,7 +64,7 @@
                             <div class="input-container focused">
                                 <label for="name" class="input-label">Ιδιότητα:</label>
                                 <input type="text" name="name" id="name"
-                                       placeholder="Γράψτε εδώ..." readonly
+                                       placeholder="Επεξεργαστείτε τα στοιχεία για να προσθέσετε πληροφορίες" readonly
                                        value="{{auth()->user()->teacher->job_role->name}}"
                                        class="text-input">
                             </div>
@@ -73,7 +73,7 @@
                             <div class="input-container focused">
                                 <label for="name" class="input-label">Διεύθυνση Γραφείου:</label>
                                 <input type="text" name="name" id="name"
-                                       placeholder="Γράψτε εδώ..." readonly
+                                       placeholder="Επεξεργαστείτε τα στοιχεία για να προσθέσετε πληροφορίες" readonly
                                        value="{{auth()->user()->teacher->office_address}}"
                                        class="text-input">
                             </div>

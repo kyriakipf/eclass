@@ -15,7 +15,7 @@
             @if($dayClickEnabled)
                 wire:click="onDayClick({{ $day->year }}, {{ $day->month }}, {{ $day->day }})"
             @endif
-            class=" {{ $dayInMonth ? $isToday ? 'bg-yellow-100' : ' bg-white ' : 'bg-gray-100' }} h-32">
+            class=" {{ $dayInMonth ? $isToday ? 'bg-yellow-100' : ' bg-white ' : 'bg-gray-100' }} h-32 max-[1750px]:h-20">
 
             {{-- Number of Day --}}
             <div class="flex items-center ml-1 mb-1">
@@ -31,7 +31,7 @@
 
             {{-- Events --}}
             <div class="overflow-y-auto custom-scrollbar">
-                <div class="w-4 h-32 mt-1 ml-2">
+                <div class="w-4 h-32 mt-1 ml-2 max-[1750px]:h-20">
                     @if($dayInMonth)
                     @foreach($events as $event)
                         <div

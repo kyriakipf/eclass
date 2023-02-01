@@ -47,7 +47,7 @@ class InfoController extends Controller
             return redirect()->back()->with('error', 'Υπήρξε πρόβλημα με την ενημέρωση των στοιχείων');
         }
 
-        return view('teacher.Info.showInfo')->with('success','Τα στοιχεία ενημερώθηκαν επιτυχώς');
+        return redirect()->route('teacher.info.show')->with('success','Τα στοιχεία ενημερώθηκαν επιτυχώς');
     }
 
 }

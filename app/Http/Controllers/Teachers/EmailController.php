@@ -51,6 +51,7 @@ class EmailController extends Controller
         $students = $sub->student;
         if(count($students) == 0)
         {
+            $email->delete();
             return redirect()->back()->with('error', 'Δεν υπάρχουν εγγεγραμένοι μαθητές στο μάθημα');
         }
         try
