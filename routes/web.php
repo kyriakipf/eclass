@@ -115,6 +115,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['auth', 'role:Administrator
     Route::get('group/{group}/show', [App\Http\Controllers\Admin\GroupController::class, 'show'])->name('admin.group.show');
     Route::get('homework/{homework}/show', [App\Http\Controllers\Admin\HomeworkController::class, 'show'])->name('admin.homework.show');
     Route::get('homework/{homework}/file/download', [App\Http\Controllers\Admin\HomeworkController::class, 'fileDownload'])->name('admin.homework.file.download');
+
 });
 
 
