@@ -194,6 +194,11 @@ Route::group(['prefix' => 'teacher', 'middleware' => ['auth', 'role:Teacher']], 
 
     //Students
     Route::get('student/{student}/show/{subject}', [App\Http\Controllers\Teachers\StudentController::class, 'show'])->name('teacher.student.show');
+
+    //Stats
+    Route::group(['prefix' => 'stats'], function (){
+       Route::get('index', [\App\Http\Controllers\Teachers\StatsController::class , 'index'])->name('teacher.stats');
+    });
 });
 
 
