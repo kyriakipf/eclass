@@ -39,7 +39,7 @@
                         </a>
                     </td>
                     <td class="col-auto">
-                        <a href="{{route('homework.edit', ['homework' => $single])}}" class="edit"><i
+                        <a href="{{route('homework.edit', ['homework' => $single, 'subject' => $single->subject])}}" class="edit"><i
                                 class="fa-regular fa-pencil"></i></a>
                     </td>
                     <td class="col-auto">
