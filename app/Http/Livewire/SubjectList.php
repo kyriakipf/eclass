@@ -37,6 +37,7 @@ class SubjectList extends Component
     public function render()
     {
         $subjects = Subject::where('tmima', '=',auth()->user()->domain_id)
+            ->whereRelation('teacher', 'user_id', '=', auth()->user()->id)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 

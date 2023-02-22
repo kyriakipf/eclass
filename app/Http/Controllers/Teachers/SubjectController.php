@@ -35,7 +35,8 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $subjects = Subject::all();
+//        $subjects = Subject::all();s
+        $subjects = $this->subjectRepository->getRelated(auth()->user()->teacher);
 
         return view('teacher.subjects.manageSubjects', ['subjects' => $subjects]);
     }

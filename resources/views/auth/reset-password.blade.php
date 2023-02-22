@@ -11,7 +11,8 @@
                         <!-- Email Address -->
                             <div class="input">
                                 <label for="email">Email</label>
-                                <input id="email" class="textInput" type="email" name="email"  value="{{$request->email}}" readonly/>
+                                <input id="email" class="textInput" type="email" name="email"
+                                       value="{{$request->email}}" readonly/>
                             </div>
                             <!-- Password -->
                             <div class="input">
@@ -21,11 +22,12 @@
                             </div>
                             <div class="input">
                                 <label for="password_confirmation">Επαλήθευση Κωδικού</label>
-                                <input id="password_confirmation" class="textInput" type="password" name="password_confirmation" required
+                                <input id="password_confirmation" class="textInput" type="password"
+                                       name="password_confirmation" required
                                        autocomplete="current-password"/>
                             </div>
                             <div class="buttons">
-                                <button class="loginBtn">Αποθήκευση Κωδικού</button>
+                                <button class="button bold">Αποθήκευση Κωδικού</button>
                             </div>
                         </form>
                     </div>
